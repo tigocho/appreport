@@ -1,10 +1,10 @@
 <h2><?php echo $title; ?></h2>
-<div class="col-md-6 mb-3">
+<!-- <div class="col-md-6 mb-3">
     <label>filtro</label>
     <div class="input-group">
         <b><label>De </label></b><input type="date" id="" class="form-control"> <b><label> hasta </label></b> <input type="date" id="" class="form-control">
     </div>
-</div>
+</div> -->
 <div class="table-responsive">
     <table id="tablereport" class="table table-striped table-bordered">
         <thead >
