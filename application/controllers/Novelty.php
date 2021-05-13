@@ -28,9 +28,9 @@
         
         // fin vista a las novedades
 
-        public function getnovelty()
+        public function getnovelty($id)
          {
-            echo json_encode($this->novelty_model->get_novelty());
+            echo json_encode($this->novelty_model->get_novelty($id));
          }
 
 

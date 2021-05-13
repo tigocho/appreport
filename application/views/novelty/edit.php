@@ -37,15 +37,15 @@
             </div>
 
             <div class="col-md-6 mb-3">
-            <label>campaña</label>
+            <label>seccion</label>
             <div class="input-group">
                     <div class="col-xs-2">
                         <input type="text" id="area" class="form-control" placeholder="buscar" >
                     </div>
                     <select class="form-control"  id="area_id_fk" >
-                        <option value="<?php echo $novelty['area_id_fk']; ?>"><?php echo $novelty['area_nom']; ?></option>
+                        <option value="<?php echo $novelty['area_id_fk']; ?>"><?php echo $novelty['session_nom']; ?></option>
                         <?php foreach ($area as $campaign): ?>
-                        <option value="<?php echo $campaign['area_id']; ?>"><?php echo $campaign['area_nom']; ?></option>
+                        <option value="<?php echo $campaign['area_id']; ?>"><?php echo $campaign['session_nom']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>

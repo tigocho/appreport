@@ -1,10 +1,25 @@
 <h2><?php echo $title; ?></h2>
-<!-- <div class="col-md-6 mb-3">
-    <label>filtro</label>
-    <div class="input-group">
-        <b><label>De </label></b><input type="date" id="" class="form-control"> <b><label> hasta </label></b> <input type="date" id="" class="form-control">
+    <div class="row" style="padding: 15px 20px 0px 20px;">
+        <div class="col-sm-6">
+            <h5 class="card-title">Buscar en un rango de fechas:</h5>
+        </div>
+    </div>  
+    <div class="row" style="padding: 15px 20px 0px 20px;">
+        <div class="col-sm-6">
+            <h5 class="card-title">Fecha Inicial:</h5>
+            <input type="date" id="dateini" class="form-control">
+        </div>
+        <div class="col-sm-6">
+            <h5 class="card-title">Fecha Final:</h5>
+            <input type="date" id="datefin" class="form-control">
+        </div>
+        <div style="padding: 15px 20px 0px 20px;" class="form-group"> 
+            <button class="btn btn-success" id="botonf"  type="boton">buscar</button>
+            <button class="btn btn-primary" id="limpiar"  type="boton">limpiar filtro</button>
+        </div>
     </div>
-</div> -->
+
+<br>
 <div class="table-responsive">
     <table id="tablereport" class="table table-striped table-bordered">
         <thead >
@@ -16,7 +31,7 @@
                 <th>Hora inicio</th>
                 <th>Hora fin</th>
                 <th>Tiempo total</th>
-                <th>incidencia</th>
+                <th>incidencia </th>
                 <th>estado novedad</th>
             </tr>
         </thead>

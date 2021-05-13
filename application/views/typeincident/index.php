@@ -35,7 +35,7 @@
                 <div class="col-md-6 mb-3">
                     <label>categoria</label>
                     <select class="form-control"  id="cate_id_fk" >
-                        <option >selecione...</option>
+                        <option value="0" >selecione...</option>
                         <?php foreach ($categoria as $category): ?>
                         <option value="<?php echo $category['cate_id']; ?>"><?php echo $category['cate_nom']; ?></option>
                         <?php endforeach; ?>

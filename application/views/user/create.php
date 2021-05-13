@@ -1,6 +1,5 @@
 <h2><?php echo $title; ?></h2>
 <div class="container-fluid">
-    <form id="novedad"  >
         <div class="form-row">
         <div class="col-md-6 mb-3">
                 <label for="validationDefault01">numero de documento </label>
@@ -40,9 +39,8 @@
                 </select>
             </div>
         <div class="form-group"> 
-           <button class="btn btn-primary" onclick="create_user();" type="submit">registrar usuario</button>
+           <button class="btn btn-primary" onclick="create_user();" type="boton">registrar usuario</button>
         </div>
-    </form>
 </div>
 
     

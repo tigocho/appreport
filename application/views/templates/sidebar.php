@@ -24,8 +24,8 @@
                 <li>
                     <a href="#novedad" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-folder"></i><span>novedades</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                     <ul id="novedad" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                        <li><a href="<?php echo base_url();?>novelty/index"  class="iq-waves-effect"><i class="ri-book-open-fill"></i><span  >novedades abiertas</span></a></li>
-                        <li><a href="<?php echo base_url();?>novelty/index"  class="iq-waves-effect"><i class="fa fa-book"></i><span>novedades cerradas</span></a></li>
+                        <li><a href="<?php echo base_url();?>novelty/index" id="abiertas"  class="iq-waves-effect"><i class="ri-book-open-fill"></i><span  >novedades abiertas</span></a></li>
+                        <li><a href="<?php echo base_url();?>novelty/index" id="cerradas"  class="iq-waves-effect"><i class="fa fa-book"></i><span>novedades cerradas</span></a></li>
                     </ul>
                 </li>
                 <?php if ($this->session->userdata('rol_id')== 1){?>
@@ -58,6 +58,8 @@
 
  <!-- sweetalert -->
 <script src="<?php echo site_url();?>resources/lib/sweetalert/sweetalert.min.js"></script>
+
+
 
 
 

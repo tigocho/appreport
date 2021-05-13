@@ -1,5 +1,6 @@
 
-$.post(baseURL+"Novelty/getnovelty",
+id=2;
+$.post(baseURL+"Novelty/getnovelty/"+id,
     function(data){
         var n = JSON.parse(data);
         $.each(n,function(i,novedad)
@@ -9,18 +10,19 @@ $.post(baseURL+"Novelty/getnovelty",
                     "<td>"+novedad.nove_fecha+"</td>"+
                     "<td>"+novedad.col_login_num+"</td>"+
                     "<td>"+novedad.col_nom+"</td>"+
-                    "<td>"+novedad.area_nom+"</td>"+
+                    "<td>"+novedad.session_nom+"</td>"+
                     "<td>"+novedad.nove_hora_ini+"</td>"+
                     "<td>"+novedad.nove_hora_fin+"</td>"+
                     "<td>"+novedad.nove_tiem_total+"</td>"+
-                    "<td><b>"+novedad.cate_nom+"</b>"+"-"+novedad.tip_inci_nom+"</td>"+
+                    "<td><b>"+novedad.cate_nom+"</b>"+" - "+novedad.tip_inci_nom+"</td>"+
                     "<td>"+novedad.est_des+"</td>"+
                     "<td><a href='"+baseURL+"Novelty/edit/"+novedad.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
-                    "<button type='button' onclick='agent_delete(\""+novedad.nove_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"+
+                    "<button type='button' onclick='novelty_delete(\""+novedad.nove_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"+
                 "</tr>"
             );
         });
 });
+
   
 $(document).ready( function () {
     $('#tablenovelty').DataTable({
@@ -63,41 +65,55 @@ function create_novelty(){
     var var_cate_id_fk = document.getElementById("categoria").value;
     var var_usu_id_fk = document.getElementById("usu_id").value;
     console.log("rutapost",baseURL+'Novelty/createNovelty');
-        if (var_nove_tiem_total == "NaN horas, NaN minutos"){
-            var_est_id_fk = 1;
-        }else{
-            var_est_id_fk = 2;
-        }
-
-    dataPostV = {
-    nove_fecha : var_nove_fecha,
-    nove_hora_ini : var_nove_hora_ini,
-    nove_hora_fin : var_nove_hora_fin,
-    nove_tiem_total : var_nove_tiem_total,
-    cate_id_fk : var_cate_id_fk,
-    tip_inci_id_fk : var_tip_inci_id_fk,
-    area_id_fk  : var_area_id_fk,
-    col_id_fk : var_col_id_fk,
-    usu_id_fk : var_usu_id_fk,
-    est_id_fk : var_est_id_fk,
-    tip_est_id_fk : 1,  
+    if (var_nove_tiem_total == "NaN horas, NaN minutos"){
+        var_est_id_fk = 1;
+    }else{
+        var_est_id_fk = 2;
     }
-    console.info(dataPostV);
 
-    $.ajax({
-        type: "POST",
-        url: baseURL+'Novelty/createNovelty',
-        dataType: 'json',
-        data: dataPostV,
-        success: function(resp) {
-            console.log("resp:",resp["mensaje"]);
-            swal("exitoso!", resp["mensaje"], "success",6000);
-            location.href =baseURL+"Novelty/index";
-        },error: function(error) {
-            error;
-            swal("error!","error al enviar la informacion","warning",6000);
+    if (var_col_id_fk==0) {
+        swal("Opps!","por favor selecionar el colaborador","warning");
+    } else {
+    if (var_area_id_fk==0) {
+        swal("Opps!","por favor selecionar la session","warning");
+    } else {
+    if (var_tip_inci_id_fk==0) {
+        swal("Opps!","por favor selecionar el tipo de incidencia","warning");
+    } else {
+    if (var_nove_hora_ini=="") {
+        swal("Opps!","por favor diligencie la hora de inicio","warning");
+    } else {
+
+        dataPostV = {
+        nove_fecha : var_nove_fecha,
+        nove_hora_ini : var_nove_hora_ini,
+        nove_hora_fin : var_nove_hora_fin,
+        nove_tiem_total : var_nove_tiem_total,
+        cate_id_fk : var_cate_id_fk,
+        tip_inci_id_fk : var_tip_inci_id_fk,
+        area_id_fk  : var_area_id_fk,
+        col_id_fk : var_col_id_fk,
+        usu_id_fk : var_usu_id_fk,
+        est_id_fk : var_est_id_fk,
+        tip_est_id_fk : 1,  
         }
-    });
+        console.info(dataPostV);
+
+        $.ajax({
+            type: "POST",
+            url: baseURL+'Novelty/createNovelty',
+            dataType: 'json',
+            data: dataPostV,
+            success: function(resp) {
+                console.log("resp:",resp["mensaje"]);
+                swal("exitoso!", resp["mensaje"], "success",6000);
+                location.href =baseURL+"Novelty/index";
+            },error: function(error) {
+                error;
+                swal("error!","error al enviar la informacion","warning",6000);
+            }
+        });
+    }}}}
 }
 // fin de insertar datos de agente
 
@@ -149,17 +165,7 @@ $("#colaborador").on("keyup",function(){
     });
     });
 
-//   $("#inicidencia").on("keyup",function(){
-//     $('#tip_inci_id_fk option').each(function(){
-//         if($(this).text().indexOf($("#inicidencia").val()) == -1){
-//               $(this).prop("selected", false);
-//               $(this).fadeOut();
-//           }else{
-//               $(this).prop("selected", false);
-//             $(this).fadeIn();
-//             }
-//     });
-//   });
+
 
 //  fin filtro para los select
 
@@ -249,7 +255,7 @@ console.log("rutapost",baseURL+'Novelty/editNovelty');
 
 }
 
-function agent_delete(var_nove_id){
+function novelty_delete(var_nove_id){
     swal({
         title: '¿esta seguro de eliminar el novedad?',
         type: 'warning',

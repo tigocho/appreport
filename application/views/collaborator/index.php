@@ -7,6 +7,7 @@
                 <th>numero login colaborador</th>
                 <th>nombre de colaborador</th>
                 <th>cargo</th>
+                <th>area</th>
                 <th>acciones</th>
             </tr>
         </thead>
@@ -32,7 +33,6 @@
                     <label>numero login colaborador</label>
                     <input  type="text" class="form-control"  id="col_login_num"  >
                 </div>
-
                 <div class="col-md-6 mb-3">
                     <label>nombre de colaborador</label>
                     <input type="text" class="form-control"  id="col_nom"  >
@@ -40,6 +40,10 @@
                 <div class="col-md-6 mb-3">
                     <label>cargo</label>
                     <input  type="text" class="form-control"  id="col_cargo"  >
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>area</label>
+                    <input  type="text" class="form-control"  id="col_area"  >
                 </div>
 
             </div>
@@ -78,6 +82,10 @@
                 <div class="col-md-6 mb-3">
                     <label>cargo</label>
                     <input type="text" class="form-control"  id="col_cargo_e"  >
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>area</label>
+                    <input type="text" class="form-control"  id="col_area_e"  >
                 </div>
 
             </div>

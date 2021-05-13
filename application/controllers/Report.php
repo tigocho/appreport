@@ -29,9 +29,11 @@
         }
         // fin vista a las novedades
 
-        public function getnovelty()
+        public function getnovelty($inicio,$fin)
          {
-            echo json_encode($this->report_model->get_novelty());
+            $data = $this->input->post();
+            echo json_encode($this->report_model->get_novelty($inicio,$fin));
+            
          }
       
     }

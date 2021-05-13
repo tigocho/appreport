@@ -64,9 +64,26 @@ function create_user(){
     var var_rol_id_fk= document.getElementById("rol_id_fk").value;
     console.log("rutapost",baseURL+'User/createUser');
     
+    if (var_usu_num_doc=="") {
+        swal("Opps!","por favor diligencie el numero de documento","warning");
+    } else {
+    if (var_usu_nom=="") {
+        swal("Opps!","por favor diligencie primer nombre","warning");
+    } else {
+    if (var_usu_ape=="") {
+        swal("Opps!","por favor diligencie el primer apellido","warning");
+    } else {
+    if (var_usu_correo=="") {
+        swal("Opps!","por favor diligencie el correo","warning");
+    } else {
+    if (var_usu_contra=="") {
+        swal("Opps!","por favor diligencie la contraseña","warning");
+    } else {
+    if (var_rol_id_fk==0) {
+        swal("Opps!","por favor diligencie el rol del usuario","warning");
+    } else {
     
-    
-     dataPostV = {
+        dataPostV = {
         usu_num_doc : var_usu_num_doc,
         usu_nom :  var_usu_nom,
         usu_ape : var_usu_ape,
@@ -76,9 +93,9 @@ function create_user(){
         usu_contra : var_usu_contra,
         rol_id_fk : var_rol_id_fk,
         tip_est_id_fk : 1,
-         
-         
-     }
+        
+        
+        }
         console.info(dataPostV);
     
         $.ajax({
@@ -95,8 +112,9 @@ function create_user(){
                 swal("error!","error al enviar la informacion","warning",6000);
             }
         });
-    
-    }
+
+    }}}}}}
+}
 
 
     function edit_user(){

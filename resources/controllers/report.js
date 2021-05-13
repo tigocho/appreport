@@ -1,5 +1,14 @@
-$(document).ready( function () {
+$( "#botonf" ).click(function() {
+    var inicio = $("#dateini").val();
+    var fin = $("#datefin").val();
+
+    if (inicio =="" && fin =="" ) {
+        swal("Opps!","por favor diligencie el rango que desea buscar","warning");
+    }else{
+
+    $("#tablereport").dataTable().fnDestroy();
     $('#tablereport').DataTable({
+        
         dom: 'Bfrtip',
         buttons: [
             {
@@ -9,8 +18,7 @@ $(document).ready( function () {
             },
             'excel','print'
         ],
-
-
+        paging: false,
 
         "language": {
             "sProcessing": "Procesando...",
@@ -36,22 +44,34 @@ $(document).ready( function () {
 
         "ajax":{
 
-                "url": baseURL+"Report/getnovelty",
+                "url": baseURL+"Report/getnovelty/"+inicio+"/"+fin,
                 "type":"POST",
                 dataSrc: ""
-            },
+            },columnDefs: [
+                { width: "70px", targets: 8 }
+              ],
 
             'columns': [
                 { data: "nove_fecha" },
                 { data: "col_login_num" },
                 { data: "col_nom" },
-                { data: "area_nom" },
+                { data: "session_nom" },
                 { data: "nove_hora_ini" },
                 { data: "nove_hora_fin" },
                 { data: "nove_tiem_total" },
-                { data: "cate_nom"},
+                { data: null,render: function ( data, type, row ) { return '<b>'+row.cate_nom + '</b> - ' + row.tip_inci_nom;}},
                 { data: "est_des"}
             ]
 
-    });
-} ); 
+    });}
+}); 
+
+
+
+
+
+
+$( "#limpiar" ).click(function() {
+    location.reload();
+});
+
