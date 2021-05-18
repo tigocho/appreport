@@ -16,21 +16,36 @@
 
 
         // inicio vista a las novedades
-        public function index()
+        public function abiertas()
         {
-            $data['title'] = 'novedades';
+            $data['title'] = 'novedades abiertas';
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');
-            $this->load->view('novelty/index', $data);
+            $this->load->view('novelty/abiertas', $data);
+            $this->load->view('templates/footer');
+        }
+
+        public function cerradas()
+        {
+            $data['title'] = 'novedades cerradas';
+            $this->load->view('templates/header');
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/narbar');
+            $this->load->view('novelty/cerradas', $data);
             $this->load->view('templates/footer');
         }
         
         // fin vista a las novedades
 
-        public function getnovelty($id)
+        public function getnoveltyab()
          {
-            echo json_encode($this->novelty_model->get_novelty($id));
+            echo json_encode($this->novelty_model->get_noveltyA());
+         }
+
+         public function getnoveltyce()
+         {
+            echo json_encode($this->novelty_model->get_noveltyC());
          }
 
 

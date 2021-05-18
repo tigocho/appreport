@@ -1,11 +1,10 @@
-
-id=2;
-$.post(baseURL+"Novelty/getnovelty/"+id,
+// inicio de novedades abiertas
+$.post(baseURL+"Novelty/getnoveltyab",
     function(data){
         var n = JSON.parse(data);
         $.each(n,function(i,novedad)
         {
-            $("#tablenovelty").append(
+            $("#tableabiertas").append(
                 "<tr>"+
                     "<td>"+novedad.nove_fecha+"</td>"+
                     "<td>"+novedad.col_login_num+"</td>"+
@@ -22,10 +21,8 @@ $.post(baseURL+"Novelty/getnovelty/"+id,
             );
         });
 });
-
-  
 $(document).ready( function () {
-    $('#tablenovelty').DataTable({
+    $('#tableabiertas').DataTable({
 
         "language": {
             "sProcessing": "Procesando...",
@@ -51,6 +48,64 @@ $(document).ready( function () {
 
     });
 } ); 
+
+// fin de novedades abiertas
+
+
+// inicio de novedades cerradas
+$.post(baseURL+"Novelty/getnoveltyce",
+    function(data){
+        var n = JSON.parse(data);
+        $.each(n,function(i,novedad)
+        {
+            $("#tablecerradas").append(
+                "<tr>"+
+                    "<td>"+novedad.nove_fecha+"</td>"+
+                    "<td>"+novedad.col_login_num+"</td>"+
+                    "<td>"+novedad.col_nom+"</td>"+
+                    "<td>"+novedad.session_nom+"</td>"+
+                    "<td>"+novedad.nove_hora_ini+"</td>"+
+                    "<td>"+novedad.nove_hora_fin+"</td>"+
+                    "<td>"+novedad.nove_tiem_total+"</td>"+
+                    "<td><b>"+novedad.cate_nom+"</b>"+" - "+novedad.tip_inci_nom+"</td>"+
+                    "<td>"+novedad.est_des+"</td>"+
+                    "<td><a href='"+baseURL+"Novelty/edit/"+novedad.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
+                    "<button type='button' onclick='novelty_delete(\""+novedad.nove_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"+
+                "</tr>"
+            );
+        });
+});
+$(document).ready( function () {
+    $('#tablecerradas').DataTable({
+
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningun dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Ultimo",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+
+        }
+
+    });
+} ); 
+// fin de novedades cerradas
+
+
+
 
 
 // inicio de insertar datos de agente
@@ -107,7 +162,11 @@ function create_novelty(){
             success: function(resp) {
                 console.log("resp:",resp["mensaje"]);
                 swal("exitoso!", resp["mensaje"], "success",6000);
-                location.href =baseURL+"Novelty/index";
+                if( var_est_id_fk =="1"){
+                location.href = baseURL+"Novelty/abiertas";
+                }else{
+                location.href = baseURL+"Novelty/cerradas";    
+                }
             },error: function(error) {
                 error;
                 swal("error!","error al enviar la informacion","warning",6000);
@@ -203,7 +262,6 @@ function restarHoras() {
 }
 // logica de restar tiempo
 
-
 function edit_novelty(){
 var var_nove_id= document.getElementById("nove_id").value;
 var var_nove_fecha = document.getElementById("nove_fecha").value;
@@ -243,10 +301,12 @@ console.log("rutapost",baseURL+'Novelty/editNovelty');
         data: dataPostV,
         success: function(resp) {
             console.log("resp:",resp["mensaje"]);
-
             swal("exitoso!", resp["mensaje"], "success",6000);
-            location.href = baseURL+"Novelty/index";
-
+            if( var_est_id_fk =="1"){
+                location.href = baseURL+"Novelty/abiertas";
+            }else{
+                location.href = baseURL+"Novelty/cerradas";    
+            }
         },error: function(error) {
             error;
             swal("error!","error al enviar la informacion","warning",6000);

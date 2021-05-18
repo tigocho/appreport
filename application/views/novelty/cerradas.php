@@ -1,7 +1,7 @@
 <p><h2><?php echo $title; ?></h2></p>
 <a href="<?php echo base_url()?>novelty/create"><button type="button" style="float: right;" class="btn btn-success mb-3">creaccion de novedad</button></a>
 <div class="table-responsive">
-    <table id="tablenovelty" class="table table-striped table-bordered">
+    <table id="tablecerradas" class="table table-striped table-bordered">
         <thead >
             <tr>
                 <th>Fecha novedad</th>
