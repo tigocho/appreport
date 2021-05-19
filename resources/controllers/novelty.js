@@ -1,29 +1,6 @@
 // inicio de novedades abiertas
-$.post(baseURL+"Novelty/getnoveltyab",
-    function(data){
-        var n = JSON.parse(data);
-        $.each(n,function(i,novedad)
-        {
-            $("#tableabiertas").append(
-                "<tr>"+
-                    "<td>"+novedad.nove_fecha+"</td>"+
-                    "<td>"+novedad.col_login_num+"</td>"+
-                    "<td>"+novedad.col_nom+"</td>"+
-                    "<td>"+novedad.session_nom+"</td>"+
-                    "<td>"+novedad.nove_hora_ini+"</td>"+
-                    "<td>"+novedad.nove_hora_fin+"</td>"+
-                    "<td>"+novedad.nove_tiem_total+"</td>"+
-                    "<td><b>"+novedad.cate_nom+"</b>"+" - "+novedad.tip_inci_nom+"</td>"+
-                    "<td>"+novedad.est_des+"</td>"+
-                    "<td><a href='"+baseURL+"Novelty/edit/"+novedad.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
-                    "<button type='button' onclick='novelty_delete(\""+novedad.nove_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"+
-                "</tr>"
-            );
-        });
-});
 $(document).ready( function () {
     $('#tableabiertas').DataTable({
-
         "language": {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
@@ -44,37 +21,33 @@ $(document).ready( function () {
                 "sPrevious": "Anterior"
             },
 
-        }
+        },
+        "ajax":{
 
+            "url": baseURL+"Novelty/getnoveltyab",
+            "type":"POST",
+            dataSrc: ""
+        },
+        'columns': [
+            { data: "nove_fecha" },
+            { data: "col_login_num" },
+            { data: "col_nom" },
+            { data: "session_nom" },
+            { data: "nove_hora_ini" },
+            { data: "nove_hora_fin" },
+            { data: "nove_tiem_total" },
+            { data: null,render: function ( data, type, row ) { return '<b>'+row.cate_nom + '</b> - ' + row.tip_inci_nom;}},
+            { data: "est_des"},
+            { "ordertable": true,render: function ( data, type, row ) { 
+                return "<td><a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
+                "<button type='button' onclick='novelty_delete(\""+row.nove_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"
+            }}
+        ]
     });
 } ); 
-
 // fin de novedades abiertas
 
-
 // inicio de novedades cerradas
-$.post(baseURL+"Novelty/getnoveltyce",
-    function(data){
-        var n = JSON.parse(data);
-        $.each(n,function(i,novedad)
-        {
-            $("#tablecerradas").append(
-                "<tr>"+
-                    "<td>"+novedad.nove_fecha+"</td>"+
-                    "<td>"+novedad.col_login_num+"</td>"+
-                    "<td>"+novedad.col_nom+"</td>"+
-                    "<td>"+novedad.session_nom+"</td>"+
-                    "<td>"+novedad.nove_hora_ini+"</td>"+
-                    "<td>"+novedad.nove_hora_fin+"</td>"+
-                    "<td>"+novedad.nove_tiem_total+"</td>"+
-                    "<td><b>"+novedad.cate_nom+"</b>"+" - "+novedad.tip_inci_nom+"</td>"+
-                    "<td>"+novedad.est_des+"</td>"+
-                    "<td><a href='"+baseURL+"Novelty/edit/"+novedad.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
-                    "<button type='button' onclick='novelty_delete(\""+novedad.nove_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"+
-                "</tr>"
-            );
-        });
-});
 $(document).ready( function () {
     $('#tablecerradas').DataTable({
 
@@ -98,15 +71,32 @@ $(document).ready( function () {
                 "sPrevious": "Anterior"
             },
 
-        }
+        },
+        "ajax":{
+
+            "url": baseURL+"Novelty/getnoveltyce",
+            "type":"POST",
+            dataSrc: ""
+        },
+        'columns': [
+            { data: "nove_fecha" },
+            { data: "col_login_num" },
+            { data: "col_nom" },
+            { data: "session_nom" },
+            { data: "nove_hora_ini" },
+            { data: "nove_hora_fin" },
+            { data: "nove_tiem_total" },
+            { data: null,render: function ( data, type, row ) { return '<b>'+row.cate_nom + '</b> - ' + row.tip_inci_nom;}},
+            { data: "est_des"},
+            { "ordertable": true,render: function ( data, type, row ) { 
+                return "<td><a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
+                "<button type='button' onclick='novelty_delete(\""+row.nove_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"
+            }}
+        ]
 
     });
 } ); 
 // fin de novedades cerradas
-
-
-
-
 
 // inicio de insertar datos de agente
 function create_novelty(){
@@ -169,7 +159,7 @@ function create_novelty(){
                 }
             },error: function(error) {
                 error;
-                swal("error!","error al enviar la informacion","warning",6000);
+                swal("Opps!","error al enviar la informacion","warning",6000);
             }
         });
     }}}}
@@ -245,6 +235,22 @@ if (document.querySelector('#nove_hora_ini')) {
 
 // logica de restar tiempo
 function restarHoras() {
+    var currentDate = new Date(ini = document.getElementById("nove_hora_ini").value);
+    var date = currentDate.getDate();
+    var month = currentDate.getMonth(); 
+    var year = currentDate.getFullYear();
+    var hora_ini = year + "-" +(month + 1) + "-" + date;
+    var fechaDate = new Date();
+    var datef = fechaDate.getDate();
+    var monthf = fechaDate.getMonth(); 
+    var yearf = fechaDate.getFullYear();
+    var fecha_f = yearf + "-" +(monthf + 1) + "-" + datef;
+    if(hora_ini > fecha_f){
+        document.getElementById('boton').disabled=true;
+        swal("Opps!","por favor ingrese una fecha de inicio menor a la fecha de hoy","warning");
+    }else{
+        document.getElementById('boton').disabled=false;
+    }
 
     var inicioh = new Date(inicio = document.getElementById("nove_hora_ini").value);
     var finh = new Date(fin = document.getElementById("nove_hora_fin").value);
@@ -254,7 +260,7 @@ function restarHoras() {
 
     if (diffHrs <= 0 && diffMins <= 0 ) {
         document.getElementById('boton').disabled=true;
-        swal("error!","por favor ingrese una hora de inicio mayor a la hora fin","warning");
+        swal("Opps!","por favor ingrese una hora de inicio mayor a la hora fin","warning");
     }else{
         document.getElementById('boton').disabled=false;
     }
@@ -309,7 +315,7 @@ console.log("rutapost",baseURL+'Novelty/editNovelty');
             }
         },error: function(error) {
             error;
-            swal("error!","error al enviar la informacion","warning",6000);
+            swal("Opps!","error al enviar la informacion","warning",6000);
         }
     });
 
@@ -344,7 +350,7 @@ function novelty_delete(var_nove_id){
                     location.reload();
                 },error: function(error) {
                     error;
-                    swal("error!","error al enviar la informacion","warning",6000);
+                    swal("Opps!","error al enviar la informacion","warning",6000);
                 }
             });    
             

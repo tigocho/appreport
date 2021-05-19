@@ -1,51 +1,52 @@
-<h2><?php echo $title; ?></h2>
-    <div class="row" style="padding: 15px 20px 0px 20px;">
-        <div class="col-sm-6">
-            <h5 class="card-title">Buscar en un rango de fechas:</h5>
+<div class="iq-card-body"> 
+    <h2><?php echo $title; ?></h2>
+        <div class="row" style="padding: 15px 20px 0px 20px;">
+            <div class="col-sm-6">
+                <h5 class="card-title">Buscar en un rango de fechas:</h5>
+            </div>
+        </div>  
+        <div class="row" style="padding: 15px 20px 0px 20px;">
+            <div class="col-sm-6">
+                <h5 class="card-title">Fecha Inicial:</h5>
+                <input type="date" id="dateini" class="form-control">
+            </div>
+            <div class="col-sm-6">
+                <h5 class="card-title">Fecha Final:</h5>
+                <input type="date" id="datefin" class="form-control">
+            </div>
+            <div style="padding: 15px 20px 0px 20px;" class="form-group"> 
+                <button class="btn btn-success" id="botonf"  type="boton">buscar</button>
+                <button class="btn btn-primary" id="limpiar"  type="boton">limpiar filtro</button>
+            </div>
         </div>
-    </div>  
-    <div class="row" style="padding: 15px 20px 0px 20px;">
-        <div class="col-sm-6">
-            <h5 class="card-title">Fecha Inicial:</h5>
-            <input type="date" id="dateini" class="form-control">
-        </div>
-        <div class="col-sm-6">
-            <h5 class="card-title">Fecha Final:</h5>
-            <input type="date" id="datefin" class="form-control">
-        </div>
-        <div style="padding: 15px 20px 0px 20px;" class="form-group"> 
-            <button class="btn btn-success" id="botonf"  type="boton">buscar</button>
-            <button class="btn btn-primary" id="limpiar"  type="boton">limpiar filtro</button>
-        </div>
+
+    <br>
+    <div class="table-responsive">
+        <table id="tablereport" class="table table-striped table-bordered">
+            <thead >
+                <tr>
+                    <th>Fecha novedad</th>
+                    <th>Login id</th>
+                    <th>Nombre de agente</th>
+                    <th>campaña</th>
+                    <th>Hora inicio</th>
+                    <th>Hora fin</th>
+                    <th>Tiempo total</th>
+                    <th>Incidencia </th>
+                    <th>Estado novedad</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
-
-<br>
-<div class="table-responsive">
-    <table id="tablereport" class="table table-striped table-bordered">
-        <thead >
-            <tr>
-                <th>Fecha novedad</th>
-                <th>Login id</th>
-                <th>Nombre de agente</th>
-                <th>campaña</th>
-                <th>Hora inicio</th>
-                <th>Hora fin</th>
-                <th>Tiempo total</th>
-                <th>incidencia </th>
-                <th>estado novedad</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <script src="<?php echo base_url();?>resources/js/jquery-3.4.1.min.js"></script>
+    <script src="<?php echo base_url();?>resources/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="<?php echo base_url();?>resources/js/jquery.dataTables.js"></script>
+    <script type='text/javascript'>
+        var baseURL= "<?php echo base_url();?>";
+    </script>
+    <script src='<?php echo base_url();?>resources/controllers/report.js' type='text/javascript' ></script>
 </div>
-<script src="<?php echo base_url();?>resources/js/jquery-3.4.1.min.js"></script>
-<script src="<?php echo base_url();?>resources/js/jquery-ui.min.js"></script>
-<script type="text/javascript" charset="utf8" src="<?php echo base_url();?>resources/js/jquery.dataTables.js"></script>
-<script type='text/javascript'>
-    var baseURL= "<?php echo base_url();?>";
-</script>
-<script src='<?php echo base_url();?>resources/controllers/report.js' type='text/javascript' ></script>
 
-
-   
+    

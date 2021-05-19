@@ -1,6 +1,5 @@
 $(document).ready( function () {
     $('#tabletypeincident').DataTable({
-
         "language": {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
@@ -20,27 +19,23 @@ $(document).ready( function () {
                 "sNext": "Siguiente",
                 "sPrevious": "Anterior"
             },
-        }
+        },
+        "ajax":{
+
+            "url": baseURL+"Typeincident/gettypeincident",
+            "type":"POST",
+            dataSrc: ""
+        },
+        'columns': [
+            { data: "tip_inci_id" },
+            { data: "tip_inci_nom" },
+            { "ordertable": true,render: function ( data, type, row ) { 
+                return "<td><button type='button' onclick='modal_typeincident_edit(\""+row.tip_inci_id+"\",\""+row.tip_inci_nom+"\");'  class='btn btn-primary mb-3'>editar</button> "+
+                "<button type='button' onclick='typeincident_delete(\""+row.tip_inci_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"
+            }}
+        ]
     });
 } );
-
-$.post(baseURL+"Typeincident/gettypeincident",
-function(data){
-    var tn = JSON.parse(data);
-    $.each(tn,function(i,typeincident)
-    {
-        $("#tabletypeincident").append(
-            "<tr>"+
-                "<td>"+typeincident.tip_inci_id+"</td>"+
-                "<td>"+typeincident.tip_inci_nom+"</td>"+
-                "<td><button type='button' onclick='modal_typeincident_edit(\""+typeincident.tip_inci_id+"\",\""+typeincident.tip_inci_nom+"\");'  class='btn btn-primary mb-3'>editar</button> "+
-                "<button type='button' onclick='typeincident_delete(\""+typeincident.tip_inci_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"+
-            "</tr>"
-        );
-    });
-});
-
-
 
 // inicio modal para insertar datos de tipo de incidencia
 function modal_typeincident_create()

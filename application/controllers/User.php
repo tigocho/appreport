@@ -18,7 +18,7 @@
         // inicio vista de usuario
         public function index()
         {
-            $data['title'] = 'usuarios';
+            $data['title'] = 'Usuarios';
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');

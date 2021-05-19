@@ -1,6 +1,5 @@
 $(document).ready( function () {
     $('#tablecategory').DataTable({
-
         "language": {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
@@ -20,27 +19,24 @@ $(document).ready( function () {
                 "sNext": "Siguiente",
                 "sPrevious": "Anterior"
             },
-        }
+        },
+        "ajax":{
 
+            "url": baseURL+"Category/getCategory",
+            "type":"POST",
+            dataSrc: ""
+        },
+
+        'columns': [
+            { data: "cate_id" },
+            { data: "cate_nom" },
+            { "ordertable": true,render: function ( data, type, row ) { 
+                return "<td><button type='button' onclick='modal_category_edit(\""+row.cate_id+"\",\""+row.cate_nom+"\");'  class='btn btn-primary mb-3'>editar</button> "+
+                "<button type='button' onclick='category_delete(\""+row.cate_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"
+            }}
+        ]
     });
 } );
-
-$.post(baseURL+"Category/getCategory",
-function(data){
-    var c = JSON.parse(data);
-    $.each(c,function(i,categoria)
-    {
-        $("#tablecategory").append(
-            "<tr>"+
-                "<td>"+categoria.cate_id+"</td>"+
-                "<td>"+categoria.cate_nom+"</td>"+
-                "<td><button type='button' onclick='modal_category_edit(\""+categoria.cate_id+"\",\""+categoria.cate_nom+"\");'  class='btn btn-primary mb-3'>editar</button> "+
-                "<button type='button' onclick='category_delete(\""+categoria.cate_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"+
-            "</tr>"
-        );
-    });
-});
-
 
 function modal_category_create(){
     $('#category_create').modal('show')

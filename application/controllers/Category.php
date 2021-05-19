@@ -19,7 +19,7 @@
         public function index()
         {
             
-            $data['title'] = 'categorias';
+            $data['title'] = 'Categorias';
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');

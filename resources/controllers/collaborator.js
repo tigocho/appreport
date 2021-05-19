@@ -1,7 +1,5 @@
 $(document).ready( function () {
     $('#tablecollaborator').DataTable({
-
-
         "language": {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
@@ -21,32 +19,25 @@ $(document).ready( function () {
                 "sNext": "Siguiente",
                 "sPrevious": "Anterior"
             },
-        }
-       
+        },
+        "ajax":{
 
+            "url": baseURL+"Collaborator/getcollaborator",
+            "type":"POST",
+            dataSrc: ""
+        },
+        'columns': [
+            { data: "col_login_num" },
+            { data: "col_nom" },
+            { data: "col_cargo" },
+            { data: "col_area" },
+            { "ordertable": true,render: function ( data, type, row ) { 
+                return "<td><button type='button' onclick='modal_collaborator_edit(\""+row.col_id+"\",\""+row.col_login_num+"\",\""+row.col_nom+"\",\""+row.col_cargo+"\",\""+row.col_area+"\");'  class='btn btn-primary mb-3'>editar</button> "+
+                "<button type='button' onclick='collaborator_delete(\""+row.col_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"
+            }}
+        ]
     });
 });  
-
-$.post(baseURL+"Collaborator/getcollaborator",
-    function(data){
-        var a = JSON.parse(data);
-        $.each(a,function(i,colaborador)
-        {
-            $("#tablecollaborator").append(
-                "<tr>"+
-                    "<td>"+colaborador.col_login_num+"</td>"+
-                    "<td>"+colaborador.col_nom+"</td>"+
-                    "<td>"+colaborador.col_cargo+"</td>"+
-                    "<td>"+colaborador.col_area+"</td>"+
-                    "<td><button type='button' onclick='modal_collaborator_edit(\""+colaborador.col_id+"\",\""+colaborador.col_login_num+"\",\""+colaborador.col_nom+"\",\""+colaborador.col_cargo+"\",\""+colaborador.col_area+"\");'  class='btn btn-primary mb-3'>editar</button> "+
-                    "<button type='button' onclick='collaborator_delete(\""+colaborador.col_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"+
-                "</tr>"
-            );
-        });
-    });
-
-   
-    
 
 
 // inicio modal para insertar datos de colaborador

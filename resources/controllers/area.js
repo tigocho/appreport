@@ -1,6 +1,5 @@
 $(document).ready( function () {
     $('#tablearea').DataTable({
-
         "language": {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
@@ -20,30 +19,24 @@ $(document).ready( function () {
                 "sNext": "Siguiente",
                 "sPrevious": "Anterior"
             },
-        }
+        },
+        "ajax":{
+
+            "url": baseURL+"Area/getArea",
+            "type":"POST",
+            dataSrc: ""
+        },
+        'columns': [
+            { data: "area_nom" },
+            { data: "session_nom" },
+            { "ordertable": true,render: function ( data, type, row ) { 
+                return "<td><button type='button' onclick='modal_area_edit(\""+row.area_id+"\",\""+row.area_nom+"\",\""+row.session_nom+"\");'  class='btn btn-primary mb-3'>editar</button> "+"<button type='button' onclick='area_delete(\""+row.area_id+"\");' class='btn btn-danger mb-3'>eliminar</button>"
+            }}
+            
+        ]
 
     });
 } );
-
-
-$.post(baseURL+"Area/getArea",
-function(data){
-    var c = JSON.parse(data);
-    $.each(c,function(i,area)
-    {
-        $("#tablearea").append(
-            "<tr>"+
-                "<td>"+area.area_nom+"</td>"+
-                "<td>"+area.session_nom+"</td>"+
-                "<td><button type='button' onclick='modal_area_edit(\""+area.area_id+"\",\""+area.area_nom+"\",\""+area.session_nom+"\");'  class='btn btn-primary mb-3'>editar</button> "+
-                "<button type='button' onclick='area_delete(\""+area.area_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"+
-            "</tr>"
-        );
-    });
-});
-
-
-
 
 function modal_area_create()
     {

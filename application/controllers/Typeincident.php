@@ -15,7 +15,7 @@
         public function index()
         {
             
-            $data['title'] = 'tipo incidencia';
+            $data['title'] = 'Tipo incidencia';
             $data['categoria'] = $this->type_incident_model->get_category();
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');

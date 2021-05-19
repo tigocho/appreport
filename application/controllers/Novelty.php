@@ -18,7 +18,7 @@
         // inicio vista a las novedades
         public function abiertas()
         {
-            $data['title'] = 'novedades abiertas';
+            $data['title'] = 'Novedades abiertas';
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');
@@ -28,7 +28,7 @@
 
         public function cerradas()
         {
-            $data['title'] = 'novedades cerradas';
+            $data['title'] = 'Novedades cerradas';
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');

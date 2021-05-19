@@ -1,4 +1,3 @@
-
 $(document).ready( function () {
     $('#tableuser').DataTable({
 
@@ -21,36 +20,28 @@ $(document).ready( function () {
                 "sNext": "Siguiente",
                 "sPrevious": "Anterior"
             },
-        }
+        },
+        "ajax":{
 
+            "url": baseURL+"User/getuser",
+            "type":"POST",
+            dataSrc: ""
+        },
 
-
-
+        'columns': [
+            { data: "usu_num_doc" },
+            { data: null,render: function ( data, type, row ) { return row.usu_nom + ' ' + row.usu_nom_two;}},
+            { data: null,render: function ( data, type, row ) { return row.usu_ape + ' ' + row.usu_ape_two;}},
+            { data: "usu_correo" },
+            { data: "usu_contra" },
+            { data: "rol_des" },
+            { "ordertable": true,render: function ( data, type, row ) { 
+                return "<td><a href='"+baseURL+"User/edit/"+row.usu_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
+                "<button type='button' onclick='user_delete(\""+row.usu_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"
+            }}
+        ]
     });
 } );
-
-
-$.post(baseURL+"User/getuser",
-    function(data){
-        var u = JSON.parse(data);
-        $.each(u,function(i,usuario)
-        {
-            $("#tableuser").append(
-                "<tr>"+
-                    "<td>"+usuario.usu_num_doc+"</td>"+
-                    "<td>"+usuario.usu_nom+" "+usuario.usu_nom_two+"</td>"+
-                    "<td>"+usuario.usu_ape+" "+usuario.usu_ape_two+"</td>"+
-                    "<td>"+usuario.usu_correo+"</td>"+
-                    "<td>"+usuario.usu_contra+"</td>"+
-                    "<td>"+usuario.rol_des+"</td>"+
-                    "<td><a href='"+baseURL+"User/edit/"+usuario.usu_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
-                    "<button type='button' onclick='user_delete(\""+usuario.usu_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"+
-                "</tr>"
-            );
-        });
-    });
-
-
 
 function create_user(){
 

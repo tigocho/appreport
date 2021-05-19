@@ -18,7 +18,7 @@
         // inicio vista a las novedades
         public function index()
         {
-            $data['title'] = 'colaboradores';
+            $data['title'] = 'Colaboradores';
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');
