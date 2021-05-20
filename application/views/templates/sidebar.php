@@ -32,9 +32,13 @@
                 <li>
                 <a href="<?php echo base_url();?>collaborator/index" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>colaboradores</span></a>
                 </li>
+                <?php }?>
+                <?php if ($this->session->userdata('rol_id')== 1){?>
                <li>
                 <a href="<?php echo base_url();?>area/index" class="iq-waves-effect"><i class="ri-group-fill"></i><span>areas</span></a>
                 </li>
+                <?php }?>
+                <?php if ($this->session->userdata('rol_id')== 1){?>
                 <li>
                     <a href="#tipnovedad" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="las la-tasks"></i><span>incidencias</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                     <ul id="tipnovedad" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
@@ -42,9 +46,13 @@
                         <li><a href="<?php echo base_url();?>typeincident/index" class="iq-waves-effect"><i class="ri-device-fill"></i><span>tipo incidencia</span></a></li>
                     </ul>
                 </li>
+                <?php }?>
+                <?php if ($this->session->userdata('rol_id')== 1){?>
                 <li>
                 <a href="<?php echo base_url();?>user/index" class="iq-waves-effect"><i class="fa fa-user-circle"></i><span>usuarios</span></a>
                 </li>
+                <?php }?>
+                <?php if ($this->session->userdata('rol_id')== 1 || $this->session->userdata('rol_id')== 3 ){?>
                 <li>
                 <a href="<?php echo base_url();?>report/index" class="iq-waves-effect"><i class="fa fa-download"></i><span>reportes</span></a>
                 </li>

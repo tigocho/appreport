@@ -38,9 +38,13 @@ $(document).ready( function () {
             { data: "nove_tiem_total" },
             { data: null,render: function ( data, type, row ) { return '<b>'+row.cate_nom + '</b> - ' + row.tip_inci_nom;}},
             { data: "est_des"},
-            { "ordertable": true,render: function ( data, type, row ) { 
-                return "<td><a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
-                "<button type='button' onclick='novelty_delete(\""+row.nove_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"
+            { "ordertable": true,render: function ( data, type, row ) {
+                if (rol != 2){
+                return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
+                "<button type='button' onclick='novelty_delete(\""+row.nove_id+"\");' class='btn btn-danger mb-3'>eliminar</button>"
+                }else{
+                    return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a>"
+                }
             }}
         ]
     });
@@ -89,8 +93,12 @@ $(document).ready( function () {
             { data: null,render: function ( data, type, row ) { return '<b>'+row.cate_nom + '</b> - ' + row.tip_inci_nom;}},
             { data: "est_des"},
             { "ordertable": true,render: function ( data, type, row ) { 
-                return "<td><a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
-                "<button type='button' onclick='novelty_delete(\""+row.nove_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"
+                if (rol != 2){
+                return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
+                "<button type='button' onclick='novelty_delete(\""+row.nove_id+"\");' class='btn btn-danger mb-3'>eliminar</button>"
+                }else{
+                    return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a>"
+                }
             }}
         ]
 

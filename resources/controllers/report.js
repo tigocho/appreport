@@ -2,7 +2,7 @@ $( "#botonf" ).click(function() {
     var inicio = $("#dateini").val();
     var fin = $("#datefin").val();
 
-    if (inicio =="" && fin =="" ) {
+    if (inicio =="" || fin =="" ) {
         swal("Opps!","por favor diligencie el rango que desea buscar","warning");
     }else{
 
@@ -65,10 +65,6 @@ $( "#botonf" ).click(function() {
 
     });}
 }); 
-
-
-
-
 
 
 $( "#limpiar" ).click(function() {
