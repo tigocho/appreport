@@ -6,7 +6,7 @@ Codeigneter v.3 (php),
 JavaScript (jquery v.3.4.1),
 Plantilla HTML (x ray medical and hospital Admin témplate)
 
-Instalación por xampp localhost
+INSTALACIÓN POR XAMPP LOCALHOST
 
 1).Tener permiso en el repositorio tigocho/appreport
 
@@ -34,7 +34,7 @@ Usuario Admin: 900612531
 
 Contraseña: Gocho
 
-Instalación por servidor
+INSTALACIÓN POR SERVIDOR
 
 1).Tener permiso en el repositorio tigocho/appreport
 
