@@ -1,7 +1,7 @@
 <?php
     class Collaborator extends CI_Controller {
 
-        //    inicio conexion del controlador a el modal y url helpers
+        //    inicio conexion del controlador a el modal y url helpers 
         public function __construct()
         {
             parent::__construct();
