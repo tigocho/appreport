@@ -42,9 +42,15 @@
                         <label>cargo</label>
                         <input  type="text" class="form-control"  id="col_cargo"  >
                     </div>
+
                     <div class="col-md-6 mb-3">
                         <label>area</label>
-                        <input  type="text" class="form-control"  id="col_area"  >
+                        <select class="form-control"  id="area_id_fk" >
+                            <option value="0">selecione...</option>
+                            <?php foreach ($area as $areas): ?>
+                            <option value="<?php echo $areas['area_id']; ?>"><?php echo $areas['area_nom']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
 
                 </div>
@@ -84,11 +90,17 @@
                         <label>cargo</label>
                         <input type="text" class="form-control"  id="col_cargo_e"  >
                     </div>
+                   
                     <div class="col-md-6 mb-3">
                         <label>area</label>
-                        <input type="text" class="form-control"  id="col_area_e"  >
+                        <select class="form-control"  id="area_id_fk_e" >
+                            <option value="" >selecione...</option>
+                            <?php foreach ($area as $areas): ?>
+                            <option value="<?php echo $areas['area_id']; ?>"><?php echo $areas['area_nom']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
-
+                    
                 </div>
                 </form>
             </div>

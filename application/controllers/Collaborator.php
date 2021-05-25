@@ -19,6 +19,7 @@
         public function index()
         {
             $data['title'] = 'Colaboradores';
+            $data['area'] = $this->collaborator_model->getarea();
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');

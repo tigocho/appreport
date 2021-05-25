@@ -41,12 +41,12 @@
                 <label>seccion</label>
                 <div class="input-group">
                         <div class="col-xs-2">
-                            <input type="text" style="text-transform:uppercase;" value=""  onkeyup="javascript:this.value=this.value.toUpperCase();" id="area" class="form-control" placeholder="buscar" >
+                            <input type="text" style="text-transform:uppercase;" value=""  onkeyup="javascript:this.value=this.value.toUpperCase();" id="seccion" class="form-control" placeholder="buscar" >
                         </div>
-                        <select class="form-control"  id="area_id_fk" >
-                            <option value="<?php echo $novelty['area_id_fk']; ?>"><?php echo $novelty['session_nom']; ?></option>
-                            <?php foreach ($area as $campaign): ?>
-                            <option value="<?php echo $campaign['area_id']; ?>"><?php echo $campaign['session_nom']; ?></option>
+                        <select class="form-control"  id="seccion_id_fk" >
+                            <option value="<?php echo $novelty['seccion_id_fk']; ?>"><?php echo $novelty['seccion_nom']; ?></option>
+                            <?php foreach ($seccion as $campaign): ?>
+                            <option value="<?php echo $campaign['seccion_id']; ?>"><?php echo $campaign['seccion_nom']; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>

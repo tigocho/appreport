@@ -56,7 +56,7 @@
         {
            
             $data['title'] = 'registro nueva novedad';
-            $data['area'] = $this->novelty_model->get_area();
+            $data['seccion'] = $this->novelty_model->get_seccion();
             $data['colaborador'] = $this->novelty_model->get_collaborator();
             $data['categoria'] = $this->novelty_model->get_category();
             $this->load->view('templates/header');
@@ -98,7 +98,7 @@
         public function edit($nove_id)
         {
             $data['title'] = 'editar novedad';
-            $data['area'] = $this->novelty_model->get_area();
+            $data['seccion'] = $this->novelty_model->get_seccion();
             $data['colaborador'] = $this->novelty_model->get_collaborator();
             $data['categoria'] = $this->novelty_model->get_category();
             $data['novedad'] = $this->novelty_model->get_edit_novelty($nove_id);
