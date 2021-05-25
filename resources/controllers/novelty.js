@@ -32,7 +32,7 @@ $(document).ready( function () {
             { data: "nove_fecha" },
             { data: "col_login_num" },
             { data: "col_nom" },
-            { data: "session_nom" },
+            { data: "seccion_nom" },
             { data: "nove_hora_ini" },
             { data: "nove_hora_fin" },
             { data: "nove_tiem_total" },
@@ -86,7 +86,7 @@ $(document).ready( function () {
             { data: "nove_fecha" },
             { data: "col_login_num" },
             { data: "col_nom" },
-            { data: "session_nom" },
+            { data: "seccion_nom" },
             { data: "nove_hora_ini" },
             { data: "nove_hora_fin" },
             { data: "nove_tiem_total" },
@@ -112,13 +112,13 @@ function create_novelty(){
     var var_nove_hora_ini = document.getElementById("nove_hora_ini").value;
     var var_nove_hora_fin = document.getElementById("nove_hora_fin").value;
     var var_col_id_fk = document.getElementById("col_id_fk").value;
-    var var_area_id_fk = document.getElementById("area_id_fk").value;
+    var var_seccion_id_fk = document.getElementById("seccion_id_fk").value;
     var var_nove_tiem_total = document.getElementById("nove_tiem_total").value;
     var var_tip_inci_id_fk = document.getElementById("tip_inci_id_fk").value;
     var var_cate_id_fk = document.getElementById("categoria").value;
     var var_usu_id_fk = document.getElementById("usu_id").value;
     console.log("rutapost",baseURL+'Novelty/createNovelty');
-    if (var_nove_tiem_total == "NaN:NaN"){
+    if (var_nove_tiem_total == "0NaN:0NaN"){
         var_est_id_fk = 1;
     }else{
         var_est_id_fk = 2;
@@ -127,8 +127,8 @@ function create_novelty(){
     if (var_col_id_fk==0) {
         swal("Opps!","por favor selecionar el colaborador","warning");
     } else {
-    if (var_area_id_fk==0) {
-        swal("Opps!","por favor selecionar la session","warning");
+    if (var_seccion_id_fk==0) {
+        swal("Opps!","por favor selecionar la seccion","warning");
     } else {
     if (var_tip_inci_id_fk==0) {
         swal("Opps!","por favor selecionar el tipo de incidencia","warning");
@@ -144,7 +144,7 @@ function create_novelty(){
         nove_tiem_total : var_nove_tiem_total,
         cate_id_fk : var_cate_id_fk,
         tip_inci_id_fk : var_tip_inci_id_fk,
-        area_id_fk  : var_area_id_fk,
+        seccion_id_fk  : var_seccion_id_fk,
         col_id_fk : var_col_id_fk,
         usu_id_fk : var_usu_id_fk,
         est_id_fk : var_est_id_fk,
@@ -211,9 +211,9 @@ $("#colaborador").on("keyup",function(){
     });
     });
 
-    $("#area").on("keyup",function(){
-    $('#area_id_fk option').each(function(){
-        if($(this).text().indexOf($("#area").val()) == -1){
+    $("#seccion").on("keyup",function(){
+    $('#seccion_id_fk option').each(function(){
+        if($(this).text().indexOf($("#seccion").val()) == -1){
                 $(this).prop("selected", false);
                 $(this).fadeOut();
             }else{
@@ -261,12 +261,12 @@ function restarHoras() {
         document.getElementById('boton').disabled=false;
     }
 
+
     var inicioh = new Date(inicio = document.getElementById("nove_hora_ini").value);
     var finh = new Date(fin = document.getElementById("nove_hora_fin").value);
     var diffMs = (finh - inicioh); // milliseconds 
     var diffHrs = Math.floor(diffMs  / 3600000); // hours
     var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
-
     if (diffHrs <= 0 && diffMins <= 0 ) {
         document.getElementById('boton').disabled=true;
         swal("Opps!","por favor ingrese una hora de inicio mayor a la hora fin","warning");
@@ -288,13 +288,13 @@ var var_nove_fecha = document.getElementById("nove_fecha").value;
 var var_nove_hora_ini = document.getElementById("nove_hora_ini").value;
 var var_nove_hora_fin = document.getElementById("nove_hora_fin").value;
 var var_col_id_fk = document.getElementById("col_id_fk").value;
-var var_area_id_fk = document.getElementById("area_id_fk").value;
+var var_seccion_id_fk = document.getElementById("seccion_id_fk").value;
 var var_nove_tiem_total = document.getElementById("nove_tiem_total").value;
 var var_cate_id_fk = document.getElementById("categoria").value;
 var var_tip_inci_id_fk = document.getElementById("tip_inci_id_fk").value;
 console.log("rutapost",baseURL+'Novelty/editNovelty');
 
-    if (var_nove_tiem_total == "NaN:NaN"){
+    if (var_nove_tiem_total == "00:00:00"){
         var_est_id_fk = 1;
     }else{
         var_est_id_fk = 2;
@@ -308,7 +308,7 @@ console.log("rutapost",baseURL+'Novelty/editNovelty');
         nove_tiem_total : var_nove_tiem_total,
         cate_id_fk : var_cate_id_fk,
         tip_inci_id_fk : var_tip_inci_id_fk,
-        area_id_fk  : var_area_id_fk,
+        seccion_id_fk  : var_seccion_id_fk,
         col_id_fk : var_col_id_fk,
         est_id_fk  : var_est_id_fk,
         
