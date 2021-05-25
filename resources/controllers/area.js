@@ -27,10 +27,10 @@ $(document).ready( function () {
             dataSrc: ""
         },
         'columns': [
+            { data: "area_id" },
             { data: "area_nom" },
-            { data: "session_nom" },
             { "ordertable": true,render: function ( data, type, row ) { 
-                return "<td><button type='button' onclick='modal_area_edit(\""+row.area_id+"\",\""+row.area_nom+"\",\""+row.session_nom+"\");'  class='btn btn-primary mb-3'>editar</button> "+"<button type='button' onclick='area_delete(\""+row.area_id+"\");' class='btn btn-danger mb-3'>eliminar</button>"
+                return "<td><button type='button' onclick='modal_area_edit(\""+row.area_id+"\",\""+row.area_nom+"\");'  class='btn btn-primary mb-3'>editar</button> "+"<button type='button' onclick='area_delete(\""+row.area_id+"\");' class='btn btn-danger mb-3'>eliminar</button>"
             }}
             
         ]
@@ -47,17 +47,13 @@ function modal_area_create()
 function create_area(){
 
     var var_area_nom = document.getElementById("area_nom").value;
-    var var_session_nom = document.getElementById("session_nom").value;
     console.log("rutapost",baseURL+'Area/createArea');
     if (var_area_nom=="") {
         swal("Opps!","por favor diligencie el area","warning");
     } else {
-    if (var_session_nom=="") {
-        swal("Opps!","por favor diligencie la session","warning");
-    } else {
+    
         dataPostV = {
             area_nom  : var_area_nom,
-            session_nom : var_session_nom,
             tip_est_id_fk  : "1", 
         }
 
@@ -78,16 +74,15 @@ function create_area(){
                 swal("error!","error al enviar la informacion","warning",6000);
             }
         });
-    }}    
+    }   
 
 }
 
-function modal_area_edit(var_area_id,var_area_nom,var_session_nom)
+function modal_area_edit(var_area_id,var_area_nom)
     {
         $('#area_edit').modal('show');
         $('#area_id_e').val(var_area_id);
         $('#area_nom_e').val(var_area_nom);
-        $('#session_nom_e').val(var_session_nom);
 
     }
     
@@ -95,15 +90,11 @@ function modal_area_edit(var_area_id,var_area_nom,var_session_nom)
 function edit_area(){
     var var_area_id = document.getElementById("area_id_e").value;
     var var_area_nom = document.getElementById("area_nom_e").value;
-    var var_session_nom = document.getElementById("session_nom_e").value;
     console.log("rutapost",baseURL+'Area/editArea');
 
     dataPostV = {
         area_id : var_area_id,
         area_nom  : var_area_nom,
-        session_nom : var_session_nom,
-        
-        
     }
 
     console.info(dataPostV);

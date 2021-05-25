@@ -9,20 +9,29 @@
 
         // inicio extraccion de los datos de colaborador
 
-            public function get_collaborator()
-            {  
-            $sql = "SELECT * FROM ir_colaborador ORDER BY col_nom ASC";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-            }
+            // public function get_collaborator()
+            // {  
+            // $sql = "SELECT * FROM ir_colaborador ";
+            // $query = $this->db->query($sql);
+            // return $query->result_array();
+            // }
 
             public function getcollaborator()
             { 
-            $sql = "SELECT * FROM ir_colaborador WHERE tip_est_id_fk = 1";
+            $sql = "SELECT c.col_id,c.col_login_num,c.col_nom,c.col_cargo,a.area_nom,c.id_area_fk FROM ir_colaborador c JOIN ir_area a ON c.id_area_fk = a.area_id WHERE c.tip_est_id_fk = 1";
             $query = $this->db->query($sql);
             return $query -> result();
             }
         // fin extraccion de los datos de colaborador
+
+        public function getarea()
+        {
+            $sql = "SELECT * FROM ir_area ";
+            $query = $this->db->query($sql);
+            return $query->result_array();
+            
+        }
+            
 
         // inicio de inserccion de colaborador
 
@@ -49,9 +58,6 @@
                  return $this->db->update('ir_colaborador',$data);
              }
         // fin de 'eliminar' de colaborador
-
-
-
 
 
     }

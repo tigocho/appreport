@@ -5,8 +5,8 @@
         <table id="tablearea" class="table table-striped table-bordered">
             <thead >
                 <tr>
+                    <th>id</th>
                     <th>Area</th>
-                    <th>Seccion</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -28,16 +28,10 @@
             <div class="modal-body">
                 <form>
                 <div class="form-row">
-                
-                <div class="col-md-6 mb-3">
-                    <label>area</label>
-                    <input type="text" class="form-control" id="area_nom">
-                </div>
-
-                <div class="col-md-6 mb-3">
-                    <label>seccion</label>
-                    <input type="text" class="form-control" id="session_nom" >
-                </div>
+                    <div class="col-md-6 mb-3">
+                        <label>area</label>
+                        <input type="text" class="form-control" id="area_nom">
+                    </div>
                 </div>
                 </form>
             </div>
@@ -60,17 +54,11 @@
             <div class="modal-body">
                 <form>
                 <div class="form-row">
-                
-                <div class="col-md-6 mb-3">
-                    <input type="hidden" id="area_id_e">
-                    <label>area</label>
-                    <input type="text" class="form-control" id="area_nom_e">
-                </div>
-
-                <div class="col-md-6 mb-3">
-                    <label>seccion</label>
-                    <input type="text" class="form-control" id="session_nom_e" >
-                </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="hidden" id="area_id_e">
+                        <label>area</label>
+                        <input type="text" class="form-control" id="area_nom_e">
+                    </div>
                 </div>
                 </form>
             </div>
