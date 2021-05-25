@@ -56,7 +56,7 @@ class Login extends CI_controller
 		if($this->input->post('forgot_pass'))
 		{
 			$email=$this->input->post('email');
-			$query=$this->db->query("SELECT usu_correo,usu_contra FROM ir_usuario WHERE usu_correo='$email'");
+			$query=$this->db->query("SELECT usu_correo,usu_contra FROM ir_usuario WHERE tip_est_id_fk = 1 AND usu_correo='$email'");
 			$row=$query->row();
 			if(!empty($row)){
                 $user_email=$row->usu_correo;
@@ -71,7 +71,7 @@ class Login extends CI_controller
                 $mail->SMTPAuth   = true;
                 $mail->Username = 'AKIAVRBYRDHYGRZ6RFNY';
                 $mail->Password = 'BEfVfi8Lj/RlW+1cz7M5FDO4qaoG9zULfcDU1wd4HWSu';
-                $mail->SetFrom('notificaciones@ospedale.com.co', 'BITACORA NOVEDADES G-Ocho');
+                $mail->SetFrom('notificaciones@ospedale.com.co', 'Appreport G-Ocho');
                 $mail->CharSet  = 'UTF-8';
                 $mail->addAddress($user_email);          
 
@@ -85,7 +85,7 @@ class Login extends CI_controller
                         <p> su contraseña es: <b> '.$pass.' </b> </p>
                     
                         **********************Mensaje Generado Automáticamente**********************
-                        <p>Este correo es únicamente informativo y es de uso exclusivo del destinatario(a), puede contener información privilegiada y/o confidencial. Si no es usted el destinatario(a) deberá borrarlo inmediatamente. Queda notificado que el mal uso, divulgación no autorizada, alteración y/o  modificación malintencionada sobre este mensaje y sus anexos quedan estrictamente prohibidos y pueden ser legalmente sancionados. - BITACORA NOVEDADES-G-OCHO no asume ninguna responsabilidad por estas circunstancias </p>';
+                        <p>Este correo es únicamente informativo y es de uso exclusivo del destinatario(a), puede contener información privilegiada y/o confidencial. Si no es usted el destinatario(a) deberá borrarlo inmediatamente. Queda notificado que el mal uso, divulgación no autorizada, alteración y/o  modificación malintencionada sobre este mensaje y sus anexos quedan estrictamente prohibidos y pueden ser legalmente sancionados. - APPREPORT-G-OCHO no asume ninguna responsabilidad por estas circunstancias </p>';
                     $mail->Body = $mailContent;  
                     
                     if ($mail->send()) {

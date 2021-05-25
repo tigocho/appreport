@@ -118,6 +118,13 @@
                 
             }
 
+            public function getuserinfo($id){
+
+                $sql ="SELECT usu_nom,usu_ape,usu_correo FROM ir_usuario WHERE usu_id = $id";
+                $query = $this->db->query($sql);
+                return $query->result_array();
+            }
+
 
 
             

@@ -30,7 +30,7 @@
                 <div class="form-row">
                     <div class="col-md-9 mb-3">
                         <label>nombre de categoria</label>
-                        <input  type="text" class="form-control"  id="cate_nom">
+                        <input  type="text" style="text-transform:uppercase;" value=""  onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="cate_nom">
                     </div>
                 </div>
                 </form>
@@ -57,7 +57,7 @@
                     <input type="hidden"  id="cate_id_e">
                     <div class="col-md-9 mb-3">
                         <label>nombre de categoria</label>
-                        <input  type="text" class="form-control"  id="cate_nom_e"  >
+                        <input  type="text" style="text-transform:uppercase;" value=""  onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="cate_nom_e"  >
                     </div>
                 </div>
                 </form>

@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="validationDefault01">contraseña usuario</label>
-                    <input type="text" value="" id="usu_contra" class="form-control"  >
+                    <input type="text" value="" id="usu_contra" required class="form-control"  >
                 </div>
                 <div class="col-md-6 mb-3">
                 <label for="validationDefault04">rol usuario</label>
@@ -40,11 +40,13 @@
                     </select>
                 </div>
             <div class="form-group"> 
-            <button class="btn btn-primary" onclick="create_user();" type="boton">registrar usuario</button>
+            <button class="btn btn-primary" id="boton" onclick="create_user();" type="boton">registrar usuario</button>
             </div>
     </div>
 
-        
+    <script src="<?php echo base_url();?>resources/js/jquery-3.4.1.min.js"></script>
+    <script src="<?php echo base_url();?>resources/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="<?php echo base_url();?>resources/js/jquery.dataTables.js"></script>
     <script type='text/javascript'>
         var baseURL= "<?php echo base_url();?>";
     </script>

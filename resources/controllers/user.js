@@ -43,6 +43,18 @@ $(document).ready( function () {
     });
 } );
 
+
+$("#usu_contra").on("keyup",function(){
+   contra = $(this).val();
+    if( contra.length > 8 ){
+        swal("Opps!","la contraseña no puede exceder de los 8 carateres","warning");
+        document.getElementById('boton').disabled=true;
+    }else{
+        document.getElementById('boton').disabled=false;
+    }
+
+});
+
 function create_user(){
 
     var var_usu_num_doc = document.getElementById("usu_num_doc").value;

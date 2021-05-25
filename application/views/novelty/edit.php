@@ -21,7 +21,7 @@
                     <label>nombre colaborador</label>
                     <div class="input-group">
                             <div class="col-xs-2">
-                                <input type="text" id="colaborador" class="form-control"  placeholder="buscar"  >
+                                <input type="text" style="text-transform:uppercase;" value=""  onkeyup="javascript:this.value=this.value.toUpperCase();" id="colaborador" class="form-control"  placeholder="buscar"  >
                             </div>
                             <select class="form-control" id="col_id_fk" >
                                 <option value="<?php echo $novelty['col_id_fk']; ?>"><?php echo $novelty['col_nom']; ?></option>
@@ -41,7 +41,7 @@
                 <label>seccion</label>
                 <div class="input-group">
                         <div class="col-xs-2">
-                            <input type="text" id="area" class="form-control" placeholder="buscar" >
+                            <input type="text" style="text-transform:uppercase;" value=""  onkeyup="javascript:this.value=this.value.toUpperCase();" id="area" class="form-control" placeholder="buscar" >
                         </div>
                         <select class="form-control"  id="area_id_fk" >
                             <option value="<?php echo $novelty['area_id_fk']; ?>"><?php echo $novelty['session_nom']; ?></option>

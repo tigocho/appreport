@@ -7,7 +7,11 @@ class Login_model extends CI_model
     }
     public function login($usu_num_doc, $usu_contra)
     {
-        $sql ="SELECT u.usu_id,u.usu_num_doc,u.usu_nom,u.usu_ape,u.usu_nom_two,u.usu_ape_two,u.usu_contra,u.usu_nom_two,u.usu_ape_two,r.rol_id,r.rol_des FROM ir_usuario u,ir_rol r WHERE u.rol_id_fk = r.rol_id and u.usu_num_doc = $usu_num_doc";
+        $sql ="SELECT u.usu_id,u.usu_num_doc,u.usu_nom,u.usu_ape,u.usu_nom_two,u.usu_ape_two,u.usu_contra,u.usu_nom_two,u.usu_ape_two,r.rol_id,r.rol_des 
+               FROM ir_usuario u,ir_rol r 
+               WHERE u.rol_id_fk = r.rol_id 
+               AND u.tip_est_id_fk = 1
+               AND u.usu_num_doc = $usu_num_doc";
         $query = $this->db->query($sql);
         if($query->num_rows() == 1)
         {

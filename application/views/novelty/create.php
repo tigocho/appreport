@@ -18,7 +18,7 @@
                 <label>nombre colaborador</label>
                     <div class="input-group">
                         <div class="col-xs-2">
-                            <input type="text" id="colaborador" class="form-control"  placeholder="buscar"  >
+                            <input type="text" id="colaborador" style="text-transform:uppercase;" value=""  onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  placeholder="buscar">
                         </div>
                             <select class="form-control"  id="col_id_fk" >
                                 <option value="0" >selecione...</option>
@@ -38,7 +38,7 @@
                 <label>seccion</label>
                     <div class="input-group">
                         <div class="col-xs-2">
-                            <input type="text" id="area" class="form-control" placeholder="buscar" >
+                            <input type="text" style="text-transform:uppercase;" value=""  onkeyup="javascript:this.value=this.value.toUpperCase();" id="area" class="form-control" placeholder="buscar" >
                         </div>
                             <select class="form-control"  id="area_id_fk" >
                                 <option value="0" >selecione...</option>

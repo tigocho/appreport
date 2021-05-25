@@ -118,7 +118,7 @@ function create_novelty(){
     var var_cate_id_fk = document.getElementById("categoria").value;
     var var_usu_id_fk = document.getElementById("usu_id").value;
     console.log("rutapost",baseURL+'Novelty/createNovelty');
-    if (var_nove_tiem_total == "NaN horas, NaN minutos"){
+    if (var_nove_tiem_total == "NaN:NaN"){
         var_est_id_fk = 1;
     }else{
         var_est_id_fk = 2;
@@ -151,6 +151,7 @@ function create_novelty(){
         tip_est_id_fk : 1,  
         }
         console.info(dataPostV);
+
 
         $.ajax({
             type: "POST",
@@ -272,7 +273,12 @@ function restarHoras() {
     }else{
         document.getElementById('boton').disabled=false;
     }
-    document.getElementById("nove_tiem_total").value = diffHrs + " horas, " + diffMins + " minutos";
+    if(diffHrs > 9 || diffMins > 9 ){
+        document.getElementById("nove_tiem_total").value =  diffHrs + ":" + diffMins;
+    }else{
+        document.getElementById("nove_tiem_total").value =  "0"+diffHrs + ":0" + diffMins;
+    }
+    
 }
 // logica de restar tiempo
 
@@ -288,7 +294,7 @@ var var_cate_id_fk = document.getElementById("categoria").value;
 var var_tip_inci_id_fk = document.getElementById("tip_inci_id_fk").value;
 console.log("rutapost",baseURL+'Novelty/editNovelty');
 
-    if (var_nove_tiem_total == "NaN horas, NaN minutos"){
+    if (var_nove_tiem_total == "NaN:NaN"){
         var_est_id_fk = 1;
     }else{
         var_est_id_fk = 2;

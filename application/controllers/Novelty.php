@@ -8,6 +8,7 @@
             $this->load->model('novelty_model');
             $this->load->helper('url_helper');
             $this->load->library('session');
+            $this->load->database();
             if (!$this->session->userdata('login')) {
                 redirect(base_url());
             }
@@ -87,6 +88,9 @@
                  echo json_encode($retorno);
              }
 
+            //   $id = $data['usu_id_fk'];
+            //   $this->sendEmail($id);
+
          }
          // fin de inserccion de novedad
 
@@ -141,6 +145,55 @@
              }
 
          }
+
+
+    //      public function sendEmail($id){
+           
+            
+    //         $resp=$this->db->query("SELECT usu_nom,usu_ape,usu_correo FROM ir_usuario WHERE usu_id = $id")->row();
+            
+    //         // $correo_usuario = "aprendiz.sistemas3@ospedale.com.co";
+    //         $correo_usuario = $resp->usu_correo;
+            
+            
+            
+    //         $this->load->library('phpmailer_lib');
+    
+    //         $mail = $this->phpmailer_lib->load();
+    
+    //         $mail->isSMTP();
+    //         $mail->SMTPDebug = 0;
+    //         $mail->Host = 'email-smtp.us-east-1.amazonaws.com';
+    //         $mail->Port = 587;
+    //         $mail->SMTPSecure = 'tls';
+    //         $mail->SMTPAuth   = true;
+    //         $mail->Username = 'AKIAVRBYRDHYGRZ6RFNY';
+    //         $mail->Password = 'BEfVfi8Lj/RlW+1cz7M5FDO4qaoG9zULfcDU1wd4HWSu';
+    //         $mail->SetFrom('notificaciones@ospedale.com.co', 'Appreport G-Ocho');
+    //         $mail->CharSet  = 'UTF-8';
+      
+    //         $mail->addAddress($correo_usuario); 
+    //         // $mail->addAddress('dangellojr@ospedale.com.co');     
+    
+    //         $mail->Subject = 'Hola '.$resp->usu_nom.' se ha registrado un incidente a tu nombre - Appreport';
+    //         $mail->isHTML(true);
+            
+    //         $mailContent =  '<center><b>Estimado: '.$resp->usu_nom.' '.$resp->usu_ape.'</b></center>           
+               
+             
+    //              Puede ingresar para revisar su incidente a traves de este link <a href="'."http://181.129.171.26:9898/appreport/".''.''.'"> a Appreport.</a><br>
+               
+    //             **********************Mensaje Generado Automáticamente**********************
+    //             <p>Este correo es únicamente informativo y es de uso exclusivo del destinatario(a), puede contener información privilegiada y/o confidencial. Si no es usted el destinatario(a) deberá borrarlo inmediatamente. Queda notificado que el mal uso, divulgación no autorizada, alteración y/o  modificación malintencionada sobre este mensaje y sus anexos quedan estrictamente prohibidos y pueden ser legalmente sancionados. - Appreport-G-OCHO no asume ninguna responsabilidad por estas circunstancias </p>';
+    //         $mail->Body = $mailContent;             
+          
+    //         if($mail->send()):
+    //            return true;
+    //         else:        
+    //             return false;
+    //         endif;
+            
+    // }
          
 
             
