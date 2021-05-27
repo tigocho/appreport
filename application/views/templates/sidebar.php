@@ -56,9 +56,7 @@
                 <a href="<?php echo base_url();?>user/index" class="iq-waves-effect"><i class="fa fa-user-circle"></i><span>Usuarios</span></a>
                 </li>
                 <?php }?>
-
-                
-
+            
                 <?php if ($this->session->userdata('rol_id')== 1 || $this->session->userdata('rol_id')== 3 ){?>
                 <li>
                 <a href="<?php echo base_url();?>report/index" class="iq-waves-effect"><i class="fa fa-download"></i><span>Reportes</span></a>
