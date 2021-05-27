@@ -6,19 +6,19 @@
             <div class="form-row">
             <input type="hidden" value="<?php echo $novelty['nove_id']; ?>" id="nove_id" >
                 <div class="col-md-6 mb-3">
-                    <label>fecha de novedad</label>
+                    <label>Fecha de novedad</label>
                     <input type="date" value="<?php echo $novelty['nove_fecha']; ?>" id="nove_fecha" class="form-control"  >
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label>hora de inicio</label>
+                    <label>Hora de inicio</label>
                     
                     <input type="datetime-local" value="<?php echo $newDate = date("Y-m-d\TH:i", strtotime($novelty['nove_hora_ini'])); ?>"  id="nove_hora_ini" class="form-control">
                 </div>
 
 
                 <div class="col-md-6 mb-3">
-                    <label>nombre colaborador</label>
+                    <label>Nombre colaborador</label>
                     <div class="input-group">
                             <div class="col-xs-2">
                                 <input type="text" style="text-transform:uppercase;" value=""  onkeyup="javascript:this.value=this.value.toUpperCase();" id="colaborador" class="form-control"  placeholder="buscar"  >
@@ -33,12 +33,12 @@
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label>hora de fin</label>
+                    <label>Hora de fin</label>
                     <input type="datetime-local" value="<?php echo $newDate = date("Y-m-d\TH:i", strtotime($novelty['nove_hora_fin'])); ?>" id="nove_hora_fin" class="form-control"  >
                 </div>
 
                 <div class="col-md-6 mb-3">
-                <label>seccion</label>
+                <label>Seccion</label>
                 <div class="input-group">
                         <div class="col-xs-2">
                             <input type="text" style="text-transform:uppercase;" value=""  onkeyup="javascript:this.value=this.value.toUpperCase();" id="seccion" class="form-control" placeholder="buscar" >
@@ -53,24 +53,24 @@
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label>tiempo total</label>
+                    <label>Tiempo total</label>
                     <input type="text" value="<?php echo $novelty['nove_tiem_total']; ?>" readonly id="nove_tiem_total" class="form-control" >
                 </div>
 
                 
                 <div class="col-md-6 mb-3">
-                <label>incidencia</label>
+                <label>Incidencia</label>
                     <div class="input-group">
                         <select class="form-control"  id="categoria" >
                         <option  value="<?php echo $novelty['cate_id_fk']; ?>"><?php echo $novelty['cate_nom']; ?></option>
-                            <option >categoria</option>
+                            <option >Categoria</option>
                             <?php foreach ($categoria as $category): ?>
                             <option value="<?php echo $category['cate_id']; ?>"><?php echo $category['cate_nom']; ?></option>
                             <?php endforeach; ?>
                         </select>
                         <select class="form-control"  id="tip_inci_id_fk" >
                             <option  value="<?php echo $novelty['tip_inci_id_fk']; ?>"><?php echo $novelty['tip_inci_nom']; ?></option>
-                            <option >tipo incidencia</option>
+                            <option >Tipo incidencia</option>
                         </select>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                 </div>
         
             <div class="form-group">
-                <button class="btn btn-primary" id="boton" onclick="edit_novelty();" type="submit">editar novedad </button>
+                <button class="btn btn-primary" id="boton" onclick="edit_novelty();" type="submit">Editar novedad </button>
             </div>
         <?php endforeach; ?>
         </form>

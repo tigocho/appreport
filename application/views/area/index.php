@@ -1,11 +1,11 @@
 <div class="iq-card-body">
     <h2><?php echo $title; ?></h2>
-    <button type="button" onclick="modal_area_create();" style="float: right;" class="btn btn-success mb-3">registro de area</button>
+    <button type="button" onclick="modal_area_create();" style="float: right;" class="btn btn-success mb-3">Registro de area</button>
     <div class="table-responsive">
         <table id="tablearea" class="table table-striped table-bordered">
             <thead >
                 <tr>
-                    <th>id</th>
+                    <th>Id</th>
                     <th>Area</th>
                     <th>Acciones</th>
                 </tr>
@@ -20,7 +20,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">registro de nueva area</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Registro de nueva area</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -29,14 +29,14 @@
                 <form>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label>area</label>
+                        <label>Area</label>
                         <input type="text" class="form-control" id="area_nom">
                     </div>
                 </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" onclick="create_area();"  class="btn btn-primary">agregar</button>
+                <button type="button" onclick="create_area();"  class="btn btn-primary">Agregar</button>
             </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">ediccion de area</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Ediccion de area</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -56,14 +56,14 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <input type="hidden" id="area_id_e">
-                        <label>area</label>
+                        <label>Area</label>
                         <input type="text" class="form-control" id="area_nom_e">
                     </div>
                 </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" onclick="edit_area();"  class="btn btn-primary">actualizar</button>
+                <button type="button" onclick="edit_area();"  class="btn btn-primary">Actualizar</button>
             </div>
             </div>
         </div>

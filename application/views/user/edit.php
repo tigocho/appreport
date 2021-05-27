@@ -6,37 +6,37 @@
             <div class="form-row">
             <div class="col-md-6 mb-3">
             <input type="hidden" value="<?php echo $user['usu_id']; ?>" id="usu_id" >
-                    <label for="validationDefault01">numero de documento </label>
+                    <label for="validationDefault01">Numero de documento </label>
                     <input type="text" value="<?php echo $user['usu_num_doc']; ?>" id="usu_num_doc" class="form-control"  >
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="validationDefault01">correo usuario</label>
+                    <label for="validationDefault01">Correo usuario</label>
                     <input type="text" value="<?php echo $user['usu_correo']; ?>" id="usu_correo" class="form-control"  >
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label for="validationDefault01">primer nombre</label>
+                    <label for="validationDefault01">Primer nombre</label>
                     <input type="text" value="<?php echo $user['usu_nom']; ?>" id="usu_nom" class="form-control"  >
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="validationDefault01">segundo nombre</label>
+                    <label for="validationDefault01">Segundo nombre</label>
                     <input type="text" value="<?php echo $user['usu_nom_two']; ?>" id="usu_nom_two" class="form-control"  >
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="validationDefault01">primer apellido</label>
+                    <label for="validationDefault01">Primer apellido</label>
                     <input type="text" value="<?php echo $user['usu_ape']; ?>" id="usu_ape" class="form-control"  >
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="validationDefault01">segundo apellido</label>
+                    <label for="validationDefault01">Segundo apellido</label>
                     <input type="text" value="<?php echo $user['usu_ape_two']; ?>" id="usu_ape_two" class="form-control"  >
                 </div>
             
                 <div class="col-md-6 mb-3">
-                    <label for="validationDefault01">contraseña usuario</label>
+                    <label for="validationDefault01">Contraseña usuario</label>
                     <input type="text" value="<?php echo $user['usu_contra']; ?>" id="usu_contra" class="form-control"  >
                 </div>
                 <div class="col-md-6 mb-3">
-                <label for="validationDefault04">rol usuario</label>
+                <label for="validationDefault04">Rol usuario</label>
                     <select class="form-control" id="rol_id_fk" >
                         <option selected disabled value="<?php echo $user['rol_id_fk']; ?>"><?php echo $user['rol_des']; ?></option>
                         <?php foreach ($rol as $role): ?>
@@ -46,7 +46,7 @@
                 </div>
 
             <div class="form-group"> 
-            <button class="btn btn-primary" id="boton"  onclick="edit_user();" type="submit">editar usuario</button>
+            <button class="btn btn-primary" id="boton"  onclick="edit_user();" type="submit">Editar usuario</button>
             </div>
             <?php endforeach; ?>
         </form>

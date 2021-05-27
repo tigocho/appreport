@@ -15,8 +15,8 @@
                 <input type="date" id="datefin" class="form-control">
             </div>
             <div style="padding: 15px 20px 0px 20px;" class="form-group"> 
-                <button class="btn btn-success" id="botonf"  type="boton">buscar</button>
-                <button class="btn btn-primary" id="limpiar"  type="boton">limpiar filtro</button>
+                <button class="btn btn-success" id="botonf"  type="boton">Buscar</button>
+                <button class="btn btn-primary" id="limpiar"  type="boton">Limpiar filtro</button>
             </div>
         </div>
 

@@ -65,6 +65,9 @@ function create_collaborator(){
     if (var_col_cargo=="") {
         swal("Opps!","por favor diligencie el cargo del colaborador","warning"); 
     } else {
+    if (var_area_id_fk=="0") {
+        swal("Opps!","por favor diligencie el el area a la que pertenece el colaborador","warning"); 
+    } else {
     
     
             dataPostV = {
@@ -93,7 +96,7 @@ function create_collaborator(){
                     swal("error!","error al enviar la informacion","warning",6000);
                 }
             });    
-        }}
+        }}}
 
 }
 

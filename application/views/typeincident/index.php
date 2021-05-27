@@ -63,11 +63,21 @@
             <div class="modal-body">
                 <form>
                 <div class="form-row">
-                <div class="col-md-6 mb-3">
-                    <input type="hidden" id="tip_inci_id_e">
-                    <label>tipo incidencia</label>
-                    <input type="text" class="form-control"  id="tip_inci_nom_e"  >
-                </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="hidden" id="tip_inci_id_e">
+                        <label>tipo incidencia</label>
+                        <input type="text" class="form-control"  id="tip_inci_nom_e"  >
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>categoria</label>
+                        <select class="form-control"  id="cate_id_fk_e" >
+                            <option value="0" >selecione...</option>
+                            <?php foreach ($categoria as $category): ?>
+                            <option value="<?php echo $category['cate_id']; ?>"><?php echo $category['cate_nom']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
                 </div>
                 </form>
             </div>

@@ -44,12 +44,12 @@
                     <div class="col-md-6 position-relative">
                         <div class="sign-in-from">
                         <h1 class="mb-0">Recuperar contraseña</h1>
-								<p>recuerda utilizar el correo con el que encuentra registrado.</p>
+								<p>Recuerda utilizar el correo con el que encuentra registrado.</p>
 								<b><?php echo @$error;?></b>
 								<form class="mt-4" method="post" action=''>
 
 									<div class="form-group">
-										<label for="exampleInputEmail1">correo</label>
+										<label for="exampleInputEmail1">Correo</label>
 										<input type="text" class="form-control mb-0" name="email" id="name" placeholder="ingresar correo"/>
 									</div>
 

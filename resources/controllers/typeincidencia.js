@@ -30,7 +30,7 @@ $(document).ready( function () {
             { data: "tip_inci_id" },
             { data: "tip_inci_nom" },
             { "ordertable": true,render: function ( data, type, row ) { 
-                return "<td><button type='button' onclick='modal_typeincident_edit(\""+row.tip_inci_id+"\",\""+row.tip_inci_nom+"\");'  class='btn btn-primary mb-3'>editar</button> "+
+                return "<td><button type='button' onclick='modal_typeincident_edit(\""+row.tip_inci_id+"\",\""+row.tip_inci_nom+"\",\""+row.cate_id_fk+"\");'  class='btn btn-primary mb-3'>editar</button> "+
                 "<button type='button' onclick='typeincident_delete(\""+row.tip_inci_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"
             }}
         ]
@@ -89,21 +89,23 @@ function create_typeincident(){
 
 // fin de insertar datos de tipo de incidencia
 
-function modal_typeincident_edit(var_tip_inci_id,var_tip_inci_nom){
+function modal_typeincident_edit(var_tip_inci_id,var_tip_inci_nom,var_cate_id_fk){
     $('#typeincident_edit').modal('show');
     $('#tip_inci_id_e').val(var_tip_inci_id);
     $('#tip_inci_nom_e').val(var_tip_inci_nom);
+    $('#cate_id_fk_e').val(var_cate_id_fk);
 }
 
 function edit_typeincident(){
     var var_tip_inci_id = document.getElementById("tip_inci_id_e").value;
     var var_tip_inci_nom = document.getElementById("tip_inci_nom_e").value;
+    var var_cate_id_fk = document.getElementById("cate_id_fk_e").value;
     console.log("rutapost",baseURL+'Typeincident/editTypeincident');
 
     dataPostV = {
         tip_inci_id : var_tip_inci_id,
         tip_inci_nom : var_tip_inci_nom,
-        
+        cate_id_fk : var_cate_id_fk,
     }
 
     console.info(dataPostV);

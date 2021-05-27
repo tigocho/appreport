@@ -4,18 +4,18 @@
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                 <input type="hidden" value="<?php echo $this->session->userdata('usu_id') ?>" id="usu_id" >
-                    <label>fecha de novedad</label>
+                    <label>Fecha de novedad</label>
                     <input type="date" value="<?php date_default_timezone_set('America/Bogota');$hoy = date("Y-m-d"); echo $hoy;?>"  readonly id="nove_fecha" class="form-control"  >
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label>hora de inicio</label>
+                    <label>Hora de inicio</label>
                     <input type="datetime-local"  id="nove_hora_ini" class="form-control"  >
                 </div>
 
 
                 <div class="col-md-6 mb-3">
-                <label>nombre colaborador</label>
+                <label>Nombre colaborador</label>
                     <div class="input-group">
                         <div class="col-xs-2">
                             <input type="text" id="colaborador" style="text-transform:uppercase;" value=""  onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  placeholder="buscar">
@@ -30,12 +30,12 @@
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label>hora de fin</label>
+                    <label>Hora de fin</label>
                     <input type="datetime-local"  id="nove_hora_fin" class="form-control"  >
                 </div>
 
                 <div class="col-md-6 mb-3">
-                <label>seccion</label>
+                <label>Seccion</label>
                     <div class="input-group">
                         <div class="col-xs-2">
                             <input type="text" style="text-transform:uppercase;" value=""  onkeyup="javascript:this.value=this.value.toUpperCase();" id="area" class="form-control" placeholder="buscar" >
@@ -50,13 +50,13 @@
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label >tiempo total</label>
+                    <label >Tiempo total</label>
                     <input type="text" readonly id="nove_tiem_total" class="form-control" >
                 </div>
 
                 
                 <div class="col-md-6 mb-3">
-                <label >incidencia</label>
+                <label >Incidencia</label>
                 <div class="input-group">
                     <select class="form-control"  id="categoria" >
                         <option >categoria</option>
@@ -75,7 +75,7 @@
                 <div class="col-md-6 mb-3">
                 </div>
             <div class="form-group"> 
-            <button class="btn btn-primary" id="boton" onclick="create_novelty();" type="boton">agregar novedad</button>
+            <button class="btn btn-primary" id="boton" onclick="create_novelty();" type="boton">Registrar novedad</button>
             </div>
     </div>
 

@@ -1,17 +1,17 @@
 <div class="iq-card-body">
     <h2><?php echo $title; ?></h2>
-    <a href="<?php echo base_url()?>user/create"><button type="button" style="float: right;" class="btn btn-success mb-3">crear usuario </button></a>
+    <a href="<?php echo base_url()?>user/create"><button type="button" style="float: right;" class="btn btn-success mb-3">Crear usuario </button></a>
     <div class="table-responsive">
         <table id="tableuser" class="table table-striped table-bordered">
             <thead >
                 <tr>
-                    <th>numero de documento</th>
-                    <th>nombre</th>
-                    <th>apellido</th>
-                    <th>correo</th>
-                    <th>contraseña</th>
-                    <th>rol</th>
-                    <th>acciones</th>
+                    <th>Numero de documento</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>Contraseña</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody> 

@@ -1,6 +1,6 @@
 <div class="iq-card-body">
     <h2><?php echo $title; ?></h2>
-    <button type="button" onclick="modal_category_create();" style="float: right;" class="btn btn-success mb-3">registro de categoria</button>
+    <button type="button" onclick="modal_category_create();" style="float: right;" class="btn btn-success mb-3">Registro de categoria</button>
     <div class="table-responsive">
         <table id="tablecategory" class="table table-striped table-bordered">
             <thead >
@@ -20,7 +20,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">registro de categoria</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Registro de categoria</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -36,7 +36,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" onclick="create_category();"  class="btn btn-primary">agregar</button>
+                <button type="button" onclick="create_category();"  class="btn btn-primary">Agregar</button>
             </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">ediccion de categoria</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Ediccion de categoria</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -56,14 +56,14 @@
                 <div class="form-row">
                     <input type="hidden"  id="cate_id_e">
                     <div class="col-md-9 mb-3">
-                        <label>nombre de categoria</label>
+                        <label>Nombre de categoria</label>
                         <input  type="text" style="text-transform:uppercase;" value=""  onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="cate_nom_e"  >
                     </div>
                 </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" onclick="edit_category();"  class="btn btn-primary">actualizar</button>
+                <button type="button" onclick="edit_category();"  class="btn btn-primary">Actualizar</button>
             </div>
             </div>
         </div>

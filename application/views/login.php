@@ -56,11 +56,11 @@
                             <p>Selecciona tu usuario</p>
                             <?php echo form_open('login'); ?>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">ingresa numero de documento</label>
+                                    <label for="exampleInputEmail1">Ingresa numero de documento</label>
                                     <input type="number" name="usu_num_doc" class="form-control mb-0" >
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">contraseña</label>
+                                    <label for="exampleInputPassword1">Contraseña</label>
                                     <a href="<?php echo base_url();?>login/forgot_pass" class="float-right">ha olvidado su contraseña?</a>
                                     <input type="password" name="usu_contra" class="form-control mb-0" >
                                 </div>
@@ -69,7 +69,7 @@
                                     echo $mensaje;
                                 ?>
                                 <div class="d-inline-block w-100">
-                                 <input type="submit" value="ingresar"  class="btn btn-primary float-right" name="submit" />
+                                 <input type="submit" value="Ingresar"  class="btn btn-primary float-right" name="submit" />
                                 </div>
                             <?php echo form_close();?>
                         </div>
