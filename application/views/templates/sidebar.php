@@ -26,8 +26,12 @@
                 </li>
                 <?php }?>
                 <?php if ($this->session->userdata('rol_id')== 1){?>
-               <li>
-                <a href="<?php echo base_url();?>area/index" class="iq-waves-effect"><i class="ri-group-fill"></i><span>areas</span></a>
+                    <li>
+                    <a href="#areas" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="ri-group-fill"></i><span>Areas</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                    <ul id="areas" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                        <li><a href="<?php echo base_url();?>area/index" class="iq-waves-effect"><i class="ri-group-fill"></i><span>Area</span></a></li>
+                        <li><a href="<?php echo base_url();?>seccion/index" class="iq-waves-effect"><i class="ri-group-fill"></i><span>Seccion</span></a></li>
+                    </ul>
                 </li>
                 <?php }?>
                 <?php if ($this->session->userdata('rol_id')== 1){?>
