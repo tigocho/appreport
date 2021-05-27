@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-05-2021 a las 16:39:55
+-- Tiempo de generación: 24-05-2021 a las 16:05:39
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 7.3.27
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `ir_area` (
   `area_id` int(11) NOT NULL,
   `area_nom` varchar(30) NOT NULL,
+  `session_nom` varchar(30) NOT NULL,
   `tip_est_id_fk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -37,9 +38,20 @@ CREATE TABLE `ir_area` (
 -- Volcado de datos para la tabla `ir_area`
 --
 
-INSERT INTO `ir_area` (`area_id`, `area_nom`, `tip_est_id_fk`) VALUES
-(1, 'CONTACT CENTER', 1),
-(2, 'ENCUESTA DE CALIDAD', 1);
+INSERT INTO `ir_area` (`area_id`, `area_nom`, `session_nom`, `tip_est_id_fk`) VALUES
+(1, 'CONTACT CENTER', 'CALL CENTER POPAYAN', 1),
+(2, 'CONTACT CENTER', 'CALL CENTER VERSALLES', 1),
+(3, 'CONTACT CENTER', 'CALL CENTER MEDELLIN ', 1),
+(4, 'CONTACT CENTER', 'CALL CENTER BARRANQUILLA', 1),
+(5, 'CONTACT CENTER', 'CALL CENTER IBAGUE', 1),
+(6, 'CONTACT CENTER', 'CALL CENTER CCQ', 1),
+(7, 'CONTACT CENTER', 'CALL CENTER PEREIRA', 1),
+(8, 'CONTACT CENTER', 'CALL CENTER CALI', 1),
+(9, 'CONTACT CENTER', 'CALL CENTER CORPAS', 1),
+(10, 'CONTACT CENTER', 'CALL CENTER  JAMUNDI PILOTO', 1),
+(11, 'CONTACT CENTER', 'GESTION DE RIESGO/EVITAVILIDAD', 1),
+(12, 'ENCUESTA DE CALIDAD', 'ASISTENCIAL', 1),
+(13, 'CONTACT CENTER', 'CAP POPAYAN', 1);
 
 -- --------------------------------------------------------
 
@@ -81,7 +93,7 @@ CREATE TABLE `ir_colaborador` (
   `col_login_num` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `col_nom` varchar(40) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `col_cargo` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `id_area_fk` int(11) NOT NULL,
+  `col_area` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL,
   `tip_est_id_fk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
@@ -89,123 +101,123 @@ CREATE TABLE `ir_colaborador` (
 -- Volcado de datos para la tabla `ir_colaborador`
 --
 
-INSERT INTO `ir_colaborador` (`col_id`, `col_login_num`, `col_nom`, `col_cargo`, `id_area_fk`, `tip_est_id_fk`) VALUES
-(1, '642', 'DANYA VALENTINA MOLINA AGUILLON', 'AGENTE', 1, 1),
-(2, '480', 'MARIA DEL PILAR MEJIA PARAMO', 'AGENTE', 1, 1),
-(3, '446', 'MARIA VALENTINA CELIS LOURIDO', 'AGENTE', 1, 1),
-(4, '629', 'NATALIA ANDREA LOPEZ D\"ACOSTA', 'AGENTE', 1, 1),
-(5, '414', 'SARAI HERNANDEZ', 'LIDER', 1, 1),
-(6, '472', 'STEPHANY BASTIDAS', 'AGENTE', 1, 1),
-(7, '493', 'DIANA CAROLINA BARRIOS VARELA', 'AGENTE', 1, 1),
-(8, '599', 'JOSE LUIS CHARRY', 'AGENTE', 1, 1),
-(9, '428', 'LAUREN CORONEL', 'AGENTE', 1, 1),
-(10, '833', 'MARIA ALEJANDRA ARANDA SANCHEZ', 'AGENTE', 1, 1),
-(11, '427', 'SOFIA NOVOA', 'AGENTE', 1, 1),
-(13, '417', 'BRIGITTE BAUTISTA JIMENEZ', 'AGENTE', 1, 1),
-(14, '626', 'DANIELA DIAZ RODRIGUEZ', 'AGENTE', 1, 1),
-(15, '405', 'DANNA GISELLA FRANCO RIOS', 'AGENTE', 1, 1),
-(16, '464', 'JHOAN MANUEL LOPEZ', 'AGENTE', 1, 1),
-(17, '621', 'JUAN DIEGO OSORIO', 'AGENTE', 1, 1),
-(18, '449', 'LINA MARCELA TABORDA RAMIREZ', 'LIDER', 1, 1),
-(19, '661', 'MONICA YULEIMA GUERRERO OTERO', 'AGENTE', 1, 1),
-(20, '810', 'PAOLA ANDREA MOLINA', 'AGENTE', 1, 1),
-(21, '817', 'QUIMBERLY VIAFARA RUBIANO', 'AGENTE', 1, 1),
-(22, '474', 'SAMUEL ALBERTO MU?OZ OSORNO', 'AGENTE', 1, 1),
-(23, '532', 'TATIANA PEREA ORTIZ', 'AGENTE', 1, 1),
-(24, '492', 'YACKELINE YEPES', 'AGENTE', 1, 1),
-(25, '824', 'YERALDINE VALENCIA', 'AGENTE', 1, 1),
-(26, '861', 'BRYAN FLOREZ GARCIA', 'AGENTE', 1, 1),
-(27, '535', 'BRYHAN RESTREPO', 'AGENTE', 1, 1),
-(28, '628', 'DANIEL MAURICIO RESTREPO AGUDELO', 'AGENTE', 1, 1),
-(29, '421', 'ISAMAR MERCEDES ARCINIEGAS CHAMORRO', 'AGENTE', 1, 1),
-(30, '813', 'KAREN GISELA MURILLO MURILLO', 'AGENTE', 1, 1),
-(31, '800', 'LEYDI LORENA CAMAYO CASTRO', 'AGENTE', 1, 1),
-(32, '630', 'MARIA ANGELICA PARDO JIMENEZ', 'AGENTE', 1, 1),
-(33, '551', 'MARIA DEL PILAR CRIOLLO REALPE', 'AGENTE', 1, 1),
-(34, '658', 'PAOLA ANDREA MONTOYA', 'LIDER', 1, 1),
-(35, '483', 'PAULA ANDREA SANDOVAL ALVAREZ', 'AGENTE', 1, 1),
-(36, '476', 'YINNA GUAMANGA MEDINA', 'AGENTE', 1, 1),
-(37, '660', 'YULI VANESSA RODRIGUEZ QUINTERO', 'AGENTE', 1, 1),
-(38, 'N/A', 'KATHERINE POVEDA CHURTA', 'AGENTE', 1, 1),
-(39, '465', 'ALISSON TATIANA CARDENAS ACEVEDO', 'AGENTE', 1, 1),
-(40, '432', 'CAMILA VALENCIA JORDAN', 'AGENTE', 1, 1),
-(41, '812', 'CARLOS ANDRES PINO', 'AGENTE', 1, 1),
-(42, '431', 'DANYELI AGREDO', 'AGENTE', 1, 1),
-(43, '445', 'DIANA CRISTINA LOPEZ GIRALDO', 'LIDER', 1, 1),
-(44, '457', 'ELIANA FERNANDEZ ACOSTA', 'AGENTE', 1, 1),
-(45, '803', 'ESTEFANI MURILLO ALBORNOZ', 'AGENTE', 1, 1),
-(46, '466', 'JUNIOR ANDRES GARCIA VARGAS', 'AGENTE', 1, 1),
-(47, '556', 'KEVIN ANDRES SANCHEZ', 'AGENTE', 1, 1),
-(48, '527', 'MARIA ALEJANDRA QUINTERO', 'AGENTE', 1, 1),
-(49, '477', 'MARIA CAMILA PEÑA MONTOYA', 'AGENTE', 1, 1),
-(50, '406', 'MARLIN ANDREA PEREZ TIBOCHA', 'AGENTE', 1, 1),
-(51, '444', 'NICOLAS FRANCO AYALA', 'AGENTE', 1, 1),
-(52, '801', 'MARTHA LORENA PEREZ', 'AGENTE', 1, 1),
-(53, '488', 'TATIANA BOLAÑOS', 'AGENTE', 1, 1),
-(54, '455', 'JAIME ALEJANDRO RUIZ RENGIFO', 'AGENTE', 1, 1),
-(55, '422', 'JOSE FRANCISCO ACOSTA', 'AGENTE', 1, 1),
-(56, '411', 'KATHERINE SANCHEZ ROJAS', 'AGENTE', 1, 1),
-(57, '475', 'LINA MARCELA PLAZA', 'AGENTE', 1, 1),
-(58, '663', 'LUISA MARIA CAICEDO', 'AGENTE', 1, 1),
-(59, '536', 'MAYERLY BURGOS FRANCO', 'AGENTE', 1, 1),
-(60, '410', 'NERLY MOSQUERA', 'LIDER', 1, 1),
-(61, '640', 'ANDRES DAVID RAMIREZ DIAZ', 'AGENTE', 1, 1),
-(62, '841', 'ANGELICA MARIA DIAZ NAVARRO', 'AGENTE', 1, 1),
-(63, '439', 'ANGIE TATIANA CASTILLO', 'AGENTE', 1, 1),
-(64, '430', 'EVELYN JOHANNA VELAZQUEZ', 'LIDER', 1, 1),
-(65, '639', 'KATHERINE ANDREA AVILA', 'AGENTE', 1, 1),
-(66, '836', 'LINA MARCELACORTEZ DAVID', 'AGENTE', 1, 1),
-(67, '408', 'LINA MARIA ARAGON MEDINA', 'AGENTE', 1, 1),
-(68, '804', 'LUZ ADRIANA OSORIO RINCON', 'AGENTE', 1, 1),
-(69, '401', 'SANDRA SOLARTE', 'AGENTE', 1, 1),
-(70, '848', 'YERALDINE SAMUEL', 'AGENTE', 1, 1),
-(71, '862', 'JOSE DAVID TAMAYO', 'AGENTE', 1, 1),
-(72, '412', 'ALBA MERY CASTILLO', 'AGENTE', 1, 1),
-(73, '605', 'BRAYAN ALEXANDER ANACONA', 'AGENTE', 1, 1),
-(74, '826', ' CRISTIAN CAMILO DELGADO MARIN', 'AGENTE', 1, 1),
-(75, '486', 'CAROLINA SOSCUE', 'AGENTE', 1, 1),
-(76, '635', 'DANIELA BOCANEGRA GONZALEZ', 'LIDER', 1, 1),
-(77, '407', 'DANIELA MORALES OCAMPO', 'AGENTE', 1, 1),
-(78, '613', 'DINANCELA ARCE SAA', 'AGENTE', 1, 1),
-(79, '601', 'GERALDINE ANDREA LOPEZ', 'AGENTE', 1, 1),
-(80, '418', 'JEFERSON CASTILLO SANCHEZ', 'AGENTE', 1, 1),
-(81, '543', 'JENNIFER ALEXANDRA LONDO?O ORDO?EZ', 'AGENTE', 1, 1),
-(82, '581', 'JESSIKA JANETH MAMBAGUE', 'AGENTE', 1, 1),
-(83, '807', 'JOHANNA MARCELA LOPEZ ORDO?EZ', 'AGENTE', 1, 1),
-(84, '625', 'JUANA VALENTINA VAHOS', 'AGENTE', 1, 1),
-(85, '441', 'LEYDI JOHANNA PINEDA AGUI?O', 'AGENTE', 1, 1),
-(86, '638', 'MARY JAKELINNE REYES CAICEDO', 'AGENTE', 1, 1),
-(87, '656', 'MICHEL NATHALIA MERA TORRES', 'AGENTE', 1, 1),
-(88, '572', 'NATALIA MONTA?EZ OSORIO', 'AGENTE', 1, 1),
-(89, '440', 'SEBASTIAN LONDO?O', 'AGENTE', 1, 1),
-(90, '409', 'YENNI GONZALEZ', 'AGENTE', 1, 1),
-(91, '398', 'YULI LOZANO IBARRA', 'AGENTE', 1, 1),
-(92, '462', 'KARLA MARCELA ROSENDO', 'AGENTE', 1, 1),
-(93, '435', ' KATTALINA CORREDOR', 'AGENTE', 1, 1),
-(94, '423', 'LESLY GISELLA AGUDELO VIVEROS', 'AGENTE', 1, 1),
-(95, '442', 'LINDANA ARIZA RAMIREZ', 'LIDER', 1, 1),
-(96, '849', 'MONICA MANTILLA', 'AGENTE', 1, 1),
-(97, '860', 'VALERIA BLANDON', 'AGENTE', 1, 1),
-(98, '840', 'ANYI ANTE', 'AGENTE', 1, 1),
-(99, '627', 'CARLOS ALEXIS ACOSTA', 'AGENTE', 1, 1),
-(100, '478', 'GLADYS ACENETH GIRALDO SANCHEZ', 'AGENTE', 1, 1),
-(101, '500', 'INGRID LORENA ROJAS DOMINGUEZ', 'AGENTE', 1, 1),
-(102, '845', 'RONALDO PONTON', 'AGENTE', 1, 1),
-(103, '802', 'TATIANA PELAEZ LONDO?O', 'AGENTE', 1, 1),
-(104, '631', 'DANIELA BONILLA VELASCO', 'AGENTE', 1, 1),
-(105, '611', 'ELIANA LIZETH CRUZ', 'AGENTE', 1, 1),
-(106, '420', 'GERALDINE RODRIGUEZ RESTREPO', 'LIDER', 1, 1),
-(107, '419', 'NATHALY VAZQUEZ', 'AGENTE', 1, 1),
-(108, '403', 'YESIKA DANIELA NAVAS CASTILLO', 'AGENTE', 1, 1),
-(109, '863', 'ADRIANA ALEJANDRA MUÑOZ', 'AGENTE', 1, 1),
-(110, '844', 'EFRAIN MELENDEZ HERRERA', 'AGENTE', 1, 1),
-(111, '850', 'LUZ MARY RAMOS', 'AGENTE', 1, 1),
-(112, '860', 'VALERIA BLANDON', 'AGENTE', 1, 1),
-(113, '861', 'BRYAN FLOREZ', 'AGENTE', 1, 1),
-(114, '862', 'JOSE TAMAYO', 'AGENTE', 1, 1),
-(115, '863', 'ADRIANA MUÑOZ', 'AGENTE', 1, 1),
-(116, 'N/A', 'KATHERINE POVEDA', 'AGENTE', 1, 1),
-(117, 'NO APLICA', 'TODOS', 'NO APLICA', 1, 1);
+INSERT INTO `ir_colaborador` (`col_id`, `col_login_num`, `col_nom`, `col_cargo`, `col_area`, `tip_est_id_fk`) VALUES
+(1, '642', 'DANYA VALENTINA MOLINA AGUILLON', 'AGENTE', 'CONTACT CENTER', 1),
+(2, '480', 'MARIA DEL PILAR MEJIA PARAMO', 'AGENTE', 'CONTACT CENTER', 1),
+(3, '446', 'MARIA VALENTINA CELIS LOURIDO', 'AGENTE', 'CONTACT CENTER', 1),
+(4, '629', 'NATALIA ANDREA LOPEZ D\"ACOSTA', 'AGENTE', 'CONTACT CENTER', 1),
+(5, '414', 'SARAI HERNANDEZ', 'LIDER', 'CONTACT CENTER', 1),
+(6, '472', 'STEPHANY BASTIDAS', 'AGENTE', 'CONTACT CENTER', 1),
+(7, '493', 'DIANA CAROLINA BARRIOS VARELA', 'AGENTE', 'CONTACT CENTER', 1),
+(8, '599', 'JOSE LUIS CHARRY', 'AGENTE', 'CONTACT CENTER', 1),
+(9, '428', 'LAUREN CORONEL', 'AGENTE', 'CONTACT CENTER', 1),
+(10, '833', 'MARIA ALEJANDRA ARANDA SANCHEZ', 'AGENTE', 'CONTACT CENTER', 1),
+(11, '427', 'SOFIA NOVOA', 'AGENTE', 'CONTACT CENTER', 1),
+(13, '417', 'BRIGITTE BAUTISTA JIMENEZ', 'AGENTE', 'CONTACT CENTER', 1),
+(14, '626', 'DANIELA DIAZ RODRIGUEZ', 'AGENTE', 'CONTACT CENTER', 1),
+(15, '405', 'DANNA GISELLA FRANCO RIOS', 'AGENTE', 'CONTACT CENTER', 1),
+(16, '464', 'JHOAN MANUEL LOPEZ', 'AGENTE', 'CONTACT CENTER', 1),
+(17, '621', 'JUAN DIEGO OSORIO', 'AGENTE', 'CONTACT CENTER', 1),
+(18, '449', 'LINA MARCELA TABORDA RAMIREZ', 'LIDER', 'CONTACT CENTER', 1),
+(19, '661', 'MONICA YULEIMA GUERRERO OTERO', 'AGENTE', 'CONTACT CENTER', 1),
+(20, '810', 'PAOLA ANDREA MOLINA', 'AGENTE', 'CONTACT CENTER', 1),
+(21, '817', 'QUIMBERLY VIAFARA RUBIANO', 'AGENTE', 'CONTACT CENTER', 1),
+(22, '474', 'SAMUEL ALBERTO MU?OZ OSORNO', 'AGENTE', 'CONTACT CENTER', 1),
+(23, '532', 'TATIANA PEREA ORTIZ', 'AGENTE', 'CONTACT CENTER', 1),
+(24, '492', 'YACKELINE YEPES', 'AGENTE', 'CONTACT CENTER', 1),
+(25, '824', 'YERALDINE VALENCIA', 'AGENTE', 'CONTACT CENTER', 1),
+(26, '861', 'BRYAN FLOREZ GARCIA', 'AGENTE', 'CONTACT CENTER', 1),
+(27, '535', 'BRYHAN RESTREPO', 'AGENTE', 'CONTACT CENTER', 1),
+(28, '628', 'DANIEL MAURICIO RESTREPO AGUDELO', 'AGENTE', 'CONTACT CENTER', 1),
+(29, '421', 'ISAMAR MERCEDES ARCINIEGAS CHAMORRO', 'AGENTE', 'CONTACT CENTER', 1),
+(30, '813', 'KAREN GISELA MURILLO MURILLO', 'AGENTE', 'CONTACT CENTER', 1),
+(31, '800', 'LEYDI LORENA CAMAYO CASTRO', 'AGENTE', 'CONTACT CENTER', 1),
+(32, '630', 'MARIA ANGELICA PARDO JIMENEZ', 'AGENTE', 'CONTACT CENTER', 1),
+(33, '551', 'MARIA DEL PILAR CRIOLLO REALPE', 'AGENTE', 'CONTACT CENTER', 1),
+(34, '658', 'PAOLA ANDREA MONTOYA', 'LIDER', 'CONTACT CENTER', 1),
+(35, '483', 'PAULA ANDREA SANDOVAL ALVAREZ', 'AGENTE', 'CONTACT CENTER', 1),
+(36, '476', 'YINNA GUAMANGA MEDINA', 'AGENTE', 'CONTACT CENTER', 1),
+(37, '660', 'YULI VANESSA RODRIGUEZ QUINTERO', 'AGENTE', 'CONTACT CENTER', 1),
+(38, 'N/A', 'KATHERINE POVEDA CHURTA', 'AGENTE', 'CONTACT CENTER', 1),
+(39, '465', 'ALISSON TATIANA CARDENAS ACEVEDO', 'AGENTE', 'CONTACT CENTER', 1),
+(40, '432', 'CAMILA VALENCIA JORDAN', 'AGENTE', 'CONTACT CENTER', 1),
+(41, '812', 'CARLOS ANDRES PINO', 'AGENTE', 'CONTACT CENTER', 1),
+(42, '431', 'DANYELI AGREDO', 'AGENTE', 'CONTACT CENTER', 1),
+(43, '445', 'DIANA CRISTINA LOPEZ GIRALDO', 'LIDER', 'CONTACT CENTER', 1),
+(44, '457', 'ELIANA FERNANDEZ ACOSTA', 'AGENTE', 'CONTACT CENTER', 1),
+(45, '803', 'ESTEFANI MURILLO ALBORNOZ', 'AGENTE', 'CONTACT CENTER', 1),
+(46, '466', 'JUNIOR ANDRES GARCIA VARGAS', 'AGENTE', 'CONTACT CENTER', 1),
+(47, '556', 'KEVIN ANDRES SANCHEZ', 'AGENTE', 'CONTACT CENTER', 1),
+(48, '527', 'MARIA ALEJANDRA QUINTERO', 'AGENTE', 'CONTACT CENTER', 1),
+(49, '477', 'MARIA CAMILA PEÑA MONTOYA', 'AGENTE', 'CONTACT CENTER', 1),
+(50, '406', 'MARLIN ANDREA PEREZ TIBOCHA', 'AGENTE', 'CONTACT CENTER', 1),
+(51, '444', 'NICOLAS FRANCO AYALA', 'AGENTE', 'CONTACT CENTER', 1),
+(52, '801', 'MARTHA LORENA PEREZ', 'AGENTE', 'CONTACT CENTER', 1),
+(53, '488', 'TATIANA BOLAÑOS', 'AGENTE', 'CONTACT CENTER', 1),
+(54, '455', 'JAIME ALEJANDRO RUIZ RENGIFO', 'AGENTE', 'CONTACT CENTER', 1),
+(55, '422', 'JOSE FRANCISCO ACOSTA', 'AGENTE', 'CONTACT CENTER', 1),
+(56, '411', 'KATHERINE SANCHEZ ROJAS', 'AGENTE', 'CONTACT CENTER', 1),
+(57, '475', 'LINA MARCELA PLAZA', 'AGENTE', 'CONTACT CENTER', 1),
+(58, '663', 'LUISA MARIA CAICEDO', 'AGENTE', 'CONTACT CENTER', 1),
+(59, '536', 'MAYERLY BURGOS FRANCO', 'AGENTE', 'CONTACT CENTER', 1),
+(60, '410', 'NERLY MOSQUERA', 'LIDER', 'CONTACT CENTER', 1),
+(61, '640', 'ANDRES DAVID RAMIREZ DIAZ', 'AGENTE', 'CONTACT CENTER', 1),
+(62, '841', 'ANGELICA MARIA DIAZ NAVARRO', 'AGENTE', 'CONTACT CENTER', 1),
+(63, '439', 'ANGIE TATIANA CASTILLO', 'AGENTE', 'CONTACT CENTER', 1),
+(64, '430', 'EVELYN JOHANNA VELAZQUEZ', 'LIDER', 'CONTACT CENTER', 1),
+(65, '639', 'KATHERINE ANDREA AVILA', 'AGENTE', 'CONTACT CENTER', 1),
+(66, '836', 'LINA MARCELACORTEZ DAVID', 'AGENTE', 'CONTACT CENTER', 1),
+(67, '408', 'LINA MARIA ARAGON MEDINA', 'AGENTE', 'CONTACT CENTER', 1),
+(68, '804', 'LUZ ADRIANA OSORIO RINCON', 'AGENTE', 'CONTACT CENTER', 1),
+(69, '401', 'SANDRA SOLARTE', 'AGENTE', 'CONTACT CENTER', 1),
+(70, '848', 'YERALDINE SAMUEL', 'AGENTE', 'CONTACT CENTER', 1),
+(71, '862', 'JOSE DAVID TAMAYO', 'AGENTE', 'CONTACT CENTER', 1),
+(72, '412', 'ALBA MERY CASTILLO', 'AGENTE', 'CONTACT CENTER', 1),
+(73, '605', 'BRAYAN ALEXANDER ANACONA', 'AGENTE', 'CONTACT CENTER', 1),
+(74, '826', ' CRISTIAN CAMILO DELGADO MARIN', 'AGENTE', 'CONTACT CENTER', 1),
+(75, '486', 'CAROLINA SOSCUE', 'AGENTE', 'CONTACT CENTER', 1),
+(76, '635', 'DANIELA BOCANEGRA GONZALEZ', 'LIDER', 'CONTACT CENTER', 1),
+(77, '407', 'DANIELA MORALES OCAMPO', 'AGENTE', 'CONTACT CENTER', 1),
+(78, '613', 'DINANCELA ARCE SAA', 'AGENTE', 'CONTACT CENTER', 1),
+(79, '601', 'GERALDINE ANDREA LOPEZ', 'AGENTE', 'CONTACT CENTER', 1),
+(80, '418', 'JEFERSON CASTILLO SANCHEZ', 'AGENTE', 'CONTACT CENTER', 1),
+(81, '543', 'JENNIFER ALEXANDRA LONDO?O ORDO?EZ', 'AGENTE', 'CONTACT CENTER', 1),
+(82, '581', 'JESSIKA JANETH MAMBAGUE', 'AGENTE', 'CONTACT CENTER', 1),
+(83, '807', 'JOHANNA MARCELA LOPEZ ORDO?EZ', 'AGENTE', 'CONTACT CENTER', 1),
+(84, '625', 'JUANA VALENTINA VAHOS', 'AGENTE', 'CONTACT CENTER', 1),
+(85, '441', 'LEYDI JOHANNA PINEDA AGUI?O', 'AGENTE', 'CONTACT CENTER', 1),
+(86, '638', 'MARY JAKELINNE REYES CAICEDO', 'AGENTE', 'CONTACT CENTER', 1),
+(87, '656', 'MICHEL NATHALIA MERA TORRES', 'AGENTE', 'CONTACT CENTER', 1),
+(88, '572', 'NATALIA MONTA?EZ OSORIO', 'AGENTE', 'CONTACT CENTER', 1),
+(89, '440', 'SEBASTIAN LONDO?O', 'AGENTE', 'CONTACT CENTER', 1),
+(90, '409', 'YENNI GONZALEZ', 'AGENTE', 'CONTACT CENTER', 1),
+(91, '398', 'YULI LOZANO IBARRA', 'AGENTE', 'CONTACT CENTER', 1),
+(92, '462', 'KARLA MARCELA ROSENDO', 'AGENTE', 'CONTACT CENTER', 1),
+(93, '435', ' KATTALINA CORREDOR', 'AGENTE', 'CONTACT CENTER', 1),
+(94, '423', 'LESLY GISELLA AGUDELO VIVEROS', 'AGENTE', 'CONTACT CENTER', 1),
+(95, '442', 'LINDANA ARIZA RAMIREZ', 'LIDER', 'CONTACT CENTER', 1),
+(96, '849', 'MONICA MANTILLA', 'AGENTE', 'CONTACT CENTER', 1),
+(97, '860', 'VALERIA BLANDON', 'AGENTE', 'CONTACT CENTER', 1),
+(98, '840', 'ANYI ANTE', 'AGENTE', 'CONTACT CENTER', 1),
+(99, '627', 'CARLOS ALEXIS ACOSTA', 'AGENTE', 'CONTACT CENTER', 1),
+(100, '478', 'GLADYS ACENETH GIRALDO SANCHEZ', 'AGENTE', 'CONTACT CENTER', 1),
+(101, '500', 'INGRID LORENA ROJAS DOMINGUEZ', 'AGENTE', 'CONTACT CENTER', 1),
+(102, '845', 'RONALDO PONTON', 'AGENTE', 'CONTACT CENTER', 1),
+(103, '802', 'TATIANA PELAEZ LONDO?O', 'AGENTE', 'CONTACT CENTER', 1),
+(104, '631', 'DANIELA BONILLA VELASCO', 'AGENTE', 'CONTACT CENTER', 1),
+(105, '611', 'ELIANA LIZETH CRUZ', 'AGENTE', 'CONTACT CENTER', 1),
+(106, '420', 'GERALDINE RODRIGUEZ RESTREPO', 'LIDER', 'CONTACT CENTER', 1),
+(107, '419', 'NATHALY VAZQUEZ', 'AGENTE', 'CONTACT CENTER', 1),
+(108, '403', 'YESIKA DANIELA NAVAS CASTILLO', 'AGENTE', 'CONTACT CENTER', 1),
+(109, '863', 'ADRIANA ALEJANDRA MUÑOZ', 'AGENTE', 'CONTACT CENTER', 1),
+(110, '844', 'EFRAIN MELENDEZ HERRERA', 'AGENTE', 'CONTACT CENTER', 1),
+(111, '850', 'LUZ MARY RAMOS', 'AGENTE', 'CONTACT CENTER', 1),
+(112, '860', 'VALERIA BLANDON', 'AGENTE', 'CONTACT CENTER', 1),
+(113, '861', 'BRYAN FLOREZ', 'AGENTE', 'CONTACT CENTER', 1),
+(114, '862', 'JOSE TAMAYO', 'AGENTE', 'CONTACT CENTER', 1),
+(115, '863', 'ADRIANA MUÑOZ', 'AGENTE', 'CONTACT CENTER', 1),
+(116, 'N/A', 'KATHERINE POVEDA', 'AGENTE', 'CONTACT CENTER', 1),
+(117, 'NO APLICA', 'TODOS', 'NO APLICA', 'CONTACT CENTER', 1);
 
 -- --------------------------------------------------------
 
@@ -229,28 +241,6 @@ INSERT INTO `ir_estado` (`est_id`, `est_des`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ir_jefe`
---
-
-CREATE TABLE `ir_jefe` (
-  `jefe_id` int(11) NOT NULL,
-  `jefe_nom` varchar(40) NOT NULL,
-  `jefe_ape` varchar(40) NOT NULL,
-  `jefe_correo` varchar(60) NOT NULL,
-  `tip_est_id_fk` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `ir_jefe`
---
-
-INSERT INTO `ir_jefe` (`jefe_id`, `jefe_nom`, `jefe_ape`, `jefe_correo`, `tip_est_id_fk`) VALUES
-(1, 'D angello', 'Jimenez', 'dangellojr@ospedale.com.co', 1),
-(2, 'cristian', 'sanchez', 'aprendiz.sistemas3@ospedale.com.co', 1);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `ir_novedad`
 --
 
@@ -259,10 +249,10 @@ CREATE TABLE `ir_novedad` (
   `nove_fecha` date NOT NULL,
   `nove_hora_ini` datetime NOT NULL,
   `nove_hora_fin` datetime NOT NULL,
-  `nove_tiem_total` time NOT NULL,
+  `nove_tiem_total` varchar(25) NOT NULL,
   `cate_id_fk` int(11) NOT NULL,
   `tip_inci_id_fk` int(11) NOT NULL,
-  `seccion_id_fk` int(11) NOT NULL,
+  `area_id_fk` int(11) NOT NULL,
   `col_id_fk` int(11) NOT NULL,
   `usu_id_fk` int(11) NOT NULL,
   `est_id_fk` int(11) NOT NULL,
@@ -287,40 +277,7 @@ CREATE TABLE `ir_rol` (
 INSERT INTO `ir_rol` (`rol_id`, `rol_des`) VALUES
 (1, 'administrador'),
 (2, 'lider'),
-(3, 'supervisor '),
-(4, 'colaborador');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ir_seccion`
---
-
-CREATE TABLE `ir_seccion` (
-  `seccion_id` int(11) NOT NULL,
-  `seccion_nom` varchar(50) NOT NULL,
-  `area_id_fk` int(11) NOT NULL,
-  `tip_est_id_fk` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `ir_seccion`
---
-
-INSERT INTO `ir_seccion` (`seccion_id`, `seccion_nom`, `area_id_fk`, `tip_est_id_fk`) VALUES
-(1, 'CALL CENTER POPAYAN', 1, 1),
-(2, 'CALL CENTER VERSALLES', 1, 1),
-(3, 'CALL CENTER MEDELLIN', 1, 1),
-(4, 'CALL CENTER BARRANQUILLA', 1, 1),
-(5, 'CALL CENTER IBAGUE', 1, 1),
-(6, 'CALL CENTER CCQ', 1, 1),
-(7, 'CALL CENTER PEREIRA', 1, 1),
-(8, 'CALL CENTER CALI', 1, 1),
-(9, 'CALL CENTER CORPAS', 1, 1),
-(10, 'CALL CENTER  JAMUNDI PILOTO', 1, 1),
-(11, 'GESTION DE RIESGO/EVITAVILIDAD', 2, 1),
-(12, 'ASISTENCIAL', 2, 1),
-(13, 'CAP POPAYAN', 1, 1);
+(3, 'supervisor ');
 
 -- --------------------------------------------------------
 
@@ -414,20 +371,19 @@ CREATE TABLE `ir_usuario` (
   `usu_correo` varchar(50) NOT NULL,
   `usu_contra` varchar(8) NOT NULL,
   `rol_id_fk` int(11) NOT NULL,
-  `jefe_id_fk` int(11) DEFAULT NULL,
-  `tip_est_id_fk` int(11) DEFAULT NULL
+  `tip_est_id_fk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `ir_usuario`
 --
 
-INSERT INTO `ir_usuario` (`usu_id`, `usu_num_doc`, `usu_nom`, `usu_nom_two`, `usu_ape`, `usu_ape_two`, `usu_correo`, `usu_contra`, `rol_id_fk`, `jefe_id_fk`, `tip_est_id_fk`) VALUES
-(1, 1060806960, 'cristian ', 'camilo', 'garcia ', 'sanchez', 'aprendiz.sistemas3@ospedale.com.co', '2580.', 1, NULL, 1),
-(2, 14704333, 'D Angello ', '', 'Jimenez ', 'Ruiz', 'dangellojr@ospedale.com.co', '14704333', 1, NULL, 1),
-(3, 14637232, 'Diego ', 'Fernando', 'Grueso', 'Sanchez', 'coor.callcenter@ospedale.com.co', '14637232', 3, NULL, 1),
-(4, 900612531, 'Tecnologia', '', 'G-Ocho', '', 'ti@ospedale.com.co', 'Gocho', 1, NULL, 1),
-(5, 1006185431, 'Jhoan ', 'Sebastian', 'Paz', '', 'auxiliar.ti@ospedale.com.co', 'America', 1, NULL, 1);
+INSERT INTO `ir_usuario` (`usu_id`, `usu_num_doc`, `usu_nom`, `usu_nom_two`, `usu_ape`, `usu_ape_two`, `usu_correo`, `usu_contra`, `rol_id_fk`, `tip_est_id_fk`) VALUES
+(1, 1060806960, 'cristian ', 'camilo', 'garcia ', 'sanchez', 'aprendiz.sistemas3@ospedale.com.co', '2580.', 1, 1),
+(2, 14704333, 'D Angello ', '', 'Jimenez ', 'Ruiz', 'dangellojr@ospedale.com.co', '14704333', 1, 1),
+(3, 14637232, 'Diego ', 'Fernando', 'Grueso', 'Sanchez', 'coor.callcenter@ospedale.com.co', '14637232', 3, 1),
+(4, 900612531, 'Tecnologia', '', 'G-Ocho', '', 'ti@ospedale.com.co', 'Gocho', 1, 1),
+(5, 1006185431, 'Jhoan ', 'Sebastian', 'Paz', '', 'auxiliar.ti@ospedale.com.co', 'America', 1, 1);
 
 --
 -- Índices para tablas volcadas
@@ -451,8 +407,7 @@ ALTER TABLE `ir_categoria`
 --
 ALTER TABLE `ir_colaborador`
   ADD PRIMARY KEY (`col_id`),
-  ADD KEY `tip_est_id_fk` (`tip_est_id_fk`),
-  ADD KEY `id_area_fk` (`id_area_fk`);
+  ADD KEY `tip_est_id_fk` (`tip_est_id_fk`);
 
 --
 -- Indices de la tabla `ir_estado`
@@ -461,18 +416,11 @@ ALTER TABLE `ir_estado`
   ADD PRIMARY KEY (`est_id`);
 
 --
--- Indices de la tabla `ir_jefe`
---
-ALTER TABLE `ir_jefe`
-  ADD PRIMARY KEY (`jefe_id`),
-  ADD KEY `tip_est_id_fk` (`tip_est_id_fk`);
-
---
 -- Indices de la tabla `ir_novedad`
 --
 ALTER TABLE `ir_novedad`
   ADD PRIMARY KEY (`nove_id`),
-  ADD KEY `camp_id_fk` (`seccion_id_fk`),
+  ADD KEY `camp_id_fk` (`area_id_fk`),
   ADD KEY `usu_id_fk` (`usu_id_fk`),
   ADD KEY `tip_novedad_id_fk` (`tip_inci_id_fk`),
   ADD KEY `est_id_fk` (`est_id_fk`),
@@ -485,14 +433,6 @@ ALTER TABLE `ir_novedad`
 --
 ALTER TABLE `ir_rol`
   ADD PRIMARY KEY (`rol_id`);
-
---
--- Indices de la tabla `ir_seccion`
---
-ALTER TABLE `ir_seccion`
-  ADD PRIMARY KEY (`seccion_id`),
-  ADD KEY `area_id_fk` (`area_id_fk`),
-  ADD KEY `tip_est_id_fk` (`tip_est_id_fk`);
 
 --
 -- Indices de la tabla `ir_tipo_estado`
@@ -514,8 +454,7 @@ ALTER TABLE `ir_tipo_incidencia`
 ALTER TABLE `ir_usuario`
   ADD PRIMARY KEY (`usu_id`),
   ADD KEY `rol_id_fk` (`rol_id_fk`),
-  ADD KEY `tip_est_id_fk` (`tip_est_id_fk`),
-  ADD KEY `jefe_id_fk` (`jefe_id_fk`);
+  ADD KEY `tip_est_id_fk` (`tip_est_id_fk`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -525,31 +464,25 @@ ALTER TABLE `ir_usuario`
 -- AUTO_INCREMENT de la tabla `ir_area`
 --
 ALTER TABLE `ir_area`
-  MODIFY `area_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `area_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_categoria`
 --
 ALTER TABLE `ir_categoria`
-  MODIFY `cate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `cate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_colaborador`
 --
 ALTER TABLE `ir_colaborador`
-  MODIFY `col_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `col_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_estado`
 --
 ALTER TABLE `ir_estado`
   MODIFY `est_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `ir_jefe`
---
-ALTER TABLE `ir_jefe`
-  MODIFY `jefe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_novedad`
@@ -562,12 +495,6 @@ ALTER TABLE `ir_novedad`
 --
 ALTER TABLE `ir_rol`
   MODIFY `rol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `ir_seccion`
---
-ALTER TABLE `ir_seccion`
-  MODIFY `seccion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_tipo_estado`
@@ -601,33 +528,18 @@ ALTER TABLE `ir_area`
 -- Filtros para la tabla `ir_colaborador`
 --
 ALTER TABLE `ir_colaborador`
-  ADD CONSTRAINT `ir_colaborador_ibfk_1` FOREIGN KEY (`tip_est_id_fk`) REFERENCES `ir_tipo_estado` (`tip_est_id`),
-  ADD CONSTRAINT `ir_colaborador_ibfk_2` FOREIGN KEY (`id_area_fk`) REFERENCES `ir_area` (`area_id`);
-
---
--- Filtros para la tabla `ir_jefe`
---
-ALTER TABLE `ir_jefe`
-  ADD CONSTRAINT `ir_jefe_ibfk_1` FOREIGN KEY (`tip_est_id_fk`) REFERENCES `ir_tipo_estado` (`tip_est_id`);
+  ADD CONSTRAINT `ir_colaborador_ibfk_1` FOREIGN KEY (`tip_est_id_fk`) REFERENCES `ir_tipo_estado` (`tip_est_id`);
 
 --
 -- Filtros para la tabla `ir_novedad`
 --
 ALTER TABLE `ir_novedad`
-  ADD CONSTRAINT `ir_novedad_ibfk_10` FOREIGN KEY (`seccion_id_fk`) REFERENCES `ir_seccion` (`seccion_id`),
   ADD CONSTRAINT `ir_novedad_ibfk_3` FOREIGN KEY (`usu_id_fk`) REFERENCES `ir_usuario` (`usu_id`),
   ADD CONSTRAINT `ir_novedad_ibfk_5` FOREIGN KEY (`est_id_fk`) REFERENCES `ir_estado` (`est_id`),
   ADD CONSTRAINT `ir_novedad_ibfk_6` FOREIGN KEY (`tip_est_id_fk`) REFERENCES `ir_tipo_estado` (`tip_est_id`),
   ADD CONSTRAINT `ir_novedad_ibfk_7` FOREIGN KEY (`col_id_fk`) REFERENCES `ir_colaborador` (`col_id`),
   ADD CONSTRAINT `ir_novedad_ibfk_8` FOREIGN KEY (`tip_inci_id_fk`) REFERENCES `ir_tipo_incidencia` (`tip_inci_id`),
   ADD CONSTRAINT `ir_novedad_ibfk_9` FOREIGN KEY (`cate_id_fk`) REFERENCES `ir_categoria` (`cate_id`);
-
---
--- Filtros para la tabla `ir_seccion`
---
-ALTER TABLE `ir_seccion`
-  ADD CONSTRAINT `ir_seccion_ibfk_1` FOREIGN KEY (`area_id_fk`) REFERENCES `ir_area` (`area_id`),
-  ADD CONSTRAINT `ir_seccion_ibfk_2` FOREIGN KEY (`tip_est_id_fk`) REFERENCES `ir_tipo_estado` (`tip_est_id`);
 
 --
 -- Filtros para la tabla `ir_tipo_incidencia`
@@ -641,8 +553,7 @@ ALTER TABLE `ir_tipo_incidencia`
 --
 ALTER TABLE `ir_usuario`
   ADD CONSTRAINT `ir_usuario_ibfk_1` FOREIGN KEY (`rol_id_fk`) REFERENCES `ir_rol` (`rol_id`),
-  ADD CONSTRAINT `ir_usuario_ibfk_2` FOREIGN KEY (`tip_est_id_fk`) REFERENCES `ir_tipo_estado` (`tip_est_id`),
-  ADD CONSTRAINT `ir_usuario_ibfk_3` FOREIGN KEY (`jefe_id_fk`) REFERENCES `ir_jefe` (`jefe_id`);
+  ADD CONSTRAINT `ir_usuario_ibfk_2` FOREIGN KEY (`tip_est_id_fk`) REFERENCES `ir_tipo_estado` (`tip_est_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
