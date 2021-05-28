@@ -5,7 +5,7 @@
                   <div class="top-logo">
                      <a href="index.html" class="logo">
                      <img src="<?php echo base_url();?>resources/images/logo.png" class="img-fluid" alt="">
-                     <span>g-8</span>
+                     <span>G-8</span>
                      </a>
                   </div>
                </div>

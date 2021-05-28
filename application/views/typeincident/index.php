@@ -1,14 +1,14 @@
 <div class="iq-card-body"> 
     <h2><?php echo $title; ?></h2>
-    <button type="button" onclick="modal_typeincident_create();"  style="float: right;" class="btn btn-success mb-3">registro de tipo incidencia</button>
+    <button type="button" onclick="modal_typeincident_create();"  style="float: right;" class="btn btn-success mb-3">Registro de tipo incidencia</button>
     <div class="table-responsive">
         <table id="tabletypeincident" class="table table-striped table-bordered">
             <thead >
                 <tr>
-                    <th >numero tipo incidencia</th>
-                    <th >nombre tipo incidencia</th>
-                    <th >categoria</th>
-                    <th>acciones</th>
+                    <th >Numero tipo incidencia</th>
+                    <th >Nombre tipo incidencia</th>
+                    <th >Categoria</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,7 +20,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">registro de tipo de incidencia</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Registro de tipo de incidencia</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -29,11 +29,11 @@
                 <form>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label>tipo incidencia</label>
+                        <label>Tipo incidencia</label>
                         <input type="text" class="form-control"  id="tip_inci_nom"  >
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>categoria</label>
+                        <label>Categoria</label>
                         <select class="form-control"  id="cate_id_fk" >
                             <option value="0" >selecione...</option>
                             <?php foreach ($categoria as $category): ?>
@@ -45,7 +45,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" onclick="create_typeincident();"  class="btn btn-primary">agregar</button>
+                <button type="button" onclick="create_typeincident();"  class="btn btn-primary">Agregar</button>
             </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">edicion tipo de incidencia</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edicion tipo de incidencia</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -66,11 +66,11 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <input type="hidden" id="tip_inci_id_e">
-                        <label>tipo incidencia</label>
+                        <label>Tipo incidencia</label>
                         <input type="text" class="form-control"  id="tip_inci_nom_e"  >
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>categoria</label>
+                        <label>Categoria</label>
                         <select class="form-control"  id="cate_id_fk_e" >
                             <option value="0" >selecione...</option>
                             <?php foreach ($categoria as $category): ?>
@@ -83,7 +83,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" onclick="edit_typeincident();"  class="btn btn-primary">actualizar</button>
+                <button type="button" onclick="edit_typeincident();"  class="btn btn-primary">Actualizar</button>
             </div>
             </div>
         </div>

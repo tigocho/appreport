@@ -55,7 +55,7 @@
         public function create()
         {
            
-            $data['title'] = 'registro nueva novedad';
+            $data['title'] = 'Registro nueva novedad';
             $data['seccion'] = $this->novelty_model->get_seccion();
             $data['colaborador'] = $this->novelty_model->get_collaborator();
             $data['categoria'] = $this->novelty_model->get_category();
@@ -97,7 +97,7 @@
           // inicio vista ediccion de  las novedades
         public function edit($nove_id)
         {
-            $data['title'] = 'editar novedad';
+            $data['title'] = 'Editar novedad';
             $data['seccion'] = $this->novelty_model->get_seccion();
             $data['colaborador'] = $this->novelty_model->get_collaborator();
             $data['categoria'] = $this->novelty_model->get_category();

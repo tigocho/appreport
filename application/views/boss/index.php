@@ -1,6 +1,6 @@
 <div class="iq-card-body">
     <h2><?php echo $title; ?></h2>
-    <button type="button" onclick="modal_boss_create();" style="float: right;" class="btn btn-success mb-3">registro de jefe</button>
+    <button type="button" onclick="modal_boss_create();" style="float: right;" class="btn btn-success mb-3">Registro de jefe</button>
     <div class="table-responsive">
         <table id="tableboss" class="table table-striped table-bordered">
             <thead >
@@ -21,7 +21,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">registro de jefe</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Registro de jefe</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -30,22 +30,22 @@
                 <form>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label>nombre de jefe</label>
+                        <label>Nombre de jefe</label>
                         <input  type="text" class="form-control"  id="jefe_nom">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>apellido de jefe</label>
+                        <label>Apellido de jefe</label>
                         <input  type="text" class="form-control"  id="jefe_ape">
                     </div>
                     <div class="col-md-9 mb-3">
-                        <label>correo de jefe</label>
+                        <label>Correo de jefe</label>
                         <input  type="text" class="form-control"  id="jefe_correo">
                     </div>
                 </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" onclick="create_boss();"  class="btn btn-primary">agregar</button>
+                <button type="button" onclick="create_boss();"  class="btn btn-primary">Agregar</button>
             </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">ediccion de jefe</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Ediccion de jefe</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -65,22 +65,22 @@
                 <div class="form-row">
                     <input type="hidden"  id="jefe_id_e">
                     <div class="col-md-6 mb-3">
-                        <label>nombre de jefe</label>
+                        <label>Nombre de jefe</label>
                         <input  type="text" class="form-control"  id="jefe_nom_e">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>apellido de jefe</label>
+                        <label>Apellido de jefe</label>
                         <input  type="text" class="form-control"  id="jefe_ape_e">
                     </div>
                     <div class="col-md-9 mb-3">
-                        <label>correo de jefe</label>
+                        <label>Correo de jefe</label>
                         <input  type="text" class="form-control"  id="jefe_correo_e">
                     </div>
                 </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" onclick="edit_boss();"  class="btn btn-primary">actualizar</button>
+                <button type="button" onclick="edit_boss();"  class="btn btn-primary">Actualizar</button>
             </div>
             </div>
         </div>

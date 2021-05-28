@@ -35,7 +35,7 @@
 
         public function create()
         {
-            $data['title'] = 'creacion de nuevo usuario';
+            $data['title'] = 'Creacion de nuevo usuario';
             $data['rol'] = $this->user_model->get_rol();
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
@@ -63,7 +63,7 @@
 
         public function edit($usu_id)
         {
-            $data['title'] = 'edicion cuenta de usuario';
+            $data['title'] = 'Edicion cuenta de usuario';
             $data['rol'] = $this->user_model->get_rol();
             $data['jefe'] = $this->user_model->getboss();
             $data['usuario'] = $this->user_model->get_edit_user($usu_id);

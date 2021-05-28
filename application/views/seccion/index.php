@@ -1,6 +1,6 @@
 <div class="iq-card-body">
     <h2><?php echo $title; ?></h2>
-    <button type="button" onclick="modal_seccion_create();" style="float: right;" class="btn btn-success mb-3">registro de seccion</button>
+    <button type="button" onclick="modal_seccion_create();" style="float: right;" class="btn btn-success mb-3">Registro de seccion</button>
     <div class="table-responsive">
         <table id="tableseccion" class="table table-striped table-bordered">
             <thead >
@@ -20,7 +20,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">registro de seccion</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Registro de seccion</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -29,11 +29,11 @@
                 <form>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label>nombre de seccion</label>
+                        <label>Nombre de seccion</label>
                         <input type="text" class="form-control"  id="seccion_nom">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>area</label>
+                        <label>Area</label>
                         <select class="form-control"  id="area_id_fk" >
                             <option value="0">selecione...</option>
                             <?php foreach ($area as $areas): ?>
@@ -55,7 +55,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">ediccion de seccion</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Ediccion de seccion</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -66,11 +66,11 @@
                     <input type="hidden"  id="seccion_id_e">
                     <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label>nombre de seccion</label>
+                        <label>Nombre de seccion</label>
                         <input type="text" class="form-control"  id="seccion_nom_e">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>area</label>
+                        <label>Area</label>
                         <select class="form-control"  id="area_id_fk_e" >
                             <option value="0">selecione...</option>
                             <?php foreach ($area as $areas): ?>
@@ -83,7 +83,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" onclick="edit_seccion();"  class="btn btn-primary">actualizar</button>
+                <button type="button" onclick="edit_seccion();"  class="btn btn-primary">Actualizar</button>
             </div>
             </div>
         </div>

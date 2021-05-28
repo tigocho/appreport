@@ -29,7 +29,7 @@
                 <form>
                 <div class="form-row">
                     <div class="col-md-9 mb-3">
-                        <label>nombre de categoria</label>
+                        <label>Nombre de categoria</label>
                         <input  type="text" style="text-transform:uppercase;" value=""  onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="cate_nom">
                     </div>
                 </div>

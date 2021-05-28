@@ -4,7 +4,7 @@
       <!-- Required meta tags -->
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>appreport</title>
+      <title>Appreport</title>
       <!-- Favicon -->
       <link rel="shortcut icon" href="<?php echo base_url();?>resources/images/icono.ico" />
       <!-- Bootstrap CSS -->

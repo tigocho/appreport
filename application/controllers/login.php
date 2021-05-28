@@ -89,14 +89,14 @@ class Login extends CI_controller
                     $mail->Body = $mailContent;  
                     
                     if ($mail->send()) {
-                        $this->session->set_flashdata('mensaje', 'la contraseña fue enviada a su correo');
+                        $this->session->set_flashdata('mensaje', 'La contraseña fue enviada a su correo');
                         redirect('login');
                     }
 
                    
 
             }else{
-			$data['error']="correo invalido!";
+			$data['error']="Correo invalido!";
 			}
 		
 	    }
