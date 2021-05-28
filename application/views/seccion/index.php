@@ -5,8 +5,9 @@
         <table id="tableseccion" class="table table-striped table-bordered">
             <thead >
                 <tr>
-                    <th>id</th>
-                    <th>seccion</th>
+                    <th>Id</th>
+                    <th>Seccion</th>
+                    <th>Area</th>
                     <th>Acciones</th>
                 </tr>
             </thead>

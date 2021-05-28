@@ -12,7 +12,7 @@
             public function get_typeincident()
             {
                 
-            $sql = "SELECT * FROM ir_tipo_incidencia WHERE tip_est_id_fk =1 ";
+            $sql = "SELECT t.*,c.cate_nom FROM ir_tipo_incidencia t LEFT JOIN ir_categoria c ON t.cate_id_fk = c.cate_id WHERE t.tip_est_id_fk =1";
             $query = $this->db->query($sql);
             return $query -> result();
  

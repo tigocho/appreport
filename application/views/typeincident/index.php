@@ -7,6 +7,7 @@
                 <tr>
                     <th >numero tipo incidencia</th>
                     <th >nombre tipo incidencia</th>
+                    <th >categoria</th>
                     <th>acciones</th>
                 </tr>
             </thead>

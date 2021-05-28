@@ -29,6 +29,7 @@ $(document).ready( function () {
         'columns': [
             { data: "tip_inci_id" },
             { data: "tip_inci_nom" },
+            { data: "cate_nom" },
             { "ordertable": true,render: function ( data, type, row ) { 
                 return "<td><button type='button' onclick='modal_typeincident_edit(\""+row.tip_inci_id+"\",\""+row.tip_inci_nom+"\",\""+row.cate_id_fk+"\");'  class='btn btn-primary mb-3'>editar</button> "+
                 "<button type='button' onclick='typeincident_delete(\""+row.tip_inci_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"
