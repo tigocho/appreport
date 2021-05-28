@@ -39,6 +39,16 @@
                         <?php endforeach; ?>
                     </select>
                 </div>
+                <div style="display:none" class="col-md-6 mb-3" id="jefenom" >
+                 <label>jefe nombre</label>
+                    <select class='form-control' id='jefe_id_fk'>
+                        <option selected disabled>selecione...</option>
+                    </select>
+                </div>
+                <div style="display:none" class="col-md-6 mb-3" id="jefecorreo" >
+                    <label>correo jefe</label>
+                    <input type='text' id="correo" readonly class='form-control'>
+                </div>
             <div class="form-group"> 
             <button class="btn btn-primary" id="boton" onclick="create_user();" type="boton">Registrar usuario</button>
             </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-05-2021 a las 16:39:55
+-- Tiempo de generación: 28-05-2021 a las 20:37:48
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 7.3.27
 
@@ -39,7 +39,8 @@ CREATE TABLE `ir_area` (
 
 INSERT INTO `ir_area` (`area_id`, `area_nom`, `tip_est_id_fk`) VALUES
 (1, 'CONTACT CENTER', 1),
-(2, 'ENCUESTA DE CALIDAD', 1);
+(2, 'CALIDAD', 1),
+(3, 'TECNOLOGIA', 1);
 
 -- --------------------------------------------------------
 
@@ -245,8 +246,10 @@ CREATE TABLE `ir_jefe` (
 --
 
 INSERT INTO `ir_jefe` (`jefe_id`, `jefe_nom`, `jefe_ape`, `jefe_correo`, `tip_est_id_fk`) VALUES
+(0, 'NO ', 'APLICA', '', 2),
 (1, 'D angello', 'Jimenez', 'dangellojr@ospedale.com.co', 1),
-(2, 'cristian', 'sanchez', 'aprendiz.sistemas3@ospedale.com.co', 1);
+(2, 'Diego Fernando', 'Grueso Sanchez', 'coor.callcenter@ospedale.com.co', 1),
+(3, 'Victor ', 'Rincon', 'victor.rincon@ospedale.com.co', 1);
 
 -- --------------------------------------------------------
 
@@ -320,7 +323,10 @@ INSERT INTO `ir_seccion` (`seccion_id`, `seccion_nom`, `area_id_fk`, `tip_est_id
 (10, 'CALL CENTER  JAMUNDI PILOTO', 1, 1),
 (11, 'GESTION DE RIESGO/EVITAVILIDAD', 2, 1),
 (12, 'ASISTENCIAL', 2, 1),
-(13, 'CAP POPAYAN', 1, 1);
+(13, 'CAP POPAYAN', 1, 1),
+(14, 'CALL CENTER HUILA', 2, 2),
+(15, 'CALL CENTER BOGOTA', 2, 2),
+(16, 'TI', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -414,7 +420,7 @@ CREATE TABLE `ir_usuario` (
   `usu_correo` varchar(50) NOT NULL,
   `usu_contra` varchar(8) NOT NULL,
   `rol_id_fk` int(11) NOT NULL,
-  `jefe_id_fk` int(11) DEFAULT NULL,
+  `jefe_id_fk` int(11) DEFAULT 0,
   `tip_est_id_fk` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -423,11 +429,13 @@ CREATE TABLE `ir_usuario` (
 --
 
 INSERT INTO `ir_usuario` (`usu_id`, `usu_num_doc`, `usu_nom`, `usu_nom_two`, `usu_ape`, `usu_ape_two`, `usu_correo`, `usu_contra`, `rol_id_fk`, `jefe_id_fk`, `tip_est_id_fk`) VALUES
-(1, 1060806960, 'cristian ', 'camilo', 'garcia ', 'sanchez', 'aprendiz.sistemas3@ospedale.com.co', '2580.', 1, NULL, 1),
-(2, 14704333, 'D Angello ', '', 'Jimenez ', 'Ruiz', 'dangellojr@ospedale.com.co', '14704333', 1, NULL, 1),
-(3, 14637232, 'Diego ', 'Fernando', 'Grueso', 'Sanchez', 'coor.callcenter@ospedale.com.co', '14637232', 3, NULL, 1),
-(4, 900612531, 'Tecnologia', '', 'G-Ocho', '', 'ti@ospedale.com.co', 'Gocho', 1, NULL, 1),
-(5, 1006185431, 'Jhoan ', 'Sebastian', 'Paz', '', 'auxiliar.ti@ospedale.com.co', 'America', 1, NULL, 1);
+(1, 1060806960, 'cristian ', 'camilo', 'garcia ', 'sanchez', 'aprendiz.sistemas3@ospedale.com.co', '2580.', 1, 0, 1),
+(2, 14704333, 'D Angello ', '', 'Jimenez ', 'Ruiz', 'dangellojr@ospedale.com.co', '14704333', 1, 0, 1),
+(3, 14637232, 'Diego ', 'Fernando', 'Grueso', 'Sanchez', 'coor.callcenter@ospedale.com.co', '14637232', 3, 0, 1),
+(4, 900612531, 'Tecnologia', '', 'G-Ocho', '', 'ti@ospedale.com.co', 'Gocho', 1, 0, 1),
+(5, 1006185431, 'Jhoan ', 'Sebastian', 'Paz', '', 'auxiliar.ti@ospedale.com.co', 'America', 1, 0, 1),
+(6, 12345678, 'Lina ', '', 'Taborda', '', 'citas.laestancia@ospedale.com.co', '12345', 2, 3, 1),
+(7, 1113691743, 'Jose', 'Kevin', 'Estupiñan', 'Caicedo', 'Aprendiz.sistemas1@ospedale.com.co', '9819', 1, 0, 1);
 
 --
 -- Índices para tablas volcadas
@@ -525,7 +533,7 @@ ALTER TABLE `ir_usuario`
 -- AUTO_INCREMENT de la tabla `ir_area`
 --
 ALTER TABLE `ir_area`
-  MODIFY `area_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `area_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_categoria`
@@ -549,7 +557,7 @@ ALTER TABLE `ir_estado`
 -- AUTO_INCREMENT de la tabla `ir_jefe`
 --
 ALTER TABLE `ir_jefe`
-  MODIFY `jefe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `jefe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_novedad`
@@ -567,7 +575,7 @@ ALTER TABLE `ir_rol`
 -- AUTO_INCREMENT de la tabla `ir_seccion`
 --
 ALTER TABLE `ir_seccion`
-  MODIFY `seccion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `seccion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_tipo_estado`
@@ -585,7 +593,7 @@ ALTER TABLE `ir_tipo_incidencia`
 -- AUTO_INCREMENT de la tabla `ir_usuario`
 --
 ALTER TABLE `ir_usuario`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

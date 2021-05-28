@@ -35,6 +35,7 @@ $(document).ready( function () {
             { data: "usu_correo" },
             { data: "usu_contra" },
             { data: "rol_des" },
+            { data: null,render: function ( data, type, row ) { return row.jefe_nom + ' ' + row.jefe_ape;}},
             { "ordertable": true,render: function ( data, type, row ) { 
                 return "<td><a href='"+baseURL+"User/edit/"+row.usu_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
                 "<button type='button' onclick='user_delete(\""+row.usu_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"
@@ -65,6 +66,7 @@ function create_user(){
     var var_usu_correo = document.getElementById("usu_correo").value;
     var var_usu_contra = document.getElementById("usu_contra").value;
     var var_rol_id_fk= document.getElementById("rol_id_fk").value;
+    var var_jefe_id_fk= document.getElementById("jefe_id_fk").value;
     console.log("rutapost",baseURL+'User/createUser');
     
     if (var_usu_num_doc=="") {
@@ -95,6 +97,7 @@ function create_user(){
         usu_correo : var_usu_correo,
         usu_contra : var_usu_contra,
         rol_id_fk : var_rol_id_fk,
+        jefe_id_fk : var_jefe_id_fk,
         tip_est_id_fk : 1,
         
         
@@ -129,10 +132,14 @@ function create_user(){
         var var_usu_ape_two = document.getElementById("usu_ape_two").value;
         var var_usu_correo = document.getElementById("usu_correo").value;
         var var_usu_contra = document.getElementById("usu_contra").value;
-        var var_rol_id_fk= document.getElementById("rol_id_fk").value;
+        var var_rol_id_fk= document.getElementById("rol_id_fk_e").value;
+        var var_jefe_id_fk= document.getElementById("jefe_id_fk_e").value;
         console.log("rutapost",baseURL+'User/editUser');
         
-        
+        if(var_rol_id_fk == 1 || var_rol_id_fk == 3 ){
+
+            var_jefe_id_fk = 0;
+        }
         
          dataPostV = {
             usu_id : var_usu_id,
@@ -144,6 +151,7 @@ function create_user(){
             usu_correo : var_usu_correo,
             usu_contra : var_usu_contra,
             rol_id_fk : var_rol_id_fk,
+            jefe_id_fk : var_jefe_id_fk,
             tip_est_id_fk : 1,
              
          }
@@ -204,4 +212,95 @@ function create_user(){
               });
         
         }
+
+        $('#rol_id_fk').change(function() { 
+            rol_id = $(this).val();
+            $("#jefe_id_fk").html(
+                "<option selected disabled>selecione...</option>"
+            );
+            $('#jefenom').css('display','none');
+            $('#jefecorreo').css('display','none');
+            if (rol_id == 2 || rol_id == 4 ) {
+                $('#jefenom').css('display','block');
+                $('#jefecorreo').css('display','block');
+                  
+                $.post(baseURL+"User/getboss",
+                function(data){
+                    var n = JSON.parse(data);
+                    $.each(n,function(i,boss)
+                    {
+                        $("#jefe_id_fk").append(
+                            "<option value="+boss.jefe_id+">"+boss.jefe_nom+" "+boss.jefe_ape+"</option>"
+                        );
+
+    
+                    });
+
+                });
+            }
+
+        });
+
+        $("#jefe_id_fk").on("change",function(){
+            var var_jefe_id = $(this).val();
+            $.post(baseURL+"User/getbossC",
+            {
+                jefe_id : var_jefe_id,
+            },
+            function(data){
+                var n = JSON.parse(data);
+                $.each(n,function(i,boss)
+                {
+                    $('#correo').val(boss.jefe_correo);
+                });
+
+            });
+
+        });
+
+        $("#rol_id_fk_e").on("change",function(){
+            rol_id = $(this).val();
+            if (rol_id == 1 || rol_id == 3 ) {   
+                $('#je_nom_edit').css('display','none');
+                $('#je_co_edit').css('display','none');              
+            }else{
+                $('#je_nom_edit').css('display','block');
+                $('#je_co_edit').css('display','block');
+            }
+
+        });
+
+        $("#jefe_id_fk_e").on("change",function(){
+            var var_jefe_id_e = $(this).val();
+            $.post(baseURL+"User/getbossC",
+            {
+                jefe_id : var_jefe_id_e,
+            },
+            function(data){
+                var n = JSON.parse(data);
+                $.each(n,function(i,boss)
+                {
+                    $('#correo').val(boss.jefe_correo);
+                });
+
+            });
+
+        });
+
+
+
+
+       
+
+      
+           
+
+
+
+               
+
+       
+
+
+            
     

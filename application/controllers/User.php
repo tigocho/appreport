@@ -65,6 +65,7 @@
         {
             $data['title'] = 'edicion cuenta de usuario';
             $data['rol'] = $this->user_model->get_rol();
+            $data['jefe'] = $this->user_model->getboss();
             $data['usuario'] = $this->user_model->get_edit_user($usu_id);
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
@@ -105,6 +106,17 @@
                  echo json_encode($retorno);
              }
 
+         }
+
+         public function getboss()
+         {
+            echo json_encode($this->user_model->get_boss());
+         }
+ 
+         public function getbossC()
+         {
+             $id = $this->input->post('jefe_id');
+            echo json_encode($this->user_model->get_bossC($id));
          }
 
 

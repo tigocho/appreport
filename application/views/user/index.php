@@ -11,6 +11,7 @@
                     <th>Correo</th>
                     <th>Contraseña</th>
                     <th>Rol</th>
+                    <th>Jefe</th>
                     <th>Acciones</th>
                 </tr>
             </thead>

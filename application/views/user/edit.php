@@ -37,13 +37,31 @@
                 </div>
                 <div class="col-md-6 mb-3">
                 <label for="validationDefault04">Rol usuario</label>
-                    <select class="form-control" id="rol_id_fk" >
+                    <select class="form-control" id="rol_id_fk_e" >
                         <option selected disabled value="<?php echo $user['rol_id_fk']; ?>"><?php echo $user['rol_des']; ?></option>
                         <?php foreach ($rol as $role): ?>
                         <option value="<?php echo $role['rol_id']; ?>"><?php echo $role['rol_des']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
+
+                <?php if($user['rol_id_fk']== 1 || $user['rol_id_fk']== 3){$display="none";}else{$display="block";}?>
+
+                <div class="col-md-6 mb-3" style="display:<?php echo $display?>" id="je_nom_edit" >
+                    <label>jefe nombre</label>
+                    <select class='form-control' id="jefe_id_fk_e" >
+                        <option selected disabled value="<?php echo $user['jefe_id_fk']; ?>"><?php echo $user['jefe_nom']." ".$user['jefe_ape']; ?></option>
+                            <?php foreach ($jefe as $boss): ?>
+                        <option value="<?php echo $boss['jefe_id']; ?>"><?php echo $boss['jefe_nom']." ".$boss['jefe_ape']; ?></option>
+                            <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3" style="display:<?php echo $display?>" id="je_co_edit" >
+                    <label>correo jefe</label>
+                    <input type='text' value="<?php echo $user['jefe_correo'];?>" id="correo" readonly class='form-control'>
+                </div>
+              
 
             <div class="form-group"> 
             <button class="btn btn-primary" id="boton"  onclick="edit_user();" type="submit">Editar usuario</button>
@@ -58,4 +76,7 @@
         var baseURL= "<?php echo base_url();?>";
     </script>
     <script src='<?php echo base_url();?>resources/controllers/user.js' type='text/javascript' ></script>
+    
+
+
 </div>
