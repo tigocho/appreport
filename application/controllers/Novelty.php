@@ -1,7 +1,7 @@
 <?php
     class Novelty extends CI_Controller {
 
-        //    inicio conexion del controlador a el modal y url helpers
+        // inicio conexion del controlador a el modal y url helpers
         public function __construct()
         {
             parent::__construct();
@@ -13,7 +13,7 @@
                 redirect(base_url());
             }
         }
-         //    fin conexion del controlador a el modal y url helpers
+         // fin conexion del controlador a el modal y url helpers
 
 
         // inicio vista a las novedades
@@ -88,8 +88,8 @@
                  echo json_encode($retorno);
              }
 
-            //   $id = $data['usu_id_fk'];
-            //   $this->sendEmail($id);
+              $id = $data['usu_id_fk'];
+              $this->sendEmail($id);
 
          }
          // fin de inserccion de novedad
@@ -147,54 +147,60 @@
          }
 
 
-    //      public function sendEmail($id){
+         public function sendEmail($id){
+            $resp=$this->db->query("SELECT j.jefe_nom,j.jefe_ape,j.jefe_correo from ir_usuario u, ir_jefe j WHERE u.jefe_id_fk = j.jefe_id AND j.tip_est_id_fk =1 AND u.usu_id = $id")->row();
            
-            
-    //         $resp=$this->db->query("SELECT usu_nom,usu_ape,usu_correo FROM ir_usuario WHERE usu_id = $id")->row();
-            
-    //         // $correo_usuario = "aprendiz.sistemas3@ospedale.com.co";
-    //         $correo_usuario = $resp->usu_correo;
-            
-            
-            
-    //         $this->load->library('phpmailer_lib');
+            if(empty($resp->jefe_correo)){
+
+                return false;
+
+            }else{
+
+
+                $jefe_correo = $resp->jefe_correo;
+                $this->load->library('phpmailer_lib');
+        
+                $mail = $this->phpmailer_lib->load();
+        
+                $mail->isSMTP();
+                $mail->SMTPDebug = 0;
+                $mail->Host = 'email-smtp.us-east-1.amazonaws.com';
+                $mail->Port = 587;
+                $mail->SMTPSecure = 'tls';
+                $mail->SMTPAuth   = true;
+                $mail->Username = 'AKIAVRBYRDHYGRZ6RFNY';
+                $mail->Password = 'BEfVfi8Lj/RlW+1cz7M5FDO4qaoG9zULfcDU1wd4HWSu';
+                $mail->SetFrom('notificaciones@ospedale.com.co', 'Appreport G-Ocho');
+                $mail->CharSet  = 'UTF-8';
+        
     
-    //         $mail = $this->phpmailer_lib->load();
-    
-    //         $mail->isSMTP();
-    //         $mail->SMTPDebug = 0;
-    //         $mail->Host = 'email-smtp.us-east-1.amazonaws.com';
-    //         $mail->Port = 587;
-    //         $mail->SMTPSecure = 'tls';
-    //         $mail->SMTPAuth   = true;
-    //         $mail->Username = 'AKIAVRBYRDHYGRZ6RFNY';
-    //         $mail->Password = 'BEfVfi8Lj/RlW+1cz7M5FDO4qaoG9zULfcDU1wd4HWSu';
-    //         $mail->SetFrom('notificaciones@ospedale.com.co', 'Appreport G-Ocho');
-    //         $mail->CharSet  = 'UTF-8';
-      
-    //         $mail->addAddress($correo_usuario); 
-    //         // $mail->addAddress('dangellojr@ospedale.com.co');     
-    
-    //         $mail->Subject = 'Hola '.$resp->usu_nom.' se ha registrado un incidente a tu nombre - Appreport';
-    //         $mail->isHTML(true);
+                $mail->addAddress($jefe_correo);     
+        
+                $mail->Subject = 'Hola '.$resp->jefe_nom.' se ha registrado un incidente - Appreport';
+                $mail->isHTML(true);
+                
+                $mailContent =  '<b>Cordial Saludo: '.$resp->jefe_nom." ".$resp->jefe_ape.'</b>           
+                
+                    <p>Para informarte que un integrante de tu equipo de trabajo presento un incidente;
+                    Puedes ingresar para revisar su reporte a traves del siguiente link <a href="'."http://181.129.171.26:9898/appreport/".''.''.'">  Appreport.</a></p>
+                    
+                    <p>Gracias</p>
+
+                
+                    **********************Mensaje Generado Automáticamente**********************
+                    <p>Este correo es únicamente informativo y es de uso exclusivo del destinatario(a), puede contener información privilegiada y/o confidencial. Si no es usted el destinatario(a) deberá borrarlo inmediatamente. Queda notificado que el mal uso, divulgación no autorizada, alteración y/o  modificación malintencionada sobre este mensaje y sus anexos quedan estrictamente prohibidos y pueden ser legalmente sancionados. - Appreport-G-OCHO no asume ninguna responsabilidad por estas circunstancias </p>';
+                $mail->Body = $mailContent;             
             
-    //         $mailContent =  '<center><b>Estimado: '.$resp->usu_nom.' '.$resp->usu_ape.'</b></center>           
-               
-             
-    //              Puede ingresar para revisar su incidente a traves de este link <a href="'."http://181.129.171.26:9898/appreport/".''.''.'"> a Appreport.</a><br>
-               
-    //             **********************Mensaje Generado Automáticamente**********************
-    //             <p>Este correo es únicamente informativo y es de uso exclusivo del destinatario(a), puede contener información privilegiada y/o confidencial. Si no es usted el destinatario(a) deberá borrarlo inmediatamente. Queda notificado que el mal uso, divulgación no autorizada, alteración y/o  modificación malintencionada sobre este mensaje y sus anexos quedan estrictamente prohibidos y pueden ser legalmente sancionados. - Appreport-G-OCHO no asume ninguna responsabilidad por estas circunstancias </p>';
-    //         $mail->Body = $mailContent;             
-          
-    //         if($mail->send()):
-    //            return true;
-    //         else:        
-    //             return false;
-    //         endif;
-            
-    // }
-         
+                if($mail->send()):
+                return true;
+                else:        
+                    return false;
+                endif;
+            }
+        }
+
+
+   
 
             
          

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2021 a las 20:37:48
+-- Tiempo de generación: 28-05-2021 a las 22:30:32
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 7.3.27
 
@@ -249,7 +249,8 @@ INSERT INTO `ir_jefe` (`jefe_id`, `jefe_nom`, `jefe_ape`, `jefe_correo`, `tip_es
 (0, 'NO ', 'APLICA', '', 2),
 (1, 'D angello', 'Jimenez', 'dangellojr@ospedale.com.co', 1),
 (2, 'Diego Fernando', 'Grueso Sanchez', 'coor.callcenter@ospedale.com.co', 1),
-(3, 'Victor ', 'Rincon', 'victor.rincon@ospedale.com.co', 1);
+(3, 'Victor ', 'Rincon', 'victor.rincon@ospedale.com.co', 1),
+(8, 'cristian', 'garcia', 'aprendiz.sistemas3@ospedale.com.co', 1);
 
 -- --------------------------------------------------------
 
@@ -429,7 +430,7 @@ CREATE TABLE `ir_usuario` (
 --
 
 INSERT INTO `ir_usuario` (`usu_id`, `usu_num_doc`, `usu_nom`, `usu_nom_two`, `usu_ape`, `usu_ape_two`, `usu_correo`, `usu_contra`, `rol_id_fk`, `jefe_id_fk`, `tip_est_id_fk`) VALUES
-(1, 1060806960, 'cristian ', 'camilo', 'garcia ', 'sanchez', 'aprendiz.sistemas3@ospedale.com.co', '2580.', 1, 0, 1),
+(1, 1060806960, 'cristian ', 'camilo', 'garcia ', 'sanchez', 'aprendiz.sistemas3@ospedale.com.co', '2580.', 4, 1, 1),
 (2, 14704333, 'D Angello ', '', 'Jimenez ', 'Ruiz', 'dangellojr@ospedale.com.co', '14704333', 1, 0, 1),
 (3, 14637232, 'Diego ', 'Fernando', 'Grueso', 'Sanchez', 'coor.callcenter@ospedale.com.co', '14637232', 3, 0, 1),
 (4, 900612531, 'Tecnologia', '', 'G-Ocho', '', 'ti@ospedale.com.co', 'Gocho', 1, 0, 1),
@@ -557,7 +558,7 @@ ALTER TABLE `ir_estado`
 -- AUTO_INCREMENT de la tabla `ir_jefe`
 --
 ALTER TABLE `ir_jefe`
-  MODIFY `jefe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `jefe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_novedad`
