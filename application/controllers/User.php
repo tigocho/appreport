@@ -55,7 +55,7 @@
             $data = $this->input->post();
             $response = $this->user_model->saveUser($data);
             if ($response){
-                $retorno['mensaje'] = "informacion del usuario registrada correctamente!";
+                $retorno['mensaje'] = "Informacion del usuario registrada correctamente!";
                 echo json_encode($retorno);
             }
 
@@ -87,7 +87,7 @@
                 
 
              if ($response){
-                 $retorno['mensaje'] = "informacion del usuario actualizada correctamente!";
+                 $retorno['mensaje'] = "Informacion del usuario actualizada correctamente!";
                  echo json_encode($retorno);
              }
 
@@ -102,7 +102,7 @@
              $data = $this->input->post();
              $response = $this->user_model->eliminar_user($data);
              if ($response){
-                 $retorno['mensaje'] = " informacion de usuario eliminada correctamente!";
+                 $retorno['mensaje'] = " Informacion de usuario eliminada correctamente!";
                  echo json_encode($retorno);
              }
 
@@ -118,6 +118,22 @@
              $id = $this->input->post('jefe_id');
             echo json_encode($this->user_model->get_bossC($id));
          }
+
+         public function existsNumDoc($num_doc)
+        {
+           
+           $resultado = $this->user_model->existsnumDoc($num_doc);
+
+           if(empty($resultado)){
+
+            echo json_encode(0);
+
+           }else{
+
+            echo json_encode(1);
+
+           }
+        }
 
 
     }

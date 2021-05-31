@@ -45,7 +45,7 @@
              $data = $this->input->post();
              $response = $this->collaborator_model->saveCollaborator($data);
              if ($response){
-                 $retorno['mensaje'] = "informacion del colaborador guardada correctamente !";
+                 $retorno['mensaje'] = "Informacion del colaborador guardada correctamente !";
                  echo json_encode($retorno);
              }
 
@@ -64,7 +64,7 @@
                 
 
              if ($response){
-                 $retorno['mensaje'] = " informacion del colaborador actualizada correctamente!";
+                 $retorno['mensaje'] = " Informacion del colaborador actualizada correctamente!";
                  echo json_encode($retorno);
              }
 
@@ -80,7 +80,7 @@
              $data = $this->input->post();
              $response = $this->collaborator_model->eliminar_collaborator($data);
              if ($response){
-                 $retorno['mensaje'] = " informacion del colaborador eliminada correctamente!";
+                 $retorno['mensaje'] = " Informacion del colaborador eliminada correctamente!";
                  echo json_encode($retorno);
              }
 

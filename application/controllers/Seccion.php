@@ -43,7 +43,7 @@
              $data = $this->input->post();
              $response = $this->seccion_model->saveSeccion($data);
              if ($response){
-                 $retorno['mensaje'] = "informacion de seccion guardada correctamente!";
+                 $retorno['mensaje'] = "Informacion de seccion guardada correctamente!";
                  echo json_encode($retorno);
              }
 
@@ -59,7 +59,7 @@
              $data = $this->input->post();
              $response = $this->seccion_model->editarSeccion($data);
              if ($response){
-                 $retorno['mensaje'] = "informacion de seccion actualizado correctamente";
+                 $retorno['mensaje'] = "Informacion de seccion actualizado correctamente";
                  echo json_encode($retorno);
              }
 
@@ -74,7 +74,7 @@
              $data = $this->input->post();
              $response = $this->seccion_model->eliminar_seccion($data);
              if ($response){
-                 $retorno['mensaje'] = " informacion de seccion eliminada correctamente!";
+                 $retorno['mensaje'] = " Informacion de seccion eliminada correctamente!";
                  echo json_encode($retorno);
              }
 

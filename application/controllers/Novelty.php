@@ -123,7 +123,7 @@
                 
 
              if ($response){
-                 $retorno['mensaje'] = "informacion de novedad actualizada correctamente!";
+                 $retorno['mensaje'] = "Informacion de novedad actualizada correctamente!";
                  echo json_encode($retorno);
              }
 
@@ -140,7 +140,7 @@
              $data = $this->input->post();
              $response = $this->novelty_model->eliminar_novelty($data);
              if ($response){
-                 $retorno['mensaje'] = " informacion de novedad eliminada correctamente!";
+                 $retorno['mensaje'] = " Informacion de novedad eliminada correctamente!";
                  echo json_encode($retorno);
              }
 
@@ -148,7 +148,7 @@
 
 
          public function sendEmail($id){
-            $resp=$this->db->query("SELECT j.jefe_nom,j.jefe_ape,j.jefe_correo from ir_usuario u, ir_jefe j WHERE u.jefe_id_fk = j.jefe_id AND j.tip_est_id_fk =1 AND u.usu_id = $id")->row();
+            $resp=$this->db->query("SELECT u.usu_nom, j.jefe_nom,j.jefe_ape,j.jefe_correo from ir_usuario u, ir_jefe j WHERE u.jefe_id_fk = j.jefe_id AND j.tip_est_id_fk =1 AND u.usu_id = $id")->row();
            
             if(empty($resp->jefe_correo)){
 
@@ -176,12 +176,12 @@
     
                 $mail->addAddress($jefe_correo);     
         
-                $mail->Subject = 'Hola '.$resp->jefe_nom.' se ha registrado un incidente - Appreport';
+                $mail->Subject = 'Hola '.ucwords($resp->jefe_nom).' se ha registrado un incidente - Appreport';
                 $mail->isHTML(true);
                 
-                $mailContent =  '<b>Cordial Saludo: '.$resp->jefe_nom." ".$resp->jefe_ape.'</b>           
+                $mailContent =  '<b>Cordial Saludo: '.ucwords($resp->jefe_nom)." ".ucwords($resp->jefe_ape).'</b>           
                 
-                    <p>Para informarte que un integrante de tu equipo de trabajo presento un incidente;
+                    <p>Para informarte que el integrante '.ucwords($resp->usu_nom).' de tu equipo de trabajo presento un incidente;
                     Puedes ingresar para revisar su reporte a traves del siguiente link <a href="'."http://181.129.171.26:9898/appreport/".''.''.'">  Appreport.</a></p>
                     
                     <p>Gracias</p>

@@ -84,6 +84,15 @@
             }
 
 
+            public function existsnumDoc($num_doc){
+
+                $sql = "SELECT usu_num_doc FROM ir_usuario WHERE usu_num_doc = $num_doc";
+                $query = $this->db->query($sql);
+                return $query->row();
+
+            }
+
+
         }
 
 

@@ -42,7 +42,7 @@
              $data = $this->input->post();
              $response = $this->boss_model->saveBoss($data);
              if ($response){
-                 $retorno['mensaje'] = "informacion del jefe guardada correctamente !";
+                 $retorno['mensaje'] = "Informacion del jefe guardada correctamente !";
                  echo json_encode($retorno);
              }
 
@@ -57,7 +57,7 @@
              $data = $this->input->post();
              $response = $this->boss_model->editarBoss($data);
              if ($response){
-                 $retorno['mensaje'] = "informacion del jefe actualizada correctamente!";
+                 $retorno['mensaje'] = "Informacion del jefe actualizada correctamente!";
                  echo json_encode($retorno);
              }
 
@@ -72,7 +72,7 @@
              $data = $this->input->post();
              $response = $this->boss_model->eliminar_boss($data);
              if ($response){
-                 $retorno['mensaje'] = " informacion del jefe ha sido eliminada correctamente!";
+                 $retorno['mensaje'] = " Informacion del jefe ha sido eliminada correctamente!";
                  echo json_encode($retorno);
              }
 

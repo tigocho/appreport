@@ -4,6 +4,7 @@
         public function __construct()
         {
             $this->load->database();
+            $this->load->library('session');
         }
         // fin conexion base de datos 
 

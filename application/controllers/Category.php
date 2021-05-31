@@ -45,7 +45,7 @@
             $data = $this->input->post();
             $response = $this->category_model->saveCategory($data);
             if ($response){
-                $retorno['mensaje'] = "informacion de categoria guardada correctamente !";
+                $retorno['mensaje'] = "Informacion de categoria guardada correctamente !";
                 echo json_encode($retorno);
             }
 
@@ -62,7 +62,7 @@
                 
 
              if ($response){
-                 $retorno['mensaje'] = " informacion de categoria actualizada correctamente!";
+                 $retorno['mensaje'] = " Informacion de categoria actualizada correctamente!";
                  echo json_encode($retorno);
              }
 

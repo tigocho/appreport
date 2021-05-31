@@ -47,7 +47,7 @@
              $data = $this->input->post();
              $response = $this->area_model->saveArea($data);
              if ($response){
-                 $retorno['mensaje'] = "informacion del colaborador guardada correctamente !";
+                 $retorno['mensaje'] = "Informacion del colaborador guardada correctamente !";
                  echo json_encode($retorno);
              }
 
@@ -63,7 +63,7 @@
              $data = $this->input->post();
              $response = $this->area_model->editararea($data);
              if ($response){
-                 $retorno['mensaje'] = "informacion del area actualizada correctamente!";
+                 $retorno['mensaje'] = "Informacion del area actualizada correctamente!";
                  echo json_encode($retorno);
              }
 
@@ -79,7 +79,7 @@
              $data = $this->input->post();
              $response = $this->area_model->eliminar_area($data);
              if ($response){
-                 $retorno['mensaje'] = " informacion de la area ha sido eliminada correctamente!";
+                 $retorno['mensaje'] = " Informacion de la area ha sido eliminada correctamente!";
                  echo json_encode($retorno);
              }
 

@@ -126,52 +126,56 @@ function create_novelty(){
 
     if (var_col_id_fk==0) {
         swal("Opps!","por favor selecionar el colaborador","warning");
-    } else {
+        return false;
+    } 
     if (var_seccion_id_fk==0) {
         swal("Opps!","por favor selecionar la seccion","warning");
-    } else {
+        return false;
+    } 
     if (var_tip_inci_id_fk==0) {
         swal("Opps!","por favor selecionar el tipo de incidencia","warning");
-    } else {
+        return false;
+    } 
     if (var_nove_hora_ini=="") {
         swal("Opps!","por favor diligencie la hora de inicio","warning");
-    } else {
+        return false;
+    } 
 
-        dataPostV = {
-        nove_fecha : var_nove_fecha,
-        nove_hora_ini : var_nove_hora_ini,
-        nove_hora_fin : var_nove_hora_fin,
-        nove_tiem_total : var_nove_tiem_total,
-        cate_id_fk : var_cate_id_fk,
-        tip_inci_id_fk : var_tip_inci_id_fk,
-        seccion_id_fk  : var_seccion_id_fk,
-        col_id_fk : var_col_id_fk,
-        usu_id_fk : var_usu_id_fk,
-        est_id_fk : var_est_id_fk,
-        tip_est_id_fk : 1,  
-        }
-        console.info(dataPostV);
+    dataPostV = {
+    nove_fecha : var_nove_fecha,
+    nove_hora_ini : var_nove_hora_ini,
+    nove_hora_fin : var_nove_hora_fin,
+    nove_tiem_total : var_nove_tiem_total,
+    cate_id_fk : var_cate_id_fk,
+    tip_inci_id_fk : var_tip_inci_id_fk,
+    seccion_id_fk  : var_seccion_id_fk,
+    col_id_fk : var_col_id_fk,
+    usu_id_fk : var_usu_id_fk,
+    est_id_fk : var_est_id_fk,
+    tip_est_id_fk : 1,  
+    }
+    console.info(dataPostV);
 
 
-        $.ajax({
-            type: "POST",
-            url: baseURL+'Novelty/createNovelty',
-            dataType: 'json',
-            data: dataPostV,
-            success: function(resp) {
-                console.log("resp:",resp["mensaje"]);
-                swal("exitoso!", resp["mensaje"], "success",6000);
-                if( var_est_id_fk =="1"){
-                location.href = baseURL+"Novelty/abiertas";
-                }else{
-                location.href = baseURL+"Novelty/cerradas";    
-                }
-            },error: function(error) {
-                error;
-                swal("Opps!","error al enviar la informacion","warning",6000);
+    $.ajax({
+        type: "POST",
+        url: baseURL+'Novelty/createNovelty',
+        dataType: 'json',
+        data: dataPostV,
+        success: function(resp) {
+            console.log("resp:",resp["mensaje"]);
+            swal("exitoso!", resp["mensaje"], "success",6000);
+            if( var_est_id_fk =="1"){
+            location.href = baseURL+"Novelty/abiertas";
+            }else{
+            location.href = baseURL+"Novelty/cerradas";    
             }
-        });
-    }}}}
+        },error: function(error) {
+            error;
+            swal("Opps!","error al enviar la informacion","warning",6000);
+        }
+    });
+ 
 }
 // fin de insertar datos de agente
 
@@ -294,7 +298,7 @@ var var_cate_id_fk = document.getElementById("categoria").value;
 var var_tip_inci_id_fk = document.getElementById("tip_inci_id_fk").value;
 console.log("rutapost",baseURL+'Novelty/editNovelty');
 
-    if (var_nove_tiem_total == "00:00:00" || var_nove_tiem_total =="0NaN:0NaN"){
+    if (var_nove_tiem_total === "00:00:00" || var_nove_tiem_total === "0NaN:0NaN"){
         var_est_id_fk = 1;
     }else{
         var_est_id_fk = 2;

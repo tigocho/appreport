@@ -67,59 +67,80 @@ function create_user(){
     var var_usu_contra = document.getElementById("usu_contra").value;
     var var_rol_id_fk= document.getElementById("rol_id_fk").value;
     var var_jefe_id_fk= document.getElementById("jefe_id_fk").value;
-    console.log("rutapost",baseURL+'User/createUser');
-    
+
     if (var_usu_num_doc=="") {
         swal("Opps!","Por favor diligencie el numero de documento","warning");
-    } else {
+        return false;
+    } 
     if (var_usu_nom=="") {
         swal("Opps!","Por favor diligencie primer nombre","warning");
-    } else {
+        return false;
+    } 
     if (var_usu_ape=="") {
         swal("Opps!","Por favor diligencie el primer apellido","warning");
-    } else {
+        return false;
+    } 
     if (var_usu_correo=="") {
         swal("Opps!","Por favor diligencie el correo","warning");
-    } else {
+        return false;
+    } 
     if (var_usu_contra=="") {
         swal("Opps!","Por favor diligencie la contraseña","warning");
-    } else {
+        return false;
+    } 
+    
     if (var_rol_id_fk==0) {
         swal("Opps!","Por favor diligencie el rol del usuario","warning");
-    } else {
+        return false;
+    }
     
-        dataPostV = {
-        usu_num_doc : var_usu_num_doc,
-        usu_nom :  var_usu_nom,
-        usu_ape : var_usu_ape,
-        usu_nom_two :  var_usu_nom_two,
-        usu_ape_two : var_usu_ape_two,
-        usu_correo : var_usu_correo,
-        usu_contra : var_usu_contra,
-        rol_id_fk : var_rol_id_fk,
-        jefe_id_fk : var_jefe_id_fk,
-        tip_est_id_fk : 1,
-        
-        
-        }
-        console.info(dataPostV);
-    
-        $.ajax({
-            type: "POST",
-            url: baseURL+'user/createUser',
-            dataType: 'json',
-            data: dataPostV,
-            success: function(resp) {
-                console.log("resp:",resp["mensaje"]);
-                swal("exitoso!", resp["mensaje"], "success",6000);
-                location.href =baseURL+"User/index";
-            },error: function(error) {
-                error;
-                swal("Opps!","Error al enviar la informacion","warning",6000);
-            }
-        });
 
-    }}}}}}
+    $.post(baseURL+"User/existsNumDoc/"+var_usu_num_doc,
+    function(data){
+
+        if (data == 1) {
+            
+            swal("Opps!","Numero de documento ya está asociado con un usuario.","warning");
+
+        }
+        else{
+
+            dataPostV = {
+                usu_num_doc : var_usu_num_doc,
+                usu_nom :  var_usu_nom,
+                usu_ape : var_usu_ape,
+                usu_nom_two :  var_usu_nom_two,
+                usu_ape_two : var_usu_ape_two,
+                usu_correo : var_usu_correo,
+                usu_contra : var_usu_contra,
+                rol_id_fk : var_rol_id_fk,
+                jefe_id_fk : var_jefe_id_fk,
+                tip_est_id_fk : 1,
+                
+                
+                }
+                console.info(dataPostV);
+            
+                $.ajax({
+                    type: "POST",
+                    url: baseURL+'user/createUser',
+                    dataType: 'json',
+                    data: dataPostV,
+                    success: function(resp) {
+                        console.log("resp:",resp["mensaje"]);
+                        swal("exitoso!", resp["mensaje"], "success",6000);
+                        location.href =baseURL+"User/index";
+                    },error: function(error) {
+                        error;
+                        swal("Opps!","Error al enviar la informacion","warning",6000);
+                    }
+                });
+
+        }
+        
+    });
+     
+   
 }
 
 
@@ -286,6 +307,8 @@ function create_user(){
             });
 
         });
+
+
 
 
 

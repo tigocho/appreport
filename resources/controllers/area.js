@@ -50,31 +50,32 @@ function create_area(){
     console.log("rutapost",baseURL+'Area/createArea');
     if (var_area_nom=="") {
         swal("Opps!","Por favor diligencie el area","warning");
-    } else {
+        return false;
+    } 
     
-        dataPostV = {
-            area_nom  : var_area_nom,
-            tip_est_id_fk  : "1", 
+    dataPostV = {
+        area_nom  : var_area_nom,
+        tip_est_id_fk  : "1", 
+    }
+
+    console.info(dataPostV);
+
+    $.ajax({
+        type: "POST",
+        url: baseURL+'Area/createArea',
+        dataType: 'json',
+        data: dataPostV,
+        success: function(resp) {
+            console.log("resp:",resp["mensaje"]);
+            swal("exitoso!", resp["mensaje"], "success",6000,);
+            $('#area_create').modal('hide');
+            location.reload();
+        },error: function(error) {
+                error;
+            swal("Opps!","Error al enviar la informacion","warning",6000);
         }
-
-        console.info(dataPostV);
-
-        $.ajax({
-            type: "POST",
-            url: baseURL+'Area/createArea',
-            dataType: 'json',
-            data: dataPostV,
-            success: function(resp) {
-                console.log("resp:",resp["mensaje"]);
-                swal("exitoso!", resp["mensaje"], "success",6000,);
-                $('#area_create').modal('hide');
-                location.reload();
-            },error: function(error) {
-                    error;
-                swal("Opps!","Error al enviar la informacion","warning",6000);
-            }
-        });
-    }   
+    });
+       
 
 }
 

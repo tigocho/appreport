@@ -43,7 +43,7 @@
              $data = $this->input->post();
              $response = $this->type_incident_model->saveTypeincident($data);
              if ($response){
-                 $retorno['mensaje'] = "informacion de tipo incidencia guardada  correctamente!";
+                 $retorno['mensaje'] = "Informacion de tipo incidencia guardada  correctamente!";
                  echo json_encode($retorno);
              }
 
@@ -59,7 +59,7 @@
              $data = $this->input->post();
              $response = $this->type_incident_model->editarTypeincident($data);
              if ($response){
-                 $retorno['mensaje'] = "informacion de tipo incidencia actualizado correctamente";
+                 $retorno['mensaje'] = "Informacion de tipo incidencia actualizado correctamente";
                  echo json_encode($retorno);
              }
 
@@ -74,7 +74,7 @@
              $data = $this->input->post();
              $response = $this->type_incident_model->eliminar_typeincident($data);
              if ($response){
-                 $retorno['mensaje'] = " informacion de tipo incidencia eliminada correctamente!";
+                 $retorno['mensaje'] = " Informacion de tipo incidencia eliminada correctamente!";
                  echo json_encode($retorno);
              }
 
