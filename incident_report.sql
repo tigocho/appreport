@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2021 a las 22:30:32
+-- Tiempo de generación: 31-05-2021 a las 18:05:09
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 7.3.27
 
@@ -224,8 +224,8 @@ CREATE TABLE `ir_estado` (
 --
 
 INSERT INTO `ir_estado` (`est_id`, `est_des`) VALUES
-(1, 'abierta'),
-(2, 'cerrada');
+(1, 'Abierta'),
+(2, 'Cerrada');
 
 -- --------------------------------------------------------
 
@@ -272,6 +272,13 @@ CREATE TABLE `ir_novedad` (
   `est_id_fk` int(11) NOT NULL,
   `tip_est_id_fk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `ir_novedad`
+--
+
+INSERT INTO `ir_novedad` (`nove_id`, `nove_fecha`, `nove_hora_ini`, `nove_hora_fin`, `nove_tiem_total`, `cate_id_fk`, `tip_inci_id_fk`, `seccion_id_fk`, `col_id_fk`, `usu_id_fk`, `est_id_fk`, `tip_est_id_fk`) VALUES
+(1, '2021-05-28', '2021-05-28 16:41:00', '2021-05-28 17:43:00', '01:02:00', 1, 1, 8, 67, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -322,7 +329,7 @@ INSERT INTO `ir_seccion` (`seccion_id`, `seccion_nom`, `area_id_fk`, `tip_est_id
 (8, 'CALL CENTER CALI', 1, 1),
 (9, 'CALL CENTER CORPAS', 1, 1),
 (10, 'CALL CENTER  JAMUNDI PILOTO', 1, 1),
-(11, 'GESTION DE RIESGO/EVITAVILIDAD', 2, 1),
+(11, 'GESTION DE RIESGO/EVITAVILIDAD', 1, 1),
 (12, 'ASISTENCIAL', 2, 1),
 (13, 'CAP POPAYAN', 1, 1),
 (14, 'CALL CENTER HUILA', 2, 2),
@@ -436,7 +443,8 @@ INSERT INTO `ir_usuario` (`usu_id`, `usu_num_doc`, `usu_nom`, `usu_nom_two`, `us
 (4, 900612531, 'Tecnologia', '', 'G-Ocho', '', 'ti@ospedale.com.co', 'Gocho', 1, 0, 1),
 (5, 1006185431, 'Jhoan ', 'Sebastian', 'Paz', '', 'auxiliar.ti@ospedale.com.co', 'America', 1, 0, 1),
 (6, 12345678, 'Lina ', '', 'Taborda', '', 'citas.laestancia@ospedale.com.co', '12345', 2, 3, 1),
-(7, 1113691743, 'Jose', 'Kevin', 'Estupiñan', 'Caicedo', 'Aprendiz.sistemas1@ospedale.com.co', '9819', 1, 0, 1);
+(7, 1113691743, 'Jose', 'Kevin', 'Estupiñan', 'Caicedo', 'Aprendiz.sistemas1@ospedale.com.co', '9819', 4, 1, 1),
+(8, 2147483647, 'Jhoan', 'Sebastian', 'Paz', 'Castro', 'auxiliar.ti@ospedale.com.co', '10061', 4, 1, 1);
 
 --
 -- Índices para tablas volcadas
@@ -564,7 +572,7 @@ ALTER TABLE `ir_jefe`
 -- AUTO_INCREMENT de la tabla `ir_novedad`
 --
 ALTER TABLE `ir_novedad`
-  MODIFY `nove_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `nove_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_rol`
@@ -594,7 +602,7 @@ ALTER TABLE `ir_tipo_incidencia`
 -- AUTO_INCREMENT de la tabla `ir_usuario`
 --
 ALTER TABLE `ir_usuario`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas

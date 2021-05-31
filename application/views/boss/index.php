@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-md-9 mb-3">
                         <label>Correo de jefe</label>
-                        <input  type="text" class="form-control"  id="jefe_correo">
+                        <input  type="email" class="form-control"  id="jefe_correo">
                     </div>
                 </div>
                 </form>
@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-md-9 mb-3">
                         <label>Correo de jefe</label>
-                        <input  type="text" class="form-control"  id="jefe_correo_e">
+                        <input  type="email" class="form-control"  id="jefe_correo_e">
                     </div>
                 </div>
                 </form>

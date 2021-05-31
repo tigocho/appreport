@@ -37,8 +37,8 @@ $(document).ready( function () {
             { data: "rol_des" },
             { data: null,render: function ( data, type, row ) { return row.jefe_nom + ' ' + row.jefe_ape;}},
             { "ordertable": true,render: function ( data, type, row ) { 
-                return "<td><a href='"+baseURL+"User/edit/"+row.usu_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
-                "<button type='button' onclick='user_delete(\""+row.usu_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"
+                return "<td><a href='"+baseURL+"User/edit/"+row.usu_id+"'><button type='button' class='btn btn-primary mb-3'>Editar</button></a> "+
+                "<button type='button' onclick='user_delete(\""+row.usu_id+"\");' class='btn btn-danger mb-3'>Eliminar</button></td>"
             }}
         ]
     });
@@ -48,7 +48,7 @@ $(document).ready( function () {
 $("#usu_contra").on("keyup",function(){
    contra = $(this).val();
     if( contra.length > 8 ){
-        swal("Opps!","la contraseña no puede exceder de los 8 carateres","warning");
+        swal("Opps!","La contraseña no puede exceder de los 8 carateres","warning");
         document.getElementById('boton').disabled=true;
     }else{
         document.getElementById('boton').disabled=false;
@@ -70,22 +70,22 @@ function create_user(){
     console.log("rutapost",baseURL+'User/createUser');
     
     if (var_usu_num_doc=="") {
-        swal("Opps!","por favor diligencie el numero de documento","warning");
+        swal("Opps!","Por favor diligencie el numero de documento","warning");
     } else {
     if (var_usu_nom=="") {
-        swal("Opps!","por favor diligencie primer nombre","warning");
+        swal("Opps!","Por favor diligencie primer nombre","warning");
     } else {
     if (var_usu_ape=="") {
-        swal("Opps!","por favor diligencie el primer apellido","warning");
+        swal("Opps!","Por favor diligencie el primer apellido","warning");
     } else {
     if (var_usu_correo=="") {
-        swal("Opps!","por favor diligencie el correo","warning");
+        swal("Opps!","Por favor diligencie el correo","warning");
     } else {
     if (var_usu_contra=="") {
-        swal("Opps!","por favor diligencie la contraseña","warning");
+        swal("Opps!","Por favor diligencie la contraseña","warning");
     } else {
     if (var_rol_id_fk==0) {
-        swal("Opps!","por favor diligencie el rol del usuario","warning");
+        swal("Opps!","Por favor diligencie el rol del usuario","warning");
     } else {
     
         dataPostV = {
@@ -115,7 +115,7 @@ function create_user(){
                 location.href =baseURL+"User/index";
             },error: function(error) {
                 error;
-                swal("error!","error al enviar la informacion","warning",6000);
+                swal("Opps!","Error al enviar la informacion","warning",6000);
             }
         });
 
@@ -168,7 +168,7 @@ function create_user(){
                     location.href =baseURL+"User/index";
                 },error: function(error) {
                     error;
-                    swal("error!","error al enviar la informacion","warning",6000);
+                    swal("Opps!","Error al enviar la informacion","warning",6000);
                 }
             });
         
@@ -176,13 +176,13 @@ function create_user(){
 
         function user_delete(var_usu_id){
             swal({
-                title: '¿esta seguro de eliminar el usuario?',
+                title: '¿Está seguro de eliminar el usuario?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'cancelar',
-                confirmButtonText: 'si,seguro'
+                confirmButtonText: 'Sí,seguro'
               },function(resp) {
                     if (resp) {
         
@@ -203,7 +203,7 @@ function create_user(){
                             location.reload();
                         },error: function(error) {
                             error;
-                            swal("error!","error al enviar la informacion","warning",6000);
+                            swal("Opps!","Error al enviar la informacion","warning",6000);
                         }
                     });    
                    

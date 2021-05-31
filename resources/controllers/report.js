@@ -3,7 +3,7 @@ $( "#botonf" ).click(function() {
     var fin = $("#datefin").val();
 
     if (inicio =="" || fin =="" ) {
-        swal("Opps!","por favor diligencie el rango que desea buscar","warning");
+        swal("Opps!","Por favor diligencie el rango que desea buscar","warning");
     }else{
 
     $("#tablereport").dataTable().fnDestroy();
@@ -67,7 +67,7 @@ $( "#botonf" ).click(function() {
 }); 
 
 
-$( "#limpiar" ).click(function() {
+$( "#Limpiar" ).click(function() {
     location.reload();
 });
 

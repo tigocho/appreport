@@ -40,10 +40,10 @@ $(document).ready( function () {
             { data: "est_des"},
             { "ordertable": true,render: function ( data, type, row ) {
                 if (rol != 2){
-                return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
-                "<button type='button' onclick='novelty_delete(\""+row.nove_id+"\");' class='btn btn-danger mb-3'>eliminar</button>"
+                return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>Editar</button></a> "+
+                "<button type='button' onclick='novelty_delete(\""+row.nove_id+"\");' class='btn btn-danger mb-3'>Eliminar</button>"
                 }else{
-                    return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a>"
+                    return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>Editar</button></a>"
                 }
             }}
         ]
@@ -94,10 +94,10 @@ $(document).ready( function () {
             { data: "est_des"},
             { "ordertable": true,render: function ( data, type, row ) { 
                 if (rol != 2){
-                return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
-                "<button type='button' onclick='novelty_delete(\""+row.nove_id+"\");' class='btn btn-danger mb-3'>eliminar</button>"
+                return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>Editar</button></a> "+
+                "<button type='button' onclick='novelty_delete(\""+row.nove_id+"\");' class='btn btn-danger mb-3'>Eliminar</button>"
                 }else{
-                    return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a>"
+                    return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>Editar</button></a>"
                 }
             }}
         ]
@@ -343,7 +343,7 @@ function novelty_delete(var_nove_id){
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'cancelar',
-        confirmButtonText: 'si,seguro'
+        confirmButtonText: 'Sí,seguro'
         },function(resp) {
             if (resp) {
 

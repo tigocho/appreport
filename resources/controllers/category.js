@@ -31,8 +31,8 @@ $(document).ready( function () {
             { data: "cate_id" },
             { data: "cate_nom" },
             { "ordertable": true,render: function ( data, type, row ) { 
-                return "<td><button type='button' onclick='modal_category_edit(\""+row.cate_id+"\",\""+row.cate_nom+"\");'  class='btn btn-primary mb-3'>editar</button> "+
-                "<button type='button' onclick='category_delete(\""+row.cate_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"
+                return "<td><button type='button' onclick='modal_category_edit(\""+row.cate_id+"\",\""+row.cate_nom+"\");'  class='btn btn-primary mb-3'>Editar</button> "+
+                "<button type='button' onclick='category_delete(\""+row.cate_id+"\");' class='btn btn-danger mb-3'>Eliminar</button></td>"
             }}
         ]
     });
@@ -48,7 +48,7 @@ function create_category(){
     var var_cate_nom = document.getElementById("cate_nom").value;
     console.log("rutapost",baseURL+'Category/createCategory');
     if (var_cate_nom=="") {
-        swal("Opps!","por favor diligencie una categoria","warning");
+        swal("Opps!","Por favor diligencie una categoria","warning");
     } else{
 
         dataPostV = {
@@ -72,7 +72,7 @@ function create_category(){
                 location.reload();
             },error: function(error) {
                 error;
-                swal("error!","error al enviar la informacion","warning",6000);
+                swal("Opps!","Error al enviar la informacion","warning",6000);
             }
         }); 
     }   
@@ -112,20 +112,20 @@ function edit_category(){
             location.reload();
         },error: function(error) {
             error;
-            swal("error!","error al enviar la informacion","warning",6000);
+            swal("Opps!","Error al enviar la informacion","warning",6000);
         }
     });    
 }
 
 function category_delete(var_cate_id){
     swal({
-        title: '¿esta seguro de eliminar la categoria?',
+        title: '¿Está seguro de eliminar la categoria?',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'cancelar',
-        confirmButtonText: 'si,seguro'
+        confirmButtonText: 'Sí,seguro'
         },function(resp) {
         if (resp) {
 
@@ -145,7 +145,7 @@ function category_delete(var_cate_id){
                 location.reload();
             },error: function(error) {
                 error;
-                swal("error!","error al enviar la informacion","warning",6000);
+                swal("Opps!","Error al enviar la informacion","warning",6000);
             }
         });    
         

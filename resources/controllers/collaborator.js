@@ -32,8 +32,8 @@ $(document).ready( function () {
             { data: "col_cargo" },
             { data: "area_nom" },
             { "ordertable": true,render: function ( data, type, row ) { 
-                return "<button type='button' onclick='modal_collaborator_edit(\""+row.col_id+"\",\""+row.col_login_num+"\",\""+row.col_nom+"\",\""+row.col_cargo+"\",\""+row.id_area_fk+"\");'  class='btn btn-primary mb-3'>editar</button> "+
-                "<button type='button' onclick='collaborator_delete(\""+row.col_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"
+                return "<button type='button' onclick='modal_collaborator_edit(\""+row.col_id+"\",\""+row.col_login_num+"\",\""+row.col_nom+"\",\""+row.col_cargo+"\",\""+row.id_area_fk+"\");'  class='btn btn-primary mb-3'>Editar</button> "+
+                "<button type='button' onclick='collaborator_delete(\""+row.col_id+"\");' class='btn btn-danger mb-3'>Eliminar</button></td>"
             }}
         ]
     });
@@ -60,13 +60,13 @@ function create_collaborator(){
         var_col_login_num="NO APLICA";
     }
     if (var_col_nom=="") {
-        swal("Opps!","por favor diligencie el nombre del colaborador","warning");  
+        swal("Opps!","Por favor diligencie el nombre del colaborador","warning");  
     } else {
     if (var_col_cargo=="") {
-        swal("Opps!","por favor diligencie el cargo del colaborador","warning"); 
+        swal("Opps!","Por favor diligencie el cargo del colaborador","warning"); 
     } else {
     if (var_area_id_fk=="0") {
-        swal("Opps!","por favor diligencie el el area a la que pertenece el colaborador","warning"); 
+        swal("Opps!","Por favor diligencie el el area a la que pertenece el colaborador","warning"); 
     } else {
     
     
@@ -93,7 +93,7 @@ function create_collaborator(){
                     location.reload();
                 },error: function(error) {
                     error;
-                    swal("error!","error al enviar la informacion","warning",6000);
+                    swal("Opps!","Error al enviar la informacion","warning",6000);
                 }
             });    
         }}}
@@ -143,7 +143,7 @@ function edit_collaborator(){
             location.reload();
         },error: function(error) {
             error;
-            swal("error!","error al enviar la informacion","warning",6000);
+            swal("Opps!","Error al enviar la informacion","warning",6000);
         }
     });    
 
@@ -151,13 +151,13 @@ function edit_collaborator(){
 
 function collaborator_delete(var_col_id){
     swal({
-        title: '¿esta seguro de eliminar el colaborador?',
+        title: '¿Está seguro de eliminar el colaborador?',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'cancelar',
-        confirmButtonText: 'si,seguro'
+        confirmButtonText: 'Sí,seguro'
       },function(resp) {
             if (resp) {
 
@@ -178,7 +178,7 @@ function collaborator_delete(var_col_id){
                     location.reload();
                 },error: function(error) {
                     error;
-                    swal("error!","error al enviar la informacion","warning",6000);
+                    swal("Opps!","Error al enviar la informacion","warning",6000);
                 }
             });    
            

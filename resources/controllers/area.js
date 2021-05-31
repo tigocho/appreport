@@ -30,7 +30,7 @@ $(document).ready( function () {
             { data: "area_id" },
             { data: "area_nom" },
             { "ordertable": true,render: function ( data, type, row ) { 
-                return "<td><button type='button' onclick='modal_area_edit(\""+row.area_id+"\",\""+row.area_nom+"\");'  class='btn btn-primary mb-3'>editar</button> "+"<button type='button' onclick='area_delete(\""+row.area_id+"\");' class='btn btn-danger mb-3'>eliminar</button>"
+                return "<td><button type='button' onclick='modal_area_edit(\""+row.area_id+"\",\""+row.area_nom+"\");'  class='btn btn-primary mb-3'>Editar</button> "+"<button type='button' onclick='area_delete(\""+row.area_id+"\");' class='btn btn-danger mb-3'>Eliminar</button>"
             }}
             
         ]
@@ -49,7 +49,7 @@ function create_area(){
     var var_area_nom = document.getElementById("area_nom").value;
     console.log("rutapost",baseURL+'Area/createArea');
     if (var_area_nom=="") {
-        swal("Opps!","por favor diligencie el area","warning");
+        swal("Opps!","Por favor diligencie el area","warning");
     } else {
     
         dataPostV = {
@@ -71,7 +71,7 @@ function create_area(){
                 location.reload();
             },error: function(error) {
                     error;
-                swal("error!","error al enviar la informacion","warning",6000);
+                swal("Opps!","Error al enviar la informacion","warning",6000);
             }
         });
     }   
@@ -111,7 +111,7 @@ function edit_area(){
             location.reload();
         },error: function(error) {
             error;
-            swal("error!","error al enviar la informacion","warning",6000);
+            swal("Opps!","Error al enviar la informacion","warning",6000);
         }
     });    
 
@@ -119,13 +119,13 @@ function edit_area(){
 
 function area_delete(var_area_id){
 swal({
-    title: '¿esta seguro de eliminar el area?',
+    title: '¿Está seguro de eliminar el area?',
     type: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
     confirmButtonText: 'cancelar',
-    confirmButtonText: 'si,seguro'
+    confirmButtonText: 'Sí,seguro'
     },function(resp) {
         if (resp) {
 
@@ -146,7 +146,7 @@ swal({
                 location.reload();
             },error: function(error) {
                 error;
-                swal("error!","error al enviar la informacion","warning",6000);
+                swal("Opps!","Error al enviar la informacion","warning",6000);
             }
         });    
         

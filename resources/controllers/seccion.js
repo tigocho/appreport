@@ -31,8 +31,8 @@
                 { data: "seccion_nom" },
                 { data: "area_nom" },
                 { "ordertable": true,render: function ( data, type, row ) { 
-                    return "<button type='button' onclick='modal_seccion_edit(\""+row.seccion_id+"\",\""+row.seccion_nom+"\",\""+row.area_id_fk+"\");'  class='btn btn-primary mb-3'>editar</button> "+
-                    "<button type='button' onclick='seccion_delete(\""+row.seccion_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"
+                    return "<button type='button' onclick='modal_seccion_edit(\""+row.seccion_id+"\",\""+row.seccion_nom+"\",\""+row.area_id_fk+"\");'  class='btn btn-primary mb-3'>Editar</button> "+
+                    "<button type='button' onclick='seccion_delete(\""+row.seccion_id+"\");' class='btn btn-danger mb-3'>Eliminar</button></td>"
                 }}
             ]
         });
@@ -53,11 +53,11 @@
         var var_area_id_fk = document.getElementById("area_id_fk").value;
         console.log("rutapost",baseURL+'Seccion/createSeccion');
         if (var_seccion_nom=="") {
-            swal("Opps!","por favor diligencie el nombre seccion","warning"); 
+            swal("Opps!","Por favor diligencie el nombre seccion","warning"); 
         }else{
             
         if (var_area_id_fk=="0") {
-            swal("Opps!","por favor diligencie el el area a la que pertenece la seccion","warning"); 
+            swal("Opps!","Por favor diligencie el el area a la que pertenece la seccion","warning"); 
         }else{
                 dataPostV = {
                     seccion_nom : var_seccion_nom,
@@ -79,7 +79,7 @@
                         location.reload();
                     },error: function(error) {
                         error;
-                        swal("error!","error al enviar la informacion","warning",6000);
+                        swal("Opps!","error al enviar la informacion","warning",6000);
                     }
                 });    
             }}
@@ -120,7 +120,7 @@
                         location.reload();
                     },error: function(error) {
                         error;
-                        swal("error!","error al enviar la informacion","warning",6000);
+                        swal("Opps!","Error al enviar la informacion","warning",6000);
                     }
                 });    
 
@@ -130,13 +130,13 @@
 
     function seccion_delete(var_seccion_id){
         swal({
-            title: '¿esta seguro de eliminar la seccion?',
+            title: '¿Está seguro de eliminar la seccion?',
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'cancelar',
-            confirmButtonText: 'si,seguro'
+            confirmButtonText: 'Sí,seguro'
           },function(resp) {
                 if (resp) {
     
@@ -157,7 +157,7 @@
                         location.reload();
                     },error: function(error) {
                         error;
-                        swal("error!","error al enviar la informacion","warning",6000);
+                        swal("Opps!","Error al enviar la informacion","warning",6000);
                     }
                 });    
                

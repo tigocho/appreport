@@ -31,7 +31,7 @@ $(document).ready( function () {
             { data: "jefe_ape" },
             { data: "jefe_correo" },
             { "ordertable": true,render: function ( data, type, row ) { 
-                return "<button type='button' onclick='modal_boss_edit(\""+row.jefe_id+"\",\""+row.jefe_nom+"\",\""+row.jefe_ape+"\",\""+row.jefe_correo+"\");'  class='btn btn-primary mb-3'>editar</button> "+"<button type='button' onclick='boss_delete(\""+row.jefe_id+"\");' class='btn btn-danger mb-3'>eliminar</button>"
+                return "<button type='button' onclick='modal_boss_edit(\""+row.jefe_id+"\",\""+row.jefe_nom+"\",\""+row.jefe_ape+"\",\""+row.jefe_correo+"\");'  class='btn btn-primary mb-3'>Editar</button> "+"<button type='button' onclick='boss_delete(\""+row.jefe_id+"\");' class='btn btn-danger mb-3'>Eliminar</button>"
             }}
             
         ]
@@ -73,7 +73,7 @@ function create_boss(){
             location.reload();
         },error: function(error) {
             error;
-            swal("error!","error al enviar la informacion","warning",6000);
+            swal("Opps!","Error al enviar la informacion","warning",6000);
         }
     }); 
 
@@ -119,7 +119,7 @@ function edit_boss(){
             location.reload();
         },error: function(error) {
             error;
-            swal("error!","error al enviar la informacion","warning",6000);
+            swal("Opps!","Error al enviar la informacion","warning",6000);
         }
     }); 
   
@@ -127,13 +127,13 @@ function edit_boss(){
 
 function boss_delete(var_jefe_id){
     swal({
-        title: '¿esta seguro de eliminar el jefe?',
+        title: '¿Está seguro de eliminar el jefe?',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'cancelar',
-        confirmButtonText: 'si,seguro'
+        confirmButtonText: 'Sí,seguro'
         },function(resp) {
             if (resp) {
     
@@ -154,7 +154,7 @@ function boss_delete(var_jefe_id){
                     location.reload();
                 },error: function(error) {
                     error;
-                    swal("error!","error al enviar la informacion","warning",6000);
+                    swal("Opps!","Error al enviar la informacion","warning",6000);
                 }
             });    
             
