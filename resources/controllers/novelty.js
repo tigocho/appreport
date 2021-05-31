@@ -294,7 +294,7 @@ var var_cate_id_fk = document.getElementById("categoria").value;
 var var_tip_inci_id_fk = document.getElementById("tip_inci_id_fk").value;
 console.log("rutapost",baseURL+'Novelty/editNovelty');
 
-    if (var_nove_tiem_total == "00:00:00"){
+    if (var_nove_tiem_total == "00:00:00" || var_nove_tiem_total =="0NaN:0NaN"){
         var_est_id_fk = 1;
     }else{
         var_est_id_fk = 2;

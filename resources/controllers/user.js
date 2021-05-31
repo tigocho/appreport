@@ -37,8 +37,8 @@ $(document).ready( function () {
             { data: "rol_des" },
             { data: null,render: function ( data, type, row ) { return row.jefe_nom + ' ' + row.jefe_ape;}},
             { "ordertable": true,render: function ( data, type, row ) { 
-                return "<td><a href='"+baseURL+"User/edit/"+row.usu_id+"'><button type='button' class='btn btn-primary mb-3'>Editar</button></a> "+
-                "<button type='button' onclick='user_delete(\""+row.usu_id+"\");' class='btn btn-danger mb-3'>Eliminar</button></td>"
+                return "<a href='"+baseURL+"User/edit/"+row.usu_id+"'><button type='button' class='btn btn-primary mb-3'>Editar</button></a> "+
+                "<button type='button' onclick='user_delete(\""+row.usu_id+"\");' class='btn btn-danger mb-3'>Eliminar</button>"
             }}
         ]
     });

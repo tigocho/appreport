@@ -31,8 +31,8 @@ $(document).ready( function () {
             { data: "cate_id" },
             { data: "cate_nom" },
             { "ordertable": true,render: function ( data, type, row ) { 
-                return "<td><button type='button' onclick='modal_category_edit(\""+row.cate_id+"\",\""+row.cate_nom+"\");'  class='btn btn-primary mb-3'>Editar</button> "+
-                "<button type='button' onclick='category_delete(\""+row.cate_id+"\");' class='btn btn-danger mb-3'>Eliminar</button></td>"
+                return "<button type='button' onclick='modal_category_edit(\""+row.cate_id+"\",\""+row.cate_nom+"\");'  class='btn btn-primary mb-3'>Editar</button> "+
+                "<button type='button' onclick='category_delete(\""+row.cate_id+"\");' class='btn btn-danger mb-3'>Eliminar</button>"
             }}
         ]
     });

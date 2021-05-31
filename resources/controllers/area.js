@@ -30,7 +30,7 @@ $(document).ready( function () {
             { data: "area_id" },
             { data: "area_nom" },
             { "ordertable": true,render: function ( data, type, row ) { 
-                return "<td><button type='button' onclick='modal_area_edit(\""+row.area_id+"\",\""+row.area_nom+"\");'  class='btn btn-primary mb-3'>Editar</button> "+"<button type='button' onclick='area_delete(\""+row.area_id+"\");' class='btn btn-danger mb-3'>Eliminar</button>"
+                return "<button type='button' onclick='modal_area_edit(\""+row.area_id+"\",\""+row.area_nom+"\");'  class='btn btn-primary mb-3'>Editar</button> "+"<button type='button' onclick='area_delete(\""+row.area_id+"\");' class='btn btn-danger mb-3'>Eliminar</button>"
             }}
             
         ]

@@ -32,7 +32,7 @@
                 { data: "area_nom" },
                 { "ordertable": true,render: function ( data, type, row ) { 
                     return "<button type='button' onclick='modal_seccion_edit(\""+row.seccion_id+"\",\""+row.seccion_nom+"\",\""+row.area_id_fk+"\");'  class='btn btn-primary mb-3'>Editar</button> "+
-                    "<button type='button' onclick='seccion_delete(\""+row.seccion_id+"\");' class='btn btn-danger mb-3'>Eliminar</button></td>"
+                    "<button type='button' onclick='seccion_delete(\""+row.seccion_id+"\");' class='btn btn-danger mb-3'>Eliminar</button>"
                 }}
             ]
         });

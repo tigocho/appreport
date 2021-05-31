@@ -33,7 +33,7 @@ $(document).ready( function () {
             { data: "area_nom" },
             { "ordertable": true,render: function ( data, type, row ) { 
                 return "<button type='button' onclick='modal_collaborator_edit(\""+row.col_id+"\",\""+row.col_login_num+"\",\""+row.col_nom+"\",\""+row.col_cargo+"\",\""+row.id_area_fk+"\");'  class='btn btn-primary mb-3'>Editar</button> "+
-                "<button type='button' onclick='collaborator_delete(\""+row.col_id+"\");' class='btn btn-danger mb-3'>Eliminar</button></td>"
+                "<button type='button' onclick='collaborator_delete(\""+row.col_id+"\");' class='btn btn-danger mb-3'>Eliminar</button>"
             }}
         ]
     });
