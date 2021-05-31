@@ -4,7 +4,8 @@ $( "#botonf" ).click(function() {
 
     if (inicio =="" || fin =="" ) {
         swal("Opps!","Por favor diligencie el rango que desea buscar","warning");
-    }else{
+        return false;
+    }
 
     $("#tablereport").dataTable().fnDestroy();
     $('#tablereport').DataTable({
@@ -63,7 +64,7 @@ $( "#botonf" ).click(function() {
                 { data: "est_des"}
             ]
 
-    });}
+    });
 }); 
 
 

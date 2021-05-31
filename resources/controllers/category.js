@@ -45,37 +45,37 @@ function modal_category_create(){
 
 function create_category(){
 
-    var var_cate_nom = document.getElementById("cate_nom").value;
-    console.log("rutapost",baseURL+'Category/createCategory');
-    if (var_cate_nom=="") {
-        swal("Opps!","Por favor diligencie una categoria","warning");
-    } else{
+var var_cate_nom = document.getElementById("cate_nom").value;
+console.log("rutapost",baseURL+'Category/createCategory');
+if (var_cate_nom=="") {
+    swal("Opps!","Por favor diligencie una categoria","warning");
+    return false;
+}
 
-        dataPostV = {
+    dataPostV = {
+    
+        cate_nom : var_cate_nom,
+        tip_est_id_fk : 1,
         
-            cate_nom : var_cate_nom,
-            tip_est_id_fk : 1,
-            
+    }
+
+    console.info(dataPostV);
+
+    $.ajax({
+        type: "POST",
+        url: baseURL+'Category/createCategory',
+        dataType: 'json',
+        data: dataPostV,
+        success: function(resp) {
+            console.log("resp:",resp["mensaje"]);
+            swal("exitoso!", resp["mensaje"], "success",6000);
+            $('#category_create').modal('hide');
+            location.reload();
+        },error: function(error) {
+            error;
+            swal("Opps!","Error al enviar la informacion","warning",6000);
         }
-
-        console.info(dataPostV);
-
-        $.ajax({
-            type: "POST",
-            url: baseURL+'Category/createCategory',
-            dataType: 'json',
-            data: dataPostV,
-            success: function(resp) {
-                console.log("resp:",resp["mensaje"]);
-                swal("exitoso!", resp["mensaje"], "success",6000);
-                $('#category_create').modal('hide');
-                location.reload();
-            },error: function(error) {
-                error;
-                swal("Opps!","Error al enviar la informacion","warning",6000);
-            }
-        }); 
-    }   
+    });  
 }
 
 

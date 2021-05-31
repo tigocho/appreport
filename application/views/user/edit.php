@@ -7,11 +7,11 @@
             <div class="col-md-6 mb-3">
             <input type="hidden" value="<?php echo $user['usu_id']; ?>" id="usu_id" >
                     <label for="validationDefault01">Numero de documento </label>
-                    <input type="text" value="<?php echo $user['usu_num_doc']; ?>" id="usu_num_doc" class="form-control"  >
+                    <input type="number" value="<?php echo $user['usu_num_doc']; ?>" id="usu_num_doc" class="form-control"  >
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="validationDefault01">Correo usuario</label>
-                    <input type="text" value="<?php echo $user['usu_correo']; ?>" id="usu_correo" class="form-control"  >
+                    <input type="email" value="<?php echo $user['usu_correo']; ?>" id="usu_correo" class="form-control"  >
                 </div>
 
                 <div class="col-md-6 mb-3">

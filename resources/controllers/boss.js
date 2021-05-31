@@ -52,6 +52,19 @@ function create_boss(){
     var var_jefe_correo = document.getElementById("jefe_correo").value;
     console.log("rutapost",baseURL+'Boss/createBoss');
 
+    if (var_jefe_nom=="") {
+        swal("Opps!","Por favor diligencie el nombre del jefe","warning"); 
+        return false;
+    }
+    if (var_jefe_ape=="") {
+        swal("Opps!","Por favor diligencie el apellido del jefe","warning"); 
+        return false;
+    }
+    if (var_jefe_correo=="") {
+        swal("Opps!","Por favor diligencie el correo del jefe","warning"); 
+        return false;
+    }
+
     dataPostV = {
         jefe_nom : var_jefe_nom,
         jefe_ape : var_jefe_ape,

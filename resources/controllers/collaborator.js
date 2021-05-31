@@ -61,42 +61,44 @@ function create_collaborator(){
     }
     if (var_col_nom=="") {
         swal("Opps!","Por favor diligencie el nombre del colaborador","warning");  
-    } else {
+        return false;
+    } 
     if (var_col_cargo=="") {
         swal("Opps!","Por favor diligencie el cargo del colaborador","warning"); 
-    } else {
+        return false;
+    }
     if (var_area_id_fk=="0") {
         swal("Opps!","Por favor diligencie el el area a la que pertenece el colaborador","warning"); 
-    } else {
+        return false;
+    } 
     
     
-            dataPostV = {
-            
-                col_login_num : var_col_login_num,
-                col_nom : var_col_nom,
-                col_cargo : var_col_cargo,
-                id_area_fk : var_area_id_fk,
-                tip_est_id_fk : 1, 
-            }
+    dataPostV = {
+    
+        col_login_num : var_col_login_num,
+        col_nom : var_col_nom,
+        col_cargo : var_col_cargo,
+        id_area_fk : var_area_id_fk,
+        tip_est_id_fk : 1, 
+    }
 
-            console.info(dataPostV);
+    console.info(dataPostV);
 
-            $.ajax({
-                type: "POST",
-                url: baseURL+'Collaborator/createCollaborator',
-                dataType: 'json',
-                data: dataPostV,
-                success: function(resp) {
-                    console.log("resp:",resp["mensaje"]);
-                    swal("exitoso!", resp["mensaje"], "success",6000);
-                    $('#collaborator_create').modal('hide');
-                    location.reload();
-                },error: function(error) {
-                    error;
-                    swal("Opps!","Error al enviar la informacion","warning",6000);
-                }
-            });    
-        }}}
+    $.ajax({
+        type: "POST",
+        url: baseURL+'Collaborator/createCollaborator',
+        dataType: 'json',
+        data: dataPostV,
+        success: function(resp) {
+            console.log("resp:",resp["mensaje"]);
+            swal("exitoso!", resp["mensaje"], "success",6000);
+            $('#collaborator_create').modal('hide');
+            location.reload();
+        },error: function(error) {
+            error;
+            swal("Opps!","Error al enviar la informacion","warning",6000);
+        }
+    });    
 
 }
 

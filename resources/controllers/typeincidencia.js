@@ -53,38 +53,39 @@ function create_typeincident(){
     var var_cate_id_fk = document.getElementById("cate_id_fk").value;
     console.log("rutapost",baseURL+'Typeincident/createTypeincident');
 
-    if (var_tip_inci_nom=="") {
-        swal("Opps!","Por favor diligencie el tipo de incidencia","warning");
-    } else {
-        
-    if(var_cate_id_fk==0){
-        swal("Opps!","Por favor selecionar la categoria a la que pertenece el tipo de incidencia","warning");    
-    }else{  
-        
-        dataPostV = {
-        tip_inci_nom : var_tip_inci_nom,
-        tip_est_id_fk : 1,
-        cate_id_fk : var_cate_id_fk,  
+if (var_tip_inci_nom=="") {
+    swal("Opps!","Por favor diligencie el tipo de incidencia","warning");
+    return false;
+} 
+    
+if(var_cate_id_fk==0){
+    swal("Opps!","Por favor selecionar la categoria a la que pertenece el tipo de incidencia","warning"); 
+    return false;   
+} 
+    
+    dataPostV = {
+    tip_inci_nom : var_tip_inci_nom,
+    tip_est_id_fk : 1,
+    cate_id_fk : var_cate_id_fk,  
+    }
+
+    console.info(dataPostV);
+
+    $.ajax({
+        type: "POST",
+        url: baseURL+'Typeincident/createTypeincident',
+        dataType: 'json',
+        data: dataPostV,
+        success: function(resp) {
+            console.log("resp:",resp["mensaje"]);
+            swal("exitoso!", resp["mensaje"], "success",6000);
+            $('#agent_create').modal('hide');
+            location.reload();
+        },error: function(error) {
+            error;
+            swal("Opps!","Error al enviar la informacion","warning",6000);
         }
-
-        console.info(dataPostV);
-
-        $.ajax({
-            type: "POST",
-            url: baseURL+'Typeincident/createTypeincident',
-            dataType: 'json',
-            data: dataPostV,
-            success: function(resp) {
-                console.log("resp:",resp["mensaje"]);
-                swal("exitoso!", resp["mensaje"], "success",6000);
-                $('#agent_create').modal('hide');
-                location.reload();
-            },error: function(error) {
-                error;
-                swal("Opps!","Error al enviar la informacion","warning",6000);
-            }
-        }); 
-    }}  
+    });   
 
 }
 

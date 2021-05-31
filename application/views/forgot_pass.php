@@ -50,7 +50,7 @@
 
 									<div class="form-group">
 										<label for="exampleInputEmail1">Correo</label>
-										<input type="text" class="form-control mb-0" name="email" id="name" placeholder="ingresar correo"/>
+										<input type="email" class="form-control mb-0" name="email" id="name" placeholder="ingresar correo"/>
 									</div>
 
 									<div class="d-inline-block w-100">

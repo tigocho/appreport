@@ -4,11 +4,11 @@
             <div class="form-row">
             <div class="col-md-6 mb-3">
                     <label for="validationDefault01">Numero de documento </label>
-                    <input type="text" value="" id="usu_num_doc" class="form-control"  >
+                    <input type="number" value="" id="usu_num_doc" class="form-control"  >
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="validationDefault01">Correo usuario</label>
-                    <input type="text" value="" id="usu_correo" class="form-control"  >
+                    <input type="email" value="" id="usu_correo" class="form-control"  >
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="validationDefault01">Primer nombre</label>

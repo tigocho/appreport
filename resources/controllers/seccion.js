@@ -54,35 +54,36 @@
         console.log("rutapost",baseURL+'Seccion/createSeccion');
         if (var_seccion_nom=="") {
             swal("Opps!","Por favor diligencie el nombre seccion","warning"); 
-        }else{
-            
+            return false;
+        }
+
         if (var_area_id_fk=="0") {
             swal("Opps!","Por favor diligencie el el area a la que pertenece la seccion","warning"); 
-        }else{
-                dataPostV = {
-                    seccion_nom : var_seccion_nom,
-                    area_id_fk : var_area_id_fk,
-                    tip_est_id_fk : 1, 
-                }
+            return false;
+        }
+        dataPostV = {
+            seccion_nom : var_seccion_nom,
+            area_id_fk : var_area_id_fk,
+            tip_est_id_fk : 1, 
+        }
 
-                console.info(dataPostV);
+        console.info(dataPostV);
 
-                $.ajax({
-                    type: "POST",
-                    url: baseURL+'Seccion/createSeccion',
-                    dataType: 'json',
-                    data: dataPostV,
-                    success: function(resp) {
-                        console.log("resp:",resp["mensaje"]);
-                        swal("exitoso!", resp["mensaje"], "success",6000);
-                        $('#seccion_create').modal('hide');
-                        location.reload();
-                    },error: function(error) {
-                        error;
-                        swal("Opps!","error al enviar la informacion","warning",6000);
-                    }
-                });    
-            }}
+        $.ajax({
+            type: "POST",
+            url: baseURL+'Seccion/createSeccion',
+            dataType: 'json',
+            data: dataPostV,
+            success: function(resp) {
+                console.log("resp:",resp["mensaje"]);
+                swal("exitoso!", resp["mensaje"], "success",6000);
+                $('#seccion_create').modal('hide');
+                location.reload();
+            },error: function(error) {
+                error;
+                swal("Opps!","error al enviar la informacion","warning",6000);
+            }
+        });    
     }
     // fin de insertar datos de seccion
 
