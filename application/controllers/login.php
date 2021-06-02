@@ -82,7 +82,7 @@ class Login extends CI_controller
                         '<b> cordial saludo Estimado usuario</b>            
                         <p>Usted ha solicitado recuperar la contraseña en la plataforma de bitacora novedades.
                         
-                        <p> su contraseña es: <b> '.$pass.' </b> </p>
+                        <p> su contraseña es: <b> '.$this->encrypt->decode($pass).' </b> </p>
                     
                         **********************Mensaje Generado Automáticamente**********************
                         <p>Este correo es únicamente informativo y es de uso exclusivo del destinatario(a), puede contener información privilegiada y/o confidencial. Si no es usted el destinatario(a) deberá borrarlo inmediatamente. Queda notificado que el mal uso, divulgación no autorizada, alteración y/o  modificación malintencionada sobre este mensaje y sus anexos quedan estrictamente prohibidos y pueden ser legalmente sancionados. - APPREPORT-G-OCHO no asume ninguna responsabilidad por estas circunstancias </p>';

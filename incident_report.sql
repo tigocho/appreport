@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-05-2021 a las 18:05:09
+-- Tiempo de generación: 02-06-2021 a las 17:01:23
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 7.3.27
 
@@ -206,7 +206,9 @@ INSERT INTO `ir_colaborador` (`col_id`, `col_login_num`, `col_nom`, `col_cargo`,
 (114, '862', 'JOSE TAMAYO', 'AGENTE', 1, 1),
 (115, '863', 'ADRIANA MUÑOZ', 'AGENTE', 1, 1),
 (116, 'N/A', 'KATHERINE POVEDA', 'AGENTE', 1, 1),
-(117, 'NO APLICA', 'TODOS', 'NO APLICA', 1, 1);
+(117, 'NO APLICA', 'TODOS', 'NO APLICA', 1, 1),
+(122, 'NO APLICA', 'CRISTIAN CAMILO GARCIA ', 'APRENDIZ ', 3, 2),
+(123, 'NO APLICA', 'SEBASTIAN PAZ', 'AUXILIAR TI', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -248,9 +250,10 @@ CREATE TABLE `ir_jefe` (
 INSERT INTO `ir_jefe` (`jefe_id`, `jefe_nom`, `jefe_ape`, `jefe_correo`, `tip_est_id_fk`) VALUES
 (0, 'NO ', 'APLICA', '', 2),
 (1, 'D angello', 'Jimenez', 'dangellojr@ospedale.com.co', 1),
-(2, 'Diego Fernando', 'Grueso Sanchez', 'coor.callcenter@ospedale.com.co', 1),
+(2, 'Diego Fernando', 'Grueso Sanchez', 'coor.callcenter@ospedale.com.co', 2),
 (3, 'Victor ', 'Rincon', 'victor.rincon@ospedale.com.co', 1),
-(8, 'cristian', 'garcia', 'aprendiz.sistemas3@ospedale.com.co', 1);
+(8, 'cristian', 'garcia', 'aprendiz.sistemas3@ospedale.com.co', 1),
+(9, 'Diego fernando', 'Grueso sanchez', 'coor.callcenter@ospedale.com.co', 1);
 
 -- --------------------------------------------------------
 
@@ -272,13 +275,6 @@ CREATE TABLE `ir_novedad` (
   `est_id_fk` int(11) NOT NULL,
   `tip_est_id_fk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `ir_novedad`
---
-
-INSERT INTO `ir_novedad` (`nove_id`, `nove_fecha`, `nove_hora_ini`, `nove_hora_fin`, `nove_tiem_total`, `cate_id_fk`, `tip_inci_id_fk`, `seccion_id_fk`, `col_id_fk`, `usu_id_fk`, `est_id_fk`, `tip_est_id_fk`) VALUES
-(1, '2021-05-28', '2021-05-28 16:41:00', '2021-05-28 17:43:00', '01:02:00', 1, 1, 8, 67, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -410,7 +406,8 @@ INSERT INTO `ir_tipo_incidencia` (`tip_inci_id`, `tip_inci_nom`, `tip_est_id_fk`
 (46, 'citapp no carga - internet usuario', 1, 10),
 (47, 'citapp no carga - servidor de aplicacion', 1, 10),
 (48, 'citapp lento', 1, 10),
-(49, 'caida de validadores externo', 1, 11);
+(49, 'caida de validadores externo', 1, 11),
+(50, 'no conecta ', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -426,7 +423,7 @@ CREATE TABLE `ir_usuario` (
   `usu_ape` varchar(15) NOT NULL,
   `usu_ape_two` varchar(15) DEFAULT NULL,
   `usu_correo` varchar(50) NOT NULL,
-  `usu_contra` varchar(8) NOT NULL,
+  `usu_contra` varchar(100) NOT NULL,
   `rol_id_fk` int(11) NOT NULL,
   `jefe_id_fk` int(11) DEFAULT 0,
   `tip_est_id_fk` int(11) DEFAULT NULL
@@ -437,14 +434,13 @@ CREATE TABLE `ir_usuario` (
 --
 
 INSERT INTO `ir_usuario` (`usu_id`, `usu_num_doc`, `usu_nom`, `usu_nom_two`, `usu_ape`, `usu_ape_two`, `usu_correo`, `usu_contra`, `rol_id_fk`, `jefe_id_fk`, `tip_est_id_fk`) VALUES
-(1, 1060806960, 'cristian ', 'camilo', 'garcia ', 'sanchez', 'aprendiz.sistemas3@ospedale.com.co', '2580.', 4, 1, 1),
-(2, 14704333, 'D Angello ', '', 'Jimenez ', 'Ruiz', 'dangellojr@ospedale.com.co', '14704333', 1, 0, 1),
-(3, 14637232, 'Diego ', 'Fernando', 'Grueso', 'Sanchez', 'coor.callcenter@ospedale.com.co', '14637232', 3, 0, 1),
-(4, 900612531, 'Tecnologia', '', 'G-Ocho', '', 'ti@ospedale.com.co', 'Gocho', 1, 0, 1),
-(5, 1006185431, 'Jhoan ', 'Sebastian', 'Paz', '', 'auxiliar.ti@ospedale.com.co', 'America', 1, 0, 1),
-(6, 12345678, 'Lina ', '', 'Taborda', '', 'citas.laestancia@ospedale.com.co', '12345', 2, 3, 1),
-(7, 1113691743, 'Jose', 'Kevin', 'Estupiñan', 'Caicedo', 'Aprendiz.sistemas1@ospedale.com.co', '9819', 4, 1, 1),
-(8, 2147483647, 'Jhoan', 'Sebastian', 'Paz', 'Castro', 'auxiliar.ti@ospedale.com.co', '10061', 4, 1, 1);
+(1, 1060806960, 'cristian ', '', 'garcia ', '', 'aprendiz.sistemas3@ospedale.com.co', 'VmMFPgVvADwFJg==', 4, 1, 1),
+(2, 14704333, 'D Angello ', '', 'Jimenez ', 'Ruiz', 'dangellojr@ospedale.com.co', 'BzFSaFM2W2dXbgcwCDUHNA==', 1, 0, 1),
+(3, 14637232, 'Diego ', 'Fernando', 'Grueso', 'Sanchez', 'coor.callcenter@ospedale.com.co', 'ADZTaVQwXWJSaAUzXGFVZw==', 3, 0, 1),
+(4, 900612531, 'Tecnologia', '', 'G-Ocho', '', 'ti@ospedale.com.co', 'AEAAYVRlWz9WNA==', 1, 0, 1),
+(5, 1006185431, 'Jhoan ', 'Sebastian', 'Paz', '', 'auxiliar.ti@ospedale.com.co', 'AUcGZQM0DnANaVYxAG8=', 1, 0, 1),
+(6, 12345678, 'Lina ', '', 'Taborda', '', 'citas.laestancia@ospedale.com.co', 'UGZVaVQ1WmJSag==', 2, 3, 1),
+(7, 1113691743, 'Jose', 'Kevin', 'Estupiñan', 'Caicedo', 'Aprendiz.sistemas1@ospedale.com.co', 'ATdUawdkCzQNNg==', 4, 1, 1);
 
 --
 -- Índices para tablas volcadas
@@ -554,7 +550,7 @@ ALTER TABLE `ir_categoria`
 -- AUTO_INCREMENT de la tabla `ir_colaborador`
 --
 ALTER TABLE `ir_colaborador`
-  MODIFY `col_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `col_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_estado`
@@ -566,13 +562,13 @@ ALTER TABLE `ir_estado`
 -- AUTO_INCREMENT de la tabla `ir_jefe`
 --
 ALTER TABLE `ir_jefe`
-  MODIFY `jefe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `jefe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_novedad`
 --
 ALTER TABLE `ir_novedad`
-  MODIFY `nove_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `nove_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_rol`
@@ -596,13 +592,13 @@ ALTER TABLE `ir_tipo_estado`
 -- AUTO_INCREMENT de la tabla `ir_tipo_incidencia`
 --
 ALTER TABLE `ir_tipo_incidencia`
-  MODIFY `tip_inci_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `tip_inci_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_usuario`
 --
 ALTER TABLE `ir_usuario`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
