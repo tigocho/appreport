@@ -33,11 +33,11 @@
                            <div class="iq-card shadow-none m-0">
                               <div class="iq-card-body p-0 ">
                                  <div class="bg-primary p-3">
-                                    <h5 class="mb-0 text-white line-height">hola <?php echo $this->session->userdata('usu_nom')." ".$this->session->userdata('usu_nom_two');?></h5>
-                                    <span class="text-white font-size-12"><?php echo $this->session->userdata('rol_des')?></span>
+                                    <h5 class="mb-0 text-white line-height">Hola <?php echo $this->session->userdata('usu_nom')." ".$this->session->userdata('usu_nom_two');?></h5>
+                                    <span class="text-white font-size-12"><?php echo ucwords($this->session->userdata('rol_des'))?></span>
                                  </div>               
                                  <div class="d-inline-block w-100 text-center p-3">
-                                    <a class="bg-primary iq-sign-btn" href="<?php echo base_url() ?>login/logout" role="button">cerrar session<i class="ri-login-box-line ml-2"></i></a>
+                                    <a class="bg-primary iq-sign-btn" href="<?php echo base_url() ?>login/logout" role="button">Cerrar sesión<i class="ri-login-box-line ml-2"></i></a>
                                  </div>
                               </div>
                            </div>

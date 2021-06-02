@@ -17,7 +17,11 @@ $( "#botonf" ).click(function() {
                 orientation: 'landscape',
                 pageSize: 'LEGAL'
             },
-            'excel','print'
+            {
+                extend: 'print',
+                text: 'Imprimir'
+            },
+            'excel'
         ],
         paging: false,
 
@@ -68,7 +72,8 @@ $( "#botonf" ).click(function() {
 }); 
 
 
-$( "#Limpiar" ).click(function() {
-    location.reload();
+$("#limpiar").click(function() {
+    $("#dateini").val('');
+    $("#datefin").val('');
 });
 
