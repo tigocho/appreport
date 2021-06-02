@@ -4,6 +4,7 @@ class Login_model extends CI_model
     public function __construct()
     {
         $this->load->database();
+        $this->load->library('encrypt');
     }
     public function login($usu_num_doc, $usu_contra)
     {
@@ -16,7 +17,7 @@ class Login_model extends CI_model
         if($query->num_rows() == 1)
         {
             $row=$query->row();
-            if($row->usu_contra == $usu_contra  )  
+            if($this->encrypt->decode($row->usu_contra) == $usu_contra)  
             {
                 $data=array(
                     'login'=>true,

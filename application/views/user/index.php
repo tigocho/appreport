@@ -9,7 +9,6 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Correo</th>
-                    <th>Contraseña</th>
                     <th>Rol</th>
                     <th>Jefe</th>
                     <th>Acciones</th>

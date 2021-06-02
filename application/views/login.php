@@ -39,7 +39,7 @@
                 <div class="row no-gutters">
                     <div class="col-md-6 text-center">
                         <div class="sign-in-detail text-white">
-                            <img src="<?php echo base_url();?>resources/images/ospedale.png" height="110" >
+                            <img src="<?php echo base_url();?>resources/images/ospedale.png" height="100" >
                             <div class="owl-carousel" data-autoplay="true" data-loop="true" data-nav="false" data-dots="true" data-items="1" data-items-laptop="1" data-items-tab="1" data-items-mobile="1" data-items-mobile-sm="1" data-margin="0">
                                 <div class="item">
                                     <img src="<?php echo base_url();?>resources/images/1.jpeg" class="img-fluid mb-4" alt="logo">

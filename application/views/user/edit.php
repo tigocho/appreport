@@ -33,7 +33,7 @@
             
                 <div class="col-md-6 mb-3">
                     <label for="validationDefault01">Contraseña usuario</label>
-                    <input type="text" value="<?php echo $user['usu_contra']; ?>" id="usu_contra" class="form-control"  >
+                    <input type="text" value="<?php echo $this->encrypt->decode($user['usu_contra']); ?>" id="usu_contra" class="form-control"  >
                 </div>
                 <div class="col-md-6 mb-3">
                 <label for="validationDefault04">Rol usuario</label>

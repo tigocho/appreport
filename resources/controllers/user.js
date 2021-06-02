@@ -33,7 +33,6 @@ $(document).ready( function () {
             { data: null,render: function ( data, type, row ) { return row.usu_nom + ' ' + row.usu_nom_two;}},
             { data: null,render: function ( data, type, row ) { return row.usu_ape + ' ' + row.usu_ape_two;}},
             { data: "usu_correo" },
-            { data: "usu_contra" },
             { data: "rol_des" },
             { data: null,render: function ( data, type, row ) { return row.jefe_nom + ' ' + row.jefe_ape;}},
             { "ordertable": true,render: function ( data, type, row ) { 

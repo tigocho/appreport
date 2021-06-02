@@ -4,6 +4,7 @@
         public function __construct()
         {
             $this->load->database();
+            $this->load->library('encrypt');
         }
          // fin conexion base de datos 
 
@@ -31,6 +32,10 @@
 
             public function saveUser($data)
             {
+
+                $data['usu_contra'] = $this->encrypt->encode($data['usu_contra']);
+
+
                 return $this->db->insert('ir_usuario',$data);
             }
 
@@ -45,6 +50,7 @@
 
             public function editarUser($data)
             {
+                $data['usu_contra'] = $this->encrypt->encode($data['usu_contra']);
                 $this->db->where('usu_id',$data['usu_id']);
                 return $this->db->update('ir_usuario',$data);
                 
@@ -86,7 +92,7 @@
 
             public function existsnumDoc($num_doc){
 
-                $sql = "SELECT usu_num_doc FROM ir_usuario WHERE usu_num_doc = $num_doc";
+                $sql = "SELECT usu_num_doc FROM ir_usuario WHERE tip_est_id_fk = 1 AND usu_num_doc = $num_doc";
                 $query = $this->db->query($sql);
                 return $query->row();
 

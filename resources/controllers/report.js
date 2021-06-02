@@ -56,7 +56,7 @@ $( "#botonf" ).click(function() {
                 { data: "nove_fecha" },
                 { data: "col_login_num" },
                 { data: "col_nom" },
-                { data: "session_nom" },
+                { data: "seccion_nom" },
                 { data: "nove_hora_ini" },
                 { data: "nove_hora_fin" },
                 { data: "nove_tiem_total" },
