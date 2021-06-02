@@ -52,16 +52,15 @@
                     </div>
                     <div class="col-md-6 position-relative">
                         <div class="sign-in-from">
-                            <h1 class="mb-0">ingresar</h1>
-                            <p>Selecciona tu usuario</p>
+                            <h1 class="mb-0">Iniciar sesión</h1>
                             <?php echo form_open('login'); ?>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Ingresa numero de documento</label>
+                                    <label for="exampleInputEmail1">Número de documento</label>
                                     <input type="number" name="usu_num_doc" class="form-control mb-0" >
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Contraseña</label>
-                                    <a href="<?php echo base_url();?>login/forgot_pass" class="float-right">ha olvidado su contraseña?</a>
+                                    <a href="<?php echo base_url();?>login/forgot_pass" class="float-right">¿Olvidaste tu contraseña?</a>
                                     <input type="password" name="usu_contra" class="form-control mb-0" >
                                 </div>
                                 <?php
