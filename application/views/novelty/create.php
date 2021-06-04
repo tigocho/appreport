@@ -5,12 +5,12 @@
                 <div class="col-md-6 mb-3">
                 <input type="hidden" value="<?php echo $this->session->userdata('usu_id') ?>" id="usu_id" >
                     <label>Fecha de novedad</label>
-                    <input type="date" value="<?php date_default_timezone_set('America/Bogota');$hoy = date("Y-m-d"); echo $hoy;?>"  readonly id="nove_fecha" class="form-control"  >
+                    <input type="date" value="<?php echo date("Y-m-d");?>"  readonly id="nove_fecha" class="form-control"  >
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label>Hora de inicio</label>
-                    <input type="datetime-local"  id="nove_hora_ini" class="form-control"  >
+                    <input type="datetime-local" value="<?php echo date("Y-m-d\TH:i");?>"  id="nove_hora_ini" class="form-control"  >
                 </div>
 
 
