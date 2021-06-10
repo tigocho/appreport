@@ -6,14 +6,15 @@
             <thead >
                 <tr>
                     <th>Fecha novedad</th>
-                    <th>Login id</th>
-                    <th>Nombre de agente</th>
-                    <th>campaña</th>
+                    <th>Nombre del colaborador</th>
+                    <th>seccion</th>
                     <th>Hora inicio</th>
                     <th>Hora fin</th>
                     <th>Tiempo total</th>
                     <th>Incidencia</th>
                     <th>Estado novedad</th>
+                    <th>Observacion</th>
+                    <th>descripcion</th>
                     <th >Acciones</th>
                 </tr>
             </thead>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-06-2021 a las 17:01:23
+-- Tiempo de generación: 10-06-2021 a las 17:02:32
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 7.3.27
 
@@ -206,9 +206,7 @@ INSERT INTO `ir_colaborador` (`col_id`, `col_login_num`, `col_nom`, `col_cargo`,
 (114, '862', 'JOSE TAMAYO', 'AGENTE', 1, 1),
 (115, '863', 'ADRIANA MUÑOZ', 'AGENTE', 1, 1),
 (116, 'N/A', 'KATHERINE POVEDA', 'AGENTE', 1, 1),
-(117, 'NO APLICA', 'TODOS', 'NO APLICA', 1, 1),
-(122, 'NO APLICA', 'CRISTIAN CAMILO GARCIA ', 'APRENDIZ ', 3, 2),
-(123, 'NO APLICA', 'SEBASTIAN PAZ', 'AUXILIAR TI', 3, 1);
+(117, 'NO APLICA', 'TODOS', 'NO APLICA', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -237,11 +235,11 @@ INSERT INTO `ir_estado` (`est_id`, `est_des`) VALUES
 
 CREATE TABLE `ir_jefe` (
   `jefe_id` int(11) NOT NULL,
-  `jefe_nom` varchar(40) NOT NULL,
-  `jefe_ape` varchar(40) NOT NULL,
-  `jefe_correo` varchar(60) NOT NULL,
+  `jefe_nom` varchar(40) CHARACTER SET utf8mb4 NOT NULL,
+  `jefe_ape` varchar(40) CHARACTER SET utf8mb4 NOT NULL,
+  `jefe_correo` varchar(60) CHARACTER SET utf8mb4 NOT NULL,
   `tip_est_id_fk` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `ir_jefe`
@@ -250,10 +248,10 @@ CREATE TABLE `ir_jefe` (
 INSERT INTO `ir_jefe` (`jefe_id`, `jefe_nom`, `jefe_ape`, `jefe_correo`, `tip_est_id_fk`) VALUES
 (0, 'NO ', 'APLICA', '', 2),
 (1, 'D angello', 'Jimenez', 'dangellojr@ospedale.com.co', 1),
-(2, 'Diego Fernando', 'Grueso Sanchez', 'coor.callcenter@ospedale.com.co', 2),
-(3, 'Victor ', 'Rincon', 'victor.rincon@ospedale.com.co', 1),
-(8, 'cristian', 'garcia', 'aprendiz.sistemas3@ospedale.com.co', 1),
-(9, 'Diego fernando', 'Grueso sanchez', 'coor.callcenter@ospedale.com.co', 1);
+(2, 'Diego Fernando', 'Grueso Sanchez', 'coor.callcenter@ospedale.com.co', 1),
+(3, 'Victor ', 'Rincon', 'Victor.rincon@ospedale.com.co', 1),
+(4, 'Jonier', 'Castro Rosero', 'Jonier.castro@ospedale.com.co', 1),
+(5, 'Daniel Esteban ', 'Vacca', 'controller@ospedale.com.co', 1);
 
 -- --------------------------------------------------------
 
@@ -267,14 +265,16 @@ CREATE TABLE `ir_novedad` (
   `nove_hora_ini` datetime NOT NULL,
   `nove_hora_fin` datetime NOT NULL,
   `nove_tiem_total` time NOT NULL,
+  `nove_obser_descripcion` text CHARACTER SET utf8mb4 DEFAULT NULL,
   `cate_id_fk` int(11) NOT NULL,
   `tip_inci_id_fk` int(11) NOT NULL,
   `seccion_id_fk` int(11) NOT NULL,
   `col_id_fk` int(11) NOT NULL,
   `usu_id_fk` int(11) NOT NULL,
   `est_id_fk` int(11) NOT NULL,
+  `tip_obser_id_fk` int(11) NOT NULL,
   `tip_est_id_fk` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -284,8 +284,8 @@ CREATE TABLE `ir_novedad` (
 
 CREATE TABLE `ir_rol` (
   `rol_id` int(11) NOT NULL,
-  `rol_des` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `rol_des` varchar(20) CHARACTER SET utf8mb4 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `ir_rol`
@@ -328,9 +328,7 @@ INSERT INTO `ir_seccion` (`seccion_id`, `seccion_nom`, `area_id_fk`, `tip_est_id
 (11, 'GESTION DE RIESGO/EVITAVILIDAD', 1, 1),
 (12, 'ASISTENCIAL', 2, 1),
 (13, 'CAP POPAYAN', 1, 1),
-(14, 'CALL CENTER HUILA', 2, 2),
-(15, 'CALL CENTER BOGOTA', 2, 2),
-(16, 'TI', 3, 1);
+(14, 'TI', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -359,10 +357,10 @@ INSERT INTO `ir_tipo_estado` (`tip_est_id`, `tip_est_des`) VALUES
 
 CREATE TABLE `ir_tipo_incidencia` (
   `tip_inci_id` int(11) NOT NULL,
-  `tip_inci_nom` varchar(150) NOT NULL,
+  `tip_inci_nom` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `tip_est_id_fk` int(11) NOT NULL,
   `cate_id_fk` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `ir_tipo_incidencia`
@@ -406,8 +404,27 @@ INSERT INTO `ir_tipo_incidencia` (`tip_inci_id`, `tip_inci_nom`, `tip_est_id_fk`
 (46, 'citapp no carga - internet usuario', 1, 10),
 (47, 'citapp no carga - servidor de aplicacion', 1, 10),
 (48, 'citapp lento', 1, 10),
-(49, 'caida de validadores externo', 1, 11),
-(50, 'no conecta ', 2, 2);
+(49, 'caida de validadores externo', 1, 11);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ir_tipo_observacion`
+--
+
+CREATE TABLE `ir_tipo_observacion` (
+  `tip_obser_id` int(11) NOT NULL,
+  `tip_obser_nom` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `ir_tipo_observacion`
+--
+
+INSERT INTO `ir_tipo_observacion` (`tip_obser_id`, `tip_obser_nom`) VALUES
+(1, 'Cerrado Satisfactoriamente '),
+(2, 'Cerrado Sin Respuesta'),
+(3, 'Cerrado Sin Intervención');
 
 -- --------------------------------------------------------
 
@@ -418,29 +435,40 @@ INSERT INTO `ir_tipo_incidencia` (`tip_inci_id`, `tip_inci_nom`, `tip_est_id_fk`
 CREATE TABLE `ir_usuario` (
   `usu_id` int(11) NOT NULL,
   `usu_num_doc` int(11) NOT NULL,
-  `usu_nom` varchar(15) NOT NULL,
-  `usu_nom_two` varchar(15) DEFAULT NULL,
-  `usu_ape` varchar(15) NOT NULL,
-  `usu_ape_two` varchar(15) DEFAULT NULL,
-  `usu_correo` varchar(50) NOT NULL,
-  `usu_contra` varchar(100) NOT NULL,
+  `usu_nom` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
+  `usu_nom_two` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `usu_ape` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
+  `usu_ape_two` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `usu_correo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `usu_contra` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `rol_id_fk` int(11) NOT NULL,
   `jefe_id_fk` int(11) DEFAULT 0,
   `tip_est_id_fk` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `ir_usuario`
 --
 
 INSERT INTO `ir_usuario` (`usu_id`, `usu_num_doc`, `usu_nom`, `usu_nom_two`, `usu_ape`, `usu_ape_two`, `usu_correo`, `usu_contra`, `rol_id_fk`, `jefe_id_fk`, `tip_est_id_fk`) VALUES
-(1, 1060806960, 'cristian ', '', 'garcia ', '', 'aprendiz.sistemas3@ospedale.com.co', 'VmMFPgVvADwFJg==', 4, 1, 1),
-(2, 14704333, 'D Angello ', '', 'Jimenez ', 'Ruiz', 'dangellojr@ospedale.com.co', 'BzFSaFM2W2dXbgcwCDUHNA==', 1, 0, 1),
-(3, 14637232, 'Diego ', 'Fernando', 'Grueso', 'Sanchez', 'coor.callcenter@ospedale.com.co', 'ADZTaVQwXWJSaAUzXGFVZw==', 3, 0, 1),
-(4, 900612531, 'Tecnologia', '', 'G-Ocho', '', 'ti@ospedale.com.co', 'AEAAYVRlWz9WNA==', 1, 0, 1),
-(5, 1006185431, 'Jhoan ', 'Sebastian', 'Paz', '', 'auxiliar.ti@ospedale.com.co', 'AUcGZQM0DnANaVYxAG8=', 1, 0, 1),
-(6, 12345678, 'Lina ', '', 'Taborda', '', 'citas.laestancia@ospedale.com.co', 'UGZVaVQ1WmJSag==', 2, 3, 1),
-(7, 1113691743, 'Jose', 'Kevin', 'Estupiñan', 'Caicedo', 'Aprendiz.sistemas1@ospedale.com.co', 'ATdUawdkCzQNNg==', 4, 1, 1);
+(1, 14704333, 'D Angello ', '', 'Jimenez ', 'Ruiz', 'dangellojr@ospedale.com.co', 'BzFSaFM2W2dXbgcwCDUHNA==', 1, 0, 1),
+(2, 1060806960, 'cristian ', '', 'garcia ', '', 'aprendiz.sistemas3@ospedale.com.co', 'BTAEPwhiXmJWdQ==', 2, 1, 1),
+(3, 900612531, 'Tecnologia', '', 'G-Ocho', '', 'ti@ospedale.com.co', 'AEAAYVRlWz9WNA==', 1, 0, 1),
+(4, 1006185431, 'Jhoan ', 'Sebastian', 'Paz', '', 'auxiliar.ti@ospedale.com.co', 'AUcGZQM0DnANaVYxAG8=', 1, 0, 1),
+(5, 1113691743, 'Jose', 'Kevin', 'Estupiñan', 'Caicedo', 'Aprendiz.sistemas1@ospedale.com.co', 'ATdUawdkCzQNNg==', 4, 1, 1),
+(6, 14637232, 'Diego ', 'Fernando ', 'Grueso ', 'Sanchez', 'coor.callcenter@ospedale.com.co', 'WhFRKgQmAWgCPQA0WmUDMQ==', 3, 0, 1),
+(7, 1143853146, 'Victor', 'Hugo', 'Rincon', 'Renteria', 'Victor.rincon@ospedale.com.co', 'VAVRNgQ1XiZWNFMlXGMBMQ==', 3, 0, 1),
+(8, 1107526534, 'Daniel', 'Esteban', 'Vacca', 'Ocampo', 'controller@ospedale.com.co', 'URJUO1VpAWQDawNrDDsGPw==', 3, 0, 1),
+(9, 1143853146, 'Jonier ', '', 'Castro ', 'Rosero', 'Jonier.castro@ospedale.com', 'UW9WagBjATRQZAY2DTICMw==', 3, 0, 1),
+(10, 1151966756, 'Geraldine', '', 'Rodríguez', 'Restrepo', 'citasclinicaantioquiaysagrado@ospedale.com.co', 'B0EOVQMXCVZWFFQBDEsGbwBDBQtTEVoeBFEGNFwPU2QGQAEYA2wEPA==', 2, 4, 1),
+(11, 1144087258, 'Paola', 'Andrea', 'Montoya', '', 'citaslamerced@ospedale.com.co', 'AlUFagI/WztVOQs2CTECMFBh', 2, 3, 1),
+(12, 1107088690, 'Lindana', '', 'Ariza', 'Ramirez', 'citashospiloto@ospedale.com.co', 'VB8GYVBsAGgFaVA6DWJTYQg5', 2, 5, 1),
+(13, 1143972806, 'Nerly ', 'Katherin ', 'Mosquera', 'Cortes ', 'citas.nuestracali@ospedale.com.co', 'UhsFblJyDW0Gcgc6WmE=', 2, 5, 1),
+(14, 1107510274, 'Daniela', '', 'Bocanegra', 'Gonzalez', 'citasclinicaversalles@ospedale.com.co', 'UREEZVNiDGgHZVRiCTZSfA==', 2, 4, 1),
+(15, 1094900038, 'Evelyn', 'Johanna', 'Velasquez', '', 'citasnuestraibague@ospedale.com.co', 'WzlVLQA3DDFQbQM+WGI=', 2, 5, 1),
+(16, 1107067264, 'Lina', 'Marcela', 'Taborda', 'Ramirez', 'citas.laestancia@ospedale.com.co', 'Bk0AZwg0CGUHOlRkW2cHMA==', 2, 3, 1),
+(17, 1118282473, 'Diana', 'Cristina ', 'Lopez', 'Giraldo', 'clinicaosrosales@ospedale.com.co', 'VzNSLgkyDHMEOQUzDTNUYA==', 2, 3, 1),
+(18, 1144105225, 'Sarai', '', 'Hernández', 'Mosquera', 'citasccq@ospedale.com.co', 'WghWCgkeCEEHUFYDC2JUYQFCUkxWMlMbUQdRVQlGWmkJSl1UAzsCTVEZAj0JFQ9v', 2, 3, 1);
 
 --
 -- Índices para tablas volcadas
@@ -491,6 +519,7 @@ ALTER TABLE `ir_novedad`
   ADD KEY `est_id_fk` (`est_id_fk`),
   ADD KEY `ir_novedad_ibfk_6` (`tip_est_id_fk`),
   ADD KEY `col_id_fk` (`col_id_fk`),
+  ADD KEY `tip_obser_id_fk` (`tip_obser_id_fk`),
   ADD KEY `cate_id_fk` (`cate_id_fk`);
 
 --
@@ -522,6 +551,12 @@ ALTER TABLE `ir_tipo_incidencia`
   ADD KEY `cate_id_fk` (`cate_id_fk`);
 
 --
+-- Indices de la tabla `ir_tipo_observacion`
+--
+ALTER TABLE `ir_tipo_observacion`
+  ADD PRIMARY KEY (`tip_obser_id`);
+
+--
 -- Indices de la tabla `ir_usuario`
 --
 ALTER TABLE `ir_usuario`
@@ -550,7 +585,7 @@ ALTER TABLE `ir_categoria`
 -- AUTO_INCREMENT de la tabla `ir_colaborador`
 --
 ALTER TABLE `ir_colaborador`
-  MODIFY `col_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `col_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_estado`
@@ -562,7 +597,7 @@ ALTER TABLE `ir_estado`
 -- AUTO_INCREMENT de la tabla `ir_jefe`
 --
 ALTER TABLE `ir_jefe`
-  MODIFY `jefe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `jefe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_novedad`
@@ -580,7 +615,7 @@ ALTER TABLE `ir_rol`
 -- AUTO_INCREMENT de la tabla `ir_seccion`
 --
 ALTER TABLE `ir_seccion`
-  MODIFY `seccion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `seccion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_tipo_estado`
@@ -592,13 +627,19 @@ ALTER TABLE `ir_tipo_estado`
 -- AUTO_INCREMENT de la tabla `ir_tipo_incidencia`
 --
 ALTER TABLE `ir_tipo_incidencia`
-  MODIFY `tip_inci_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `tip_inci_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT de la tabla `ir_tipo_observacion`
+--
+ALTER TABLE `ir_tipo_observacion`
+  MODIFY `tip_obser_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `ir_usuario`
 --
 ALTER TABLE `ir_usuario`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Restricciones para tablas volcadas
@@ -607,57 +648,3 @@ ALTER TABLE `ir_usuario`
 --
 -- Filtros para la tabla `ir_area`
 --
-ALTER TABLE `ir_area`
-  ADD CONSTRAINT `ir_area_ibfk_1` FOREIGN KEY (`tip_est_id_fk`) REFERENCES `ir_tipo_estado` (`tip_est_id`);
-
---
--- Filtros para la tabla `ir_colaborador`
---
-ALTER TABLE `ir_colaborador`
-  ADD CONSTRAINT `ir_colaborador_ibfk_1` FOREIGN KEY (`tip_est_id_fk`) REFERENCES `ir_tipo_estado` (`tip_est_id`),
-  ADD CONSTRAINT `ir_colaborador_ibfk_2` FOREIGN KEY (`id_area_fk`) REFERENCES `ir_area` (`area_id`);
-
---
--- Filtros para la tabla `ir_jefe`
---
-ALTER TABLE `ir_jefe`
-  ADD CONSTRAINT `ir_jefe_ibfk_1` FOREIGN KEY (`tip_est_id_fk`) REFERENCES `ir_tipo_estado` (`tip_est_id`);
-
---
--- Filtros para la tabla `ir_novedad`
---
-ALTER TABLE `ir_novedad`
-  ADD CONSTRAINT `ir_novedad_ibfk_10` FOREIGN KEY (`seccion_id_fk`) REFERENCES `ir_seccion` (`seccion_id`),
-  ADD CONSTRAINT `ir_novedad_ibfk_3` FOREIGN KEY (`usu_id_fk`) REFERENCES `ir_usuario` (`usu_id`),
-  ADD CONSTRAINT `ir_novedad_ibfk_5` FOREIGN KEY (`est_id_fk`) REFERENCES `ir_estado` (`est_id`),
-  ADD CONSTRAINT `ir_novedad_ibfk_6` FOREIGN KEY (`tip_est_id_fk`) REFERENCES `ir_tipo_estado` (`tip_est_id`),
-  ADD CONSTRAINT `ir_novedad_ibfk_7` FOREIGN KEY (`col_id_fk`) REFERENCES `ir_colaborador` (`col_id`),
-  ADD CONSTRAINT `ir_novedad_ibfk_8` FOREIGN KEY (`tip_inci_id_fk`) REFERENCES `ir_tipo_incidencia` (`tip_inci_id`),
-  ADD CONSTRAINT `ir_novedad_ibfk_9` FOREIGN KEY (`cate_id_fk`) REFERENCES `ir_categoria` (`cate_id`);
-
---
--- Filtros para la tabla `ir_seccion`
---
-ALTER TABLE `ir_seccion`
-  ADD CONSTRAINT `ir_seccion_ibfk_1` FOREIGN KEY (`area_id_fk`) REFERENCES `ir_area` (`area_id`),
-  ADD CONSTRAINT `ir_seccion_ibfk_2` FOREIGN KEY (`tip_est_id_fk`) REFERENCES `ir_tipo_estado` (`tip_est_id`);
-
---
--- Filtros para la tabla `ir_tipo_incidencia`
---
-ALTER TABLE `ir_tipo_incidencia`
-  ADD CONSTRAINT `ir_tipo_incidencia_ibfk_1` FOREIGN KEY (`tip_est_id_fk`) REFERENCES `ir_tipo_estado` (`tip_est_id`),
-  ADD CONSTRAINT `ir_tipo_incidencia_ibfk_2` FOREIGN KEY (`cate_id_fk`) REFERENCES `ir_categoria` (`cate_id`);
-
---
--- Filtros para la tabla `ir_usuario`
---
-ALTER TABLE `ir_usuario`
-  ADD CONSTRAINT `ir_usuario_ibfk_1` FOREIGN KEY (`rol_id_fk`) REFERENCES `ir_rol` (`rol_id`),
-  ADD CONSTRAINT `ir_usuario_ibfk_2` FOREIGN KEY (`tip_est_id_fk`) REFERENCES `ir_tipo_estado` (`tip_est_id`),
-  ADD CONSTRAINT `ir_usuario_ibfk_3` FOREIGN KEY (`jefe_id_fk`) REFERENCES `ir_jefe` (`jefe_id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

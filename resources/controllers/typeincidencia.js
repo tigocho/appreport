@@ -59,7 +59,7 @@ if (var_tip_inci_nom=="") {
 } 
     
 if(var_cate_id_fk==0){
-    swal("Opps!","Por favor selecionar la categoria a la que pertenece el tipo de incidencia","warning"); 
+    swal("Opps!","Por favor seleccionar la categoria a la que pertenece el tipo de incidencia","warning"); 
     return false;   
 } 
     

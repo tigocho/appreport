@@ -30,14 +30,15 @@ $(document).ready( function () {
         },
         'columns': [
             { data: "nove_fecha" },
-            { data: "col_login_num" },
-            { data: "col_nom" },
+            { data: null,render: function ( data, type, row ) { return '<b>'+row.col_login_num + '</b> - ' + row.col_nom;}},
             { data: "seccion_nom" },
             { data: "nove_hora_ini" },
             { data: "nove_hora_fin" },
             { data: "nove_tiem_total" },
             { data: null,render: function ( data, type, row ) { return '<b>'+row.cate_nom + '</b> - ' + row.tip_inci_nom;}},
             { data: "est_des"},
+            { data: "tip_obser_nom"},
+            { data: "nove_obser_descripcion"},
             { "ordertable": true,render: function ( data, type, row ) {
                 if (rol != 2){
                 return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>Editar</button></a> "+
@@ -84,14 +85,15 @@ $(document).ready( function () {
         },
         'columns': [
             { data: "nove_fecha" },
-            { data: "col_login_num" },
-            { data: "col_nom" },
+            { data: null,render: function ( data, type, row ) { return '<b>'+row.col_login_num + '</b> - ' + row.col_nom;}},
             { data: "seccion_nom" },
             { data: "nove_hora_ini" },
             { data: "nove_hora_fin" },
             { data: "nove_tiem_total" },
             { data: null,render: function ( data, type, row ) { return '<b>'+row.cate_nom + '</b> - ' + row.tip_inci_nom;}},
             { data: "est_des"},
+            { data: "tip_obser_nom"},
+            { data: "nove_obser_descripcion"},
             { "ordertable": true,render: function ( data, type, row ) { 
                 if (rol != 2){
                 return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>Editar</button></a> "+
@@ -111,33 +113,40 @@ function create_novelty(){
     var var_nove_fecha = document.getElementById("nove_fecha").value;
     var var_nove_hora_ini = document.getElementById("nove_hora_ini").value;
     var var_nove_hora_fin = document.getElementById("nove_hora_fin").value;
+    var var_nove_obser_descripcion = document.getElementById("nove_obser_descripcion").value;
     var var_col_id_fk = document.getElementById("col_id_fk").value;
     var var_seccion_id_fk = document.getElementById("seccion_id_fk").value;
     var var_nove_tiem_total = document.getElementById("nove_tiem_total").value;
     var var_tip_inci_id_fk = document.getElementById("tip_inci_id_fk").value;
     var var_cate_id_fk = document.getElementById("categoria").value;
     var var_usu_id_fk = document.getElementById("usu_id").value;
+    var var_tip_obser_id_fk = document.getElementById("tip_obser_id_fk").value;
     console.log("rutapost",baseURL+'Novelty/createNovelty');
-    if (var_nove_tiem_total == "0NaN:0NaN"){
+    if (var_nove_tiem_total == "0NaN:0NaN" || var_nove_tiem_total == ""){
         var_est_id_fk = 1;
     }else{
         var_est_id_fk = 2;
     }
 
     if (var_col_id_fk==0) {
-        swal("Opps!","por favor selecionar el colaborador","warning");
+        swal("Opps!","por favor seleccionar el colaborador","warning");
         return false;
     } 
     if (var_seccion_id_fk==0) {
-        swal("Opps!","por favor selecionar la seccion","warning");
+        swal("Opps!","por favor seleccionar la seccion","warning");
         return false;
     } 
     if (var_tip_inci_id_fk==0) {
-        swal("Opps!","por favor selecionar el tipo de incidencia","warning");
+        swal("Opps!","por favor seleccionar el tipo de incidencia","warning");
         return false;
     } 
     if (var_nove_hora_ini=="") {
         swal("Opps!","por favor diligencie la hora de inicio","warning");
+        return false;
+    } 
+
+    if (var_tip_obser_id_fk==0) {
+        swal("Opps!","por favor seleccionar la observacion","warning");
         return false;
     } 
 
@@ -146,12 +155,14 @@ function create_novelty(){
     nove_hora_ini : var_nove_hora_ini,
     nove_hora_fin : var_nove_hora_fin,
     nove_tiem_total : var_nove_tiem_total,
+    nove_obser_descripcion : var_nove_obser_descripcion,
     cate_id_fk : var_cate_id_fk,
     tip_inci_id_fk : var_tip_inci_id_fk,
     seccion_id_fk  : var_seccion_id_fk,
     col_id_fk : var_col_id_fk,
     usu_id_fk : var_usu_id_fk,
     est_id_fk : var_est_id_fk,
+    tip_obser_id_fk : var_tip_obser_id_fk,
     tip_est_id_fk : 1,  
     }
     console.info(dataPostV);
@@ -291,11 +302,13 @@ var var_nove_id= document.getElementById("nove_id").value;
 var var_nove_fecha = document.getElementById("nove_fecha").value;
 var var_nove_hora_ini = document.getElementById("nove_hora_ini").value;
 var var_nove_hora_fin = document.getElementById("nove_hora_fin").value;
+var var_nove_obser_descripcion = document.getElementById("nove_obser_descripcion").value;
 var var_col_id_fk = document.getElementById("col_id_fk").value;
 var var_seccion_id_fk = document.getElementById("seccion_id_fk").value;
 var var_nove_tiem_total = document.getElementById("nove_tiem_total").value;
 var var_cate_id_fk = document.getElementById("categoria").value;
 var var_tip_inci_id_fk = document.getElementById("tip_inci_id_fk").value;
+var var_tip_obser_id_fk = document.getElementById("tip_obser_id_fk").value;
 console.log("rutapost",baseURL+'Novelty/editNovelty');
 
     if (var_nove_tiem_total === "00:00:00" || var_nove_tiem_total === "0NaN:0NaN"){
@@ -310,10 +323,12 @@ console.log("rutapost",baseURL+'Novelty/editNovelty');
         nove_hora_ini : var_nove_hora_ini,
         nove_hora_fin : var_nove_hora_fin,
         nove_tiem_total : var_nove_tiem_total,
+        nove_obser_descripcion : var_nove_obser_descripcion,
         cate_id_fk : var_cate_id_fk,
         tip_inci_id_fk : var_tip_inci_id_fk,
         seccion_id_fk  : var_seccion_id_fk,
         col_id_fk : var_col_id_fk,
+        tip_obser_id_fk : var_tip_obser_id_fk,
         est_id_fk  : var_est_id_fk,
         
     }

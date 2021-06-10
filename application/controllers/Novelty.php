@@ -59,6 +59,7 @@
             $data['seccion'] = $this->novelty_model->get_seccion();
             $data['colaborador'] = $this->novelty_model->get_collaborator();
             $data['categoria'] = $this->novelty_model->get_category();
+            $data['observacion'] = $this->novelty_model->getobservacion();
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');
@@ -102,6 +103,7 @@
             $data['colaborador'] = $this->novelty_model->get_collaborator();
             $data['categoria'] = $this->novelty_model->get_category();
             $data['novedad'] = $this->novelty_model->get_edit_novelty($nove_id);
+            $data['observacion'] = $this->novelty_model->getobservacion();
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');

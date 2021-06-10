@@ -4,7 +4,7 @@
         <form id="novedad"  >
         <?php foreach ($novedad as $novelty): ?>
             <div class="form-row">
-            <input type="hidden" value="<?php echo $novelty['nove_id']; ?>" id="nove_id" >
+                <input type="hidden" value="<?php echo $novelty['nove_id']; ?>" id="nove_id" >
                 <div class="col-md-6 mb-3">
                     <label>Fecha de novedad</label>
                     <input type="date" value="<?php echo $novelty['nove_fecha']; ?>" id="nove_fecha" class="form-control"  >
@@ -74,10 +74,23 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="col-md-6 mb-3">
+                        <label>Observacion</label>
+                        <select class="form-control"  id="tip_obser_id_fk" >
+                        <option  value="<?php echo $novelty['tip_obser_id_fk']; ?>"><?php echo $novelty['tip_obser_nom']; ?></option>
+                            <?php foreach ($observacion as $obser): ?>
+                            <option value="<?php echo $obser['tip_obser_id']; ?>"><?php echo $obser['tip_obser_nom']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                 </div>
-        
+                <div class="col-md-9 mb-3">
+                </div>
+                <div class="col-md-9 mb-3">
+                <label>Descripcion</label>
+                    <textarea id="nove_obser_descripcion" class="form-control form-control-lg" style="resize: none;"  id=""><?php echo $novelty['nove_obser_descripcion']; ?></textarea>
+                </div>
+                
+            </div>
             <div class="form-group">
                 <button class="btn btn-primary" id="boton" onclick="edit_novelty();" type="submit">Editar novedad </button>
             </div>
