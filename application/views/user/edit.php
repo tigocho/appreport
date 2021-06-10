@@ -38,9 +38,9 @@
                 <div class="col-md-6 mb-3">
                 <label for="validationDefault04">Rol usuario</label>
                     <select class="form-control" id="rol_id_fk_e" >
-                        <option selected disabled value="<?php echo $user['rol_id_fk']; ?>"><?php echo $user['rol_des']; ?></option>
+                        <option>seleccione...</option>
                         <?php foreach ($rol as $role): ?>
-                        <option value="<?php echo $role['rol_id']; ?>"><?php echo $role['rol_des']; ?></option>
+                        <option value="<?php echo $role['rol_id']; ?>" <?php if( $user['rol_id_fk'] == $role['rol_id'])echo "selected";?> ><?php echo $role['rol_des']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>

@@ -67,7 +67,7 @@
                         <?php endforeach; ?>
                     </select>
                     <select class="form-control"  id="tip_inci_id_fk" >
-                        <option value="0" >tipo incidencia</option>
+                        <option value="0">tipo incidencia</option>
                         <option value="0">seleccione...</option>
                     </select>
                 </div>
@@ -84,7 +84,7 @@
             
                 <div class="col-md-6 mb-3">
                 <label>Descripcion</label>
-                    <textarea id="nove_obser_descripcion" class="form-control form-control-lg" style="resize:none;"  id=""></textarea>
+                    <textarea id="nove_obser_descripcion" class="form-control" style="resize:none;"  id=""></textarea>
                 </div>
             </div>
             <div class="form-group form-row"> 

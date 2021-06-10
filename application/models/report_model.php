@@ -21,7 +21,7 @@
                     AND n.tip_obser_id_fk = tb.tip_obser_id 
                     AND n.tip_est_id_fk = 1
                     AND n.nove_fecha >= '$inicio'
-                    AND n.nove_fecha <  '$fin'";      
+                    AND n.nove_fecha <= '$fin'";      
                     $query = $this->db->query($sql);
                     return $query->result();
  

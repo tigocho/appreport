@@ -152,7 +152,7 @@
             AND n.est_id_fk=e.est_id 
             AND n.nove_id = $nove_id";
             $query = $this->db->query($sql);
-            return $query->result_array();
+            return $query->row();
 
             } 
 

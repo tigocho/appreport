@@ -190,11 +190,13 @@ function create_novelty(){
 }
 // fin de insertar datos de agente
 
-// filtro para los select
+// logica de el tipo de incidencia
+
 $('#categoria').change(function() {
+    console.log($(this));
     $("#tip_inci_id_fk").html(
-        "<option >tipo incidencia</option>"+
-        "<option >selecione...</option>"
+        "<option value='0' >tipo incidencia</option>"+
+        "<option value='0' >selecione...</option>"
     );
     var_cate_id = $(this).val();
     $.post(baseURL+"Novelty/gettypeincident",
@@ -213,6 +215,8 @@ $('#categoria').change(function() {
     });
 
 });
+
+// filtro para los select
 
 $("#colaborador").on("keyup",function(){
     $('#col_id_fk option').each(function(){
