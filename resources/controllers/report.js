@@ -58,14 +58,15 @@ $( "#botonf" ).click(function() {
 
             'columns': [
                 { data: "nove_fecha" },
-                { data: "col_login_num" },
-                { data: "col_nom" },
+                { data: null,render: function ( data, type, row ) { return '<b>'+row.col_login_num + '</b> - ' + row.col_nom;}},
                 { data: "seccion_nom" },
                 { data: "nove_hora_ini" },
                 { data: "nove_hora_fin" },
                 { data: "nove_tiem_total" },
                 { data: null,render: function ( data, type, row ) { return '<b>'+row.cate_nom + '</b> - ' + row.tip_inci_nom;}},
-                { data: "est_des"}
+                { data: "est_des"},
+                { data: "tip_obser_nom"},
+                { data: "nove_obser_descripcion"},
             ]
 
     });

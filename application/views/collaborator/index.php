@@ -46,7 +46,7 @@
                     <div class="col-md-6 mb-3">
                         <label>Area</label>
                         <select class="form-control"  id="area_id_fk" >
-                            <option value="0">selecione...</option>
+                            <option value="0">seleccione...</option>
                             <?php foreach ($area as $areas): ?>
                             <option value="<?php echo $areas['area_id']; ?>"><?php echo $areas['area_nom']; ?></option>
                             <?php endforeach; ?>
@@ -94,7 +94,7 @@
                     <div class="col-md-6 mb-3">
                         <label>Area</label>
                         <select class="form-control"  id="area_id_fk_e" >
-                            <option value="" >selecione...</option>
+                            <option value="" >seleccione...</option>
                             <?php foreach ($area as $areas): ?>
                             <option value="<?php echo $areas['area_id']; ?>"><?php echo $areas['area_nom']; ?></option>
                             <?php endforeach; ?>

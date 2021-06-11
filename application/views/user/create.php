@@ -33,7 +33,7 @@
                 <div class="col-md-6 mb-3">
                 <label for="validationDefault04">Rol usuario</label>
                     <select class="form-control" id="rol_id_fk" >
-                        <option selected disabled value="">selecione...</option>
+                        <option selected disabled value="">seleccione...</option>
                         <?php foreach ($rol as $role): ?>
                         <option value="<?php echo $role['rol_id']; ?>"><?php echo $role['rol_des']; ?></option>
                         <?php endforeach; ?>
@@ -42,7 +42,7 @@
                 <div style="display:none" class="col-md-6 mb-3" id="jefenom" >
                  <label>jefe nombre</label>
                     <select class='form-control' id='jefe_id_fk'>
-                        <option selected disabled>selecione...</option>
+                        <option selected disabled>seleccione...</option>
                     </select>
                 </div>
                 <div style="display:none" class="col-md-6 mb-3" id="jefecorreo" >
