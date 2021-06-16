@@ -40,7 +40,7 @@ class Login extends CI_controller
         }
         else
         {
-            $this->session->set_flashdata('mensaje', 'numero de documento o contraseña incorrecto');
+            $this->session->set_flashdata('mensaje', 'Número de documento o contraseña incorrecto');
             redirect('login');
         }
     }
@@ -89,14 +89,14 @@ class Login extends CI_controller
                     $mail->Body = $mailContent;  
                     
                     if ($mail->send()) {
-                        $this->session->set_flashdata('mensaje', 'La contraseña fue enviada a su correo');
+                        $this->session->set_flashdata('correo', 'La contraseña fue enviada a su correo');
                         redirect('login');
                     }
 
                    
 
             }else{
-			$data['error']="Correo invalido!";
+			$data['error']="Correo incorrecto!";
 			}
 		
 	    }

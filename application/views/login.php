@@ -53,6 +53,23 @@
                     <div class="col-md-6 position-relative">
                         <div class="sign-in-from">
                             <h1 class="mb-0">Iniciar sesión</h1>
+                            <?php if ($this->session->flashdata('mensaje')) { ?>
+                            <div class="alert text-white bg-danger" role="alert">
+                              <div class="iq-alert-text"><?php $mensaje = $this->session->flashdata('mensaje'); echo $mensaje;?></div>
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <i class="ri-close-line"></i>
+                              </button>
+                           </div>
+                            <?php } ?>
+                            
+                            <?php if ($this->session->flashdata('correo')) { ?>
+                            <div class="alert text-white bg-success" role="alert">
+                              <div class="iq-alert-text"><?php $correo = $this->session->flashdata('correo'); echo $correo;?></div>
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <i class="ri-close-line"></i>
+                              </button>
+                           </div>
+                            <?php } ?>
                             <?php echo form_open('login'); ?>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Número de documento</label>
@@ -63,10 +80,7 @@
                                     <a href="<?php echo base_url();?>login/forgot_pass" class="float-right">¿Olvidaste tu contraseña?</a>
                                     <input type="password" name="usu_contra" class="form-control mb-0" >
                                 </div>
-                                <?php
-                                    $mensaje = $this->session->flashdata('mensaje');
-                                    echo $mensaje;
-                                ?>
+                               
                                 <div class="d-inline-block w-100">
                                  <input type="submit" value="Ingresar"  class="btn btn-primary float-right" name="submit" />
                                 </div>
