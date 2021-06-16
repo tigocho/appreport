@@ -44,7 +44,7 @@
                     <div class="col-md-6 position-relative">
                         <div class="sign-in-from">
                         <h1 class="mb-0">Recuperar contraseña</h1>
-								<p>Recuerda utilizar el correo con el que encuentra registrado.</p>
+								<p>Recuerda Utilizar el correo con el se encuentra registrado.</p>
 								<b><?php echo @$error;?></b>
 								<form class="mt-4" method="post" action=''>
 
