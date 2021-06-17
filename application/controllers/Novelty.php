@@ -185,7 +185,7 @@
                 $mailContent =  '<b>Cordial Saludo: '.ucwords($resp->jefe_nom)." ".ucwords($resp->jefe_ape).'</b>           
                 
                     <p>Para informarte que el integrante '.ucwords($resp->usu_nom).' de tu equipo de trabajo presento un incidente;
-                    Puedes ingresar para revisar su reporte a traves del siguiente link <a href="'."http://181.129.171.26:9898/appreport/".''.''.'">  Appreport.</a></p>
+                    Puedes ingresar para revisar su reporte a traves del siguiente link <a href="'.base_url().'">  Appreport.</a></p>
                     
                     <p>Gracias</p>
 
@@ -200,12 +200,7 @@
                     return false;
                 endif;
             }
-        }
-
-
-   
-
-            
-         
+        }  
     }
+
 ?>
