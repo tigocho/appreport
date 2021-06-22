@@ -203,67 +203,6 @@
         }
 
 
-        public function prueba_correo(){
-
-            $this->notifications();
-
-         }
-
-
-        public function notifications(){
-            $resp=$this->db->query("SELECT u.usu_nom,u.usu_ape,u.usu_correo,j.jefe_nom,j.jefe_ape,j.jefe_correo,n.nove_id FROM ir_usuario u INNER JOIN ir_jefe j ON u.jefe_id_fk=j.jefe_id INNER JOIN ir_novedad n ON n.usu_id_fk = u.usu_id WHERE n.est_id_fk = 1")->result();
-
-            $this->load->library('phpmailer_lib');
-            $mail = $this->phpmailer_lib->load();
-
-            
-    
-            $mail->isSMTP();
-            $mail->SMTPDebug = 0;
-            $mail->Host = 'email-smtp.us-east-1.amazonaws.com';
-            $mail->Port = 587;
-            $mail->SMTPSecure = 'tls';
-            $mail->SMTPAuth   = true;
-            $mail->Username = 'AKIAVRBYRDHYGRZ6RFNY';
-            $mail->Password = 'BEfVfi8Lj/RlW+1cz7M5FDO4qaoG9zULfcDU1wd4HWSu';
-            $mail->SetFrom('notificaciones@ospedale.com.co', 'Appreport G-Ocho');
-            $mail->CharSet  = 'UTF-8';
-
-            // inicio foreach
-            foreach ($resp as $data){
-
-                
-            $mail->addAddress("aprendiz.sistemas3@ospedale.com.co");
-            // $mail->addAddress("cristhian.castro@ospedale.com.co");     
-    
-            $mail->Subject = 'Hola '.ucwords($data->usu_nom).'  - Appreport';
-            $mail->isHTML(true);
-            
-            $mailContent =  '<b>Cordial Saludo: '.ucwords($data->usu_nom)." ".ucwords($data->usu_ape).'</b>           
-            
-                <p>Para informarte que aun tienes novedades abiertas  
-                Puedes ingresar para cerrar las novedades a traves del siguiente link <a href="'.base_url()."/Novelty/edit/".$data->nove_id.'">  Appreport.</a></p>
-                
-                <p>Gracias</p>
-
-            
-                **********************Mensaje Generado Automáticamente**********************
-                <p>Este correo es únicamente informativo y es de uso exclusivo del destinatario(a), puede contener información privilegiada y/o confidencial. Si no es usted el destinatario(a) deberá borrarlo inmediatamente. Queda notificado que el mal uso, divulgación no autorizada, alteración y/o  modificación malintencionada sobre este mensaje y sus anexos quedan estrictamente prohibidos y pueden ser legalmente sancionados. - Appreport-G-OCHO no asume ninguna responsabilidad por estas circunstancias </p>';
-            $mail->Body = $mailContent;
-            
-            echo "hola";
-
-            // $mail->send();
-
-            }
-             // inicio foreach
-
-            // if($mail->send()):
-            // return true;
-            // else:        
-            //     return false;
-            // endif;
-        }    
          
     }
 
