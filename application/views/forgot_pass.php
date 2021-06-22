@@ -44,8 +44,15 @@
                     <div class="col-md-6 position-relative">
                         <div class="sign-in-from">
                         <h1 class="mb-0">Recuperar contraseña</h1>
-								<p>Recuerda utilizar el correo con el que encuentra registrado.</p>
-								<b><?php echo @$error;?></b>
+								<p>Recuerda Utilizar el correo con el se encuentra registrado.</p>
+                                <?php if (@$error) { ?>
+                                    <div class="alert text-white bg-danger" role="alert">
+                                        <div class="iq-alert-text"><?php echo @$error;?></div>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <i class="ri-close-line"></i>
+                                        </button>
+                                    </div>
+                                <?php } ?>
 								<form class="mt-4" method="post" action=''>
 
 									<div class="form-group">

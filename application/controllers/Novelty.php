@@ -149,7 +149,7 @@
 
          }
 
-
+        
          public function sendEmail($id){
             $resp=$this->db->query("SELECT u.usu_nom, j.jefe_nom,j.jefe_ape,j.jefe_correo from ir_usuario u, ir_jefe j WHERE u.jefe_id_fk = j.jefe_id AND j.tip_est_id_fk =1 AND u.usu_id = $id")->row();
            
@@ -185,7 +185,7 @@
                 $mailContent =  '<b>Cordial Saludo: '.ucwords($resp->jefe_nom)." ".ucwords($resp->jefe_ape).'</b>           
                 
                     <p>Para informarte que el integrante '.ucwords($resp->usu_nom).' de tu equipo de trabajo presento un incidente;
-                    Puedes ingresar para revisar su reporte a traves del siguiente link <a href="'."http://181.129.171.26:9898/appreport/".''.''.'">  Appreport.</a></p>
+                    Puedes ingresar para revisar su reporte a traves del siguiente link <a href="'.base_url().'">  Appreport.</a></p>
                     
                     <p>Gracias</p>
 
@@ -203,9 +203,8 @@
         }
 
 
-   
-
-            
          
     }
+
+
 ?>
