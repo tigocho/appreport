@@ -148,7 +148,9 @@ function create_novelty(){
     if (var_tip_obser_id_fk==0) {
         swal("Opps!","por favor seleccionar la observacion","warning");
         return false;
-    } 
+    }
+
+    document.getElementById('boton').disabled=true;
 
     dataPostV = {
     nove_fecha : var_nove_fecha,
@@ -176,6 +178,7 @@ function create_novelty(){
         success: function(resp) {
             console.log("resp:",resp["mensaje"]);
             swal("exitoso!", resp["mensaje"], "success",6000);
+            document.getElementById('boton').disabled=false;
             if( var_est_id_fk =="1"){
             location.href = baseURL+"Novelty/abiertas";
             }else{
@@ -184,6 +187,7 @@ function create_novelty(){
         },error: function(error) {
             error;
             swal("Opps!","error al enviar la informacion","warning",6000);
+            document.getElementById('boton').disabled=false;
         }
     });
  
@@ -320,6 +324,7 @@ console.log("rutapost",baseURL+'Novelty/editNovelty');
     }else{
         var_est_id_fk = 2;
     }
+    document.getElementById('boton').disabled=true;
 
     dataPostV = {
         nove_id : var_nove_id,
@@ -345,6 +350,7 @@ console.log("rutapost",baseURL+'Novelty/editNovelty');
         success: function(resp) {
             console.log("resp:",resp["mensaje"]);
             swal("exitoso!", resp["mensaje"], "success",6000);
+            document.getElementById('boton').disabled=false;
             if( var_est_id_fk =="1"){
                 location.href = baseURL+"Novelty/abiertas";
             }else{
@@ -353,6 +359,7 @@ console.log("rutapost",baseURL+'Novelty/editNovelty');
         },error: function(error) {
             error;
             swal("Opps!","error al enviar la informacion","warning",6000);
+            document.getElementById('boton').disabled=false;
         }
     });
 
