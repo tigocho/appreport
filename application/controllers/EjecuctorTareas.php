@@ -1,40 +1,37 @@
 <?php
     class ejecuctorTareas extends CI_Controller {
 
+        // conexion base de datos 
         public function __construct()
         {
             parent::__construct();
             $this->load->database();
         }
-        public function notificaciones_correo(){
+
+        // funcion que valida el dia y la hora para enviar el correo indicando las novedades abiertas
+        public function notificaciones_correo()
+        {
             $Nsemana = date("N");
             $hora = date("H:i");
-
            if ($Nsemana <=5 ) {
                if ($hora == "16:00") {
-
-                   $this->notifications();
-
+                $this->notifications();
                }
            }
            if ($Nsemana == 6 ) {
                if ($hora == "11:00") {
-
-                   $this->notifications();
-
+                $this->notifications();
                }
            }
            
         }
 
-       public function notifications(){
+        //funcion que envia la notificacion al correo si hay una novedad abierta al fin del dia laboral
+        public function notifications()
+        {
            $resp=$this->db->query("SELECT u.usu_nom,u.usu_ape,u.usu_correo,j.jefe_nom,j.jefe_ape,j.jefe_correo,n.nove_id FROM ir_novedad n INNER JOIN ir_usuario u ON n.usu_id_fk = u.usu_id INNER JOIN ir_jefe j ON u.jefe_id_fk=j.jefe_id WHERE n.est_id_fk = 1")->result();
-
            $this->load->library('phpmailer_lib');
            $mail = $this->phpmailer_lib->load();
-
-           
-   
            $mail->isSMTP();
            $mail->SMTPDebug = 0;
            $mail->Host = 'email-smtp.us-east-1.amazonaws.com';
@@ -68,7 +65,7 @@
 
            }
            
-       }    
+        }    
 
 
 

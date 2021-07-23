@@ -1,6 +1,7 @@
-// jquery que trae la infomacion de todos los reportes 
+// jquery que trae la infomacion de los reportes gestion de riesgo
 
-//funcion que muestra las novedades creadas de todo el aplicativo entre fecha inicio a fecha fin 
+
+// funcion que muestra las novedades gestion de riesgo creadas entre fecha inicio a fecha fin 
 $( "#botonf" ).click(function() {
     var inicio = $("#dateini").val();
     var fin = $("#datefin").val();
@@ -52,7 +53,7 @@ $( "#botonf" ).click(function() {
 
         "ajax":{
 
-                "url": baseURL+"Report/getnovelty/"+inicio+"/"+fin,
+                "url": baseURL+"Report/getnoveltyGR/"+inicio+"/"+fin,
                 "type":"POST",
                 dataSrc: ""
             },columnDefs: [
@@ -70,10 +71,9 @@ $( "#botonf" ).click(function() {
                 { data: "est_des"},
                 { data: "tip_obser_nom"},
                 { data: "nove_obser_descripcion"},
-            ],
+            ]
 
     });
-
     function convertirEntero(duracion){
         duracion_completo = duracion.split(":");
         console.log(duracion_completo);

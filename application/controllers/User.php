@@ -1,7 +1,7 @@
 <?php
     class User extends CI_Controller {
 
-        //    inicio conexion del controlador a el modal y url helpers
+        // conexion del controlador a el model y helpers
         public function __construct()
         {
             parent::__construct();
@@ -12,10 +12,8 @@
                 redirect(base_url());
             }
         }
-         //    fin conexion del controlador a el modal
-
-
-        // inicio vista de usuario
+        
+        // funcion que muestra en la vista la tabla y su contenido del modulo de usuarios 
         public function index()
         {
             $data['title'] = 'Usuarios';
@@ -26,13 +24,14 @@
             $this->load->view('templates/footer');
             
         }
-        // fin vista de usuario
-
+        
+        // funcion que obtiene la informacion para mostrarla en la tabla de los usuarios
         public function getuser()
         {
            echo json_encode($this->user_model->get_user());
         }
 
+        // funcion que muestra en la vista el formulario donde se crea un nuevo usuario
         public function create()
         {
             $data['title'] = 'Creacion de nuevo usuario';
@@ -45,7 +44,7 @@
             
         }
 
-
+        // funcion que envia a el model de user la informacion capturada por el formulario que crea un nuevo usuario
         public function createUser()
         {
             $retorno = ["estadoRetorno"=> true,
@@ -61,6 +60,7 @@
 
         }
 
+        // funcion que muestra en la vista el formulario donde se editar un usuario
         public function edit($usu_id)
         {
             $data['title'] = 'Edicion cuenta de usuario';
@@ -75,7 +75,7 @@
             
         }
 
-
+        // funcion que envia a el model de user la informacion capturada por el formulario que edita un usuario
         public function editUser()
          {
              $retorno = ["estadoRetorno"=> true,
@@ -93,46 +93,50 @@
 
          }
 
-         public function deleteUser()
-         {
-             $retorno = ["estadoRetorno"=> true,
-             "mensaje"=> "paila.",
-             "retorno"=> []];
-  
-             $data = $this->input->post();
-             $response = $this->user_model->eliminar_user($data);
-             if ($response){
-                 $retorno['mensaje'] = " Informacion de usuario eliminada correctamente!";
-                 echo json_encode($retorno);
-             }
-
-         }
-
-         public function getboss()
-         {
-            echo json_encode($this->user_model->get_boss());
-         }
- 
-         public function getbossC()
-         {
-             $id = $this->input->post('jefe_id');
-            echo json_encode($this->user_model->get_bossC($id));
-         }
-
-         public function existsNumDoc($num_doc)
+         // funcion que envia a el model de user el id de la novedad se nesecita "eliminar"
+        public function deleteUser()
         {
-           
-           $resultado = $this->user_model->existsnumDoc($num_doc);
+            $retorno = ["estadoRetorno"=> true,
+            "mensaje"=> "paila.",
+            "retorno"=> []];
 
-           if(empty($resultado)){
+            $data = $this->input->post();
+            $response = $this->user_model->eliminar_user($data);
+            if ($response){
+                $retorno['mensaje'] = " Informacion de usuario eliminada correctamente!";
+                echo json_encode($retorno);
+            }
+
+        }
+
+         // funcion que obtiene la informacion para mostrarla en el select de jefes
+        public function getboss()
+        {
+        echo json_encode($this->user_model->get_boss());
+        }
+        
+        // funcion que obtiene la informacion para mostrarla en el input text donde se visualiza el correo del jefe inmediato
+        public function getbossC()
+        {
+            $id = $this->input->post('jefe_id');
+        echo json_encode($this->user_model->get_bossC($id));
+        }
+
+        //funcion que permite verificar si el numero de documento ya se encuentra registrado
+        public function existsNumDoc($num_doc)
+        {
+            
+            $resultado = $this->user_model->existsnumDoc($num_doc);
+
+            if(empty($resultado)){
 
             echo json_encode(0);
 
-           }else{
+            }else{
 
             echo json_encode(1);
 
-           }
+            }
         }
 
 

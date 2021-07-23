@@ -40,7 +40,7 @@
         var baseURL= "<?php echo base_url();?>";
         var rol = "<?php echo $this->session->userdata('rol_id');?>";
     </script>
-    <script src='<?php echo base_url();?>resources/controllers/novelty.js' type='text/javascript' ></script>
+    <script src='<?php echo base_url();?>resources/controllers/novelty.js?v=<?php echo(rand()); ?>' type='text/javascript' ></script>
 </div>  
 
   

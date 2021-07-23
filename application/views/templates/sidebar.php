@@ -55,7 +55,14 @@
                 <?php }?>
                 <?php if ($this->session->userdata('rol_id')== 1 || $this->session->userdata('rol_id')== 3 ){?>
                 <li>
-                <a href="<?php echo base_url();?>report/index" class="iq-waves-effect"><i class="fa fa-download"></i><span>reportes</span></a>
+                    <a href="#reportes" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-download"></i><span>reportes</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                    <ul id="reportes" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                        <li><a href="<?php echo base_url();?>report/index" class="iq-waves-effect"><i class="fa fa-download"></i><span>Todos</span></a></li>
+                        <li><a href="<?php echo base_url();?>report/CallCenter" class="iq-waves-effect"><i class="fa fa-download"></i><span>Call center</span></a></li>
+                        <li><a href="<?php echo base_url();?>report/GestionRiesgo" class="iq-waves-effect"><i class="fa fa-download"></i><span>Gestion del Riesgo</span></a></li>
+                        <li><a href="<?php echo base_url();?>report/Referencias" class="iq-waves-effect"><i class="fa fa-download"></i><span>Ref/Contrareferencia</span></a></li>
+                        <li><a href="<?php echo base_url();?>report/Techologia" class="iq-waves-effect"><i class="fa fa-download"></i><span>Techologia</span></a></li>
+                    </ul>
                 </li>
                 <?php }?>
             </ul>

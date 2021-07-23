@@ -223,18 +223,42 @@ $('#categoria').change(function() {
 // filtro para los select
 
 $("#colaborador").on("keyup",function(){
+
+    console.log(colaborador);
     $('#col_id_fk option').each(function(){
-        if($(this).text().indexOf($("#colaborador").val()) == -1){
+
+        var busqueda  = $("#colaborador").val();
+        var busqueda = quitaacentos(busqueda);
+        var palabra = $(this).text();
+        var palabra = quitaacentos(palabra);
+        if(palabra.indexOf(busqueda) == -1){
                 $(this).prop("selected", false);
                 $(this).fadeOut();
             }else{
                 $(this).prop("selected", false);
             $(this).fadeIn();
-            }
+        }
     });
-    });
+});
 
-    $("#seccion").on("keyup",function(){
+
+function quitaacentos(s) {
+    var r=s.toLowerCase();
+                r = r.replace(new RegExp(/[àáâãäå]/g),"a");
+                r = r.replace(new RegExp(/[èéêë]/g),"e");
+                r = r.replace(new RegExp(/[ìíîï]/g),"i");
+                r = r.replace(new RegExp(/ñ/g),"n");                
+                r = r.replace(new RegExp(/[òóôõö]/g),"o");
+                r = r.replace(new RegExp(/[ùúûü]/g),"u");
+
+                console.log(r);
+                
+     return r;
+    }
+
+
+
+$("#seccion").on("keyup",function(){
     $('#seccion_id_fk option').each(function(){
         if($(this).text().indexOf($("#seccion").val()) == -1){
                 $(this).prop("selected", false);
@@ -244,7 +268,7 @@ $("#colaborador").on("keyup",function(){
             $(this).fadeIn();
             }
     });
-    });
+});
 
 
 

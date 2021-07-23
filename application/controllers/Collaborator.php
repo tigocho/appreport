@@ -1,7 +1,7 @@
 <?php
     class Collaborator extends CI_Controller {
 
-        //    inicio conexion del controlador a el modal y url helpers.
+        // conexion del controlador a el model y helpers
         public function __construct()
         {
             parent::__construct();
@@ -12,10 +12,8 @@
                 redirect(base_url());
             }
         }
-         //    fin conexion del controlador a el modal
-
-
-        // inicio vista a las novedades
+        
+        // funcion que muestra en la vista la tabla y su contenido del modulo de colaborador
         public function index()
         {
             $data['title'] = 'Colaboradores';
@@ -27,64 +25,62 @@
             $this->load->view('templates/footer');
             
         }
-        // fin vista a las novedades
-
+       
+        // funcion que obtiene la informacion para mostrarla en la tabla de colaborador
         public function getcollaborator()
         {
-             echo json_encode ($this->collaborator_model->getcollaborator());
+            echo json_encode ($this->collaborator_model->getcollaborator());
+        }
+
+        // funcion que envia a el model de collaborator la informacion capturada por el formulario que crea una nuevo colaborador
+        public function createCollaborator()
+        {
+            $retorno = ["estadoRetorno"=> true,
+            "mensaje"=> "paila.",
+            "retorno"=> []];
+
+            $data = $this->input->post();
+            $response = $this->collaborator_model->saveCollaborator($data);
+            if ($response){
+                $retorno['mensaje'] = "Informacion del colaborador guardada correctamente !";
+                echo json_encode($retorno);
+            }
+
+        }
+         
+        // funcion que envia a el model de collaborator la informacion capturada por el formulario que edita un colaborador
+        public function editCollaborator()
+        {
+            $retorno = ["estadoRetorno"=> true,
+            "mensaje"=> "paila.",
+            "retorno"=> []];
+
+            $data = $this->input->post();
+            $response = $this->collaborator_model->editarCollaborator($data);
+            
+
+            if ($response){
+                $retorno['mensaje'] = " Informacion del colaborador actualizada correctamente!";
+                echo json_encode($retorno);
+            }
 
         }
 
-        // inicio de inserccion de colaborador
-        public function createCollaborator()
-         {
-             $retorno = ["estadoRetorno"=> true,
-             "mensaje"=> "paila.",
-             "retorno"=> []];
-  
-             $data = $this->input->post();
-             $response = $this->collaborator_model->saveCollaborator($data);
-             if ($response){
-                 $retorno['mensaje'] = "Informacion del colaborador guardada correctamente !";
-                 echo json_encode($retorno);
-             }
+        // funcion que envia a el model de collaborator el id del colaborador se nesecita "eliminar"
+        public function deleteCollaborator()
+        {
+            $retorno = ["estadoRetorno"=> true,
+            "mensaje"=> "paila.",
+            "retorno"=> []];
 
-         }
-         // fin de inserccion de colaborador
+            $data = $this->input->post();
+            $response = $this->collaborator_model->eliminar_collaborator($data);
+            if ($response){
+                $retorno['mensaje'] = " Informacion del colaborador eliminada correctamente!";
+                echo json_encode($retorno);
+            }
 
-
-         public function editCollaborator()
-         {
-             $retorno = ["estadoRetorno"=> true,
-             "mensaje"=> "paila.",
-             "retorno"=> []];
-  
-             $data = $this->input->post();
-             $response = $this->collaborator_model->editarCollaborator($data);
-                
-
-             if ($response){
-                 $retorno['mensaje'] = " Informacion del colaborador actualizada correctamente!";
-                 echo json_encode($retorno);
-             }
-
-         }
-
-
-         public function deleteCollaborator()
-         {
-             $retorno = ["estadoRetorno"=> true,
-             "mensaje"=> "paila.",
-             "retorno"=> []];
-  
-             $data = $this->input->post();
-             $response = $this->collaborator_model->eliminar_collaborator($data);
-             if ($response){
-                 $retorno['mensaje'] = " Informacion del colaborador eliminada correctamente!";
-                 echo json_encode($retorno);
-             }
-
-         }
+        }
 
 
         
