@@ -21,7 +21,7 @@
       <link href='<?php echo base_url();?>resources/fullcalendar/timegrid/main.css' rel='stylesheet' />
       <link href='<?php echo base_url();?>resources/fullcalendar/list/main.css' rel='stylesheet' />
        <!-- datatables -->
-       <link rel="stylesheet" href="<?php echo site_url();?>resources/lib/datatables/jquery.dataTables.min.css">
+      <link rel="stylesheet" href="<?php echo site_url();?>resources/lib/datatables/jquery.dataTables.min.css">
       <link rel="stylesheet" href="<?php echo site_url();?>resources/lib/datatables/buttons.dataTables.min.css">
       <link rel="stylesheet" href="<?php echo base_url();?>resources/css/flatpickr.min.css">
       <!-- sweetalert CSS -->

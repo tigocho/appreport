@@ -92,3 +92,17 @@ $("#limpiar").click(function() {
     $("#datefin").val('');
 });
 
+
+$("#csv").click(function() {
+    $.ajax({
+        type: "POST",
+        url: baseURL+'Report/guardar_archivo',
+        dataType: 'json',
+        success: function(resp) {
+            swal("exitoso!", resp["mensaje"], "success",6000);
+        },error: function(error) {
+            error;
+            swal("Opps!","error al enviar la informacion","warning",6000);
+        }
+    });  
+});   

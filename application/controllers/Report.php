@@ -108,6 +108,62 @@
         {
            echo json_encode($this->report_model->get_noveltyti($inicio,$fin));
         }
+
+        public function guardar_archivo(){
+
+            $target_path = "resources/csv/";
+             $target_path = $target_path . basename( $_FILES["file"]["name"]);
+    
+            move_uploaded_file($_FILES["file"]["tmp_name"], $target_path);
+
+            
+            $fp = fopen ("$target_path","r");
+            $contador = 0;
+            while ($data = fgetcsv ($fp, 1000, ",")) {
+                $contador ++;
+
+
+                $inicio= date("Y-m-d H:i:s",$data[2]);
+                $fin= date("Y-m-d H:i:s",$data[3]);
+                
+                $datos=array(
+
+                    'nove_fecha'=>date("Y-m-d"),
+                    'col_nom'=>utf8_encode($data[0]),
+                    'seccion_nom'=>utf8_encode($data[1]),
+                    'nove_hora_ini'=>$inicio,
+                    'nove_hora_fin'=>$fin,
+                    'nove_tiempo_total'=>$data[4],
+                    'cate_nom'=>utf8_encode($data[5]),
+                    'tip_inci_nom'=>utf8_encode($data[6]),
+                    'est_des'=>utf8_encode($data[7]),
+                    'tip_obser_nom'=>utf8_encode($data[8]),
+                    'nove_obser_descripcion'=>utf8_encode($data[9]),
+                );
+
+                if ($contador>1) {
+                   $resp = $this->report_model->save_novelty($datos);
+                }
+                
+            }
+            fclose ($fp);
+
+            // if ($resp) {
+            //     $retorno['mensaje'] = "Informacion guardada correctamente";
+            //     echo json_encode($retorno);
+            // }else{
+            //     return false;
+            // }
+           
+        }
+
+
+
+
+
+
+
+
       
     }
 ?>

@@ -1,0 +1,9 @@
+Nombre del colaborador,seccion,Hora inicio,Hora fin,Tiempo total,Categoria,Tipo de incidencia,Estado novedad,Observacion,descripcion
+ CRISTIAN CAMILO DELGADO MARIN,CAMPAÑA PEREIRA,22/06/2021 11:09,22/06/2021 13:15,02:06:00,FALLA AGENTES,sin energía usuario,Cerrada,Ninguno,
+JOSE LUIS CHARRY,CAMPAÑA PEREIRA,22/06/2021 11:25,22/06/2021 14:30,03:05:00,FALLA CONECTIVIDAD CLINICA,fallas en el vpn - clinica,Cerrada,Ninguno,
+MARIA ALEJANDRA ARANDA SANCHEZ,CAMPAÑA CALI,24/06/2021 16:58,24/06/2021 17:39,00:41:00,DISPOSITIVOS DAÑADOS,mouse dañado,Cerrada,Cerrado Satisfactoriamente,
+MILLER RUBIO,GESTION DE RIESGO,24/06/2021 15:02,24/06/2021 17:19,02:17:00,FALLA EN QSE,Inconvenientes en la app QSE- no carga pacientes,Cerrada,Cerrado Sin Intervención,
+ KAROL RENDON,GESTION DE RIESGO,24/06/2021 16:22,24/06/2021 17:31,01:09:00,FALLA AGENTES ,sin energía usuario,Cerrada,Cerrado Sin Intervención,fue un daño en el sector
+TODOS,REFERENCIA IBAGUE,12/07/2021 14:35,12/07/2021 21:14,06:39:00,FALLA EN EL HOSVITAL ,hosvital  intermitente  - conectividad clinica,Cerrada,Cerrado Satisfactoriamente,no conecta la vpn para trabajar
+JOSE LUIS CHARRY,CAMPAÑA IBAGUE,16/07/2021 15:30,0000-00-00 00:00:00,00:00:00,FALLA CONECTIVIDAD CLINICA,fallas en el vpn - clinica,Abierta,Ninguno,
+MARIA ALEJANDRA ARANDA SANCHEZ,CAMPAÑA CORPAS,16/07/2021 15:32,16/07/2021 15:36,00:04:00,FALLA EN EL 3CXPHONE ,desconfiguracion de ext x-phone,Cerrada,Cerrado Satisfactoriamente,
