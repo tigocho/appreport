@@ -94,3 +94,24 @@ $("#limpiar").click(function() {
     $("#datefin").val('');
 });
 
+
+$("#csv").click(function() {
+    var formData = new FormData(document.getElementById("formuploadajax"));
+    console.log("hola");
+    $.ajax({
+        type: "post",
+        url: baseURL+'Report/guardar_archivo',
+        dataType: "json",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(resp) {
+            swal("exitoso!", resp["mensaje"], "success",6000);
+        },error: function(error) {
+            error;
+            swal("Opps!","error al enviar la informacion","warning",6000);
+        }
+    });  
+});   
+

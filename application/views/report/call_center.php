@@ -26,7 +26,7 @@
                     <button class="btn btn-primary" id="limpiar"  type="boton">Limpiar filtro</button>
                 </div>
             </div>
-            <form action="<?php echo base_url(); ?>Report/guardar_archivo" method="POST" enctype="multipart/form-data">
+            <form enctype="multipart/form-data" id="formuploadajax" method="post">
                 <div class="row" style="padding: 15px 20px 0px 20px;">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -38,7 +38,7 @@
                 <div class="row" style="padding: 15px 20px 0px 20px;">
                     <div class="col-sm-6">
                         <div class="form-group">
-                                <button type="submit" id="boton" name="Ingresar" class="btn btn-success">Guardar</button>
+                                <button type="submit" id="csv" name="Ingresar" class="btn btn-success">Guardar</button>
                         </div>
                     </div>
                 </div>

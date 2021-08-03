@@ -94,10 +94,16 @@ $("#limpiar").click(function() {
 
 
 $("#csv").click(function() {
+    var formData = new FormData(document.getElementById("formuploadajax"));
+    console.log("hola");
     $.ajax({
-        type: "POST",
+        type: "post",
         url: baseURL+'Report/guardar_archivo',
-        dataType: 'json',
+        dataType: "json",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
         success: function(resp) {
             swal("exitoso!", resp["mensaje"], "success",6000);
         },error: function(error) {

@@ -112,48 +112,91 @@
         public function guardar_archivo(){
 
             $target_path = "resources/csv/";
-             $target_path = $target_path . basename( $_FILES["file"]["name"]);
-    
+            $target_path = $target_path . basename( $_FILES["file"]["name"]);
             move_uploaded_file($_FILES["file"]["tmp_name"], $target_path);
 
+
+
             
-            $fp = fopen ("$target_path","r");
+            $fp = fopen ($target_path,"r");
             $contador = 0;
             while ($data = fgetcsv ($fp, 1000, ",")) {
+
                 $contador ++;
 
 
-                $inicio= date("Y-m-d H:i:s",$data[2]);
-                $fin= date("Y-m-d H:i:s",$data[3]);
-                
-                $datos=array(
-
-                    'nove_fecha'=>date("Y-m-d"),
-                    'col_nom'=>utf8_encode($data[0]),
-                    'seccion_nom'=>utf8_encode($data[1]),
-                    'nove_hora_ini'=>$inicio,
-                    'nove_hora_fin'=>$fin,
-                    'nove_tiempo_total'=>$data[4],
-                    'cate_nom'=>utf8_encode($data[5]),
-                    'tip_inci_nom'=>utf8_encode($data[6]),
-                    'est_des'=>utf8_encode($data[7]),
-                    'tip_obser_nom'=>utf8_encode($data[8]),
-                    'nove_obser_descripcion'=>utf8_encode($data[9]),
-                );
 
                 if ($contador>1) {
+
+                    //$inicio= date("Y-m-d H:i:s",$data[2]);
+
+                    $inicio = strtotime(str_replace('/', '-', $data[2]));
+                    $fin = strtotime(str_replace('/', '-', $data[3]));
+                    //$fin= date("Y-m-d H:i:s",$data[3]);
+                    if ($inicio !== false) {
+                        /* En caso positivo generamos la fecha */
+                        $inicio = date("Y-m-d H:i:s", $inicio);
+                      } else {
+                        /* En caso negativo hacemos algo con la cadena o lanzamos un error */
+                        $inicio = 'ERROR EN FECHA';
+                      }
+
+                      if ($fin !== false) {
+                        /* En caso positivo generamos la fecha */
+                        $fin = date("Y-m-d H:i:s", $fin);
+                      } else {
+                        /* En caso negativo hacemos algo con la cadena o lanzamos un error */
+                        $fin = 'ERROR EN FECHA';
+                      }
+
+                    // print_r($inicio)."<br>";
+                    // print_r($fin)."<br>";
+
+                    $datos=array(
+
+
+
+                        'nove_fecha'=>date("Y-m-d"),
+
+                        'col_nom'=>utf8_encode($data[0]),
+
+                        'seccion_nom'=>utf8_encode($data[1]),
+
+                        'nove_hora_ini'=>$inicio,
+
+                        'nove_hora_fin'=>$fin,
+
+                        'nove_tiempo_total'=>$data[4],
+
+                        'cate_nom'=>utf8_encode($data[5]),
+
+                        'tip_inci_nom'=>utf8_encode($data[6]),
+
+                        'est_des'=>utf8_encode($data[7]),
+
+                        'tip_obser_nom'=>utf8_encode($data[8]),
+
+                        'nove_obser_descripcion'=>utf8_encode($data[9]),
+
+                    );
+
+
+
                    $resp = $this->report_model->save_novelty($datos);
+
                 }
+
                 
+
             }
             fclose ($fp);
 
-            // if ($resp) {
-            //     $retorno['mensaje'] = "Informacion guardada correctamente";
-            //     echo json_encode($retorno);
-            // }else{
-            //     return false;
-            // }
+            if ($resp) {
+                $retorno['mensaje'] = "Informacion guardada correctamente";
+                echo json_encode($retorno);
+            }else{
+                return false;
+            }
            
         }
 
