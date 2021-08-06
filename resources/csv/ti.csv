@@ -1,0 +1,7 @@
+Nombre del colaborador,seccion,Hora inicio,Hora fin,Tiempo total,categoria,tipo de incidencia,Estado novedad,Observacion,descripcion
+TODOS,TI,02/07/2021 12:30,02/07/2021 18:00,06:30:00,TRONCAL UNE,falla de 4 did,cerrada,cerrado Satisfactoriamente,se realizo validacion
+TODOS,TI,03/07/2021 12:30,03/07/2021 18:00,07:30:00,INTERNET CLARO CALLCENTER,falla de 11 did,cerrada,cerrado Satisfactoriamente,
+TODOS,TI,04/07/2021 12:30,04/07/2021 18:00,08:30:00,TRONCAL UNE,intermitencia,cerrada,cerrado Satisfactoriamente,
+TODOS,TI,05/07/2021 12:30,05/07/2021 18:00,09:30:00,TRONCAL UNE,sin servicio,cerrada,cerrado Satisfactoriamente,
+TODOS,TI,06/07/2021 12:30,06/07/2021 18:00,10:30:00,INTERNET CLARO CALLCENTER,intermitencia,cerrada,cerrado Satisfactoriamente,
+TODOS,TI,07/07/2021 12:30,07/07/2021 18:00,11:30:00,TRONCAL UNE,sin servicio,cerrada,cerrado Satisfactoriamente,

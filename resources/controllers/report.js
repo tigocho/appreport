@@ -105,7 +105,7 @@ $("#csv").click(function() {
         contentType: false,
         processData: false,
         success: function(resp) {
-            swal("exitoso!", resp["mensaje"], "success",6000);
+            swal("exitoso!", resp["mensaje"], "success");
         },error: function(error) {
             error;
             swal("Opps!","error al enviar la informacion","warning",6000);

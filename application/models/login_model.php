@@ -1,11 +1,15 @@
 <?php
 class Login_model extends CI_model
 {
+    // conexion base de datos y a la libreria para encriptar contraseña
     public function __construct()
     {
         $this->load->database();
         $this->load->library('encrypt');
     }
+
+    // funcion que permite validar si el usuario ya se encuentra registrado trayendo los usuarios 
+    //que se encuentran registrados y comparando la informacion que ella del login
     public function login($usu_num_doc, $usu_contra)
     {
         $sql ="SELECT u.usu_id,u.usu_num_doc,u.usu_nom,u.usu_ape,u.usu_nom_two,u.usu_ape_two,u.usu_contra,u.usu_nom_two,u.usu_ape_two,r.rol_id,r.rol_des 

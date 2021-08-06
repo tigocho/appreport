@@ -115,7 +115,7 @@
 
                 $query = $this->db->query("select col_id FROM ir_colaborador where col_nom LIKE '%".trim($datos['col_nom'])."%'");
                 $colaborador = $query->row_array();
-                $query = $this->db->query("select seccion_id FROM ir_seccion where seccion_nom LIKE '%".trim($datos['seccion_nom'])."%'");
+                $query = $this->db->query("select seccion_id FROM ir_seccion where seccion_nom = '".trim($datos['seccion_nom'])."'");
                 $seccion = $query->row_array();
                 $query = $this->db->query("select cate_id FROM ir_categoria where cate_nom LIKE '%".trim($datos['cate_nom'])."%'");
                 $category = $query->row_array();

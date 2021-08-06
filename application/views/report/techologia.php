@@ -1,50 +1,55 @@
 <div class="iq-card"> 
-
     <div class="iq-card-header d-flex justify-content-between">
         <div class="iq-header-title">
             <h4 class="card-title"><?php echo $title; ?></h4>
         </div>
     </div>
 
-    <div class="iq-card-body"> 
-            <div class="row" style="padding: 15px 20px 0px 20px;">
+    <div class="iq-card-body">
+        <div class="row" style="padding: 15px 20px 0px 20px;">
+            <div class="col-sm-6">
+                <h5 class="card-title">Importar archivos:</h5>
+            </div>
+        </div> 
+        <form enctype="multipart/form-data" id="formuploadajax" method="post">
+            <div class="row" style="padding: 5px 20px 0px 20px;">
                 <div class="col-sm-6">
-                    <h5 class="card-title">Buscar en un rango de fechas:</h5>
-                </div>
-            </div>  
-            <div class="row" style="padding: 15px 20px 0px 20px;">
-                <div class="col-sm-6">
-                    <h5 class="card-title">Fecha Inicial:</h5>
-                    <input type="date" id="dateini" class="form-control">
-                </div>
-                <div class="col-sm-6">
-                    <h5 class="card-title">Fecha Final:</h5>
-                    <input type="date" id="datefin" class="form-control">
-                </div>
-                <div style="padding: 15px 20px 0px 20px;" class="form-group"> 
-                    <button class="btn btn-success" id="botonf"  type="boton">Buscar</button>
-                    <button class="btn btn-primary" id="limpiar"  type="boton">Limpiar filtro</button>
+                    <div class="form-group">
+                        <label>Seleccione un csv</label>
+                        <div class="custom-file">
+                            <input type="file" name="file"  id="file_csv" accept=".csv" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">selecione un archivo</label>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <form enctype="multipart/form-data" id="formuploadajax" method="post">
-                <div class="row" style="padding: 15px 20px 0px 20px;">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Seleccione un csv</label>
-                            <input type="file" name="file"  id="file_csv" accept=".csv" class="form-control-file" >
-                        </div>
+            <div class="row" style="padding: 5px 20px 0px 20px;">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <a style="color:#FFFFFF";  id="csv" name="Ingresar" class="btn btn-success">Guardar</a>
                     </div>
                 </div>
-                <div class="row" style="padding: 15px 20px 0px 20px;">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                                <button type="submit" id="csv" name="Ingresar" class="btn btn-success">Guardar</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <br>
-
+            </div>
+        </form> 
+        <div class="row" style="padding: 15px 20px 0px 20px;">
+            <div class="col-sm-6">
+                <h5 class="card-title">Buscar en un rango de fechas:</h5>
+            </div>
+        </div> 
+        <div class="row" style="padding: 15px 20px 0px 20px;">
+            <div class="col-sm-6">
+                <h5 class="card-title">Fecha Inicial:</h5>
+                <input type="date" id="dateini" class="form-control">
+            </div>
+            <div class="col-sm-6">
+                <h5 class="card-title">Fecha Final:</h5>
+                <input type="date" id="datefin" class="form-control">
+            </div>
+            <div style="padding: 15px 20px 0px 20px;" class="form-group"> 
+                <button class="btn btn-success" id="botonf"  type="boton">Buscar</button>
+                <button class="btn btn-primary" id="limpiar"  type="boton">Limpiar filtro</button>
+            </div>
+        </div>
         <br>
         <div class="table-responsive">
             <table id="tablereport" class="table table-striped table-bordered">

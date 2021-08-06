@@ -7,43 +7,26 @@
     </div>
 
     <div class="iq-card-body"> 
-            <div class="row" style="padding: 15px 20px 0px 20px;">
-                <div class="col-sm-6">
-                    <h5 class="card-title">Buscar en un rango de fechas:</h5>
-                </div>
-            </div>  
-            <div class="row" style="padding: 15px 20px 0px 20px;">
-                <div class="col-sm-6">
-                    <h5 class="card-title">Fecha Inicial:</h5>
-                    <input type="date" id="dateini" class="form-control">
-                </div>
-                <div class="col-sm-6">
-                    <h5 class="card-title">Fecha Final:</h5>
-                    <input type="date" id="datefin" class="form-control">
-                </div>
-                <div style="padding: 15px 20px 0px 20px;" class="form-group"> 
-                    <button class="btn btn-success" id="botonf"  type="boton">Buscar</button>
-                    <button class="btn btn-primary" id="limpiar"  type="boton">Limpiar filtro</button>
-                </div>
+        <div class="row" style="padding: 15px 20px 0px 20px;">
+            <div class="col-sm-6">
+                <h5 class="card-title">Buscar en un rango de fechas:</h5>
             </div>
-            <form enctype="multipart/form-data" id="formuploadajax" method="post">
-                <div class="row" style="padding: 15px 20px 0px 20px;">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Seleccione un csv</label>
-                            <input type="file" name="file"  id="file_csv" accept=".csv" class="form-control-file" >
-                        </div>
-                    </div>
-                </div>
-                <div class="row" style="padding: 15px 20px 0px 20px;">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <button type="submit" id="csv" name="Ingresar" class="btn btn-success">Guardar</button>
-                        </div>
-                    </div>
-                </div>
-            <br>
-            </form>
+        </div>  
+        <div class="row" style="padding: 15px 20px 0px 20px;">
+            <div class="col-sm-6">
+                <h5 class="card-title">Fecha Inicial:</h5>
+                <input type="date" id="dateini" class="form-control">
+            </div>
+            <div class="col-sm-6">
+                <h5 class="card-title">Fecha Final:</h5>
+                <input type="date" id="datefin" class="form-control">
+            </div>
+            <div style="padding: 15px 20px 0px 20px;" class="form-group"> 
+                <button class="btn btn-success" id="botonf"  type="boton">Buscar</button>
+                <button class="btn btn-primary" id="limpiar"  type="boton">Limpiar filtro</button>
+            </div>
+        </div>
+        <br>
         <div class="table-responsive">
             <table id="tablereport" class="table table-striped table-bordered">
                 <thead >
