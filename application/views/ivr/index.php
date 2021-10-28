@@ -3,6 +3,12 @@
     <div class="iq-header-title">
       <h4 class="card-title"><?php echo $title; ?></h4>
     </div>
+    <select data-url-consulta="<?php echo base_url('ivr/consultar_clinica'); ?>" class="form-control select2 evt-consultar-clinica" name="perfil_id" required>
+      <option value="" disabled selected>Seleccionar</option>
+      <?php foreach ($perfiles as $perfil) { ?>
+        <option value="<?= $perfil->id ?>"><?= $perfil->nombre ?></option>
+      <?php } ?>
+    </select>
     <div class="iq-card-header-toolbar d-flex align-items-center">
       <button type="button" style="float: right;" class="btn btn-success">Agregar</button>
     </div>
@@ -77,7 +83,8 @@
       </div>
     </div>
   </div>
-
+        
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="<?php echo base_url(); ?>resources/js/jquery-3.4.1.min.js"></script>
   <script src="<?php echo base_url(); ?>resources/js/jquery-ui.min.js"></script>
   <script type="text/javascript" charset="utf8" src="<?php echo base_url(); ?>resources/js/jquery.dataTables.js"></script>

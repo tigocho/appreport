@@ -4,7 +4,9 @@ class Ivr_model extends CI_Model
   // conexion base de datos 
   public function __construct()
   {
-    $this->load->database();
+    
+    parent::__construct();
+    $this->db =$this->load->database('gochotest', TRUE);
     $this->load->library('session');
   }
 
@@ -12,7 +14,7 @@ class Ivr_model extends CI_Model
   public function getInfoClinicas()
   {
     $this->db->select('*');
-    $this->db->from('ir_info_clinicas');
+    $this->db->from('IVR_G8_INFO_CLINICAS');
     $query = $this->db->get();
     return $query->result();
   }
