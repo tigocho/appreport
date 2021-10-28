@@ -1,7 +1,7 @@
 $(document).ready(function () {
-  $('.select2').select2();
-  
-	$("#tableIvr").DataTable({
+  $('.select2').select2(); 
+
+	var table = $("#tableIvr").DataTable({
 		language: {
 			sProcessing: "Procesando...",
 			sLengthMenu: "Mostrar _MENU_ registros",
@@ -38,62 +38,45 @@ $(document).ready(function () {
 				ordertable: true,
 				render: function (data, type, row) {
 					return (
-						"<button type='button' onclick='modal_ivr_editar(\"" +
-            row.inf_cli_id +
-						'","' + 
-            row.inf_cli_cod_esp +
-						'","' + 
-            row.inf_cli_cedula_medico +
-						'","' + 
-						row.inf_cli_nomb_esp +
-						'","' +
-						row.inf_cli_nomb_medico +
-						'","' +
-						row.inf_cli_lugar_facturacion +
-						'","' +
-						row.inf_cli_lugar_atencion +
-						'","' +
-						row.inf_cli_observacion +
-						'","' +
-						row.inf_cli_validacion +
-						"\");'  class='btn btn-primary mb-3'>Editar</button> " +
-						"<button type='button' onclick='collaborator_delete(\"" +
-						row.col_id +
+						"<button type='button' class='btn btn-primary mb-3 evt-editar-ivr'>Editar</button> " +
+						"<button type='button' onclick='ivr_info_delete(\"" +
+						row +
 						"\");' class='btn btn-danger mb-3'>Eliminar</button>"
 					);
 				},
 			},
 		],
 	});
-});
 
-function modal_ivr_editar(inf_cli_id, inf_cli_cod_esp, inf_cli_cedula_medico, inf_cli_nomb_esp,inf_cli_nomb_medico,inf_cli_lugar_facturacion, inf_cli_lugar_atencion,inf_cli_observacion,inf_cli_validacion) {
-	$("#ivr_edit").modal("show");
-	$("#inf_cli_id").val(inf_cli_id);
-	$("#inf_cli_cod_esp").val(inf_cli_cod_esp);
-	$("#inf_cli_cedula_medico").val(inf_cli_cedula_medico);
-	$("#inf_cli_nomb_esp").val(inf_cli_nomb_esp);
-	$("#inf_cli_nomb_medico").val(inf_cli_nomb_medico);
-	$("#inf_cli_lugar_facturacion").val(inf_cli_lugar_facturacion);
-	$("#inf_cli_lugar_atencion").val(inf_cli_lugar_atencion);
-	$("#inf_cli_observacion").val(inf_cli_observacion);
-	$("#inf_cli_validacion").val(inf_cli_validacion);
-}
+  $("body").on("click", ".evt-editar-ivr", function(e){
+		var data = table.row($(this).parents('tr')).data();
+		$("#inf_cli_id").val(data.inf_cli_id);
+		$("#inf_cli_cod_esp").val(data.inf_cli_cod_esp);
+		$("#inf_cli_cedula_medico").val(data.inf_cli_cedula_medico);
+		$("#inf_cli_nomb_esp").val(data.inf_cli_nomb_esp);
+		$("#inf_cli_nomb_medico").val(data.inf_cli_nomb_medico);
+		$("#inf_cli_lugar_facturacion").val(data.inf_cli_lugar_facturacion);
+		$("#inf_cli_lugar_atencion").val(data.inf_cli_lugar_atencion);
+		$("#inf_cli_observacion").val(data.inf_cli_observacion);
+		$("#inf_cli_validacion").val(data.inf_cli_validacion);
+		$("#ivr_edit").modal("show");
+	})
+});
 
 function editar_info() {
   //captura de datos actualizados
-	var inf_cli_id = document.getElementById("inf_cli_id").value;
-	var inf_cli_cod_esp = document.getElementById("inf_cli_cod_esp").value;
-	var inf_cli_cedula_medico = document.getElementById("inf_cli_cedula_medico").value;
-	var inf_cli_nomb_esp = document.getElementById("inf_cli_nomb_esp").value;
-	var inf_cli_nomb_medico = document.getElementById("inf_cli_nomb_medico").value;
-	var inf_cli_lugar_facturacion = document.getElementById("inf_cli_lugar_facturacion").value;
-	var inf_cli_lugar_atencion = document.getElementById("inf_cli_lugar_atencion").value;
-	var inf_cli_observacion = document.getElementById("inf_cli_observacion").value;
-	var inf_cli_validacion = document.getElementById("inf_cli_validacion").value;
+	var inf_cli_id = $("#inf_cli_id").val();
+	var inf_cli_cod_esp = $("#inf_cli_cod_esp").val();
+	var inf_cli_cedula_medico = $("#inf_cli_cedula_medico").val();
+	var inf_cli_nomb_esp = $("#inf_cli_nomb_esp").val();
+	var inf_cli_nomb_medico = $("#inf_cli_nomb_medico").val();
+	var inf_cli_lugar_facturacion = $("#inf_cli_lugar_facturacion").val();
+	var inf_cli_lugar_atencion = $("#inf_cli_lugar_atencion").val();
+	var inf_cli_observacion = $("#inf_cli_observacion").val();
+	var inf_cli_validacion = $("#inf_cli_validacion").val();
 
   //datos actualizados
-	dataPost = {
+	let dataPost = {
 		inf_cli_id: inf_cli_id,
 		inf_cli_cod_esp: inf_cli_cod_esp,
 		inf_cli_cedula_medico: inf_cli_cedula_medico,
@@ -118,8 +101,9 @@ function editar_info() {
       }, 2000);
 		},
 		error: function (error) {
-			error;
 			swal("Opps!", "Error al actualizar la información", "warning", 6000);
 		},
 	});
 }
+
+
