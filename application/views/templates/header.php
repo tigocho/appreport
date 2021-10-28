@@ -15,6 +15,8 @@
       <link rel="stylesheet" href="<?php echo base_url();?>resources/css/style.css">
       <!-- Responsive CSS -->
       <link rel="stylesheet" href="<?php echo base_url();?>resources/css/responsive.css">
+      <!-- Select2 CSS -->
+      <link href="<?php echo base_url(); ?>assets/css/select2.min.css" rel="stylesheet">
        <!-- Full calendar -->
       <link href='<?php echo base_url();?>resources/fullcalendar/core/main.css' rel='stylesheet' />
       <link href='<?php echo base_url();?>resources/fullcalendar/daygrid/main.css' rel='stylesheet' />
