@@ -86,7 +86,7 @@
 
   <script src="<?php echo base_url(); ?>resources/js/jquery-3.4.1.min.js"></script>
   <script src="<?php echo base_url(); ?>resources/js/jquery-ui.min.js"></script>      
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> 
+  <script src="<?php echo base_url(); ?>resources/js/select2.min.js"></script> 
   <script type="text/javascript" charset="utf8" src="<?php echo base_url(); ?>resources/js/jquery.dataTables.js"></script>
   <script type='text/javascript'>
     var baseURL = "<?php echo base_url(); ?>";
