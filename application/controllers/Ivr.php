@@ -32,7 +32,7 @@ class Ivr extends CI_Controller
   }
 
   //edita un registro con el data ingresado en el modal
-  public function editar_info_clinicas(){
+  public function editarInfoClinicas(){
     $data = $this->input->post();
 
     $data = array(
@@ -51,6 +51,11 @@ class Ivr extends CI_Controller
     if ($response) {
       echo json_encode("Se actualizó correctamente la información!");
     }
+  }
+
+  public function cargarDatosSubidos(){
+    $ContenidoArchivo = $_FILES['archivoRegistrosNuevos'];
+    var_dump($ContenidoArchivo);
   }
 }
 

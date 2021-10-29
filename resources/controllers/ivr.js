@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  $('.select2').select2();
-  
+	$(".select2").select2();
+
 	$("#tableIvr").DataTable({
 		language: {
 			sProcessing: "Procesando...",
@@ -19,7 +19,7 @@ $(document).ready(function () {
 				sFirst: "Primero",
 				sLast: "Ultimo",
 				sNext: "Siguiente",
-				sPrevious: "Anterior",  
+				sPrevious: "Anterior",
 			},
 		},
 		ajax: {
@@ -39,12 +39,12 @@ $(document).ready(function () {
 				render: function (data, type, row) {
 					return (
 						"<button type='button' onclick='modal_ivr_editar(\"" +
-            row.inf_cli_id +
-						'","' + 
-            row.inf_cli_cod_esp +
-						'","' + 
-            row.inf_cli_cedula_medico +
-						'","' + 
+						row.inf_cli_id +
+						'","' +
+						row.inf_cli_cod_esp +
+						'","' +
+						row.inf_cli_cedula_medico +
+						'","' +
 						row.inf_cli_nomb_esp +
 						'","' +
 						row.inf_cli_nomb_medico +
@@ -67,7 +67,17 @@ $(document).ready(function () {
 	});
 });
 
-function modal_ivr_editar(inf_cli_id, inf_cli_cod_esp, inf_cli_cedula_medico, inf_cli_nomb_esp,inf_cli_nomb_medico,inf_cli_lugar_facturacion, inf_cli_lugar_atencion,inf_cli_observacion,inf_cli_validacion) {
+function modal_ivr_editar(
+	inf_cli_id,
+	inf_cli_cod_esp,
+	inf_cli_cedula_medico,
+	inf_cli_nomb_esp,
+	inf_cli_nomb_medico,
+	inf_cli_lugar_facturacion,
+	inf_cli_lugar_atencion,
+	inf_cli_observacion,
+	inf_cli_validacion
+) {
 	$("#ivr_edit").modal("show");
 	$("#inf_cli_id").val(inf_cli_id);
 	$("#inf_cli_cod_esp").val(inf_cli_cod_esp);
@@ -81,18 +91,28 @@ function modal_ivr_editar(inf_cli_id, inf_cli_cod_esp, inf_cli_cedula_medico, in
 }
 
 function editar_info() {
-  //captura de datos actualizados
+	//captura de datos actualizados
 	var inf_cli_id = document.getElementById("inf_cli_id").value;
 	var inf_cli_cod_esp = document.getElementById("inf_cli_cod_esp").value;
-	var inf_cli_cedula_medico = document.getElementById("inf_cli_cedula_medico").value;
+	var inf_cli_cedula_medico = document.getElementById(
+		"inf_cli_cedula_medico"
+	).value;
 	var inf_cli_nomb_esp = document.getElementById("inf_cli_nomb_esp").value;
-	var inf_cli_nomb_medico = document.getElementById("inf_cli_nomb_medico").value;
-	var inf_cli_lugar_facturacion = document.getElementById("inf_cli_lugar_facturacion").value;
-	var inf_cli_lugar_atencion = document.getElementById("inf_cli_lugar_atencion").value;
-	var inf_cli_observacion = document.getElementById("inf_cli_observacion").value;
+	var inf_cli_nomb_medico = document.getElementById(
+		"inf_cli_nomb_medico"
+	).value;
+	var inf_cli_lugar_facturacion = document.getElementById(
+		"inf_cli_lugar_facturacion"
+	).value;
+	var inf_cli_lugar_atencion = document.getElementById(
+		"inf_cli_lugar_atencion"
+	).value;
+	var inf_cli_observacion = document.getElementById(
+		"inf_cli_observacion"
+	).value;
 	var inf_cli_validacion = document.getElementById("inf_cli_validacion").value;
 
-  //datos actualizados
+	//datos actualizados
 	dataPost = {
 		inf_cli_id: inf_cli_id,
 		inf_cli_cod_esp: inf_cli_cod_esp,
@@ -107,19 +127,40 @@ function editar_info() {
 
 	$.ajax({
 		type: "POST",
-		url: baseURL + "Ivr/editar_info_clinicas",
+		url: baseURL + "Ivr/editarInfoClinicas",
 		dataType: "json",
 		data: dataPost,
 		success: function (resp) {
 			swal("exitoso!", resp, "success", 6000);
 			$("#ivr_edit").modal("hide");
-      setTimeout(function(){
-        location.reload();
-      }, 2000);
+			setTimeout(function () {
+				location.reload();
+			}, 2000);
 		},
 		error: function (error) {
 			error;
 			swal("Opps!", "Error al actualizar la información", "warning", 6000);
+		},
+	});
+}
+
+function modal_cargar_datos() {
+	$("#cargar_datos").modal("show");
+}
+
+function cargar_datos_archivo_subido() {
+	var Form = new FormData($("#datosForm")[0]);
+	url = baseURL + "Ivr/cargarDatosSubidos"
+	$.ajax({
+		url: url,
+		type: "post",
+		data: Form,
+		processData: false,
+		contentType: false,
+		success: function (data) {
+
+			console.log(url)
+			alert("Registros Agregados!");
 		},
 	});
 }

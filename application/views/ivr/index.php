@@ -3,14 +3,26 @@
     <div class="iq-header-title">
       <h4 class="card-title"><?php echo $title; ?></h4>
     </div>
-    <select data-url-consulta="<?php echo base_url('ivr/consultar_clinica'); ?>" class="form-control select2 evt-consultar-clinica" name="perfil_id" required>
-      <option value="" disabled selected>Seleccionar</option>
-      <?php foreach ($perfiles as $perfil) { ?>
-        <option value="<?= $perfil->id ?>"><?= $perfil->nombre ?></option>
-      <?php } ?>
-    </select>
-    <div class="iq-card-header-toolbar d-flex align-items-center">
-      <button type="button" style="float: right;" class="btn btn-success">Agregar</button>
+  </div>
+
+
+  <div class="contenedor m-4">
+    <div style="float:left">
+      <!-- select de clinicas -->
+      <label class="mr-3">Seleccionar clínica: </label>
+      <select style="background-color:red;width:100%" data-url-consulta="<?php echo base_url('ivr/consultar_clinica'); ?>" class="form-control select2 evt-consultar-clinica" name="perfil_id" required>
+        <option value="" disabled selected>Clínica</option>
+        <?php foreach ($perfiles as $perfil) { ?>
+          <option value="<?= $perfil->id ?>"><?= $perfil->nombre ?></option>
+        <?php } ?>
+      </select>
+    </div>
+    <!-- boton agregar informacion ivr -->
+    <div style="float:right; margin:24px 10px 20px 10px" class="d-flex align-items-center">
+      <button type="button" style="float: right;" class="btn btn-success">Nuevo registro</button>
+    </div>
+    <div style="float:right; margin: 10px 20px 10px" class="d-flex align-items-center m-4">
+      <button type="button" style="float: right;" onclick="modal_cargar_datos()" class="btn btn-primary">Cargar Excel</button>
     </div>
   </div>
 
@@ -45,9 +57,9 @@
           <div class="modal-body">
             <form id="edit">
               <div class="form-row">
-              <input type="hidden"  id="inf_cli_id">
-              <input type="hidden"  id="inf_cli_cod_esp">
-              <input type="hidden"  id="inf_cli_cedula_medico">
+                <input type="hidden" id="inf_cli_id">
+                <input type="hidden" id="inf_cli_cod_esp">
+                <input type="hidden" id="inf_cli_cedula_medico">
                 <div class="col-md-6 mb-3">
                   <label>Nombre Especialidad</label>
                   <input type="text" class="form-control" id="inf_cli_nomb_esp">
@@ -83,13 +95,31 @@
       </div>
     </div>
   </div>
-        
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  <script src="<?php echo base_url(); ?>resources/js/jquery-3.4.1.min.js"></script>
-  <script src="<?php echo base_url(); ?>resources/js/jquery-ui.min.js"></script>
-  <script type="text/javascript" charset="utf8" src="<?php echo base_url(); ?>resources/js/jquery.dataTables.js"></script>
-  <script type='text/javascript'>
-    var baseURL = "<?php echo base_url(); ?>";
-  </script>
-  <script src='<?php echo base_url(); ?>resources/controllers/ivr.js?v=<?php echo (rand()); ?>' type='text/javascript'></script>
+
+  <!-- Modal Cargar datos IVR -->
+  <div class="modal fade" id="cargar_datos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" style="margin: 0 auto" id="exampleModalLabel">Cargar datos</h2>
+        </div>
+        <div class="modal-body" >
+          <form action="files.php" method="post" enctype="multipart/form-data" id="datosForm">
+              <input  class="form-control mb-3" type="file" name="archivoRegistrosNuevos">
+              <button type="button" onclick="cargar_datos_archivo_subido()" class="btn btn-primary form-control">Cargar datos</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="<?php echo base_url(); ?>resources/js/jquery-3.4.1.min.js"></script>
+<script src="<?php echo base_url(); ?>resources/js/jquery-ui.min.js"></script>
+<script type="text/javascript" charset="utf8" src="<?php echo base_url(); ?>resources/js/jquery.dataTables.js"></script>
+<script type='text/javascript'>
+  var baseURL = "<?php echo base_url(); ?>";
+</script>
+<script src='<?php echo base_url(); ?>resources/controllers/ivr.js?v=<?php echo (rand()); ?>' type='text/javascript'></script>
 </div>
