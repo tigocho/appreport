@@ -53,11 +53,46 @@ class Ivr extends CI_Controller
     }
   }
 
+  //agrega nuevos registros al ivr basándose en un archivo csv que ingresa el usuario
   public function cargarDatosSubidos(){
-    $ContenidoArchivo = $_FILES['archivoRegistrosNuevos'];
-    var_dump($ContenidoArchivo);
+    $RegistrosNuevos = $_FILES['archivoRegistrosNuevos'];//carga el archivo subido
+    $RegistrosNuevos = file_get_contents($RegistrosNuevos['tmp_name']);//captura el nombre del archivo temporal y saca su contenido
+    $RegistrosNuevos = explode("\n", $RegistrosNuevos);//divide el contenido en una lista
+    $RegistrosNuevos = array_filter($RegistrosNuevos);
+ 
+    foreach($RegistrosNuevos as $RegistroNuevo) {
+      $RegistroNuevoList[] = explode(";", $RegistroNuevo); //toma un nuevo registro y lo separa en una lista por comas  
+    } 
+
+    $data["registros"] = $RegistroNuevoList;
+
+    $output = array(
+			"html" => $this->load->view("includes/tabla-info-clinicas-ivr", $data, true),
+			"confirmacion" => true
+		);
+
+    echo json_encode($output);
   }
+
+  public function crearRegistrosCargados(){
+    $data = $this->input->post();
+    // foreach($data as $value => $idClinica){
+    //     //$data["codigoEspecialidad"] = $this->input->post("CodigoEspecialidad-".$value);
+    //     var_dump($value);
+    //     //$this->model->crear_registro($data);
+    // }
+    return true;
+    //echo json_encode($data);
+
+  }
+// foreach($this->input->post("idClinica") as $vlaue => $idClinica){
+//   $data["codigoEspecialidad"] = $this->input->post("codigoEspecialidad.0")
+//   $this->model->crear-registro($data)
+// }
+
 }
+
+
 
 ?>
 

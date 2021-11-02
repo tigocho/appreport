@@ -61,6 +61,58 @@ $(document).ready(function () {
 		$("#inf_cli_validacion").val(data.inf_cli_validacion);
 		$("#ivr_edit").modal("show");
 	})
+
+	$("body").on("click", ".evt-confirmar-registros", function(e){
+		$boton = $(this)
+		var formulario = $("#registrosConfirmados");
+		var url = formulario.attr("action");
+		var numeroDeCampos = formulario.serializeArray().length
+		console.log(numeroDeCampos)
+		var form = new FormData(formulario[0]);
+
+		var listaRegistros = []
+
+		for (var i = 0; i < numeroDeCampos; i+=9){
+				registroTemp = {
+					idClinica: formulario.serializeArray()[i].value,
+					idEspecialidad: formulario.serializeArray()[i+1].value,
+					cedulaMedico: formulario.serializeArray()[i+2].value,
+					nombreEspecialidad: formulario.serializeArray()[i+3].value,
+					nombreMedico: formulario.serializeArray()[i+4].value,
+					lugarFacturacion: formulario.serializeArray()[i+5].value,
+					lugarAtencion: formulario.serializeArray()[i+6].value,
+					observacion: formulario.serializeArray()[i+7].value,
+					validacion: formulario.serializeArray()[i+8].value
+				}
+				listaRegistros.push(registroTemp)
+			}
+		
+		console.log(listaRegistros)
+
+
+		$.ajax({
+			url: url,
+			dataType: "json",
+			data: listaRegistros,
+			type: "post",
+			contentType: false,
+			processData: false,
+			cache: false,
+			async:false,
+		})
+			.done(function(resp){
+				console.log("entré por done")
+				console.log(resp)
+			})
+			.fail(function(){
+				console.log("entré por fail")
+			})
+		if(formulario.valid()){
+			console.log("es valido")
+		} else{
+			console.log("no es válido")
+		}
+	})
 });
 
 function editar_info() {
@@ -110,6 +162,7 @@ function modal_cargar_datos() {
 	$("#cargar_datos").modal("show");
 }
 
+//confirmación de datos
 function cargar_datos_archivo_subido() {
 	var Form = new FormData($("#datosForm")[0]);
 	url = baseURL + "Ivr/cargarDatosSubidos"
@@ -117,12 +170,21 @@ function cargar_datos_archivo_subido() {
 		url: url,
 		type: "post",
 		data: Form,
+		dataType: "json",
 		processData: false,
 		contentType: false,
-		success: function (data) {
-
-			console.log(url)
-			alert("Registros Agregados!");
-		},
-	});
+	})
+		.done(function(resp){
+			$("#tabla-info-clinicas-ivr").html(resp.html);
+			$("#cargar_datos").modal("hide");
+			$("#verificar_cargar_datos").modal("show");
+		})
+		.fail(function(err){
+			alert("por favor ingrese un archivo válido")
+			console.log("error cargando el archivo")
+		});	
 }
+
+
+
+

@@ -28,4 +28,14 @@ class Ivr_model extends CI_Model
     $this->db->where('inf_cli_cedula_medico', $data['inf_cli_cedula_medico']);
     return $this->db->update('ir_info_clinicas', $data);
   }
+
+  //inserta un nuevo registro a la tabla de info_clinicas
+  public function crear_registro($data){
+    if($this->db->insert("ir_info_clinicas", $data)){
+      $insert_id = $this->db->insert_id();
+      return $insert_id;
+    } else {
+      return false;
+    }
+  }
 }
