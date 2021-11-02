@@ -31,10 +31,15 @@ class Ivr extends CI_Controller
     echo json_encode($this->ivr_model->getInfoClinicas());
   }
 
+  public function crearRegistro($registro){
+    return $this->ivr_model->crear_registro($registro);
+  }
+
   //edita un registro con el data ingresado en el modal
   public function editarInfoClinicas(){
     $data = $this->input->post();
-
+    
+    echo json_encode($data);
     $data = array(
       'inf_cli_id' => trim($data['inf_cli_id']),
       'inf_cli_cod_esp' => trim($data['inf_cli_cod_esp']),
@@ -59,7 +64,7 @@ class Ivr extends CI_Controller
     $RegistrosNuevos = file_get_contents($RegistrosNuevos['tmp_name']);//captura el nombre del archivo temporal y saca su contenido
     $RegistrosNuevos = explode("\n", $RegistrosNuevos);//divide el contenido en una lista
     $RegistrosNuevos = array_filter($RegistrosNuevos);
- 
+
     foreach($RegistrosNuevos as $RegistroNuevo) {
       $RegistroNuevoList[] = explode(";", $RegistroNuevo); //toma un nuevo registro y lo separa en una lista por comas  
     } 
@@ -74,22 +79,28 @@ class Ivr extends CI_Controller
     echo json_encode($output);
   }
 
+  //agrega los registros ingresados
   public function crearRegistrosCargados(){
-    $data = $this->input->post();
-    // foreach($data as $value => $idClinica){
-    //     //$data["codigoEspecialidad"] = $this->input->post("CodigoEspecialidad-".$value);
-    //     var_dump($value);
-    //     //$this->model->crear_registro($data);
-    // }
-    return true;
-    //echo json_encode($data);
-
+    $data = json_decode($_POST['data'], true);
+    //Se iteran los registros y se van agregando uno por uno a la base
+    foreach($data as $registro){
+      $registroTemp = array(
+          'inf_cli_id' => trim($registro['idClinica']),
+          'inf_cli_cod_esp' => trim($registro['idEspecialidad']),
+          'inf_cli_cedula_medico' => trim($registro['cedulaMedico']),
+          'inf_cli_nomb_esp' => trim($registro['nombreEspecialidad']),
+          'inf_cli_nomb_medico' => trim($registro['nombreMedico']),
+          'inf_cli_lugar_facturacion' => trim($registro['lugarFacturacion']),
+          'inf_cli_lugar_atencion' => trim($registro['lugarAtencion']),
+          'inf_cli_observacion' => trim($registro['observacion']),
+          'inf_cli_validacion' => trim($registro['validacion']),
+      );
+      $registro_id = $this->crearRegistro($registroTemp);
+      var_dump($registro_id);
+    }
+    echo json_encode(array("status_code" => 200,"mensaje" => "Los registros se han guardado satisfactoriamente"));  
   }
-// foreach($this->input->post("idClinica") as $vlaue => $idClinica){
-//   $data["codigoEspecialidad"] = $this->input->post("codigoEspecialidad.0")
-//   $this->model->crear-registro($data)
-// }
-
+ 
 }
 
 

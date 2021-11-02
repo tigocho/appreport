@@ -1,5 +1,5 @@
 <div class="table-responsive" style="max-height: 500px;overflow:auto;overflow:auto">
-<form id="registrosConfirmados" action="<?=base_url('ivr/crearRegistrosCargados/') ?>">
+<form id="registrosConfirmados" method="post" action="<?=base_url('ivr/crearRegistrosCargados') ?>">
 
   <table style="height: 50%; overflow-y: auto;" id="example" class="table table-striped m-1" cellspacing="0">
     <thead>

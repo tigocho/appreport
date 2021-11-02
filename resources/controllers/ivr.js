@@ -72,46 +72,36 @@ $(document).ready(function () {
 
 		var listaRegistros = []
 
+		//se genera la lista de objetos
 		for (var i = 0; i < numeroDeCampos; i+=9){
-				registroTemp = {
-					idClinica: formulario.serializeArray()[i].value,
-					idEspecialidad: formulario.serializeArray()[i+1].value,
-					cedulaMedico: formulario.serializeArray()[i+2].value,
-					nombreEspecialidad: formulario.serializeArray()[i+3].value,
-					nombreMedico: formulario.serializeArray()[i+4].value,
-					lugarFacturacion: formulario.serializeArray()[i+5].value,
-					lugarAtencion: formulario.serializeArray()[i+6].value,
-					observacion: formulario.serializeArray()[i+7].value,
-					validacion: formulario.serializeArray()[i+8].value
-				}
-				listaRegistros.push(registroTemp)
+			registroTemp = {
+				idClinica: formulario.serializeArray()[i].value,
+				idEspecialidad: formulario.serializeArray()[i+1].value,
+				cedulaMedico: formulario.serializeArray()[i+2].value,
+				nombreEspecialidad: formulario.serializeArray()[i+3].value,
+				nombreMedico: formulario.serializeArray()[i+4].value,
+				lugarFacturacion: formulario.serializeArray()[i+5].value,
+				lugarAtencion: formulario.serializeArray()[i+6].value,
+				observacion: formulario.serializeArray()[i+7].value,
+				validacion: formulario.serializeArray()[i+8].value
 			}
-		
-		console.log(listaRegistros)
-
+			listaRegistros.push(registroTemp)
+		} 
 
 		$.ajax({
 			url: url,
 			dataType: "json",
-			data: listaRegistros,
+			data: {data: JSON.stringify(listaRegistros)}, 
 			type: "post",
-			contentType: false,
-			processData: false,
-			cache: false,
-			async:false,
 		})
 			.done(function(resp){
 				console.log("entré por done")
 				console.log(resp)
 			})
-			.fail(function(){
+			.fail(function(resp){
+				console.log(resp)
 				console.log("entré por fail")
 			})
-		if(formulario.valid()){
-			console.log("es valido")
-		} else{
-			console.log("no es válido")
-		}
 	})
 });
 

@@ -32,8 +32,7 @@ class Ivr_model extends CI_Model
   //inserta un nuevo registro a la tabla de info_clinicas
   public function crear_registro($data){
     if($this->db->insert("ir_info_clinicas", $data)){
-      $insert_id = $this->db->insert_id();
-      return $insert_id;
+      return true;
     } else {
       return false;
     }
