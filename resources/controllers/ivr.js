@@ -64,44 +64,86 @@ $(document).ready(function () {
 
 	$("body").on("click", ".evt-confirmar-registros", function(e){
 		$boton = $(this)
+		//$boton.addClass("disabled")
+		//$boton.text("Guardando...")
 		var formulario = $("#registrosConfirmados");
 		var url = formulario.attr("action");
 		var numeroDeCampos = formulario.serializeArray().length
-		console.log(numeroDeCampos)
-		var form = new FormData(formulario[0]);
 
-		var listaRegistros = []
-
-		//se genera la lista de objetos
-		for (var i = 0; i < numeroDeCampos; i+=9){
-			registroTemp = {
-				idClinica: formulario.serializeArray()[i].value,
-				idEspecialidad: formulario.serializeArray()[i+1].value,
-				cedulaMedico: formulario.serializeArray()[i+2].value,
-				nombreEspecialidad: formulario.serializeArray()[i+3].value,
-				nombreMedico: formulario.serializeArray()[i+4].value,
-				lugarFacturacion: formulario.serializeArray()[i+5].value,
-				lugarAtencion: formulario.serializeArray()[i+6].value,
-				observacion: formulario.serializeArray()[i+7].value,
-				validacion: formulario.serializeArray()[i+8].value
+		//valida si el formulario tiene campos vacios
+		if(formulario.valid()){
+			var listaRegistros = []
+			//se genera la lista de objetos
+			for (var i = 0; i < numeroDeCampos; i+=10){
+				//si el id clinica ya está en la base, continue
+				//sino agrege el registro a la lista de temporales
+				registroTemp = {
+					fila: formulario.serializeArray()[i].value,
+					idClinica: formulario.serializeArray()[i+1].value,
+					idEspecialidad: formulario.serializeArray()[i+2].value,
+					cedulaMedico: formulario.serializeArray()[i+3].value,
+					nombreEspecialidad: formulario.serializeArray()[i+4].value,
+					nombreMedico: formulario.serializeArray()[i+5].value,
+					lugarFacturacion: formulario.serializeArray()[i+6].value,
+					lugarAtencion: formulario.serializeArray()[i+7].value,
+					observacion: formulario.serializeArray()[i+8].value,
+					validacion: formulario.serializeArray()[i+9].value,	
+				}
+				listaRegistros.push(registroTemp)
 			}
-			listaRegistros.push(registroTemp)
-		} 
 
-		$.ajax({
-			url: url,
-			dataType: "json",
-			data: {data: JSON.stringify(listaRegistros)}, 
-			type: "post",
-		})
-			.done(function(resp){
-				console.log("entré por done")
-				console.log(resp)
+			$.ajax({
+				url: url,
+				dataType: "json",
+				data: {data: JSON.stringify(listaRegistros)}, 
+				type: "post",
 			})
-			.fail(function(resp){
-				console.log(resp)
-				console.log("entré por fail")
-			})
+				.done(function(resp){
+					if(resp.status_code == 200){
+            swal(
+							'Registros guardados!',
+							resp.mensaje,
+							'success'
+						);
+						$boton.removeClass("disabled")
+						$boton.text("Confirmar")
+          } else {
+						swal(
+							'Algunos registros ya existen!',
+							resp.mensaje + resp.existentes[0]['inf_cli_id'],
+							'warning'
+						);
+						$boton.removeClass("disabled")
+						$boton.text("Confirmar")
+          }
+
+					// swal(
+					// 	'Registros guardados!',
+					// 	resp.mensaje,
+					// 	'success'
+					// );
+					// $boton.removeClass("disabled")
+					// $boton.text("Confirmar")
+					// // setTimeout(function(){ 
+					// // 	location.reload();
+					// // },2000)
+				})
+				.fail(function(resp){
+					swal(
+						'Error',
+						'Sucedió un error, por favor intenta más tarde o contacta al administrador',
+						'error'
+					);
+					$boton.removeClass("disabled")
+					$boton.text("Confirmar")
+				})
+		} else {
+			swal(
+				'Campos Vacios',
+				'El formulario no puede tener campos vacios, todos los campos son requeridos.',
+				'warning'
+			);
+		}
 	})
 });
 
@@ -170,8 +212,11 @@ function cargar_datos_archivo_subido() {
 			$("#verificar_cargar_datos").modal("show");
 		})
 		.fail(function(err){
-			alert("por favor ingrese un archivo válido")
-			console.log("error cargando el archivo")
+			swal(
+				'Error de archivo',
+				'Por favor ingrese un archivo válido',
+				'error'
+			);
 		});	
 }
 

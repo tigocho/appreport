@@ -4,6 +4,7 @@
   <table style="height: 50%; overflow-y: auto;" id="example" class="table table-striped m-1" cellspacing="0">
     <thead>
       <tr>
+        <th class="text-center">Fila</th>
         <th class="text-left">Id clínica</th>
         <th class="text-left">Código Especialidad</th>
         <th class="text-left">Cédula Médico</th>
@@ -18,6 +19,7 @@
     <tbody>
         <?php foreach ($registros as $value => $registro) { ?>
           <tr>
+            <td class="text-left"><?php echo "<input type='hidden' id='fila-".$value."' name='fila[]' value=".($value+1).">"; echo ($value+1) ?></td>
             <td class="text-left"><?php echo "<input type='number' id='idClinica-".$value."' name='idClinica[]' value=".$registro[0]." required>" ?></td>
             <td class="text-left"><?php echo "<input type='number'id='CodigoEspecialidad-".$value."' name='CodigoEspecialidad[]' value=".$registro[1]." required>" ?></td>
             <td class="text-left"><?php echo "<input type='number' id='CedulaMedico-".$value."' name='CedulaMedico[]' value=".$registro[2]." required>" ?></td>

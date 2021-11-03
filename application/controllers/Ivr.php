@@ -39,7 +39,6 @@ class Ivr extends CI_Controller
   public function editarInfoClinicas(){
     $data = $this->input->post();
     
-    echo json_encode($data);
     $data = array(
       'inf_cli_id' => trim($data['inf_cli_id']),
       'inf_cli_cod_esp' => trim($data['inf_cli_cod_esp']),
@@ -79,12 +78,14 @@ class Ivr extends CI_Controller
     echo json_encode($output);
   }
 
-  //agrega los registros ingresados
+  //agrega los registros cargados en documento csv
   public function crearRegistrosCargados(){
     $data = json_decode($_POST['data'], true);
+    $existentes = []; 
     //Se iteran los registros y se van agregando uno por uno a la base
     foreach($data as $registro){
       $registroTemp = array(
+          'fila' => trim($registro['fila']),
           'inf_cli_id' => trim($registro['idClinica']),
           'inf_cli_cod_esp' => trim($registro['idEspecialidad']),
           'inf_cli_cedula_medico' => trim($registro['cedulaMedico']),
@@ -95,10 +96,21 @@ class Ivr extends CI_Controller
           'inf_cli_observacion' => trim($registro['observacion']),
           'inf_cli_validacion' => trim($registro['validacion']),
       );
-      $registro_id = $this->crearRegistro($registroTemp);
-      var_dump($registro_id);
+
+      //verifica si el registro ya existe
+      if($this->ivr_model->buscar_registro($registroTemp)){
+        array_push($existentes, $registroTemp); 
+        continue;
+      } else{
+        $this->crearRegistro($registroTemp); //agrega el ergistro a la base de datos
+      }
     }
-    echo json_encode(array("status_code" => 200,"mensaje" => "Los registros se han guardado satisfactoriamente"));  
+
+    if(count($existentes)>0){
+      echo json_encode(array("status_code" => 401,"mensaje" => "Ya existen estos registros: ", "existentes" => $existentes));  
+    } else {
+      echo json_encode(array("status_code" => 200,"mensaje" => "Los registros se han guardado satisfactoriamente"));  
+    }   
   }
  
 }
