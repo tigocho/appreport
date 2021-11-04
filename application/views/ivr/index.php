@@ -127,7 +127,11 @@
           </div>
         </div>
         <div class="modal-footer">
-          <div class="col-md-12 text-right">
+          <div class="col-md-12 text-center">
+            <h4 id="filas-existentes" style="font-weight: bold; color:red"></h4>
+            <span id="mensaje-modificar-registros" style="font-weight: 600;"></span>
+          </div>
+          <div class="col-md-4 text-right">
             <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-danger m-2">Cancelar</button>
             <button type="button" class="btn btn-primary evt-confirmar-registros">Confirmar</button>
           </div>

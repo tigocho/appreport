@@ -66,6 +66,7 @@ $(document).ready(function () {
 		$boton = $(this)
 		//$boton.addClass("disabled")
 		//$boton.text("Guardando...")
+		
 		var formulario = $("#registrosConfirmados");
 		var url = formulario.attr("action");
 		var numeroDeCampos = formulario.serializeArray().length
@@ -108,9 +109,11 @@ $(document).ready(function () {
 						$boton.removeClass("disabled")
 						$boton.text("Confirmar")
           } else {
+						$("#verificar_cargar_datos #filas-existentes").text("Estos registros ya existen, fila/as: "+resp.existentes);
+						$("#verificar_cargar_datos #mensaje-modificar-registros").text(resp.mensaje2);
 						swal(
 							'Algunos registros ya existen!',
-							resp.mensaje + resp.existentes[0]['inf_cli_id'],
+							resp.mensaje + resp.existentes + resp.mensaje2,
 							'warning'
 						);
 						$boton.removeClass("disabled")

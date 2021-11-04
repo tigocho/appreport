@@ -82,10 +82,11 @@ class Ivr extends CI_Controller
   public function crearRegistrosCargados(){
     $data = json_decode($_POST['data'], true);
     $existentes = []; 
+
+    $this->db->trans_start();
     //Se iteran los registros y se van agregando uno por uno a la base
     foreach($data as $registro){
       $registroTemp = array(
-          'fila' => trim($registro['fila']),
           'inf_cli_id' => trim($registro['idClinica']),
           'inf_cli_cod_esp' => trim($registro['idEspecialidad']),
           'inf_cli_cedula_medico' => trim($registro['cedulaMedico']),
@@ -99,15 +100,25 @@ class Ivr extends CI_Controller
 
       //verifica si el registro ya existe
       if($this->ivr_model->buscar_registro($registroTemp)){
-        array_push($existentes, $registroTemp); 
+        array_push($existentes, $registro['fila']);
         continue;
       } else{
-        $this->crearRegistro($registroTemp); //agrega el ergistro a la base de datos
-      }
+        $this->crearRegistro($registroTemp); //agrega el registro a la base de datos
+      } 
     }
+    $cantidadExistentes = count($existentes);
 
-    if(count($existentes)>0){
-      echo json_encode(array("status_code" => 401,"mensaje" => "Ya existen estos registros: ", "existentes" => $existentes));  
+    if($cantidadExistentes>0){
+      $this->db->trans_rollback();
+    } else {
+      $this->db->trans_commit();
+    }
+    
+    $this->db->trans_complete();
+    $filasExistentes = implode(",", $existentes);
+
+    if($cantidadExistentes>0){
+      echo json_encode(array("status_code" => 401,"mensaje" => "Los registros de las siguientes filas ya existen: \n ", "existentes" => $filasExistentes."\n\n", "mensaje2" => " Por favor modifique o elimine los registros de las filas existentes en su archivo local y carguelo nuevamente."),);  
     } else {
       echo json_encode(array("status_code" => 200,"mensaje" => "Los registros se han guardado satisfactoriamente"));  
     }   
