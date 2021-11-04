@@ -31,8 +31,27 @@ class Ivr extends CI_Controller
     echo json_encode($this->ivr_model->getInfoClinicas());
   }
 
-  public function crearRegistro($registro){
-    return $this->ivr_model->crear_registro($registro);
+  public function crearRegistro(){
+    $data = $this->input->post();
+    $data = array(
+			"inf_cli_id" => $this->input->post("id_cli"),
+			"inf_cli_cod_esp" => $this->input->post("id_esp"),
+			"inf_cli_cedula_medico" => $this->input->post("id_medico"),
+			"inf_cli_nomb_esp" => $this->input->post("nomb_esp"),
+			"inf_cli_nomb_medico" => $this->input->post("nomb_medico"),
+			"inf_cli_lugar_facturacion" => $this->input->post("lugar_facturacion"),
+			"inf_cli_lugar_atencion" => $this->input->post("lugar_atencion"),
+			"inf_cli_observacion" => $this->input->post("observacion"),
+			"inf_cli_validacion" => $this->input->post("validacion"),
+		);
+
+    if($this->ivr_model->buscar_registro($data)){
+      echo json_encode(array("status_code" => 401,"mensaje" => "El registro que ingresó ya existe."));
+    } else{
+      $this->ivr_model->crear_registro($data);
+      echo json_encode(array("status_code" => 200,"mensaje" => "Registro guardado exitosamente."));
+    } 
+  
   }
 
   //edita un registro con el data ingresado en el modal
@@ -103,7 +122,7 @@ class Ivr extends CI_Controller
         array_push($existentes, $registro['fila']);
         continue;
       } else{
-        $this->crearRegistro($registroTemp); //agrega el registro a la base de datos
+        $this->ivr_model->crear_registro($registroTemp);
       } 
     }
     $cantidadExistentes = count($existentes);
@@ -115,10 +134,11 @@ class Ivr extends CI_Controller
     }
     
     $this->db->trans_complete();
+
     $filasExistentes = implode(",", $existentes);
 
     if($cantidadExistentes>0){
-      echo json_encode(array("status_code" => 401,"mensaje" => "Los registros de las siguientes filas ya existen: \n ", "existentes" => $filasExistentes."\n\n", "mensaje2" => " Por favor modifique o elimine los registros de las filas existentes en su archivo local y carguelo nuevamente."),);  
+      echo json_encode(array("status_code" => 401,"mensaje" => "Los registros de las siguientes filas ya existen: \n ", "existentes" => $filasExistentes."\n\n", "mensaje2" => " Por favor modifique o elimine los registros de las filas existentes en su archivo local y carguelo nuevamente."));  
     } else {
       echo json_encode(array("status_code" => 200,"mensaje" => "Los registros se han guardado satisfactoriamente"));  
     }   
