@@ -138,7 +138,7 @@ class Ivr extends CI_Controller
     $filasExistentes = implode(",", $existentes);
 
     if($cantidadExistentes>0){
-      echo json_encode(array("status_code" => 401,"mensaje" => "Los registros de las siguientes filas ya existen: \n ", "existentes" => $filasExistentes."\n\n", "mensaje2" => " Por favor modifique o elimine los registros de las filas existentes en su archivo local y carguelo nuevamente."));  
+      echo json_encode(array("status_code" => 401,"mensaje" => "Los registros de las siguientes filas ya existen: \n ", "existentes" => $filasExistentes."\n\n", "mensaje2" => " Por favor modifique o elimine los registros de las filas existentes en su archivo local y carguelo a la plataforma nuevamente."));  
     } else {
       echo json_encode(array("status_code" => 200,"mensaje" => "Los registros se han guardado satisfactoriamente"));  
     }   

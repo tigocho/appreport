@@ -38,10 +38,8 @@ $(document).ready(function () {
 				ordertable: true,
 				render: function (data, type, row) {
 					return (
-						"<button type='button' class='btn btn-primary mb-3 evt-editar-ivr'>Editar</button> " +
-						"<button type='button' onclick='ivr_info_delete(\"" +
-						row +
-						"\");' class='btn btn-danger mb-3'>Eliminar</button>"
+						"<button type='button' style='margin: auto' class='col-12 btn btn-primary mb-3 evt-editar-ivr'>Editar</button> " +
+						"<button type='button' style='margin: auto' class='col-12 btn btn-danger mb-3' evt-eliminar-ivr>Eliminar</button>"
 					);
 				},
 			},
@@ -66,47 +64,61 @@ $(document).ready(function () {
 	//actualiza un registro con la información ingresada
 	$("body").on("click", ".evt-editar-info", function (e) {
 		var formulario = $("#edit");
-		var url = formulario.attr("action")
+		var url = formulario.attr("action");
+		boton = $(this);
+		boton.addClass("disabled");
+		boton.text("Actualizando...");
 
-		if(formulario.valid()) {
+		//datos actualizados
+		let dataPost = {
+			inf_cli_id: $("#inf_cli_id").val(),
+			inf_cli_cod_esp: $("#inf_cli_cod_esp").val(),
+			inf_cli_cedula_medico: $("#inf_cli_cedula_medico").val(),
+			inf_cli_nomb_esp: $("#inf_cli_nomb_esp").val(),
+			inf_cli_nomb_medico: $("#inf_cli_nomb_medico").val(),
+			inf_cli_lugar_facturacion: $("#inf_cli_lugar_facturacion").val(),
+			inf_cli_lugar_atencion: $("#inf_cli_lugar_atencion").val(),
+			inf_cli_observacion: $("#inf_cli_observacion").val(),
+			inf_cli_validacion: $("#inf_cli_validacion").val(),
+		};
 
-			//datos actualizados
-			let dataPost = {
-				inf_cli_id: $("#inf_cli_id").val(),
-				inf_cli_cod_esp: $("#inf_cli_cod_esp").val(),
-				inf_cli_cedula_medico: $("#inf_cli_cedula_medico").val(),
-				inf_cli_nomb_esp: $("#inf_cli_nomb_esp").val(),
-				inf_cli_nomb_medico: $("#inf_cli_nomb_medico").val(),
-				inf_cli_lugar_facturacion: $("#inf_cli_lugar_facturacion").val(),
-				inf_cli_lugar_atencion: $("#inf_cli_lugar_atencion").val(),
-				inf_cli_observacion: $("#inf_cli_observacion").val(),
-				inf_cli_validacion: $("#inf_cli_validacion").val(),
-			};
-	
+		//verifica si hay inputs vacios
+		datosVacios = [];
+		$.each(dataPost, function (ind, elem) {
+			if (elem != "") {
+				datosVacios = datosVacios;
+			} else {
+				datosVacios.push(elem);
+			}
+		});
+
+		if (datosVacios.length > 0) {
+			swal(
+				"¡Campos Vacios!",
+				"El formulario no puede tener campos vacios, todos los campos son requeridos.",
+				"warning"
+			);
+			boton.removeClass("disabled");
+			boton.text("Actualizar");
+		} else {
 			$.ajax({
 				type: "POST",
 				url: url,
 				dataType: "json",
 				data: dataPost,
 				success: function (resp) {
-					swal("exitoso!", resp, "success", 6000);
+					swal("¡Actualizado!", resp, "success", 6000);
 					$("#ivr_edit").modal("hide");
-					setTimeout(function () {
-						location.reload();
-					}, 2000);
+					table.ajax.reload();
 				},
 				error: function (error) {
 					swal("Opps!", "Error al actualizar la información", "warning", 6000);
+					boton.removeClass("disabled");
+					boton.text("Actualizar");
 				},
 			});
-		} else {
-			swal(
-				"Campos Vacios",
-				"El formulario no puede tener campos vacios, todos los campos son requeridos.",
-				"warning"
-			);
 		}
-	})
+	});
 
 	//captura el nombre del archivo subido
 	$("body").on("change", ".evt-file-input", function (e) {
@@ -123,11 +135,11 @@ $(document).ready(function () {
 	//Guardar un nuevo registro
 	$("body").on("click", ".evt-crear-registro", function (e) {
 		var formulario = $("#create");
-		var url = formulario.attr("action")
-		boton = $(this)
-		boton.addClass("disabled")
-		boton.text("Guardando...")
-	
+		var url = formulario.attr("action");
+		boton = $(this);
+		boton.addClass("disabled");
+		boton.text("Guardando...");
+
 		//datos ingresados
 		let dataPost = {
 			id_cli: $("#id_cli").val(),
@@ -140,52 +152,62 @@ $(document).ready(function () {
 			observacion: $("#observacion").val(),
 			validacion: $("#validacion").val(),
 		};
-		console.log(dataPost)
-	
-		$.ajax({
-			url: url,
-			dataType: "json",
-			data: dataPost,
-			type: "post",
-		})
-			.done(function (resp) {
-				if (resp.status_code == 200) {
+
+		//verifica si hay inputs vacios
+		datosVacios = [];
+		$.each(dataPost, function (ind, elem) {
+			if (elem != "") {
+				datosVacios = datosVacios;
+			} else {
+				datosVacios.push(elem);
+			}
+		});
+
+		if (datosVacios.length > 0) {
+			swal(
+				"¡Campos Vacios!",
+				"El formulario no puede tener campos vacios, todos los campos son requeridos.",
+				"warning"
+			);
+			boton.removeClass("disabled");
+			boton.text("Confirmar");
+		} else {
+			$.ajax({
+				url: url,
+				dataType: "json",
+				data: dataPost,
+				type: "post",
+			})
+				.done(function (resp) {
+					if (resp.status_code == 200) {
+						swal("¡Agregado!", resp.mensaje, "success");
+						boton.removeClass("disabled");
+						boton.text("Guardar");
+						$("#ivr_create").modal("hide");
+						table.ajax.reload();
+					} else {
+						swal("¡Ya existe el registro!", resp.mensaje, "error");
+						boton.removeClass("disabled");
+						boton.text("Guardar");
+					}
+				})
+				.fail(function (resp) {
 					swal(
-						"¡Agregado!",
-						resp.mensaje,
-						"success"
-					);
-					boton.removeClass("disabled");
-					boton.text("Guardar");
-					setTimeout(function () {
-						location.reload();
-					}, 2000);
-				} else{
-					swal(
-						"Ya existe el registro",
-						resp.mensaje,
+						"¡Error!",
+						"Sucedió un error, por favor intenta más tarde o contacta al administrador",
 						"error"
 					);
 					boton.removeClass("disabled");
-					boton.text("Guardar");
-				}
-			})
-			.fail(function (resp) {
-				swal(
-					"Error",
-					"Sucedió un error, por favor intenta más tarde o contacta al administrador",
-					"error"
-				);
-				boton.removeClass("disabled");
-				boton.text("Confirmar");
-			});
+					boton.text("Confirmar");
+				});
+		}
 	});
 
 	//evento para confirmar registros cargados
 	$("body").on("click", ".evt-confirmar-registros", function (e) {
-		$boton = $(this);
-		$boton.addClass("disabled");
-		$boton.text("Guardando...");
+		boton = $(this);
+		boton.addClass("disabled");
+		boton.text("Guardando...");
 
 		var formulario = $("#registrosConfirmados");
 		var url = formulario.attr("action");
@@ -196,8 +218,6 @@ $(document).ready(function () {
 			var listaRegistros = [];
 			//se genera la lista de objetos
 			for (var i = 0; i < numeroDeCampos; i += 10) {
-				//si el id clinica ya está en la base, continue
-				//sino agrege el registro a la lista de temporales
 				registroTemp = {
 					fila: formulario.serializeArray()[i].value,
 					idClinica: formulario.serializeArray()[i + 1].value,
@@ -222,11 +242,10 @@ $(document).ready(function () {
 				.done(function (resp) {
 					if (resp.status_code == 200) {
 						swal("Registros guardados!", resp.mensaje, "success");
-						$boton.removeClass("disabled");
-						$boton.text("Confirmar");
-						setTimeout(function () {
-							location.reload();
-						}, 2000);
+						boton.removeClass("disabled");
+						boton.text("Confirmar");
+						table.ajax.reload();
+						$("#cargar_datos").modal("hide");
 					} else {
 						$("#verificar_cargar_datos #filas-existentes").text(
 							"Estos registros ya existen, fila/as: " + resp.existentes
@@ -235,41 +254,37 @@ $(document).ready(function () {
 							resp.mensaje2
 						);
 						swal(
-							"Algunos registros ya existen!",
+							"¡Algunos registros ya existen!",
 							resp.mensaje + resp.existentes + resp.mensaje2,
 							"warning"
 						);
-						$boton.removeClass("disabled");
-						$boton.text("Confirmar");
+						boton.removeClass("disabled");
+						boton.text("Confirmar");
 					}
-					// swal(
-					// 	'Registros guardados!',
-					// 	resp.mensaje,
-					// 	'success'
-					// );
-					// $boton.removeClass("disabled")
-					// $boton.text("Confirmar")
 				})
 				.fail(function (resp) {
 					swal(
-						"Error",
+						"¡Error!",
 						"Sucedió un error, por favor intenta más tarde o contacta al administrador",
 						"error"
 					);
-					$boton.removeClass("disabled");
-					$boton.text("Confirmar");
+					boton.removeClass("disabled");
+					boton.text("Confirmar");
+					$("#cargar_datos").modal("hide");
 				});
 		} else {
 			swal(
-				"Campos Vacios",
+				"¡Campos Vacios!",
 				"El formulario no puede tener campos vacios, todos los campos son requeridos.",
 				"warning"
 			);
+			boton.removeClass("disabled");
+			boton.text("Confirmar");
 		}
 	});
 });
 
-
+//Abre el modal para cargar un archivo csv
 function modal_cargar_datos() {
 	$("#cargar_datos").modal("show");
 }
@@ -292,6 +307,10 @@ function cargar_datos_archivo_subido() {
 			$("#verificar_cargar_datos").modal("show");
 		})
 		.fail(function (err) {
-			swal("Error de archivo", "Por favor ingrese un archivo válido", "error");
+			swal(
+				"¡Error de archivo!",
+				"Por favor ingrese un archivo válido.",
+				"error"
+			);
 		});
 }

@@ -19,10 +19,10 @@
     </div>
     <!-- boton agregar informacion ivr -->
     <div style="float:right; margin:24px 10px 20px 10px" class="d-flex align-items-center">
-      <button type="button" style="float: right;" class="btn btn-success evt-nuevo-registro">Nuevo registro</button>
+      <button type="button" style="float: right;" class="btn btn-primary evt-nuevo-registro">Crear registro</button>
     </div>
     <div style="float:right; margin: 10px 20px 10px" class="d-flex align-items-center m-4">
-      <button type="button" style="float: right;" onclick="modal_cargar_datos()" class="btn btn-primary">Cargar Excel</button>
+      <button type="button" style="float: right;" onclick="modal_cargar_datos()" class="btn btn-success">Cargar Excel</button>
     </div>
   </div>
 
@@ -161,7 +161,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Cargar Datos</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Cargar datos</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -172,8 +172,10 @@
               <input class="custom-file-input mb-3 evt-file-input" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" lang="es" type="file" name="archivoRegistrosNuevos">
               <label class="custom-file-label">Seleccione un archivo</label>
             </div>
-            <button type="button" onclick="cargar_datos_archivo_subido()" class="btn btn-primary form-control">Cargar datos</button>
           </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" onclick="cargar_datos_archivo_subido()" class="btn btn-primary form-control">Cargar datos</button>
         </div>
       </div>
     </div>
@@ -212,10 +214,6 @@
 <script src="<?php echo base_url(); ?>resources/js/jquery-ui.min.js"></script>
 <!-- select2 -->
 <script src="<?php echo base_url(); ?>resources/js/select2.min.js"></script>
-
-<!-- form valid -->
-<script src="<?php echo base_url(); ?>resources/js/jquery-validate.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>resources/js/mensajes-jquery-validate.js"></script>
 
 <script type="text/javascript" charset="utf8" src="<?php echo base_url(); ?>resources/js/jquery.dataTables.js"></script>
 <script type='text/javascript'>
