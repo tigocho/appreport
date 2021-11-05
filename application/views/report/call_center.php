@@ -7,25 +7,25 @@
     </div>
 
     <div class="iq-card-body"> 
-        <div class="row" style="padding: 15px 20px 0px 20px;">
-            <div class="col-sm-6">
-                <h5 class="card-title">Buscar en un rango de fechas:</h5>
+            <div class="row" style="padding: 15px 20px 0px 20px;">
+                <div class="col-sm-6">
+                    <h5 class="card-title">Buscar en un rango de fechas:</h5>
+                </div>
+            </div>  
+            <div class="row" style="padding: 15px 20px 0px 20px;">
+                <div class="col-sm-6">
+                    <h5 class="card-title">Fecha Inicial:</h5>
+                    <input type="date" id="dateini" class="form-control">
+                </div>
+                <div class="col-sm-6">
+                    <h5 class="card-title">Fecha Final:</h5>
+                    <input type="date" id="datefin" class="form-control">
+                </div>
+                <div style="padding: 15px 20px 0px 20px;" class="form-group"> 
+                    <button class="btn btn-success" id="botonf"  type="boton">Buscar</button>
+                    <button class="btn btn-primary" id="limpiar"  type="boton">Limpiar filtro</button>
+                </div>
             </div>
-        </div>  
-        <div class="row" style="padding: 15px 20px 0px 20px;">
-            <div class="col-sm-6">
-                <h5 class="card-title">Fecha Inicial:</h5>
-                <input type="date" id="dateini" class="form-control">
-            </div>
-            <div class="col-sm-6">
-                <h5 class="card-title">Fecha Final:</h5>
-                <input type="date" id="datefin" class="form-control">
-            </div>
-            <div style="padding: 15px 20px 0px 20px;" class="form-group"> 
-                <button class="btn btn-success" id="botonf"  type="boton">Buscar</button>
-                <button class="btn btn-primary" id="limpiar"  type="boton">Limpiar filtro</button>
-            </div>
-        </div>
         <br>
         <div class="table-responsive">
             <table id="tablereport" class="table table-striped table-bordered">
@@ -54,7 +54,7 @@
     <script type='text/javascript'>
         var baseURL= "<?php echo base_url();?>";
     </script>
-    <script src='<?php echo base_url();?>resources/controllers/report.js?v=<?php echo(rand()); ?>' type='text/javascript' ></script>
+    <script src='<?php echo base_url();?>resources/controllers/reportcc.js?v=<?php echo(rand()); ?>' type='text/javascript' ></script>
 </div>
 
     

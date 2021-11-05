@@ -85,7 +85,7 @@
     <script type='text/javascript'>
         var baseURL= "<?php echo base_url();?>";
     </script>
-    <script src='<?php echo base_url(); ?>resources/controllers/area.js' type='text/javascript' ></script>
+    <script src='<?php echo base_url(); ?>resources/controllers/area.js?v=<?php echo(rand()); ?>' type='text/javascript' ></script>
 </div>
         
     

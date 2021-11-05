@@ -1,3 +1,4 @@
+// JSQuery que imprime la datatable con la informacion del colaborador en la vista
 $(document).ready( function () {
     $('#tablecollaborator').DataTable({
         "language": {
@@ -39,117 +40,115 @@ $(document).ready( function () {
     });
 });  
 
-
-// inicio modal para insertar datos de colaborador
-function modal_collaborator_create(){
-$('#collaborator_create').modal('show')
-}
-
-// fin modal para insertar datos de colaborador
-
-
-// inicio de insertar datos de colaborador
-function create_collaborator(){
-
-    var var_col_login_num = document.getElementById("col_login_num").value;
-    var var_col_nom = document.getElementById("col_nom").value;
-    var var_col_cargo = document.getElementById("col_cargo").value;
-    var var_area_id_fk = document.getElementById("area_id_fk").value;
-    console.log("rutapost",baseURL+'Collaborator/createCollaborator');
-    if(var_col_login_num == ""){
-        var_col_login_num="NO APLICA";
-    }
-    if (var_col_nom=="") {
-        swal("Opps!","Por favor diligencie el nombre del colaborador","warning");  
-        return false;
-    } 
-    if (var_col_cargo=="") {
-        swal("Opps!","Por favor diligencie el cargo del colaborador","warning"); 
-        return false;
-    }
-    if (var_area_id_fk=="0") {
-        swal("Opps!","Por favor diligencie el el area a la que pertenece el colaborador","warning"); 
-        return false;
-    } 
-    
-    
-    dataPostV = {
-    
-        col_login_num : var_col_login_num,
-        col_nom : var_col_nom,
-        col_cargo : var_col_cargo,
-        id_area_fk : var_area_id_fk,
-        tip_est_id_fk : 1, 
+    // funcion javascript que abre la modal(ventana) que contiene el formulario del colaborador
+    function modal_collaborator_create()
+    {
+        $('#collaborator_create').modal('show')
     }
 
-    console.info(dataPostV);
 
-    $.ajax({
-        type: "POST",
-        url: baseURL+'Collaborator/createCollaborator',
-        dataType: 'json',
-        data: dataPostV,
-        success: function(resp) {
-            console.log("resp:",resp["mensaje"]);
-            swal("exitoso!", resp["mensaje"], "success",6000);
-            $('#collaborator_create').modal('hide');
-            location.reload();
-        },error: function(error) {
-            error;
-            swal("Opps!","Error al enviar la informacion","warning",6000);
+    function create_collaborator()
+    {
+        var var_col_login_num = document.getElementById("col_login_num").value;
+        var var_col_nom = document.getElementById("col_nom").value;
+        var var_col_cargo = document.getElementById("col_cargo").value;
+        var var_area_id_fk = document.getElementById("area_id_fk").value;
+        console.log("rutapost",baseURL+'Collaborator/createCollaborator');
+        if(var_col_login_num == ""){
+            var_col_login_num="NO APLICA";
         }
-    });    
+        if (var_col_nom=="") {
+            swal("Opps!","Por favor diligencie el nombre del colaborador","warning");  
+            return false;
+        } 
+        if (var_col_cargo=="") {
+            swal("Opps!","Por favor diligencie el cargo del colaborador","warning"); 
+            return false;
+        }
+        if (var_area_id_fk=="0") {
+            swal("Opps!","Por favor diligencie el el area a la que pertenece el colaborador","warning"); 
+            return false;
+        } 
+        
+        
+        dataPostV = {
+        
+            col_login_num : var_col_login_num,
+            col_nom : var_col_nom,
+            col_cargo : var_col_cargo,
+            id_area_fk : var_area_id_fk,
+            tip_est_id_fk : 1, 
+        }
 
-}
+        console.info(dataPostV);
+
+        $.ajax({
+            type: "POST",
+            url: baseURL+'Collaborator/createCollaborator',
+            dataType: 'json',
+            data: dataPostV,
+            success: function(resp) {
+                console.log("resp:",resp["mensaje"]);
+                swal("exitoso!", resp["mensaje"], "success",6000);
+                $('#collaborator_create').modal('hide');
+                location.reload();
+            },error: function(error) {
+                error;
+                swal("Opps!","Error al enviar la informacion","warning",6000);
+            }
+        });    
+
+    }
 
  // fin de insertar datos de colaborador
 
- function modal_collaborator_edit(var_col_id, var_col_login_num, var_col_nom,var_col_cargo,var_area_id_fk){
+    function modal_collaborator_edit(var_col_id, var_col_login_num, var_col_nom,var_col_cargo,var_area_id_fk)
+    {
     $('#collaborator_edit').modal('show');
     $('#col_id_e').val(var_col_id);
 	$('#col_login_num_e').val(var_col_login_num);
 	$('#col_nom_e').val(var_col_nom);
     $('#col_cargo_e').val(var_col_cargo);
     $('#area_id_fk_e').val(var_area_id_fk);
-    
     }
 
 
-function edit_collaborator(){
-    var var_col_id = document.getElementById("col_id_e").value;
-    var var_col_login_num = document.getElementById("col_login_num_e").value;
-    var var_col_nom = document.getElementById("col_nom_e").value;
-    var var_col_cargo = document.getElementById("col_cargo_e").value;
-    var var_area_id_fk = document.getElementById("area_id_fk_e").value;
-    console.log("rutapost",baseURL+'Collaborator/editCollaborator');
-    dataPostV = {
-        col_id : var_col_id,
-        col_login_num : var_col_login_num,
-        col_nom : var_col_nom,
-        col_cargo : var_col_cargo,
-        id_area_fk : var_area_id_fk,
-        
-    }
-
-    console.info(dataPostV);
-
-    $.ajax({
-        type: "POST",
-        url: baseURL+'Collaborator/editCollaborator',
-        dataType: 'json',
-        data: dataPostV,
-        success: function(resp) {
-            console.log("resp:",resp["mensaje"]);
-            swal("exitoso!", resp["mensaje"], "success",6000);
-            $('#collaborator_edit').modal('hide');
-            location.reload();
-        },error: function(error) {
-            error;
-            swal("Opps!","Error al enviar la informacion","warning",6000);
+    function edit_collaborator()
+    {
+        var var_col_id = document.getElementById("col_id_e").value;
+        var var_col_login_num = document.getElementById("col_login_num_e").value;
+        var var_col_nom = document.getElementById("col_nom_e").value;
+        var var_col_cargo = document.getElementById("col_cargo_e").value;
+        var var_area_id_fk = document.getElementById("area_id_fk_e").value;
+        console.log("rutapost",baseURL+'Collaborator/editCollaborator');
+        dataPostV = {
+            col_id : var_col_id,
+            col_login_num : var_col_login_num,
+            col_nom : var_col_nom,
+            col_cargo : var_col_cargo,
+            id_area_fk : var_area_id_fk,
+            
         }
-    });    
 
-}
+        console.info(dataPostV);
+
+        $.ajax({
+            type: "POST",
+            url: baseURL+'Collaborator/editCollaborator',
+            dataType: 'json',
+            data: dataPostV,
+            success: function(resp) {
+                console.log("resp:",resp["mensaje"]);
+                swal("exitoso!", resp["mensaje"], "success",6000);
+                $('#collaborator_edit').modal('hide');
+                location.reload();
+            },error: function(error) {
+                error;
+                swal("Opps!","Error al enviar la informacion","warning",6000);
+            }
+        });    
+
+    }
 
 function collaborator_delete(var_col_id){
     swal({

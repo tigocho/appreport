@@ -1,6 +1,7 @@
-// jquery que trae la infomacion de todos los reportes 
+// jquery que trae la infomacion de los reportes techologia
 
-//funcion que muestra las novedades creadas de todo el aplicativo entre fecha inicio a fecha fin 
+
+//funcion que muestra las novedades techologia creadas entre fecha inicio a fecha fin 
 $( "#botonf" ).click(function() {
     var inicio = $("#dateini").val();
     var fin = $("#datefin").val();
@@ -52,7 +53,7 @@ $( "#botonf" ).click(function() {
 
         "ajax":{
 
-                "url": baseURL+"Report/getnovelty/"+inicio+"/"+fin,
+                "url": baseURL+"Report/getnoveltyTi/"+inicio+"/"+fin,
                 "type":"POST",
                 dataSrc: ""
             },columnDefs: [
@@ -86,6 +87,7 @@ $( "#botonf" ).click(function() {
 }); 
 
 
+
 //funcion que permite limpiar el filtro de las fechas
 $("#limpiar").click(function() {
     $("#dateini").val('');
@@ -105,10 +107,11 @@ $("#csv").click(function() {
         contentType: false,
         processData: false,
         success: function(resp) {
-            swal("exitoso!", resp["mensaje"], "success");
+            swal("exitoso!", resp["mensaje"], "success",6000);
         },error: function(error) {
             error;
             swal("Opps!","error al enviar la informacion","warning",6000);
         }
     });  
 });   
+

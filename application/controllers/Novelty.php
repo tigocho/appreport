@@ -1,7 +1,7 @@
 <?php
     class Novelty extends CI_Controller {
 
-        // inicio conexion del controlador a el modal y url helpers
+        // conexion del controlador a el model y helpers
         public function __construct()
         {
             parent::__construct();
@@ -13,10 +13,8 @@
                 redirect(base_url());
             }
         }
-         // fin conexion del controlador a el modal y url helpers
-
-
-        // inicio vista a las novedades
+        
+        // funcion que muestra en la vista la tabla y su contenido del modulo de novedades abiertas 
         public function abiertas()
         {
             $data['title'] = 'Novedades abiertas';
@@ -27,6 +25,13 @@
             $this->load->view('templates/footer');
         }
 
+        // funcion que obtiene la informacion para mostrarla en la tabla de novedades abiertas
+        public function getnoveltyab()
+        {
+           echo json_encode($this->novelty_model->get_noveltyA());
+        }
+
+        // funcion que muestra en la vista la tabla y su contenido del modulo de novedades cerradas
         public function cerradas()
         {
             $data['title'] = 'Novedades cerradas';
@@ -37,24 +42,15 @@
             $this->load->view('templates/footer');
         }
         
-        // fin vista a las novedades
-
-        public function getnoveltyab()
-         {
-            echo json_encode($this->novelty_model->get_noveltyA());
-         }
-
-         public function getnoveltyce()
-         {
+        // funcion que obtiene la informacion para mostrarla en la tabla de novedades cerradas
+        public function getnoveltyce()
+        {
             echo json_encode($this->novelty_model->get_noveltyC());
-         }
+        }
 
-
-         // inicio vista a formulario
-
+        // funcion que muestra en la vista el formulario donde se crea una nueva novedad
         public function create()
         {
-           
             $data['title'] = 'Registro nueva novedad';
             $data['seccion'] = $this->novelty_model->get_seccion();
             $data['colaborador'] = $this->novelty_model->get_collaborator();
@@ -64,38 +60,34 @@
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');
             $this->load->view('novelty/create', $data);
-            $this->load->view('templates/footer');
-            
+            $this->load->view('templates/footer'); 
         }
 
-         // fin vista a las formulario
-
-         public function gettypeincident()
-         {  $cate_id = $this->input->post('cate_id');
+        // funcion que obtiene la informacion para mostrarla en el select de tipo de incidencia
+        public function gettypeincident()
+        {  
+            $cate_id = $this->input->post('cate_id');
             echo json_encode($this->novelty_model->get_typeincident($cate_id));
-         }
+        }
 
-         // inicio de inserccion de novedad
-         public function createNovelty()
-         {
-             $retorno = ["estadoRetorno"=> true,
-             "mensaje"=> "paila.",
-             "retorno"=> []];
-  
-             $data = $this->input->post();
-             $response = $this->novelty_model->saveNovelty($data);
-             if ($response){
-                 $retorno['mensaje'] = "informacion de novedad registrada correctamente!";
-                 echo json_encode($retorno);
-             }
+        // funcion que envia a el model de novelty la informacion capturada por el formulario que crea una nueva novedad
+        public function createNovelty()
+        {
+            $retorno = ["estadoRetorno"=> true,
+            "mensaje"=> "paila.",
+            "retorno"=> []];
 
-              $id = $data['usu_id_fk'];
-              $this->sendEmail($id);
+            $data = $this->input->post();
+            $response = $this->novelty_model->saveNovelty($data);
+            if ($response){
+                $retorno['mensaje'] = "informacion de novedad registrada correctamente!";
+                echo json_encode($retorno);
+            }
+            $id = $data['usu_id_fk'];
+            $this->sendEmail($id);
+        }
 
-         }
-         // fin de inserccion de novedad
-
-          // inicio vista ediccion de  las novedades
+        // funcion que muestra en la vista el formulario donde se editar la novedad
         public function edit($nove_id)
         {
             $data['title'] = 'Editar novedad';
@@ -112,11 +104,10 @@
             $this->load->view('templates/footer');
             
         }
-        // fin vista ediccion de  las novedades
-
-        // inicio de ediccion  de novedad
+        
+        // funcion que envia a el model de novelty la informacion capturada por el formulario que edita una novedad
         public function editNovelty()
-         {
+        {
              $retorno = ["estadoRetorno"=> true,
              "mensaje"=> "paila.",
              "retorno"=> []];
@@ -130,27 +121,27 @@
                  echo json_encode($retorno);
              }
 
-         }
+        }
 
-         // inicio de ediccion de novedad
+        // funcion que envia a el model de novelty el id de la novedad se nesecita "eliminar"
+        public function deleteNovelty()
+        {
+            $retorno = ["estadoRetorno"=> true,
+            "mensaje"=> "paila.",
+            "retorno"=> []];
 
-         public function deleteNovelty()
-         {
-             $retorno = ["estadoRetorno"=> true,
-             "mensaje"=> "paila.",
-             "retorno"=> []];
-  
-             $data = $this->input->post();
-             $response = $this->novelty_model->eliminar_novelty($data);
-             if ($response){
-                 $retorno['mensaje'] = " Informacion de novedad eliminada correctamente!";
-                 echo json_encode($retorno);
-             }
+            $data = $this->input->post();
+            $response = $this->novelty_model->eliminar_novelty($data);
+            if ($response){
+                $retorno['mensaje'] = " Informacion de novedad eliminada correctamente!";
+                echo json_encode($retorno);
+            }
 
-         }
+        }
 
-        
-         public function sendEmail($id){
+        //funcion que envia un correo notificando cuando la novedad es creada
+        public function sendEmail($id)
+        {
             $resp=$this->db->query("SELECT u.usu_nom, j.jefe_nom,j.jefe_ape,j.jefe_correo from ir_usuario u, ir_jefe j WHERE u.jefe_id_fk = j.jefe_id AND j.tip_est_id_fk =1 AND u.usu_id = $id")->row();
            
             if(empty($resp->jefe_correo)){

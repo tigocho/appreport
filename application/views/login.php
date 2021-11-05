@@ -73,12 +73,12 @@
                             <?php echo form_open('login'); ?>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Número de documento</label>
-                                    <input type="number" name="usu_num_doc" class="form-control mb-0" >
+                                    <input type="number" name="usu_num_doc" required class="form-control mb-0" >
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Contraseña</label>
                                     <a href="<?php echo base_url();?>login/forgot_pass" class="float-right">¿Olvidaste tu contraseña?</a>
-                                    <input type="password" name="usu_contra" class="form-control mb-0" >
+                                    <input type="password" name="usu_contra" required class="form-control mb-0" >
                                 </div>
                                
                                 <div class="d-inline-block w-100">

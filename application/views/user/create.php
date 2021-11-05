@@ -67,6 +67,6 @@
     <script type='text/javascript'>
         var baseURL= "<?php echo base_url();?>";
     </script>
-    <script src='<?php echo base_url();?>resources/controllers/user.js' type='text/javascript' ></script>
+    <script src='<?php echo base_url();?>resources/controllers/user.js?v=<?php echo(rand()); ?>' type='text/javascript' ></script>
 </div>
     

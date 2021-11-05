@@ -1,17 +1,41 @@
 <div class="iq-card"> 
-
     <div class="iq-card-header d-flex justify-content-between">
         <div class="iq-header-title">
             <h4 class="card-title"><?php echo $title; ?></h4>
         </div>
     </div>
 
-    <div class="iq-card-body"> 
+    <div class="iq-card-body">
+        <div class="row" style="padding: 15px 20px 0px 20px;">
+            <div class="col-sm-6">
+                <h5 class="card-title">Importar archivos:</h5>
+            </div>
+        </div> 
+        <form enctype="multipart/form-data" id="formuploadajax" method="post">
+            <div class="row" style="padding: 5px 20px 0px 20px;">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Seleccione un csv</label>
+                        <div class="custom-file">
+                            <input type="file" name="file"  id="file_csv" accept=".csv" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">selecione un archivo</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="padding: 5px 20px 0px 20px;">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <a style="color:#FFFFFF";  id="csv" name="Ingresar" class="btn btn-success">Guardar</a>
+                    </div>
+                </div>
+            </div>
+        </form> 
         <div class="row" style="padding: 15px 20px 0px 20px;">
             <div class="col-sm-6">
                 <h5 class="card-title">Buscar en un rango de fechas:</h5>
             </div>
-        </div>  
+        </div> 
         <div class="row" style="padding: 15px 20px 0px 20px;">
             <div class="col-sm-6">
                 <h5 class="card-title">Fecha Inicial:</h5>
@@ -54,7 +78,7 @@
     <script type='text/javascript'>
         var baseURL= "<?php echo base_url();?>";
     </script>
-    <script src='<?php echo base_url();?>resources/controllers/report.js?v=<?php echo(rand()); ?>' type='text/javascript' ></script>
+    <script src='<?php echo base_url();?>resources/controllers/reportti.js?v=<?php echo(rand()); ?>' type='text/javascript' ></script>
 </div>
 
     
