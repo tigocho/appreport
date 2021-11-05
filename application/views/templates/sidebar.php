@@ -65,11 +65,6 @@
                     </ul>
                 </li>
                 <?php }?>
-                <?php if ($this->session->userdata('rol_id')== 1){?>
-                <li>
-                <a href="<?php echo base_url();?>ivr/index" class="iq-waves-effect"><i class="ri-account-box-fill"></i><span>configuración IVR</span></a>
-                </li>
-                <?php }?>
             </ul>
         </nav>
         <div class="p-3"></div>
