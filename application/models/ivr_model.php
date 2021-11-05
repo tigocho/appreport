@@ -3,20 +3,30 @@ class Ivr_model extends CI_Model
 {
   // conexion base de datos 
   public function __construct()
-  {
-    
+  { 
     parent::__construct();
-    $this->load->database();
-    //$this->db =$this->load->database('gochotest', TRUE);
+    $this->db =$this->load->database('gochotest', TRUE);
     $this->load->library('session');
+  }
+  
+  //retorna las clinicas
+  public function get_clinicas(){
+    $this->db->select('cli_id, cli_name');
+    $this->db->from('IVR_G8_CONEXIONES_CLINICAS');
+    $query = $this->db->get();
+    return $query->result();
   }
 
   //retorna todos los registros de la tabla info_clinicas
-  public function getInfoClinicas()
-  {
-    $this->db->select('*');
-    $this->db->from('ir_info_clinicas');
-    //$this->db->from('IVR_G8_INFO_CLINICAS');
+  public function get_info_clinicas($cli_id){
+    if($cli_id == 0){
+      $this->db->select('*');
+      $this->db->from('IVR_G8_INFO_CLINICAS');
+    } else {
+      $this->db->select('*');
+      $this->db->from('IVR_G8_INFO_CLINICAS');
+      $this->db->where('inf_cli_id', $cli_id);
+    }
     $query = $this->db->get();
     return $query->result();
   }

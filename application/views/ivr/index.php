@@ -11,9 +11,9 @@
       <!-- select de clinicas -->
       <label class="mr-3">Seleccionar clínica: </label>
       <select style="width:100%" data-url-consulta="<?php echo base_url('ivr/consultar_clinica'); ?>" class="form-control select2 evt-consultar-clinica" name="perfil_id" required>
-        <option value="" disabled selected>Clínica</option>
-        <?php foreach ($perfiles as $perfil) { ?>
-          <option value="<?= $perfil->id ?>"><?= $perfil->nombre ?></option>
+        <option value="0" selected>Todas</option>
+        <?php foreach ($clinicas as $clinica) { ?>
+          <option value="<?= $clinica->cli_id ?>"><?= $clinica->cli_name ?></option>
         <?php } ?>
       </select>
     </div>

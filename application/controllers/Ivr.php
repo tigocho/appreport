@@ -18,6 +18,7 @@ class Ivr extends CI_Controller
   public function index()
   {
     $data['title'] = "Configuración IVR";
+    $data['clinicas'] = $this->ivr_model->get_clinicas();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('templates/narbar');
@@ -26,9 +27,9 @@ class Ivr extends CI_Controller
   }
 
   //retorna toda la info traida del modelo
-  public function getInfoClinicas()
-  {
-    echo json_encode($this->ivr_model->getInfoClinicas());
+  public function getInfoClinicas($cli_id)
+  { 
+    echo json_encode($this->ivr_model->get_info_clinicas($cli_id));
   }
 
   public function crearRegistro(){
