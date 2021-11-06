@@ -40,12 +40,71 @@ $(document).ready(function () {
 				render: function (data, type, row) {
 					return (
 						"<button type='button' style='margin: auto' class='col-12 btn btn-primary mb-3 evt-editar-ivr'>Editar</button> " +
-						"<button type='button' style='margin: auto' class='col-12 btn btn-danger mb-3' evt-eliminar-ivr>Eliminar</button>"
+						"<button type='button' style='margin: auto' class='col-12 btn btn-danger mb-3 evt-modal-eliminar-registro'>Eliminar</button>"
 					);
 				},
 			},
 		],
 	});
+
+	//abre el modal de confirmacion de eliminacion de un registro
+	$("body").on("click", ".evt-modal-eliminar-registro", function (e) {
+		var data = table.row($(this).parents("tr")).data();
+
+		$("#cli_id_eliminar").text(data.inf_cli_id);
+		$("#cod_esp_eliminar").text(data.inf_cli_cod_esp);
+		$("#cedula_medico_eliminar").text(data.inf_cli_cedula_medico);
+		$("#nomb_esp_eliminar").text(data.inf_cli_nomb_esp);
+		$("#nomb_medico_eliminar").text(data.inf_cli_nomb_medico);
+		$("#lugar_facturacion_eliminar").text(data.inf_cli_lugar_facturacion);
+		$("#lugar_atencion_eliminar").text(data.inf_cli_lugar_atencion);
+		$("#observacion_eliminar").text(data.inf_cli_observacion);
+		$("#validacion_eliminar").text(data.inf_cli_validacion);
+		$("#eliminar_registro").modal("show");
+	})
+
+	//elimina un registro
+	$("body").on("click", ".evt-eliminar-registro", function (e) {
+		boton = $(this)
+		boton.addClass("disabled")
+		boton.text("Eliminando...")
+
+		let dataPost = {
+			cli_id : $("#cli_id_eliminar").text(),
+			cod_esp : $("#cod_esp_eliminar").text(),
+			cedula_medico : $("#cedula_medico_eliminar").text(),
+			nombre_especialidad : $("#nomb_esp_eliminar").text(),
+			nombre_medico : $("#nomb_medico_eliminar").text(),
+			lugar_facturacion : $("#lugar_facturacion_eliminar").text(),
+			lugar_atencion : $("#lugar_atencion_eliminar").text(),
+			obseracion : $("#observacion_eliminar").text(),
+			validacion : $("#validacion_eliminar").text(),
+		}
+
+		console.log(dataPost)
+	
+		$.ajax({
+			type: "POST",
+			url: baseURL + "Ivr/eliminarRegistro",
+			dataType: "json",
+			data: dataPost,
+			success: function (resp) {
+				swal("¡Eliminado!", resp, "success", 6000);
+				$("#eliminar_registro").modal("hide");
+				boton.removeClass("disabled");
+				boton.text("Eliminar")
+				table.ajax.reload();
+			},
+			error: function (error) {
+				console.log(error)
+				swal("¡Error!", "No se pudo eliminar el registro", "error", 6000);
+				boton.removeClass("disabled");
+				boton.text("Eliminar")
+			},
+		});
+	})
+	
+
 
 	$("body").on("change", ".evt-consultar-clinica", function(e){
 		cli_id = $(this).val();
@@ -116,6 +175,8 @@ $(document).ready(function () {
 				success: function (resp) {
 					swal("¡Actualizado!", resp, "success", 6000);
 					$("#ivr_edit").modal("hide");
+					boton.removeClass("disabled");
+					boton.text("Actualizar");
 					table.ajax.reload();
 				},
 				error: function (error) {
@@ -187,7 +248,7 @@ $(document).ready(function () {
 			})
 				.done(function (resp) {
 					if (resp.status_code == 200) {
-						swal("¡Agregado!", resp.mensaje, "success");
+						swal("¡Registro creado!", resp.mensaje, "success");
 						boton.removeClass("disabled");
 						boton.text("Guardar");
 						$("#ivr_create").modal("hide");
@@ -289,6 +350,7 @@ $(document).ready(function () {
 			boton.text("Confirmar");
 		}
 	});
+
 });
 
 //Abre el modal para cargar un archivo csv
