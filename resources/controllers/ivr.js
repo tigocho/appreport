@@ -1,6 +1,7 @@
 $(document).ready(function () {
 	$(".select2").select2();
-
+	
+	var cli_id = 0;
 	var table = $("#tableIvr").DataTable({
 		language: {
 			sProcessing: "Procesando...",
@@ -23,7 +24,7 @@ $(document).ready(function () {
 			},
 		},
 		ajax: {
-			url: baseURL + "Ivr/getInfoClinicas",
+			url: baseURL + "Ivr/getInfoClinicas/"+ cli_id,
 			type: "POST",
 			dataSrc: "",
 		},
@@ -45,6 +46,12 @@ $(document).ready(function () {
 			},
 		],
 	});
+
+	$("body").on("change", ".evt-consultar-clinica", function(e){
+		cli_id = $(this).val();
+		table.ajax.url( baseURL + "Ivr/getInfoClinicas/"+ cli_id ).load();
+	});
+
 
 	//abre modal para editar un registro
 	$("body").on("click", ".evt-editar-ivr", function (e) {
