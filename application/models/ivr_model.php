@@ -5,14 +5,16 @@ class Ivr_model extends CI_Model
   public function __construct()
   { 
     parent::__construct();
-    $this->db =$this->load->database('gochotest', TRUE);
+    $this->load->database();
+    //$this->db =$this->load->database('gochotest', TRUE);
     $this->load->library('session');
   }
   
   //retorna las clinicas
   public function get_clinicas(){
     $this->db->select('cli_id, cli_name');
-    $this->db->from('IVR_G8_CONEXIONES_CLINICAS');
+    $this->db->from("ir_clinicas");
+    //$this->db->from('IVR_G8_CONEXIONES_CLINICAS');
     $query = $this->db->get();
     return $query->result();
   }
@@ -21,10 +23,12 @@ class Ivr_model extends CI_Model
   public function get_info_clinicas($cli_id){
     if($cli_id == 0){
       $this->db->select('*');
-      $this->db->from('IVR_G8_INFO_CLINICAS');
+      $this->db->from("ir_info_clinicas");
+      //$this->db->from('IVR_G8_INFO_CLINICAS');
     } else {
       $this->db->select('*');
-      $this->db->from('IVR_G8_INFO_CLINICAS');
+      $this->db->from("ir_info_clinicas");
+      //$this->db->from('IVR_G8_INFO_CLINICAS');
       $this->db->where('inf_cli_id', $cli_id);
     }
     $query = $this->db->get();
@@ -50,6 +54,14 @@ class Ivr_model extends CI_Model
     } else {
       return false;
     }
+  }
+
+  //elimina un registro 
+  public function eliminar_registro($data){
+  $this->db->where('inf_cli_id', $data['inf_cli_id']);
+  $this->db->where('inf_cli_cod_esp', $data['inf_cli_cod_esp']);
+  $this->db->where('inf_cli_cedula_medico', $data['inf_cli_cedula_medico']);
+  return $this->db->delete('ir_info_clinicas');
   }
 
   //inserta un nuevo registro a la tabla de info_clinicas

@@ -181,6 +181,7 @@
     </div>
   </div>
 
+  <!-- modal cargar registros -->
   <div class="modal fade" id="verificar_cargar_datos" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow:scroll;width:100%">
     <div class="modal-dialog modal-lg" role="document" style="overflow:auto; max-width:2000px; width:90%">
       <div class="modal-content">
@@ -206,6 +207,58 @@
     </div>
   </div>
 
+  <!-- modal eliminar registro -->
+  <div class="modal fade" id="eliminar_registro" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow:scroll;width:100%">
+    <div class="modal-dialog modal-lg" role="document" style="overflow:auto; max-width:2000px; width:90%">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" style="margin: 0 auto" id="exampleModalLabel">Eliminar registro</h2>
+        </div>
+        <div class="modal-body text-center">
+          <div class="iq-card-body">
+            <div class="table-responsive">
+              <table id="tableIvr" class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>Especialidad</th>
+                    <th>Médico</th>
+                    <th>Lugar Facturación</th>
+                    <th>Lugar Atención</th>
+                    <th>Observación</th>
+                    <th>Validación</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="display:none" id="cli_id_eliminar"></td>
+                    <td style="display:none" id="cod_esp_eliminar"></td>
+                    <td style="display:none" id="cedula_medico_eliminar"></td>
+                    <td id="nomb_esp_eliminar"></td> 
+                    <td id="nomb_medico_eliminar"></td>
+                    <td id="lugar_facturacion_eliminar"></td>
+                    <td id="lugar_atencion_eliminar"></td>
+                    <td id="observacion_eliminar"></td>
+                    <td id="validacion_eliminar"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        <h2>¿Desea eliminar este registro?</h2>
+        </div>
+        <div class="modal-footer">
+          <div class="col-md-12 text-center">
+            <h4 id="filas-existentes" style="font-weight: bold; color:red"></h4>
+            <span id="mensaje-modificar-registros" style="font-weight: 600;"></span>
+          </div>
+          <div class="col-md-12 text-right">
+            <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secundary m-2">Cancelar</button>
+            <button type="button" class="btn btn-danger evt-eliminar-registro">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
 

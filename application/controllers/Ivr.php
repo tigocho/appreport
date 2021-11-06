@@ -73,7 +73,23 @@ class Ivr extends CI_Controller
     $response = $this->ivr_model->editar_info_clinicas($data);
 
     if ($response) {
-      echo json_encode("Se actualizó correctamente la información!");
+      echo json_encode("¡Se actualizó correctamente la información!");
+    }
+  }
+
+  //elimina un registro de la base de datos
+  public function eliminarRegistro(){
+    $data = $this->input->post();
+    
+    $data = array(
+      'inf_cli_id' => trim($data['cli_id']),
+      'inf_cli_cod_esp' => trim($data['cod_esp']),
+      'inf_cli_cedula_medico' => trim($data['cedula_medico']),
+    );
+  
+    $response = $this->ivr_model->eliminar_registro($data);
+    if ($response) {
+      echo json_encode("¡Registro eliminado correctamente!");
     }
   }
 
