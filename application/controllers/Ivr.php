@@ -32,7 +32,6 @@ class Ivr extends CI_Controller
   }
 
   public function crearRegistro(){
-    $data = $this->input->post();
     $data = array(
 			"inf_cli_id" => $this->input->post("id_cli"),
 			"inf_cli_cod_esp" => $this->input->post("id_esp"),
@@ -120,7 +119,6 @@ class Ivr extends CI_Controller
       //verifica si el registro ya existe
       if($this->ivr_model->buscar_registro($registroTemp)){
         array_push($existentes, $registro['fila']);
-        continue;
       } else{
         $this->ivr_model->crear_registro($registroTemp);
       } 

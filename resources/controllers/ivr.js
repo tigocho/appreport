@@ -218,7 +218,7 @@ $(document).ready(function () {
 			var listaRegistros = [];
 			//se genera la lista de objetos
 			for (var i = 0; i < numeroDeCampos; i += 10) {
-				registroTemp = {
+				var registroTemp = {
 					fila: formulario.serializeArray()[i].value,
 					idClinica: formulario.serializeArray()[i + 1].value,
 					idEspecialidad: formulario.serializeArray()[i + 2].value,
@@ -292,7 +292,7 @@ function modal_cargar_datos() {
 //confirmación de datos
 function cargar_datos_archivo_subido() {
 	var Form = new FormData($("#datosForm")[0]);
-	url = baseURL + "Ivr/cargarDatosSubidos";
+	var url = baseURL + "Ivr/cargarDatosSubidos";
 	$.ajax({
 		url: url,
 		type: "post",
