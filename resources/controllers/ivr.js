@@ -73,6 +73,12 @@ $(document).ready(function () {
 			cli_id : $("#cli_id_eliminar").text(),
 			cod_esp : $("#cod_esp_eliminar").text(),
 			cedula_medico : $("#cedula_medico_eliminar").text(),
+			nombre_especialidad : $("#nomb_esp_eliminar").text(),
+			nombre_medico : $("#nomb_medico_eliminar").text(),
+			lugar_facturacion : $("#lugar_facturacion_eliminar").text(),
+			lugar_atencion : $("#lugar_atencion_eliminar").text(),
+			obseracion : $("#observacion_eliminar").text(),
+			validacion : $("#validacion_eliminar").text(),
 		}
 
 		console.log(dataPost)
@@ -90,7 +96,8 @@ $(document).ready(function () {
 				table.ajax.reload();
 			},
 			error: function (error) {
-				swal("Opps!", "Error al actualizar la información", "warning", 6000);
+				console.log(error)
+				swal("¡Error!", "No se pudo eliminar el registro", "error", 6000);
 				boton.removeClass("disabled");
 				boton.text("Eliminar")
 			},
@@ -241,7 +248,7 @@ $(document).ready(function () {
 			})
 				.done(function (resp) {
 					if (resp.status_code == 200) {
-						swal("¡Agregado!", resp.mensaje, "success");
+						swal("¡Registro creado!", resp.mensaje, "success");
 						boton.removeClass("disabled");
 						boton.text("Guardar");
 						$("#ivr_create").modal("hide");
