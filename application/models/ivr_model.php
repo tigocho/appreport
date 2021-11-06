@@ -36,12 +36,12 @@ class Ivr_model extends CI_Model
     $this->db->where('inf_cli_id', $data['inf_cli_id']);
     $this->db->where('inf_cli_cod_esp', $data['inf_cli_cod_esp']);
     $this->db->where('inf_cli_cedula_medico', $data['inf_cli_cedula_medico']);
-    return $this->db->update('ir_info_clinicas', $data);
+    return $this->db->update('IVR_G8_INFO_CLINICAS', $data);
   }
 
   public function buscar_registro($data){
     $this->db->select("*");
-    $this->db->from("ir_info_clinicas");
+    $this->db->from("IVR_G8_INFO_CLINICAS");
     $this->db->where('inf_cli_id', $data['inf_cli_id']);
     $this->db->where('inf_cli_cod_esp', $data['inf_cli_cod_esp']);
     $this->db->where('inf_cli_cedula_medico', $data['inf_cli_cedula_medico']);
@@ -54,7 +54,7 @@ class Ivr_model extends CI_Model
 
   //inserta un nuevo registro a la tabla de info_clinicas
   public function crear_registro($data){
-    if($this->db->insert("ir_info_clinicas", $data)){
+    if($this->db->insert("IVR_G8_INFO_CLINICAS", $data)){
       return true;
     } else {
       return false;
