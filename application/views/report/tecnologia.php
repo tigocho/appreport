@@ -6,7 +6,7 @@
     </div>
 
     <div class="iq-card-body">
-        <div class="row" style="padding: 15px 20px 0px 20px;">
+        <!-- <div class="row" style="padding: 15px 20px 0px 20px;">
             <div class="col-sm-6">
                 <h5 class="card-title">Importar archivos:</h5>
             </div>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-        </form> 
+        </form>  -->
         <div class="row" style="padding: 15px 20px 0px 20px;">
             <div class="col-sm-6">
                 <h5 class="card-title">Buscar en un rango de fechas:</h5>
