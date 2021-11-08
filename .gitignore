@@ -1,6 +1,7 @@
 .DS_Store
 
 application/cache/*
+application/config/database.php
 !application/cache/index.html
 
 application/logs/*
@@ -16,6 +17,8 @@ user_guide_src/cilexer/dist/*
 user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/
 
+/resources/csv/*
+
 # IDE Files
 #-------------------------
 /nbproject/
@@ -29,3 +32,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 /tests/tests/
 /tests/results/
+
+

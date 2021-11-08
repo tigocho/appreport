@@ -30,20 +30,21 @@ $(document).ready( function () {
         },
         'columns': [
             { data: "nove_fecha" },
-            { data: "col_login_num" },
-            { data: "col_nom" },
-            { data: "session_nom" },
+            { data: null,render: function ( data, type, row ) { return '<b>'+row.col_login_num + '</b> - ' + row.col_nom;}},
+            { data: "seccion_nom" },
             { data: "nove_hora_ini" },
             { data: "nove_hora_fin" },
             { data: "nove_tiem_total" },
             { data: null,render: function ( data, type, row ) { return '<b>'+row.cate_nom + '</b> - ' + row.tip_inci_nom;}},
             { data: "est_des"},
+            { data: "tip_obser_nom"},
+            { data: "nove_obser_descripcion"},
             { "ordertable": true,render: function ( data, type, row ) {
                 if (rol != 2){
-                return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
-                "<button type='button' onclick='novelty_delete(\""+row.nove_id+"\");' class='btn btn-danger mb-3'>eliminar</button>"
+                return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>Editar</button></a> "+
+                "<button type='button' onclick='novelty_delete(\""+row.nove_id+"\");' class='btn btn-danger mb-3'>Eliminar</button>"
                 }else{
-                    return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a>"
+                    return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>Editar</button></a>"
                 }
             }}
         ]
@@ -84,20 +85,21 @@ $(document).ready( function () {
         },
         'columns': [
             { data: "nove_fecha" },
-            { data: "col_login_num" },
-            { data: "col_nom" },
-            { data: "session_nom" },
+            { data: null,render: function ( data, type, row ) { return '<b>'+row.col_login_num + '</b> - ' + row.col_nom;}},
+            { data: "seccion_nom" },
             { data: "nove_hora_ini" },
             { data: "nove_hora_fin" },
             { data: "nove_tiem_total" },
             { data: null,render: function ( data, type, row ) { return '<b>'+row.cate_nom + '</b> - ' + row.tip_inci_nom;}},
             { data: "est_des"},
+            { data: "tip_obser_nom"},
+            { data: "nove_obser_descripcion"},
             { "ordertable": true,render: function ( data, type, row ) { 
                 if (rol != 2){
-                return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a> "+
-                "<button type='button' onclick='novelty_delete(\""+row.nove_id+"\");' class='btn btn-danger mb-3'>eliminar</button>"
+                return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>Editar</button></a> "+
+                "<button type='button' onclick='novelty_delete(\""+row.nove_id+"\");' class='btn btn-danger mb-3'>Eliminar</button>"
                 }else{
-                    return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>editar</button></a>"
+                    return "<a href='"+baseURL+"Novelty/edit/"+row.nove_id+"'><button type='button' class='btn btn-primary mb-3'>Editar</button></a>"
                 }
             }}
         ]
@@ -111,75 +113,94 @@ function create_novelty(){
     var var_nove_fecha = document.getElementById("nove_fecha").value;
     var var_nove_hora_ini = document.getElementById("nove_hora_ini").value;
     var var_nove_hora_fin = document.getElementById("nove_hora_fin").value;
+    var var_nove_obser_descripcion = document.getElementById("nove_obser_descripcion").value;
     var var_col_id_fk = document.getElementById("col_id_fk").value;
-    var var_area_id_fk = document.getElementById("area_id_fk").value;
+    var var_seccion_id_fk = document.getElementById("seccion_id_fk").value;
     var var_nove_tiem_total = document.getElementById("nove_tiem_total").value;
     var var_tip_inci_id_fk = document.getElementById("tip_inci_id_fk").value;
     var var_cate_id_fk = document.getElementById("categoria").value;
     var var_usu_id_fk = document.getElementById("usu_id").value;
+    var var_tip_obser_id_fk = document.getElementById("tip_obser_id_fk").value;
     console.log("rutapost",baseURL+'Novelty/createNovelty');
-    if (var_nove_tiem_total == "NaN:NaN"){
+    if (var_nove_tiem_total == "0NaN:0NaN" || var_nove_tiem_total == ""){
         var_est_id_fk = 1;
     }else{
         var_est_id_fk = 2;
     }
 
     if (var_col_id_fk==0) {
-        swal("Opps!","por favor selecionar el colaborador","warning");
-    } else {
-    if (var_area_id_fk==0) {
-        swal("Opps!","por favor selecionar la session","warning");
-    } else {
+        swal("Opps!","por favor seleccionar el colaborador","warning");
+        return false;
+    } 
+    if (var_seccion_id_fk==0) {
+        swal("Opps!","por favor seleccionar la seccion","warning");
+        return false;
+    } 
     if (var_tip_inci_id_fk==0) {
-        swal("Opps!","por favor selecionar el tipo de incidencia","warning");
-    } else {
+        swal("Opps!","por favor seleccionar el tipo de incidencia","warning");
+        return false;
+    } 
     if (var_nove_hora_ini=="") {
         swal("Opps!","por favor diligencie la hora de inicio","warning");
-    } else {
+        return false;
+    } 
 
-        dataPostV = {
-        nove_fecha : var_nove_fecha,
-        nove_hora_ini : var_nove_hora_ini,
-        nove_hora_fin : var_nove_hora_fin,
-        nove_tiem_total : var_nove_tiem_total,
-        cate_id_fk : var_cate_id_fk,
-        tip_inci_id_fk : var_tip_inci_id_fk,
-        area_id_fk  : var_area_id_fk,
-        col_id_fk : var_col_id_fk,
-        usu_id_fk : var_usu_id_fk,
-        est_id_fk : var_est_id_fk,
-        tip_est_id_fk : 1,  
-        }
-        console.info(dataPostV);
+    if (var_tip_obser_id_fk==0) {
+        swal("Opps!","por favor seleccionar la observacion","warning");
+        return false;
+    }
+
+    document.getElementById('boton').disabled=true;
+
+    dataPostV = {
+    nove_fecha : var_nove_fecha,
+    nove_hora_ini : var_nove_hora_ini,
+    nove_hora_fin : var_nove_hora_fin,
+    nove_tiem_total : var_nove_tiem_total,
+    nove_obser_descripcion : var_nove_obser_descripcion,
+    cate_id_fk : var_cate_id_fk,
+    tip_inci_id_fk : var_tip_inci_id_fk,
+    seccion_id_fk  : var_seccion_id_fk,
+    col_id_fk : var_col_id_fk,
+    usu_id_fk : var_usu_id_fk,
+    est_id_fk : var_est_id_fk,
+    tip_obser_id_fk : var_tip_obser_id_fk,
+    tip_est_id_fk : 1,  
+    }
+    console.info(dataPostV);
 
 
-        $.ajax({
-            type: "POST",
-            url: baseURL+'Novelty/createNovelty',
-            dataType: 'json',
-            data: dataPostV,
-            success: function(resp) {
-                console.log("resp:",resp["mensaje"]);
-                swal("exitoso!", resp["mensaje"], "success",6000);
-                if( var_est_id_fk =="1"){
-                location.href = baseURL+"Novelty/abiertas";
-                }else{
-                location.href = baseURL+"Novelty/cerradas";    
-                }
-            },error: function(error) {
-                error;
-                swal("Opps!","error al enviar la informacion","warning",6000);
+    $.ajax({
+        type: "POST",
+        url: baseURL+'Novelty/createNovelty',
+        dataType: 'json',
+        data: dataPostV,
+        success: function(resp) {
+            console.log("resp:",resp["mensaje"]);
+            swal("exitoso!", resp["mensaje"], "success",6000);
+            document.getElementById('boton').disabled=false;
+            if( var_est_id_fk =="1"){
+            location.href = baseURL+"Novelty/abiertas";
+            }else{
+            location.href = baseURL+"Novelty/cerradas";    
             }
-        });
-    }}}}
+        },error: function(error) {
+            error;
+            swal("Opps!","error al enviar la informacion","warning",6000);
+            document.getElementById('boton').disabled=false;
+        }
+    });
+ 
 }
 // fin de insertar datos de agente
 
-// filtro para los select
+// logica de el tipo de incidencia
+
 $('#categoria').change(function() {
+    console.log($(this));
     $("#tip_inci_id_fk").html(
-        "<option >tipo incidencia</option>"+
-        "<option >selecione...</option>"
+        "<option value='0' >tipo incidencia</option>"+
+        "<option value='0' >selecione...</option>"
     );
     var_cate_id = $(this).val();
     $.post(baseURL+"Novelty/gettypeincident",
@@ -199,21 +220,47 @@ $('#categoria').change(function() {
 
 });
 
-$("#colaborador").on("keyup",function(){
-    $('#col_id_fk option').each(function(){
-        if($(this).text().indexOf($("#colaborador").val()) == -1){
-                $(this).prop("selected", false);
-                $(this).fadeOut();
-            }else{
-                $(this).prop("selected", false);
-            $(this).fadeIn();
-            }
-    });
-    });
+// filtro para los select
 
-    $("#area").on("keyup",function(){
-    $('#area_id_fk option').each(function(){
-        if($(this).text().indexOf($("#area").val()) == -1){
+$("#colaborador").on("keyup",function(){
+
+    console.log(colaborador);
+    $('#col_id_fk option').each(function(){
+
+        var busqueda  = $("#colaborador").val();
+        var busqueda = quitaacentos(busqueda);
+        var palabra = $(this).text();
+        var palabra = quitaacentos(palabra);
+        if(palabra.indexOf(busqueda) == -1){
+                $(this).prop("selected", false);
+                $(this).fadeOut();
+            }else{
+                $(this).prop("selected", false);
+            $(this).fadeIn();
+        }
+    });
+});
+
+
+function quitaacentos(s) {
+    var r=s.toLowerCase();
+                r = r.replace(new RegExp(/[àáâãäå]/g),"a");
+                r = r.replace(new RegExp(/[èéêë]/g),"e");
+                r = r.replace(new RegExp(/[ìíîï]/g),"i");
+                r = r.replace(new RegExp(/ñ/g),"n");                
+                r = r.replace(new RegExp(/[òóôõö]/g),"o");
+                r = r.replace(new RegExp(/[ùúûü]/g),"u");
+
+                console.log(r);
+                
+     return r;
+    }
+
+
+
+$("#seccion").on("keyup",function(){
+    $('#seccion_id_fk option').each(function(){
+        if($(this).text().indexOf($("#seccion").val()) == -1){
                 $(this).prop("selected", false);
                 $(this).fadeOut();
             }else{
@@ -221,7 +268,7 @@ $("#colaborador").on("keyup",function(){
             $(this).fadeIn();
             }
     });
-    });
+});
 
 
 
@@ -261,12 +308,12 @@ function restarHoras() {
         document.getElementById('boton').disabled=false;
     }
 
+
     var inicioh = new Date(inicio = document.getElementById("nove_hora_ini").value);
     var finh = new Date(fin = document.getElementById("nove_hora_fin").value);
     var diffMs = (finh - inicioh); // milliseconds 
     var diffHrs = Math.floor(diffMs  / 3600000); // hours
     var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
-
     if (diffHrs <= 0 && diffMins <= 0 ) {
         document.getElementById('boton').disabled=true;
         swal("Opps!","por favor ingrese una hora de inicio mayor a la hora fin","warning");
@@ -287,18 +334,21 @@ var var_nove_id= document.getElementById("nove_id").value;
 var var_nove_fecha = document.getElementById("nove_fecha").value;
 var var_nove_hora_ini = document.getElementById("nove_hora_ini").value;
 var var_nove_hora_fin = document.getElementById("nove_hora_fin").value;
+var var_nove_obser_descripcion = document.getElementById("nove_obser_descripcion").value;
 var var_col_id_fk = document.getElementById("col_id_fk").value;
-var var_area_id_fk = document.getElementById("area_id_fk").value;
+var var_seccion_id_fk = document.getElementById("seccion_id_fk").value;
 var var_nove_tiem_total = document.getElementById("nove_tiem_total").value;
 var var_cate_id_fk = document.getElementById("categoria").value;
 var var_tip_inci_id_fk = document.getElementById("tip_inci_id_fk").value;
+var var_tip_obser_id_fk = document.getElementById("tip_obser_id_fk").value;
 console.log("rutapost",baseURL+'Novelty/editNovelty');
 
-    if (var_nove_tiem_total == "NaN:NaN"){
+    if (var_nove_tiem_total === "00:00:00" || var_nove_tiem_total === "0NaN:0NaN"){
         var_est_id_fk = 1;
     }else{
         var_est_id_fk = 2;
     }
+    document.getElementById('boton').disabled=true;
 
     dataPostV = {
         nove_id : var_nove_id,
@@ -306,10 +356,12 @@ console.log("rutapost",baseURL+'Novelty/editNovelty');
         nove_hora_ini : var_nove_hora_ini,
         nove_hora_fin : var_nove_hora_fin,
         nove_tiem_total : var_nove_tiem_total,
+        nove_obser_descripcion : var_nove_obser_descripcion,
         cate_id_fk : var_cate_id_fk,
         tip_inci_id_fk : var_tip_inci_id_fk,
-        area_id_fk  : var_area_id_fk,
+        seccion_id_fk  : var_seccion_id_fk,
         col_id_fk : var_col_id_fk,
+        tip_obser_id_fk : var_tip_obser_id_fk,
         est_id_fk  : var_est_id_fk,
         
     }
@@ -322,6 +374,7 @@ console.log("rutapost",baseURL+'Novelty/editNovelty');
         success: function(resp) {
             console.log("resp:",resp["mensaje"]);
             swal("exitoso!", resp["mensaje"], "success",6000);
+            document.getElementById('boton').disabled=false;
             if( var_est_id_fk =="1"){
                 location.href = baseURL+"Novelty/abiertas";
             }else{
@@ -330,6 +383,7 @@ console.log("rutapost",baseURL+'Novelty/editNovelty');
         },error: function(error) {
             error;
             swal("Opps!","error al enviar la informacion","warning",6000);
+            document.getElementById('boton').disabled=false;
         }
     });
 
@@ -343,7 +397,7 @@ function novelty_delete(var_nove_id){
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'cancelar',
-        confirmButtonText: 'si,seguro'
+        confirmButtonText: 'Sí,seguro'
         },function(resp) {
             if (resp) {
 

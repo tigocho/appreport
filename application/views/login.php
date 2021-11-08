@@ -39,7 +39,7 @@
                 <div class="row no-gutters">
                     <div class="col-md-6 text-center">
                         <div class="sign-in-detail text-white">
-                            <img src="<?php echo base_url();?>resources/images/ospedale.png" height="110" >
+                            <img src="<?php echo base_url();?>resources/images/ospedale.png" height="100" >
                             <div class="owl-carousel" data-autoplay="true" data-loop="true" data-nav="false" data-dots="true" data-items="1" data-items-laptop="1" data-items-tab="1" data-items-mobile="1" data-items-mobile-sm="1" data-margin="0">
                                 <div class="item">
                                     <img src="<?php echo base_url();?>resources/images/1.jpeg" class="img-fluid mb-4" alt="logo">
@@ -52,24 +52,37 @@
                     </div>
                     <div class="col-md-6 position-relative">
                         <div class="sign-in-from">
-                            <h1 class="mb-0">ingresar</h1>
-                            <p>Selecciona tu usuario</p>
+                            <h1 class="mb-0">Iniciar sesión</h1>
+                            <?php if ($this->session->flashdata('mensaje')) { ?>
+                            <div class="alert text-white bg-danger" role="alert">
+                              <div class="iq-alert-text"><?php $mensaje = $this->session->flashdata('mensaje'); echo $mensaje;?></div>
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <i class="ri-close-line"></i>
+                              </button>
+                           </div>
+                            <?php } ?>
+                            
+                            <?php if ($this->session->flashdata('correo')) { ?>
+                            <div class="alert text-white bg-success" role="alert">
+                              <div class="iq-alert-text"><?php $correo = $this->session->flashdata('correo'); echo $correo;?></div>
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <i class="ri-close-line"></i>
+                              </button>
+                           </div>
+                            <?php } ?>
                             <?php echo form_open('login'); ?>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">ingresa numero de documento</label>
-                                    <input type="number" name="usu_num_doc" class="form-control mb-0" >
+                                    <label for="exampleInputEmail1">Número de documento</label>
+                                    <input type="number" name="usu_num_doc" required class="form-control mb-0" >
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">contraseña</label>
-                                    <a href="<?php echo base_url();?>login/forgot_pass" class="float-right">ha olvidado su contraseña?</a>
-                                    <input type="password" name="usu_contra" class="form-control mb-0" >
+                                    <label for="exampleInputPassword1">Contraseña</label>
+                                    <a href="<?php echo base_url();?>login/forgot_pass" class="float-right">¿Olvidaste tu contraseña?</a>
+                                    <input type="password" name="usu_contra" required class="form-control mb-0" >
                                 </div>
-                                <?php
-                                    $mensaje = $this->session->flashdata('mensaje');
-                                    echo $mensaje;
-                                ?>
+                               
                                 <div class="d-inline-block w-100">
-                                 <input type="submit" value="ingresar"  class="btn btn-primary float-right" name="submit" />
+                                 <input type="submit" value="Ingresar"  class="btn btn-primary float-right" name="submit" />
                                 </div>
                             <?php echo form_close();?>
                         </div>

@@ -29,9 +29,10 @@ $(document).ready( function () {
         'columns': [
             { data: "tip_inci_id" },
             { data: "tip_inci_nom" },
+            { data: "cate_nom" },
             { "ordertable": true,render: function ( data, type, row ) { 
-                return "<td><button type='button' onclick='modal_typeincident_edit(\""+row.tip_inci_id+"\",\""+row.tip_inci_nom+"\");'  class='btn btn-primary mb-3'>editar</button> "+
-                "<button type='button' onclick='typeincident_delete(\""+row.tip_inci_id+"\");' class='btn btn-danger mb-3'>eliminar</button></td>"
+                return "<button type='button' onclick='modal_typeincident_edit(\""+row.tip_inci_id+"\",\""+row.tip_inci_nom+"\",\""+row.cate_id_fk+"\");'  class='btn btn-primary mb-3'>Editar</button> "+
+                "<button type='button' onclick='typeincident_delete(\""+row.tip_inci_id+"\");' class='btn btn-danger mb-3'>Eliminar</button>"
             }}
         ]
     });
@@ -52,58 +53,61 @@ function create_typeincident(){
     var var_cate_id_fk = document.getElementById("cate_id_fk").value;
     console.log("rutapost",baseURL+'Typeincident/createTypeincident');
 
-    if (var_tip_inci_nom=="") {
-        swal("Opps!","por favor diligencie el tipo de incidencia","warning");
-    } else {
-        
-    if(var_cate_id_fk==0){
-        swal("Opps!","por favor selecionar la categoria a la que pertenece el tipo de incidencia","warning");    
-    }else{  
-        
-        dataPostV = {
-        tip_inci_nom : var_tip_inci_nom,
-        tip_est_id_fk : 1,
-        cate_id_fk : var_cate_id_fk,  
+if (var_tip_inci_nom=="") {
+    swal("Opps!","Por favor diligencie el tipo de incidencia","warning");
+    return false;
+} 
+    
+if(var_cate_id_fk==0){
+    swal("Opps!","Por favor seleccionar la categoria a la que pertenece el tipo de incidencia","warning"); 
+    return false;   
+} 
+    
+    dataPostV = {
+    tip_inci_nom : var_tip_inci_nom,
+    tip_est_id_fk : 1,
+    cate_id_fk : var_cate_id_fk,  
+    }
+
+    console.info(dataPostV);
+
+    $.ajax({
+        type: "POST",
+        url: baseURL+'Typeincident/createTypeincident',
+        dataType: 'json',
+        data: dataPostV,
+        success: function(resp) {
+            console.log("resp:",resp["mensaje"]);
+            swal("exitoso!", resp["mensaje"], "success",6000);
+            $('#agent_create').modal('hide');
+            location.reload();
+        },error: function(error) {
+            error;
+            swal("Opps!","Error al enviar la informacion","warning",6000);
         }
-
-        console.info(dataPostV);
-
-        $.ajax({
-            type: "POST",
-            url: baseURL+'Typeincident/createTypeincident',
-            dataType: 'json',
-            data: dataPostV,
-            success: function(resp) {
-                console.log("resp:",resp["mensaje"]);
-                swal("exitoso!", resp["mensaje"], "success",6000);
-                $('#agent_create').modal('hide');
-                location.reload();
-            },error: function(error) {
-                error;
-                swal("error!","error al enviar la informacion","warning",6000);
-            }
-        }); 
-    }}  
+    });   
 
 }
 
 // fin de insertar datos de tipo de incidencia
 
-function modal_typeincident_edit(var_tip_inci_id,var_tip_inci_nom){
+function modal_typeincident_edit(var_tip_inci_id,var_tip_inci_nom,var_cate_id_fk){
     $('#typeincident_edit').modal('show');
     $('#tip_inci_id_e').val(var_tip_inci_id);
     $('#tip_inci_nom_e').val(var_tip_inci_nom);
+    $('#cate_id_fk_e').val(var_cate_id_fk);
 }
 
 function edit_typeincident(){
     var var_tip_inci_id = document.getElementById("tip_inci_id_e").value;
     var var_tip_inci_nom = document.getElementById("tip_inci_nom_e").value;
+    var var_cate_id_fk = document.getElementById("cate_id_fk_e").value;
     console.log("rutapost",baseURL+'Typeincident/editTypeincident');
 
     dataPostV = {
         tip_inci_id : var_tip_inci_id,
         tip_inci_nom : var_tip_inci_nom,
-        
+        cate_id_fk : var_cate_id_fk,
     }
 
     console.info(dataPostV);
@@ -120,7 +124,7 @@ function edit_typeincident(){
             location.reload();
         },error: function(error) {
             error;
-            swal("error!","error al enviar la informacion","warning",6000);
+            swal("Opps!","Error al enviar la informacion","warning",6000);
         }
     });    
 
@@ -129,13 +133,13 @@ function edit_typeincident(){
 
 function typeincident_delete(var_tip_inci_id){
     swal({
-        title: '¿esta seguro de eliminar el tipo de incidencia?',
+        title: '¿Está seguro de eliminar el tipo de incidencia?',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'cancelar',
-        confirmButtonText: 'si,seguro'
+        confirmButtonText: 'Sí,seguro'
         },function(resp) {
         if (resp) {
 
@@ -156,7 +160,7 @@ function typeincident_delete(var_tip_inci_id){
                 location.reload();
             },error: function(error) {
                 error;
-                swal("error!","error al enviar la informacion","warning",6000);
+                swal("Opps!","Error al enviar la informacion","warning",6000);
             }
         });    
         

@@ -1,3 +1,4 @@
+// JSQuery que imprime la datatable con la informacion del area en la vista
 $(document).ready( function () {
     $('#tablearea').DataTable({
         "language": {
@@ -27,37 +28,34 @@ $(document).ready( function () {
             dataSrc: ""
         },
         'columns': [
+            { data: "area_id" },
             { data: "area_nom" },
-            { data: "session_nom" },
             { "ordertable": true,render: function ( data, type, row ) { 
-                return "<td><button type='button' onclick='modal_area_edit(\""+row.area_id+"\",\""+row.area_nom+"\",\""+row.session_nom+"\");'  class='btn btn-primary mb-3'>editar</button> "+"<button type='button' onclick='area_delete(\""+row.area_id+"\");' class='btn btn-danger mb-3'>eliminar</button>"
+                return "<button type='button' onclick='modal_area_edit(\""+row.area_id+"\",\""+row.area_nom+"\");'  class='btn btn-primary mb-3'>Editar</button> "+"<button type='button' onclick='area_delete(\""+row.area_id+"\");' class='btn btn-danger mb-3'>Eliminar</button>"
             }}
             
         ]
 
     });
-} );
+});
 
-function modal_area_create()
+    // funcion javascript que abre la modal(ventana) que contiene el formulario de area
+    function modal_area_create()
     {
-    $('#area_create').modal('show')
+        $('#area_create').modal('show')
     }
 
-
-function create_area(){
-
-    var var_area_nom = document.getElementById("area_nom").value;
-    var var_session_nom = document.getElementById("session_nom").value;
-    console.log("rutapost",baseURL+'Area/createArea');
-    if (var_area_nom=="") {
-        swal("Opps!","por favor diligencie el area","warning");
-    } else {
-    if (var_session_nom=="") {
-        swal("Opps!","por favor diligencie la session","warning");
-    } else {
+    // funcion javascript que obtiene la informacion digitada del formulario que crea un area
+    function create_area()
+    {
+        var var_area_nom = document.getElementById("area_nom").value;
+        console.log("rutapost",baseURL+'Area/createArea');
+        if (var_area_nom=="") {
+            swal("Opps!","Por favor diligencie el area","warning");
+            return false;
+        } 
         dataPostV = {
             area_nom  : var_area_nom,
-            session_nom : var_session_nom,
             tip_est_id_fk  : "1", 
         }
 
@@ -75,91 +73,90 @@ function create_area(){
                 location.reload();
             },error: function(error) {
                     error;
-                swal("error!","error al enviar la informacion","warning",6000);
+                swal("Opps!","Error al enviar la informacion","warning",6000);
             }
         });
-    }}    
+       
 
-}
+    }
 
-function modal_area_edit(var_area_id,var_area_nom,var_session_nom)
+    // funcion javascript que envia la informacion que se va a editar al formulario de editar area
+    // tambien contiene la JSQuery que abre la modal(ventana) de editar area
+    function modal_area_edit(var_area_id,var_area_nom)
     {
         $('#area_edit').modal('show');
         $('#area_id_e').val(var_area_id);
         $('#area_nom_e').val(var_area_nom);
-        $('#session_nom_e').val(var_session_nom);
 
     }
     
+    // funcion javascript que obtiene la informacion digitada del formulario que edita un area
+    function edit_area()
+    {
+        var var_area_id = document.getElementById("area_id_e").value;
+        var var_area_nom = document.getElementById("area_nom_e").value;
+        console.log("rutapost",baseURL+'Area/editArea');
 
-function edit_area(){
-    var var_area_id = document.getElementById("area_id_e").value;
-    var var_area_nom = document.getElementById("area_nom_e").value;
-    var var_session_nom = document.getElementById("session_nom_e").value;
-    console.log("rutapost",baseURL+'Area/editArea');
-
-    dataPostV = {
-        area_id : var_area_id,
-        area_nom  : var_area_nom,
-        session_nom : var_session_nom,
-        
-        
-    }
-
-    console.info(dataPostV);
-
-    $.ajax({
-        type: "POST",
-        url: baseURL+'Area/editArea',
-        dataType: 'json',
-        data: dataPostV,
-        success: function(resp) {
-           console.log("resp:",resp["mensaje"]);
-           swal("exitoso!", resp["mensaje"], "success",6000,);
-            $('#agent_edit').modal('hide');
-            location.reload();
-        },error: function(error) {
-            error;
-            swal("error!","error al enviar la informacion","warning",6000);
-        }
-    });    
-
-}
-
-function area_delete(var_area_id){
-swal({
-    title: '¿esta seguro de eliminar el area?',
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'cancelar',
-    confirmButtonText: 'si,seguro'
-    },function(resp) {
-        if (resp) {
-
-            var var_tip_est_id_fk = "2";
-            dataPostV = {
+        dataPostV = {
             area_id : var_area_id,
-            tip_est_id_fk : var_tip_est_id_fk,
+            area_nom  : var_area_nom,
         }
+
         console.info(dataPostV);
+
         $.ajax({
             type: "POST",
-            url: baseURL+'Area/deleteArea',
+            url: baseURL+'Area/editArea',
             dataType: 'json',
             data: dataPostV,
             success: function(resp) {
-                console.log("resp:",resp["mensaje"]);
-                swal("exitoso!", resp["mensaje"], "success",6000);
+            console.log("resp:",resp["mensaje"]);
+            swal("exitoso!", resp["mensaje"], "success",6000,);
+                $('#agent_edit').modal('hide');
                 location.reload();
             },error: function(error) {
                 error;
-                swal("error!","error al enviar la informacion","warning",6000);
+                swal("Opps!","Error al enviar la informacion","warning",6000);
             }
         });    
-        
+
     }
-    
-    });
-}
+
+    // funcion javascript que obtiene el id del area que se utiliza para deshabilitar la informacion deshabilitar "eliminar"
+    function area_delete(var_area_id)
+    {
+        swal({
+            title: '¿Está seguro de eliminar el area?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'cancelar',
+            confirmButtonText: 'Sí,seguro'
+        },function(resp) {
+            if (resp) {
+
+                var var_tip_est_id_fk = "2";
+                dataPostV = {
+                area_id : var_area_id,
+                tip_est_id_fk : var_tip_est_id_fk,
+            }
+            console.info(dataPostV);
+            $.ajax({
+                type: "POST",
+                url: baseURL+'Area/deleteArea',
+                dataType: 'json',
+                data: dataPostV,
+                success: function(resp) {
+                    console.log("resp:",resp["mensaje"]);
+                    swal("exitoso!", resp["mensaje"], "success",6000);
+                    location.reload();
+                },error: function(error) {
+                    error;
+                    swal("Opps!","Error al enviar la informacion","warning",6000);
+                }
+            });    
+            
+            } 
+        });
+    }   

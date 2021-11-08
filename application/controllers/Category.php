@@ -1,7 +1,7 @@
 <?php
     class Category extends CI_Controller {
 
-        //    inicio conexion del controlador a el modal y url helpers
+        // conexion del controlador a el model y helpers
         public function __construct()
         {
             parent::__construct();
@@ -12,10 +12,8 @@
                 redirect(base_url());
             }
         }
-         //    fin conexion del controlador a el modal
-
-
-        // inicio vista a las novedades
+        
+        // funcion que muestra en la vista la tabla y su contenido del modulo de categoria 
         public function index()
         {
             
@@ -27,15 +25,15 @@
             $this->load->view('templates/footer');
             
         }
-        // fin vista a las novedades
-
+       
+        // funcion que obtiene la informacion para mostrarla en la tabla de categoria
         public function getCategory()
         {
            echo json_encode($this->category_model->get_category());
 
         }
 
-
+        // funcion que envia a el model de category la informacion capturada por el formulario que crea una nueva categoria
         public function createCategory()
         {
             $retorno = ["estadoRetorno"=> true,
@@ -45,43 +43,45 @@
             $data = $this->input->post();
             $response = $this->category_model->saveCategory($data);
             if ($response){
-                $retorno['mensaje'] = "informacion de categoria guardada correctamente !";
+                $retorno['mensaje'] = "Informacion de categoria guardada correctamente !";
                 echo json_encode($retorno);
             }
 
         }
 
+        // funcion que envia a el model de category la informacion capturada por el formulario que edita un categoria
         public function editCategory()
-         {
-             $retorno = ["estadoRetorno"=> true,
-             "mensaje"=> "paila.",
-             "retorno"=> []];
-  
-             $data = $this->input->post();
-             $response = $this->category_model->editarCategory($data);
-                
+        {
+            $retorno = ["estadoRetorno"=> true,
+            "mensaje"=> "paila.",
+            "retorno"=> []];
 
-             if ($response){
-                 $retorno['mensaje'] = " informacion de categoria actualizada correctamente!";
-                 echo json_encode($retorno);
-             }
+            $data = $this->input->post();
+            $response = $this->category_model->editarCategory($data);
+            
 
-         }
+            if ($response){
+                $retorno['mensaje'] = " Informacion de categoria actualizada correctamente!";
+                echo json_encode($retorno);
+            }
 
-         public function deleteCategory()
-         {
-             $retorno = ["estadoRetorno"=> true,
-             "mensaje"=> "paila.",
-             "retorno"=> []];
-  
-             $data = $this->input->post();
-             $response = $this->category_model->eliminar_category($data);
-             if ($response){
-                 $retorno['mensaje'] = " informacion de categoria eliminada correctamente!";
-                 echo json_encode($retorno);
-             }
+        }
 
-         }
+        // funcion que envia a el model de category el id del categoria se nesecita "eliminar"
+        public function deleteCategory()
+        {
+            $retorno = ["estadoRetorno"=> true,
+            "mensaje"=> "paila.",
+            "retorno"=> []];
+
+            $data = $this->input->post();
+            $response = $this->category_model->eliminar_category($data);
+            if ($response){
+                $retorno['mensaje'] = " informacion de categoria eliminada correctamente!";
+                echo json_encode($retorno);
+            }
+
+        }
 
 
 

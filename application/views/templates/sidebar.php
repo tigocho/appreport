@@ -6,14 +6,6 @@
         <img src="<?php echo base_url();?>resources/images/inicio.png" class="img-fluid" alt="">
         <span>Appreport</span>
         </a>
-        <!-- <div class="iq-menu-bt-sidebar">
-                <div class="iq-menu-bt align-self-center">
-                <div class="wrapper-menu">
-                    <div class="main-circle"><i class="ri-more-fill"></i></div>
-                    <div class="hover-circle"><i class="ri-more-2-fill"></i></div>
-                </div>
-                </div>
-            </div> -->
     </div>
     <div id="sidebar-scrollbar">
         <nav class="iq-sidebar-menu">
@@ -30,12 +22,16 @@
                 </li>
                 <?php if ($this->session->userdata('rol_id')== 1){?>
                 <li>
-                <a href="<?php echo base_url();?>collaborator/index" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>colaboradores</span></a>
+                <a href="<?php echo base_url();?>collaborator/index" class="iq-waves-effect"><i class="fa fa-users"></i><span>colaboradores</span></a>
                 </li>
                 <?php }?>
                 <?php if ($this->session->userdata('rol_id')== 1){?>
-               <li>
-                <a href="<?php echo base_url();?>area/index" class="iq-waves-effect"><i class="ri-group-fill"></i><span>areas</span></a>
+                    <li>
+                    <a href="#areas" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-building"></i><span>Departamentos</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                    <ul id="areas" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                        <li><a href="<?php echo base_url();?>area/index" class="iq-waves-effect"><i class="las la-city"></i><span>Areas</span></a></li>
+                        <li><a href="<?php echo base_url();?>seccion/index" class="iq-waves-effect"><i class="fa fa-id-card"></i><span>Secciones</span></a></li>
+                    </ul>
                 </li>
                 <?php }?>
                 <?php if ($this->session->userdata('rol_id')== 1){?>
@@ -49,12 +45,24 @@
                 <?php }?>
                 <?php if ($this->session->userdata('rol_id')== 1){?>
                 <li>
-                <a href="<?php echo base_url();?>user/index" class="iq-waves-effect"><i class="fa fa-user-circle"></i><span>usuarios</span></a>
+                <a href="<?php echo base_url();?>user/index" class="iq-waves-effect"><i class="fa fa-address-book"></i><span>usuarios</span></a>
+                </li>
+                <?php }?>
+                <?php if ($this->session->userdata('rol_id')== 1){?>
+                <li>
+                <a href="<?php echo base_url();?>boss/index" class="iq-waves-effect"><i class="ri-account-box-fill"></i><span>jefes</span></a>
                 </li>
                 <?php }?>
                 <?php if ($this->session->userdata('rol_id')== 1 || $this->session->userdata('rol_id')== 3 ){?>
                 <li>
-                <a href="<?php echo base_url();?>report/index" class="iq-waves-effect"><i class="fa fa-download"></i><span>reportes</span></a>
+                    <a href="#reportes" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-download"></i><span>reportes</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                    <ul id="reportes" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                        <li><a href="<?php echo base_url();?>report/index" class="iq-waves-effect"><i class="fa fa-download"></i><span>Todos</span></a></li>
+                        <li><a href="<?php echo base_url();?>report/CallCenter" class="iq-waves-effect"><i class="fa fa-download"></i><span>Call center</span></a></li>
+                        <li><a href="<?php echo base_url();?>report/GestionRiesgo" class="iq-waves-effect"><i class="fa fa-download"></i><span>Gestion del Riesgo</span></a></li>
+                        <li><a href="<?php echo base_url();?>report/Referencias" class="iq-waves-effect"><i class="fa fa-download"></i><span>Ref/Contrareferencia</span></a></li>
+                        <li><a href="<?php echo base_url();?>report/Techologia" class="iq-waves-effect"><i class="fa fa-download"></i><span>Techologia</span></a></li>
+                    </ul>
                 </li>
                 <?php }?>
             </ul>
@@ -66,6 +74,8 @@
 
  <!-- sweetalert -->
 <script src="<?php echo site_url();?>resources/lib/sweetalert/sweetalert.min.js"></script>
+
+
 
 
 

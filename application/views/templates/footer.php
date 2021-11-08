@@ -1,4 +1,5 @@
-       <!-- Footer -->
+      </div>
+      <!-- Footer -->
        <footer class="bg-white iq-footer">
          <div class="container-fluid">
             <div class="row">
