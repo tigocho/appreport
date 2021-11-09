@@ -38,10 +38,6 @@
       );
       echo json_encode($output);
     }
-
-    public function consultarDebitoCredito(){
-
-    }
   }
 
 ?>
