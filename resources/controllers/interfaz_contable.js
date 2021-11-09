@@ -18,7 +18,6 @@ $(document).ready(function () {
     })
       .done(function(resp) {
         if(resp.status_code == 200){
-          console.log(resp);
           $("#tabla-interfaz-contable-clinica").html(resp.html);
           swal.close();
         } else {
