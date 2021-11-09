@@ -1053,4 +1053,7 @@ Personalizado
   border: 1px solid #d8d8d8;
   border-top: none;
 }
+.custom-file-input ~ .custom-file-label::after {
+  content: "Buscar";
+}
 
