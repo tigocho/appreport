@@ -65,6 +65,13 @@
                     </ul>
                 </li>
                 <?php }?>
+                <?php if($this->session->userdata("rol_id") == 5) { ?>
+                  <li>
+                    <a href="<?php echo base_url();?>InterfazContable/index" class="iq-waves-effect">
+                      <i class="fa fa-calculator"></i><span>Interfaz Contable</span>
+                    </a>
+                  </li>
+                <?php } ?>
             </ul>
         </nav>
         <div class="p-3"></div>
