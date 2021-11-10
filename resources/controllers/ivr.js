@@ -80,8 +80,6 @@ $(document).ready(function () {
 			obseracion : $("#observacion_eliminar").text(),
 			validacion : $("#validacion_eliminar").text(),
 		}
-
-		console.log(dataPost)
 	
 		$.ajax({
 			type: "POST",
@@ -96,7 +94,6 @@ $(document).ready(function () {
 				table.ajax.reload();
 			},
 			error: function (error) {
-				console.log(error)
 				swal("¡Error!", "No se pudo eliminar el registro", "error", 6000);
 				boton.removeClass("disabled");
 				boton.text("Eliminar")
@@ -140,18 +137,18 @@ $(document).ready(function () {
 			inf_cli_id: $("#inf_cli_id").val(),
 			inf_cli_cod_esp: $("#inf_cli_cod_esp").val(),
 			inf_cli_cedula_medico: $("#inf_cli_cedula_medico").val(),
-			inf_cli_nomb_esp: $("#inf_cli_nomb_esp").val(),
-			inf_cli_nomb_medico: $("#inf_cli_nomb_medico").val(),
-			inf_cli_lugar_facturacion: $("#inf_cli_lugar_facturacion").val(),
-			inf_cli_lugar_atencion: $("#inf_cli_lugar_atencion").val(),
-			inf_cli_observacion: $("#inf_cli_observacion").val(),
-			inf_cli_validacion: $("#inf_cli_validacion").val(),
+			inf_cli_nomb_esp: $("#inf_cli_nomb_esp").val().toUpperCase(),
+			inf_cli_nomb_medico: $("#inf_cli_nomb_medico").val().toUpperCase(),
+			inf_cli_lugar_facturacion: $("#inf_cli_lugar_facturacion").val().toUpperCase(),
+			inf_cli_lugar_atencion: $("#inf_cli_lugar_atencion").val().toUpperCase(),
+			inf_cli_observacion: $("#inf_cli_observacion").val().toUpperCase(),
+			inf_cli_validacion: $("#inf_cli_validacion").val().toUpperCase(),
 		};
 
 		//verifica si hay inputs vacios
 		datosVacios = [];
 		$.each(dataPost, function (ind, elem) {
-			if (elem != "") {
+			if (elem != "" || ind == "inf_cli_validacion") {
 				datosVacios = datosVacios;
 			} else {
 				datosVacios.push(elem);
@@ -213,18 +210,18 @@ $(document).ready(function () {
 			id_cli: $("#id_cli").val(),
 			id_esp: $("#id_esp").val(),
 			id_medico: $("#id_medico").val(),
-			nomb_esp: $("#nomb_esp").val(),
-			nomb_medico: $("#nomb_medico").val(),
-			lugar_facturacion: $("#lugar_facturacion").val(),
-			lugar_atencion: $("#lugar_atencion").val(),
-			observacion: $("#observacion").val(),
-			validacion: $("#validacion").val(),
+			nomb_esp: $("#nomb_esp").val().toUpperCase(),
+			nomb_medico: $("#nomb_medico").val().toUpperCase(),
+			lugar_facturacion: $("#lugar_facturacion").val().toUpperCase(),
+			lugar_atencion: $("#lugar_atencion").val().toUpperCase(),
+			observacion: $("#observacion").val().toUpperCase(),
+			validacion: $('#validacion').val().toUpperCase(),
 		};
 
 		//verifica si hay inputs vacios
 		datosVacios = [];
 		$.each(dataPost, function (ind, elem) {
-			if (elem != "") {
+			if (elem != "" || ind == "validacion") {
 				datosVacios = datosVacios;
 			} else {
 				datosVacios.push(elem);
@@ -291,12 +288,12 @@ $(document).ready(function () {
 					idClinica: formulario.serializeArray()[i + 1].value,
 					idEspecialidad: formulario.serializeArray()[i + 2].value,
 					cedulaMedico: formulario.serializeArray()[i + 3].value,
-					nombreEspecialidad: formulario.serializeArray()[i + 4].value,
-					nombreMedico: formulario.serializeArray()[i + 5].value,
-					lugarFacturacion: formulario.serializeArray()[i + 6].value,
-					lugarAtencion: formulario.serializeArray()[i + 7].value,
-					observacion: formulario.serializeArray()[i + 8].value,
-					validacion: formulario.serializeArray()[i + 9].value,
+					nombreEspecialidad: formulario.serializeArray()[i + 4].value.toUpperCase(),
+					nombreMedico: formulario.serializeArray()[i + 5].value.toUpperCase(),
+					lugarFacturacion: formulario.serializeArray()[i + 6].value.toUpperCase(),
+					lugarAtencion: formulario.serializeArray()[i + 7].value.toUpperCase(),
+					observacion: formulario.serializeArray()[i + 8].value.toUpperCase(),
+					validacion: formulario.serializeArray()[i + 9].value.toUpperCase(),
 				};
 				listaRegistros.push(registroTemp);
 			}

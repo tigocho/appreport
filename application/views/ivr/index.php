@@ -87,8 +87,12 @@
                 <textarea style="min-width: 100%; min-height:150px;" id="inf_cli_observacion" name="inf_cli_observacion" required></textarea>
               </div>
               <div class="col-md-6 mb-3">
-                <label>Validación</label>
-                <input type="text" class="form-control" id="inf_cli_validacion" name="inf_cli_validacion" required>
+                <label>Validación: </label>
+                <select id="inf_cli_validacion" class="inf_cli_validacion m-2" name="inf_cli_validacion">
+                  <option value="SEDE">SEDE</option>
+                  <option value="DEFAULT">DEFAULT</option>
+                  <option value=""></option>
+                </select>
               </div>
             </div>
           </form>
@@ -147,8 +151,12 @@
                 <textarea style="min-width: 100%; min-height:150px;" id="observacion" value="" required></textarea>
               </div>
               <div class="col-md-6 mb-3">
-                <label>Validación</label>
-                <input type="text" class="form-control" id="validacion" value="" required>
+                <label>Validación: </label>
+                <select id="validacion" class="validacion m-2" name="validacion">
+                  <option value="SEDE">SEDE</option>
+                  <option value="DEFAULT">DEFAULT</option>
+                  <option value=""></option>
+                </select>
               </div>
             </div>
           </form>
