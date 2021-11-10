@@ -55,7 +55,10 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title" style="margin: 0 auto" id="exampleModalLabel">Edición de información</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Editar Registro</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
           <form id="edit" method="post" action="<?php echo base_url('ivr/editarInfoClinicas'); ?>">
@@ -103,7 +106,10 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title" style="margin: 0 auto" id="exampleModalLabel">Crear Registro</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Crear Registro</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
           <form method="post" id="create" name="create" action="<?php echo base_url('ivr/crearRegistro'); ?>">
@@ -117,12 +123,12 @@
                 <input type="number" class="form-control" id="id_esp" value="" required>
               </div>
               <div class="col-md-6 mb-3">
-                <label>ID Médico</label>
-                <input type="number" class="form-control" id="id_medico" value="" required>
-              </div>
-              <div class="col-md-6 mb-3">
                 <label>Nombre Especialidad</label>
                 <input type="text" class="form-control" id="nomb_esp" value="" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label>Cédula Médico</label>
+                <input type="number" class="form-control" id="id_medico" value="" required>
               </div>
               <div class="col-md-12 mb-3">
                 <label>Nombre Médico</label>
@@ -181,12 +187,15 @@
     </div>
   </div>
 
-  <!-- modal cargar registros -->
+  <!-- modal verificación registros -->
   <div class="modal fade" id="verificar_cargar_datos" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow:scroll;width:100%">
     <div class="modal-dialog modal-lg" role="document" style="overflow:auto; max-width:2000px; width:90%">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title" style="margin: 0 auto" id="exampleModalLabel">Verificación y confirmación de registros</h2>
+          <h2 class="modal-title" id="exampleModalLabel">Verificación y confirmación de registros</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
           <!-- tabla con registros subidos -->
