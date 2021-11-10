@@ -109,7 +109,11 @@ class Ivr extends CI_Controller
     $RegistrosNuevos = array_filter($RegistrosNuevos);
 
     foreach($RegistrosNuevos as $RegistroNuevo) {
-      $RegistroNuevoList[] = explode(";", $RegistroNuevo); //toma un nuevo registro y lo separa en una lista por comas  
+      if(strlen($RegistroNuevo)<20){//si elregistro tiene menos de 20 caracteres es una fila vacía en el archivo
+        continue;
+      } else {
+        $RegistroNuevoList[] = explode(";", $RegistroNuevo); //toma un nuevo registro y lo separa en una lista por comas  
+      }
     } 
 
     $data["registros"] = $RegistroNuevoList;
