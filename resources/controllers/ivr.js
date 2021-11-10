@@ -217,7 +217,7 @@ function cargar_datos_archivo_subido() {
 		.fail(function(err){
 			swal(
 				'Error de archivo',
-				'Por favor ingrese un archivo válido',
+				'El archivo que subió no es un archivo .csv o tiene filas o columnas en blanco, en ese caso elimínelas y vuelva a subir el archivo.',
 				'error'
 			);
 		});	
