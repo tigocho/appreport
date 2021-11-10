@@ -12,7 +12,7 @@
       <!-- Typography CSS -->
       <link rel="stylesheet" href="<?php echo base_url();?>resources/css/typography.css">
       <!-- Style CSS -->
-      <link rel="stylesheet" href="<?php echo base_url();?>resources/css/style.css?v=1.002">
+      <link rel="stylesheet" href="<?php echo base_url();?>resources/css/style.css?v=1.001">
       <!-- Responsive CSS -->
       <link rel="stylesheet" href="<?php echo base_url();?>resources/css/responsive.css">
       <!-- Select2 CSS -->
