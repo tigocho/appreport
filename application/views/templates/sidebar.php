@@ -80,7 +80,7 @@
 <div id="content-page" class="content-page">
 
  <!-- sweetalert -->
-<script src="<?php echo site_url();?>resources/lib/sweetalert/sweetalert.min.js"></script>
+<script src="<?php echo site_url();?>resources/lib/sweetalert/sweetalert.min.js?v=1.002"></script>
 
 
 

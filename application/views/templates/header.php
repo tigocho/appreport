@@ -27,7 +27,7 @@
       <link rel="stylesheet" href="<?php echo site_url();?>resources/lib/datatables/buttons.dataTables.min.css">
       <link rel="stylesheet" href="<?php echo base_url();?>resources/css/flatpickr.min.css">
       <!-- sweetalert CSS -->
-      <link rel="stylesheet" href="<?php echo site_url();?>resources/lib/sweetalert/sweetalert.css">
+      <link rel="stylesheet" href="<?php echo site_url();?>resources/lib/sweetalert/sweetalert.css?v=1.002">
 
 
    </head>
