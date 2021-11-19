@@ -65,9 +65,9 @@
                     </ul>
                 </li>
                 <?php }?>
-                <?php if ($this->session->userdata('rol_id')== 1){?>
+                <?php if ($this->session->userdata('rol_id')== 1 || $this->session->userdata('rol_id')== 3 ){?>
                 <li>
-                <a href="<?php echo base_url();?>ivr/index" class="iq-waves-effect"><i class="ri-account-box-fill"></i><span>configuración IVR</span></a>
+                <a href="<?php echo base_url();?>ivr/index" class="iq-waves-effect"><i class="fa fa-list"></i><span>configuración IVR</span></a>
                 </li>
                 <?php }?>
             </ul>

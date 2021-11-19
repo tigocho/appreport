@@ -58,6 +58,21 @@ class Ivr_model extends CI_Model
     }
   }
 
+  //busca la tabla default de una clínica
+  public function buscar_default($data){
+    $this->db->select("*");
+    $this->db->from('ir_info_clinicas');
+    // $this->db->from("IVR_G8_INFO_CLINICAS");
+    $this->db->where('inf_cli_id', $data['inf_cli_id']);
+    $this->db->where('inf_cli_cod_esp', 0);
+    $this->db->where('inf_cli_cedula_medico', 0);
+    if($this->db->get()->num_rows() > 0){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   //elimina un registro 
   public function eliminar_registro($data){
   $this->db->where('inf_cli_id', $data['inf_cli_id']);
