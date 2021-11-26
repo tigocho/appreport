@@ -82,6 +82,7 @@ $db['default'] = array(
 	'password' => $db_password,
 	'database' => $db_database,
 	'dbdriver' => $db_driver,
+	'port' => $db_port,
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
