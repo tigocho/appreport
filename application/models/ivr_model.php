@@ -13,6 +13,7 @@ class Ivr_model extends CI_Model
   public function get_clinicas(){
     $this->db->select('cli_id, cli_name');
     $this->db->from('IVR_G8_CONEXIONES_CLINICAS');
+    $this->db->where('cli_software', 'HOSVITAL');
     $query = $this->db->get();
     return $query->result();
   }
