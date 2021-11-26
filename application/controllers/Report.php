@@ -93,7 +93,7 @@
         // funcion que muestra en la vista la tabla y su contenido de los reportes techologia
         public function Techologia()
         {
-            $data['title'] = 'Reportes techologia';
+            $data['title'] = 'Reportes tecnologia';
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');

@@ -69,7 +69,6 @@ class Ivr extends CI_Controller
 
   //crea un nuevo registro IVR
   public function crearRegistro(){
-    $data = $this->input->post();
     $data = array(
 			"inf_cli_id" => $this->input->post("id_cli"),
 			"inf_cli_cod_esp" => $this->input->post("id_esp"),

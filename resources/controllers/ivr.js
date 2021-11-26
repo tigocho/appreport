@@ -300,7 +300,7 @@ $(document).ready(function () {
 
 			//se genera la lista de objetos
 			for (var i = 0; i < numeroDeCampos; i += 10) {
-				registroTemp = {
+				var registroTemp = {
 					fila: formulario.serializeArray()[i].value,
 					idClinica: formulario.serializeArray()[i + 1].value,
 					idEspecialidad: formulario.serializeArray()[i + 2].value,
