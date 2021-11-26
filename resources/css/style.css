@@ -1041,3 +1041,7 @@ Add User Page
 -----------------------------------------------------------------------*/
 .add-img-user .p-image { position: static; text-align: left; display: block; height: auto; width: auto; background: transparent; margin-top: 20px; }
 .img-extension a, .img-extension span { color: #777D74; padding: 0 3px; font-size: 13px; }
+
+.custom-file-input ~ .custom-file-label::after {
+  content: "Buscar";
+}
