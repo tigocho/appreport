@@ -1042,18 +1042,6 @@ Add User Page
 .add-img-user .p-image { position: static; text-align: left; display: block; height: auto; width: auto; background: transparent; margin-top: 20px; }
 .img-extension a, .img-extension span { color: #777D74; padding: 0 3px; font-size: 13px; }
 
-/*---------------------------------------------------------------------
-Personalizado
------------------------------------------------------------------------*/
-.card-header {
-  border: 1px solid rgba(0, 0, 0, .125);
-}
-
-.card-body{
-  border: 1px solid #d8d8d8;
-  border-top: none;
-}
 .custom-file-input ~ .custom-file-label::after {
   content: "Buscar";
 }
-
