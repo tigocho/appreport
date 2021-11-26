@@ -23,7 +23,7 @@ date_default_timezone_set('America/Bogota');
 | a PHP script and you can easily do that on your own.
 |
 */
-$root  = "http://".$_SERVER['HTTP_HOST']; # Cuando este en local
+$root = !isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ? "http://".$_SERVER['HTTP_HOST'] : "https://".$_SERVER['HTTP_HOST'];
 $root .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 $config['base_url'] = $root;
 //$config['base_url'] = 'http://localhost:9898/appreport/';

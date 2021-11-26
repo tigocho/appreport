@@ -76,13 +76,36 @@ $query_builder = TRUE;
 include("credentials_bd.php");
 
 $db['default'] = array(
-	'dsn'	=> $db_dsn,
-	'hostname' => $db_host,
-	'username' => $db_username,
-	'password' => $db_password,
-	'database' => $db_database,
-	'dbdriver' => $db_driver,
-	'port' => $db_port,
+	'dsn'	=> $db["appreport"]["db_dsn"],
+	'hostname' => $db["appreport"]["db_host "],
+	'username' => $db["appreport"]["db_username"],
+	'password' => $db["appreport"]["db_password"],
+	'database' => $db["appreport"]["db_database"],
+	'dbdriver' => $db["appreport"]["db_driver"],
+	'port' => $db["appreport"]["db_port"],
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+$db['gocho'] = array(
+	'dsn'	=> $db["gocho"]["db_dsn"],
+	'hostname' => $db["gocho"]["db_host "],
+	'username' => $db["gocho"]["db_username"],
+	'port'     => $db["gocho"]["db_port"],
+	'password' => $db["gocho"]["db_password"],
+	'database' => $db["gocho"]["db_database"],
+	'dbdriver' => $db["gocho"]["db_driver"],
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
