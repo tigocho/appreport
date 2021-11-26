@@ -32,6 +32,42 @@ class Ivr extends CI_Controller
     echo json_encode($this->ivr_model->get_info_clinicas($cli_id));
   }
 
+  //verifica si un registro IVR es default o no
+  public function esDefault($data){
+    if($data['inf_cli_cod_esp'] == "0" && $data['inf_cli_cedula_medico'] == "0"){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  //valida un registro IVR
+  public function validarRegistro($data){
+    if(strlen($data['inf_cli_cod_esp'])>3){
+      $validez = "codigo especialidad mayor a tres";
+    } else {
+      if($this->esDefault($data)){ //verifica si el registro ingresado es default
+        if($this->ivr_model->buscar_registro($data)){//busca si el registro IVR ya existe
+          $validez = "existente"; 
+        } else{
+          $validez = "ok";
+        } 
+      } else {
+        if($this->ivr_model->buscar_registro($data)){//busca si el registro IVR ya existe
+          $validez = "existente";
+        } else {
+          if($this->ivr_model->buscar_default($data)){//busca fila default para el registro IVR
+            $validez = "ok";
+          } else {
+            $validez = "sin default";
+          }
+        }
+      }
+    }
+    return $validez;
+  }
+
+  //crea un nuevo registro IVR
   public function crearRegistro(){
     $data = array(
 			"inf_cli_id" => $this->input->post("id_cli"),
@@ -45,16 +81,21 @@ class Ivr extends CI_Controller
 			"inf_cli_validacion" => $this->input->post("validacion"),
 		);
 
-    if($this->ivr_model->buscar_registro($data)){
-      echo json_encode(array("status_code" => 401,"mensaje" => "El registro que ingresó ya existe."));
-    } else{
+    $validez = $this->validarRegistro($data);
+
+    if($validez == "ok"){
       $this->ivr_model->crear_registro($data);
       echo json_encode(array("status_code" => 200,"mensaje" => "Registro guardado exitosamente."));
-    } 
-  
+    } else {
+      if($validez == "existente"){
+        echo json_encode(array("status_code" => 401,"tituloError" => "¡Ya existe el registro!","mensaje" => "El registro que ingresó ya existe."));
+      } else {
+        echo json_encode(array("status_code" => 401, "tituloError" => "¡No existe default!", "mensaje" => "Debe crear un registro default para la clínica ingresada."));
+      }
+    }
   }
 
-  //edita un registro con el data ingresado en el modal
+  //edita un registro IVR con el data ingresado en el modal
   public function editarInfoClinicas(){
     $data = $this->input->post();
     
@@ -76,7 +117,7 @@ class Ivr extends CI_Controller
     }
   }
 
-  //elimina un registro de la base de datos
+  //elimina un registro IVR de la base de datos
   public function eliminarRegistro(){
     $data = $this->input->post();
     
@@ -100,7 +141,7 @@ class Ivr extends CI_Controller
     }
   }
 
-  //agrega nuevos registros al ivr basándose en un archivo csv que ingresa el usuario
+  //agrega nuevos registros IVR basándose en un archivo csv que ingresa el usuario
   public function cargarDatosSubidos(){
     $RegistrosNuevos = $_FILES['archivoRegistrosNuevos'];//carga el archivo subido
     $RegistrosNuevos = file_get_contents($RegistrosNuevos['tmp_name']);//captura el nombre del archivo temporal y saca su contenido
@@ -125,13 +166,15 @@ class Ivr extends CI_Controller
     echo json_encode($output);
   }
 
-  //agrega los registros cargados en documento csv
+  //agrega los registros IVR cargados en documento csv
   public function crearRegistrosCargados(){
     $data = json_decode($_POST['data'], true);
     $existentes = []; 
+    $sinDefault = [];
+    $codEspNoValido = [];
 
     $this->db->trans_start();
-    //Se iteran los registros y se van agregando uno por uno a la base
+    //Se iteran los registros IVR y se van agregando uno por uno a la base
     foreach($data as $registro){
       $registroTemp = array(
           'inf_cli_id' => trim($registro['idClinica']),
@@ -145,16 +188,24 @@ class Ivr extends CI_Controller
           'inf_cli_validacion' => trim($registro['validacion']),
       );
 
-      //verifica si el registro ya existe
-      if($this->ivr_model->buscar_registro($registroTemp)){
-        array_push($existentes, $registro['fila']);
-      } else{
-        $this->ivr_model->crear_registro($registroTemp);
-      } 
-    }
-    $cantidadExistentes = count($existentes);
+      $validez = $this->validarRegistro($registroTemp);
 
-    if($cantidadExistentes>0){
+      if($validez == "ok"){
+        $this->ivr_model->crear_registro($registroTemp);
+      } else if($validez == "existente"){
+          array_push($existentes, $registro['fila']);
+        } else if($validez == "sin default"){
+          array_push($sinDefault, $registro['fila']);
+        } else{
+          array_push($codEspNoValido, $registro['fila']);
+        }
+    }
+
+    $cantidadExistentes = count($existentes);
+    $cantidadSinDefault = count($sinDefault);
+    $cantidadcodEspNoValido = count($codEspNoValido);
+
+    if($cantidadExistentes || $cantidadSinDefault>0 || $cantidadcodEspNoValido>0){
       $this->db->trans_rollback();
     } else {
       $this->db->trans_commit();
@@ -163,9 +214,11 @@ class Ivr extends CI_Controller
     $this->db->trans_complete();
 
     $filasExistentes = implode(",", $existentes);
+    $filasSinDefault = implode(",", $sinDefault);
+    $filascodEspNoValido = implode(",", $codEspNoValido);
 
-    if($cantidadExistentes>0){
-      echo json_encode(array("status_code" => 401,"mensaje" => "Los registros de las siguientes filas ya existen: \n ", "existentes" => $filasExistentes."\n\n", "mensaje2" => " Por favor modifique o elimine los registros de las filas existentes en su archivo local y carguelo a la plataforma nuevamente."));  
+    if($cantidadExistentes>0 || $cantidadSinDefault>0 || $cantidadcodEspNoValido>0){
+      echo json_encode(array("status_code" => 401,"mensaje" => "Por favor arregle los errores mostrados en la ventana de verificación de los registros cargados", "existentes" => $filasExistentes, "sinDefault" => $filasSinDefault, "codEspNoValido" => $filascodEspNoValido));  
     } else {
       echo json_encode(array("status_code" => 200,"mensaje" => "Los registros se han guardado satisfactoriamente"));  
     }   

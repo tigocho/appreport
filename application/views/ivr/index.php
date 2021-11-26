@@ -22,7 +22,7 @@
       <button type="button" style="float: right;" class="btn btn-primary evt-nuevo-registro">Crear registro</button>
     </div>
     <div style="float:right; margin: 10px 20px 10px" class="d-flex align-items-center m-4">
-      <button type="button" style="float: right;" onclick="modal_cargar_datos()" class="btn btn-success">Cargar Excel</button>
+      <button type="button" style="float: right;" class="btn btn-success evt-cargar-datos">Cargar Archivo CSV</button>
     </div>
   </div>
 
@@ -55,7 +55,10 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title" style="margin: 0 auto" id="exampleModalLabel">Edición de información</h2>
+          <h2 class="modal-title" id="exampleModalLabel">Editar Registro</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
           <form id="edit" method="post" action="<?php echo base_url('ivr/editarInfoClinicas'); ?>">
@@ -84,8 +87,12 @@
                 <textarea style="min-width: 100%; min-height:150px;" id="inf_cli_observacion" name="inf_cli_observacion" required></textarea>
               </div>
               <div class="col-md-6 mb-3">
-                <label>Validación</label>
-                <input type="text" class="form-control" id="inf_cli_validacion" name="inf_cli_validacion" required>
+                <label>Validación: </label>
+                <select id="inf_cli_validacion" class="inf_cli_validacion m-2" name="inf_cli_validacion">
+                  <option value="SEDE">SEDE</option>
+                  <option value="CUPS">CUPS</option>
+                  <option value="DEFAULT">DEFAULT</option>
+                </select>
               </div>
             </div>
           </form>
@@ -103,26 +110,34 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title" style="margin: 0 auto" id="exampleModalLabel">Crear Registro</h2>
+          <h2 class="modal-title" id="exampleModalLabel">Crear Registro</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
           <form method="post" id="create" name="create" action="<?php echo base_url('ivr/crearRegistro'); ?>">
             <div class="form-row">
               <div class="col-md-6 mb-3">
-                <label>ID Clínica</label>
-                <input type="number" class="form-control" id="id_cli" value="" required>
+                <label>Clínica</label>
+                <select class="form-control select" id="id_cli" name="id_cli" required>
+                  <?php foreach ($clinicas as $clinica) { ?>
+                    <option value="<?= $clinica->cli_id ?>"><?= $clinica->cli_name ?> (<?= $clinica->cli_id ?>)</option>
+                  <?php } ?>
+                </select>
+                <!-- <input type="number" class="form-control" id="id_cli" value="" required> -->
               </div>
               <div class="col-md-6 mb-3">
-                <label>ID Especialidad</label>
-                <input type="number" class="form-control" id="id_esp" value="" required>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label>ID Médico</label>
-                <input type="number" class="form-control" id="id_medico" value="" required>
+                <label>Código Especialidad</label>
+                <input type="number" max="999" onKeyUp="if(this.value>999){this.value='999';}else if(this.value<0){this.value='0';}" class="form-control evt-id-esp" id="id_esp" value="" required>
               </div>
               <div class="col-md-6 mb-3">
                 <label>Nombre Especialidad</label>
                 <input type="text" class="form-control" id="nomb_esp" value="" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label>Cédula Médico</label>
+                <input type="number" class="form-control evt-cedula-medico" id="id_medico" value="" required>
               </div>
               <div class="col-md-12 mb-3">
                 <label>Nombre Médico</label>
@@ -141,8 +156,12 @@
                 <textarea style="min-width: 100%; min-height:150px;" id="observacion" value="" required></textarea>
               </div>
               <div class="col-md-6 mb-3">
-                <label>Validación</label>
-                <input type="text" class="form-control" id="validacion" value="" required>
+                <label>Validación: </label>
+                <select id="validacion" class="validacion m-2" name="validacion">
+                  <option value="SEDE">SEDE</option>
+                  <option value="CUPS">CUPS</option>
+                  <option value="DEFAULT">DEFAULT</option>
+                </select>
               </div>
             </div>
           </form>
@@ -175,18 +194,21 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" onclick="cargar_datos_archivo_subido()" class="btn btn-primary form-control">Cargar datos</button>
+          <button type="button" style="margin: auto; padding:0"class="btn btn-success col-8 form-control text-center evt-cargar-datos-archivo-subido">Cargar datos</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- modal cargar registros -->
+  <!-- modal verificación registros -->
   <div class="modal fade" id="verificar_cargar_datos" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow:scroll;width:100%">
     <div class="modal-dialog modal-lg" role="document" style="overflow:auto; max-width:2000px; width:90%">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title" style="margin: 0 auto" id="exampleModalLabel">Verificación y confirmación de registros</h2>
+          <h2 class="modal-title ml-4" style="margin-right:30px" id="exampleModalLabel">Verificación y confirmación de registros</h2>
+          <button type="button" class="close evt-cerrar-modal-verificar-registros" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
           <!-- tabla con registros subidos -->
@@ -195,11 +217,13 @@
         </div>
         <div class="modal-footer">
           <div class="col-md-12 text-center">
+            <h4 id="filas-cod-especialidad" style="font-weight: bold; color:red"></h4>
+            <h4 id="filas-sin-default" style="font-weight: bold; color:red"></h4>
             <h4 id="filas-existentes" style="font-weight: bold; color:red"></h4>
             <span id="mensaje-modificar-registros" style="font-weight: 600;"></span>
           </div>
           <div class="col-md-4 text-right">
-            <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-danger m-2">Cancelar</button>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-danger m-2 evt-cerrar-modal-verificar-registros">Cancelar</button>
             <button type="button" class="btn btn-primary evt-confirmar-registros">Confirmar</button>
           </div>
         </div>
@@ -233,7 +257,7 @@
                     <td style="display:none" id="cli_id_eliminar"></td>
                     <td style="display:none" id="cod_esp_eliminar"></td>
                     <td style="display:none" id="cedula_medico_eliminar"></td>
-                    <td id="nomb_esp_eliminar"></td> 
+                    <td id="nomb_esp_eliminar"></td>
                     <td id="nomb_medico_eliminar"></td>
                     <td id="lugar_facturacion_eliminar"></td>
                     <td id="lugar_atencion_eliminar"></td>
@@ -244,7 +268,7 @@
               </table>
             </div>
           </div>
-        <h2>¿Desea eliminar este registro?</h2>
+          <h2>¿Desea eliminar este registro?</h2>
         </div>
         <div class="modal-footer">
           <div class="col-md-12 text-center">
