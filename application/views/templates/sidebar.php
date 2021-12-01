@@ -61,7 +61,7 @@
                         <li><a href="<?php echo base_url();?>report/CallCenter" class="iq-waves-effect"><i class="fa fa-download"></i><span>Call center</span></a></li>
                         <li><a href="<?php echo base_url();?>report/GestionRiesgo" class="iq-waves-effect"><i class="fa fa-download"></i><span>Gestion del Riesgo</span></a></li>
                         <li><a href="<?php echo base_url();?>report/Referencias" class="iq-waves-effect"><i class="fa fa-download"></i><span>Ref/Contrareferencia</span></a></li>
-                        <li><a href="<?php echo base_url();?>report/Tecnologia" class="iq-waves-effect"><i class="fa fa-download"></i><span>Tecnologia</span></a></li>
+                        <li><a href="<?php echo base_url();?>report/Tecnologia" class="iq-waves-effect"><i class="fa fa-download"></i><span>Tecnología</span></a></li>
                     </ul>
                 </li>
                 <?php }?>
