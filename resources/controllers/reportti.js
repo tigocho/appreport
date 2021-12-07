@@ -66,7 +66,8 @@ $( "#botonf" ).click(function() {
                 { data: "seccion_nom" },
                 { data: "nove_hora_ini" },
                 { data: "nove_hora_fin" },
-                { data: null,render: function ( data, type, row ) { return convertirEntero(row.nove_tiem_total)}},
+                //{ data: null,render: function ( data, type, row ) { return convertirEntero(row.nove_tiem_total)}},
+                { data: "nove_tiem_total"},
                 { data: null,render: function ( data, type, row ) { return '<b>'+row.cate_nom + '</b> - ' + row.tip_inci_nom;}},
                 { data: "est_des"},
                 { data: "tip_obser_nom"},
@@ -75,15 +76,15 @@ $( "#botonf" ).click(function() {
 
     });
 
-    function convertirEntero(duracion){
-        duracion_completo = duracion.split(":");
-        console.log(duracion_completo);
-        var horas = duracion.split(":")[0];
-        if(horas < 10)
-            horas = horas.substr(1)
-        var minutos = duracion.split(":")[1];
-        return horas+"."+minutos;
-    }
+    // function convertirEntero(duracion){
+    //     duracion_completo = duracion.split(":");
+    //     console.log(duracion_completo);
+    //     var horas = duracion.split(":")[0];
+    //     if(horas < 10)
+    //         horas = horas.substr(1)
+    //     var minutos = duracion.split(":")[1];
+    //     return horas+"."+minutos;
+    // }
 }); 
 
 
