@@ -91,13 +91,13 @@
 
 
         // funcion que muestra en la vista la tabla y su contenido de los reportes techologia
-        public function Techologia()
+        public function Tecnologia()
         {
-            $data['title'] = 'Reportes techologia';
+            $data['title'] = 'Reportes tecnología';
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');
-            $this->load->view('report/techologia', $data);
+            $this->load->view('report/tecnologia', $data);
             $this->load->view('templates/footer'); 
         }
 

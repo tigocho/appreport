@@ -1,12 +1,12 @@
 .DS_Store
 
 application/cache/*
-application/config/database.php
+
 !application/cache/index.html
 
 application/logs/*
 !application/logs/index.html
-
+application/config/credentials_bd.php
 !application/*/.htaccess
 
 composer.lock
@@ -32,5 +32,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 /tests/tests/
 /tests/results/
+
 
 

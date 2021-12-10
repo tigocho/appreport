@@ -61,8 +61,13 @@
                         <li><a href="<?php echo base_url();?>report/CallCenter" class="iq-waves-effect"><i class="fa fa-download"></i><span>Call center</span></a></li>
                         <li><a href="<?php echo base_url();?>report/GestionRiesgo" class="iq-waves-effect"><i class="fa fa-download"></i><span>Gestion del Riesgo</span></a></li>
                         <li><a href="<?php echo base_url();?>report/Referencias" class="iq-waves-effect"><i class="fa fa-download"></i><span>Ref/Contrareferencia</span></a></li>
-                        <li><a href="<?php echo base_url();?>report/Techologia" class="iq-waves-effect"><i class="fa fa-download"></i><span>Techologia</span></a></li>
+                        <li><a href="<?php echo base_url();?>report/Tecnologia" class="iq-waves-effect"><i class="fa fa-download"></i><span>Tecnología</span></a></li>
                     </ul>
+                </li>
+                <?php }?>
+                <?php if ($this->session->userdata('rol_id')== 1 || $this->session->userdata('rol_id')== 3 ){?>
+                <li>
+                <a href="<?php echo base_url();?>ivr/index" class="iq-waves-effect"><i class="fa fa-list"></i><span>configuración IVR</span></a>
                 </li>
                 <?php }?>
             </ul>
