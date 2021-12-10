@@ -188,7 +188,7 @@
         <div class="modal-body">
           <form action="files.php" method="post" enctype="multipart/form-data" id="datosForm">
             <div class="custom-file mb-3">
-              <input class="custom-file-input mb-3 evt-file-input" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" lang="es" type="file" name="archivoRegistrosNuevos">
+              <input class="custom-file-input mb-3 evt-file-input" accept=".csv" lang="es" type="file" name="archivoRegistrosNuevos">
               <label class="custom-file-label">Seleccione un archivo</label>
             </div>
           </form>
