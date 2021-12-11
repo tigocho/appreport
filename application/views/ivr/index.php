@@ -34,6 +34,7 @@
       <table id="tableIvr" class="table table-striped table-bordered">
         <thead>
           <tr>
+            <th>Cédula Médico</th>
             <th>Especialidad</th>
             <th>Médico</th>
             <th>Lugar Facturación</th>
@@ -45,6 +46,18 @@
         </thead>
         <tbody>
         </tbody>
+        <tfoot>
+          <tr>
+            <th>Cédula Médico</th>
+            <th>Especialidad</th>
+            <th>Médico</th>
+            <th>Lugar Facturación</th>
+            <th>Lugar Atención</th>
+            <th>Observación</th>
+            <th>Validación</th>
+          </tr>
+          
+        </tfoot>
       </table>
     </div>
   </div>
@@ -63,24 +76,30 @@
         <div class="modal-body">
           <form id="edit" method="post" action="<?php echo base_url('ivr/editarInfoClinicas'); ?>">
             <div class="form-row">
-              <input type="hidden" id="inf_cli_id" name="inf_cli_id">
-              <input type="hidden" id="inf_cli_cod_esp" name="inf_cli_cod_esp">
-              <input type="hidden" id="inf_cli_cedula_medico" name="inf_cli_cedula_medico">
+              <input type="hidden" class="form-control" id="inf_cli_id" name="inf_cli_id">
               <div class="col-md-6 mb-3">
-                <label>Nombre Especialidad</label>
-                <input type="text" class="form-control" id="inf_cli_nomb_esp" name="inf_cli_nomb_esp" required>
+                <label>Cédula Médico</label>
+                <input type="text"  class="form-control" id="inf_cli_cedula_medico" name="inf_cli_cedula_medico" disabled>
               </div>
               <div class="col-md-6 mb-3">
                 <label>Nombre Médico</label>
-                <input type="text" class="form-control" id="inf_cli_nomb_medico" name="inf_cli_nomb_medico" required>
+                <input type="text" class="form-control" id="inf_cli_nomb_medico" name="inf_cli_nomb_medico" disabled>
               </div>
+              <div class="col-md-6 mb-3">
+                <label>Código Especialidad</label>
+                <input type="text" class="form-control" id="inf_cli_cod_esp" name="inf_cli_cod_esp" disabled>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label>Nombre Especialidad</label>
+                <input type="text" class="form-control" id="inf_cli_nomb_esp" name="inf_cli_nomb_esp" disabled>
+              </div>             
               <div class="col-md-12 mb-3">
                 <label>Lugar Facturación</label>
-                <input type="text" class="form-control" id="inf_cli_lugar_facturacion" name="inf_cli_lugar_facturacion" required>
+                <textarea style="min-width: 100%; min-height:150px;" id="inf_cli_lugar_facturacion" name="inf_cli_lugar_facturacion" required></textarea>
               </div>
               <div class="col-md-12 mb-3">
                 <label>Lugar Atención</label>
-                <input type="text" class="form-control" id="inf_cli_lugar_atencion" name="inf_cli_lugar_atencion" required>
+                <textarea style="min-width: 100%; min-height:150px;" id="inf_cli_lugar_atencion" name="inf_cli_lugar_atencion" required></textarea>
               </div>
               <div class="col-md-12 mb-3">
                 <label>Observación</label><br>
@@ -145,11 +164,11 @@
               </div>
               <div class="col-md-12 mb-3">
                 <label>Lugar Facturación</label>
-                <input type="text" class="form-control" id="lugar_facturacion" value="" required>
+                <textarea class="form-control" id="lugar_facturacion" value="" required></textarea>
               </div>
               <div class="col-md-12 mb-3">
                 <label>Lugar Atención</label>
-                <input type="text" class="form-control" id="lugar_atencion" value="" required>
+                <textarea class="form-control" id="lugar_atencion" value="" required></textarea>
               </div>
               <div class="col-md-12 mb-3">
                 <label>Observación</label><br>
@@ -194,7 +213,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" style="margin: auto; padding:0"class="btn btn-success col-8 form-control text-center evt-cargar-datos-archivo-subido">Cargar datos</button>
+          <button type="button" style="margin: auto; padding:0" class="btn btn-success col-8 form-control text-center evt-cargar-datos-archivo-subido">Cargar datos</button>
         </div>
       </div>
     </div>
@@ -244,6 +263,9 @@
               <table id="tableIvr" class="table table-striped table-bordered">
                 <thead>
                   <tr>
+                    <th>Clínica ID</th>
+                    <th>Código Esp.</th>
+                    <th>Cédula Médico</th>
                     <th>Especialidad</th>
                     <th>Médico</th>
                     <th>Lugar Facturación</th>
@@ -254,9 +276,9 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td style="display:none" id="cli_id_eliminar"></td>
-                    <td style="display:none" id="cod_esp_eliminar"></td>
-                    <td style="display:none" id="cedula_medico_eliminar"></td>
+                    <td id="cli_id_eliminar"></td>
+                    <td id="cod_esp_eliminar"></td>
+                    <td id="cedula_medico_eliminar"></td>
                     <td id="nomb_esp_eliminar"></td>
                     <td id="nomb_medico_eliminar"></td>
                     <td id="lugar_facturacion_eliminar"></td>
