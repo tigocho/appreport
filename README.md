@@ -1,66 +1,39 @@
-# appreport
-Aplicativo de incidentes call center
 
-Lenguaje:
-Codeigneter v.3 (php),
-JavaScript (jquery v.3.4.1),
-Plantilla HTML (x ray medical and hospital Admin témplate)
+# Appreport
 
-INSTALACIÓN POR XAMPP LOCALHOST
+Appreport es un aplicativo que permite registrar y descargar reportes de las novedades que les ocurre a los agentes del callcenter en su jornada laboral. El aplicativo permite seleccionar una categoría y una indecencia dependiendo la novedad que se está reportando, colocar fecha de inicio, fin, colocar observación, obtener reportes según fecha y calcular el tiempo en la que ocurre la novedad.
 
-1).Tener permiso en el repositorio tigocho/appreport
 
-2).Ingresar al aplicativo github desktop 
+## Instalacion
+A continuación, se listan las tecnologías necesarias para ejecutar la appreport
 
-3).Ingresar en ‘file’ donde encontramos unas opciones descogemos la de ‘clone repository’ en esa opción nos abre una ventana donde escogemos ‘github.com’ en la opción de local path ingresamos la siguiente ruta C:\xampp\htdocs\appreport 
-Para iniciar a clonar de da click en clone
-
-4).la base de datos se encuentra en la siguiente ruta base de datos en la siguiente ruta: C:\xampp\htdocs\appreport
-
-5). Instalar la base de datos en phpmyadmin con el siguiente nombre: incident_report
-
-6). abrimos el IDE (visual studio, sublime text, etc) abren el archivo config.php que se encuentra en la siguiente ruta: application/config/config.php
-Configurar base de datos 
-
+1. clonar el reporsitorio.  
+```bash
+  https://github.com/tigocho/appreport.git
+```
+2. instalacion base de datos 
+2.1. buscar la base de datos en la siguiente direccion
+```bash
+  C:\xampp\htdocs\appreport
+```  
+2.2. instalar la base de datos en phpadmin con el siguiente nombre
+```bash
+  incident_report
+```  
+3. configuracion del archivo config.php
+3.1 el archivo se encuentra en la siguiente ruta
+```bash
+  C:\xampp\htdocs\appreport\application\config
+```  
+3.2 en el archivo config.php configurar las siguientes opciones
+```bash
 'username' => '(usuario que tiene en phpmyadmin)'
-
 'password' => '(contraseña que tiene en phpmyadmin)’
+``` 
+4. Se debe de abrir el proyecto en la ruta donde se encuentra instalado el aplicativo de appreport y acceder a la carpeta ejem: http://localhost/appreport
+## Contruido con
 
-7).abrir en navegador link: http://localhost/appreport/
-
-8). Ingresar número de documento y contraseña
-
-Usuario Admin: 900612531
-
-Contraseña: Gocho
-
-INSTALACIÓN POR SERVIDOR
-
-1).Tener permiso en el repositorio tigocho/appreport
-
-2).Ingresar al aplicativo github desktop 
-
-3).Ingresar en ‘file’ donde encontramos unas opciones descogemos la de ‘clone repository’ en esa opción nos abre una ventana donde escogemos ‘github.com’ en la opción de local path ingresamos la siguiente ruta C:\ Apache24\htdocs\appreport
-Para iniciar a clonar de da click en clone
-
-4).la base de datos se encuentra en la siguiente ruta base de datos en la siguiente ruta: C:\xampp\htdocs\appreport
-
-4). Instalar la base de datos en el servidor con el siguiente nombre: incident_report
-
-5). abrimos el IDE (visual studio, sublime text, etc) abren el archivo config.php que se encuentra en la siguiente ruta: application/config/config.php configurar base de datos
-
-'username' => '(usuario del servidor)'
-
-'password' => '(contraseña del servidor)’.
-
-6).abrir en navegador link app: http://181.129.171.26:9898/appreport/
-
-7). Ingresar número de documento y contraseña
-
-Usuario Admin: 900612531
-
-Contraseña: Gocho
-
-
-
+ - [Codeigniter v.3 ](https://codeigniter.com/)
+ - [Jquery](https://jquery.com/)
+ - [x ray medical and hospital Admin témplate](https://templates.iqonic.design/xray/html/dashboard-1.html)
 
