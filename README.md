@@ -27,7 +27,7 @@ A continuación, se listan las tecnologías necesarias para ejecutar la Apprepor
 'username' => '(usuario que tiene en phpmyadmin)'
 'Password' => '(contraseña que tiene en phpmyadmin)’
 ``` 
-4. Para acceder a la ruta donde se encuentra instalado el aplicativo de appreport : http://localhost/appreport
+4. Para acceder a la ruta donde se encuentra instalado el aplicativo de appreport es la siguiente : http://localhost/appreport
 
 ## Construido con
 
