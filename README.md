@@ -11,7 +11,7 @@ A continuación, se listan las tecnologías necesarias para ejecutar la Apprepor
 ```
 2. Instalación base de datos 
 
-4.1. Buscar la base de datos en la siguiente dirección
+2.1. Buscar la base de datos en la siguiente dirección
 ```bash
   C:\xampp\htdocs\appreport
 ```  
