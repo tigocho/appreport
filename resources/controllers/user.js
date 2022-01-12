@@ -67,6 +67,11 @@ function create_user(){
     var var_rol_id_fk= document.getElementById("rol_id_fk").value;
     var var_jefe_id_fk= document.getElementById("jefe_id_fk").value;
 
+    if(var_rol_id_fk == 1 || var_rol_id_fk == 3 ){
+
+        var_jefe_id_fk = 0;
+    }
+
     if (var_usu_num_doc=="") {
         swal("Opps!","Por favor diligencie el numero de documento","warning");
         return false;
