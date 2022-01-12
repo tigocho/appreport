@@ -320,10 +320,10 @@ function restarHoras() {
     }else{
         document.getElementById('boton').disabled=false;
     }
-    if(diffHrs > 9 || diffMins > 9 ){
-        document.getElementById("nove_tiem_total").value =  diffHrs + ":" + diffMins;
+    if(diffHrs < 9 || diffMins < 9 ){
+        document.getElementById("nove_tiem_total").value =  diffHrs + ":0" + diffMins;
     }else{
-        document.getElementById("nove_tiem_total").value =  "0"+diffHrs + ":0" + diffMins;
+     document.getElementById("nove_tiem_total").value =  diffHrs + ":" + diffMins;
     }
     
 }
