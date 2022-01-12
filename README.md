@@ -10,7 +10,8 @@ A continuación, se listan las tecnologías necesarias para ejecutar la Apprepor
   https://github.com/tigocho/appreport.git
 ```
 2. Instalación base de datos 
-2.1. Buscar la base de datos en la siguiente dirección
+
+4.1. Buscar la base de datos en la siguiente dirección
 ```bash
   C:\xampp\htdocs\appreport
 ```  
