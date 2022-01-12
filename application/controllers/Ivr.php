@@ -143,12 +143,23 @@ class Ivr extends CI_Controller
 
   //agrega nuevos registros IVR basándose en un archivo csv que ingresa el usuario
   public function cargarDatosSubidos(){
-    $RegistrosNuevos = $_FILES['archivoRegistrosNuevos'];//carga el archivo subido
-    $RegistrosNuevos = file_get_contents($RegistrosNuevos['tmp_name']);//captura el nombre del archivo temporal y saca su contenido
-    $RegistrosNuevos = explode("\n", $RegistrosNuevos);//divide el contenido en una lista
-    $RegistrosNuevos = array_filter($RegistrosNuevos);
+    $nombreArchivo = $_FILES['archivoRegistrosNuevos']["name"];//carga el archivo subido
+    $info = new SplFileInfo($nombreArchivo);//extrae info del archivo subido
+    $extension = $info->getExtension();
+    if($extension == 'csv'){
+      $registrosNuevos = array(); 
+      $filename = $_FILES['archivoRegistrosNuevos']['tmp_name'];//captura el nombre del archivo temporal
+      $handle = fopen($filename, "r");// abre el archivo
+      while(($data = fgetcsv($handle, 1000, ";")) !== FALSE){//extrae el contenido del archivo
+        $data = implode(";", $data); //convierte en string separado por ;
+        $data = utf8_encode($data); //codifica el string en formato utf8
+        $data = str_replace("", '', $data); //elimina carácteres especiales
+        array_push($registrosNuevos, $data); //agrega string a lista
+      }
+    }
+    $registrosNuevos = array_filter($registrosNuevos);
 
-    foreach($RegistrosNuevos as $RegistroNuevo) {
+    foreach($registrosNuevos as $RegistroNuevo) {
       if(strlen($RegistroNuevo)<20){//si elregistro tiene menos de 20 caracteres es una fila vacía en el archivo
         continue;
       } else {

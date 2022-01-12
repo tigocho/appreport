@@ -2,6 +2,15 @@ $(document).ready(function () {
 	$(".select2").select2();
 
 	var cli_id = 0;
+	$("#tableIvr tfoot th").each(function () {
+		var title = $(this).text();
+		if (title != "" || title != "Acciones") {
+			$(this).html(
+				'<input style="width: 100%;" type="text" placeholder="' + title + '" />'
+			);
+		}
+	});
+
 	var table = $("#tableIvr").DataTable({
 		language: {
 			sProcessing: "Procesando...",
@@ -29,6 +38,7 @@ $(document).ready(function () {
 			dataSrc: "",
 		},
 		columns: [
+			{ data: "inf_cli_cedula_medico" },
 			{ data: "inf_cli_nomb_esp" },
 			{ data: "inf_cli_nomb_medico" },
 			{ data: "inf_cli_lugar_facturacion" },
@@ -45,6 +55,16 @@ $(document).ready(function () {
 				},
 			},
 		],
+		initComplete: function () {
+			// Apply the search
+			this.api()
+				.columns()
+				.every(function () {
+					$("input", this.footer()).on("keyup clear", function () {
+						table.search(this.value).draw();//filtro por columnas
+					});
+				});
+		},
 	});
 
 	//abre el modal de confirmacion de eliminacion de un registro
@@ -292,12 +312,10 @@ $(document).ready(function () {
 		var url = formulario.attr("action");
 		var numeroDeCampos = formulario.serializeArray().length;
 
-
 		//valida si el formulario tiene campos vacios
 		if (formulario.valid()) {
 			var listaRegistros = [];
-			var valido = true;
-
+			
 			//se genera la lista de objetos
 			for (var i = 0; i < numeroDeCampos; i += 10) {
 				var registroTemp = {
