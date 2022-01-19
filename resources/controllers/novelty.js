@@ -124,6 +124,7 @@ function create_novelty(){
     console.log("rutapost",baseURL+'Novelty/createNovelty');
     if (var_nove_tiem_total == "0NaN:0NaN" || var_nove_tiem_total == ""){
         var_est_id_fk = 1;
+        var_nove_hora_fin ="0001-01-01 12:00:00";
     }else{
         var_est_id_fk = 2;
     }
@@ -320,7 +321,7 @@ function restarHoras() {
     }else{
         document.getElementById('boton').disabled=false;
     }
-    if(diffHrs < 9 || diffMins < 9 ){
+    if(diffMins <= 9 ){
         document.getElementById("nove_tiem_total").value =  diffHrs + ":0" + diffMins;
     }else{
      document.getElementById("nove_tiem_total").value =  diffHrs + ":" + diffMins;
