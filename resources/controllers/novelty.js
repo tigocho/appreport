@@ -108,6 +108,8 @@ $(document).ready( function () {
 } ); 
 // fin de novedades cerradas
 
+
+
 // inicio de insertar datos de agente
 function create_novelty(){
     var var_nove_fecha = document.getElementById("nove_fecha").value;
@@ -344,8 +346,9 @@ var var_tip_inci_id_fk = document.getElementById("tip_inci_id_fk").value;
 var var_tip_obser_id_fk = document.getElementById("tip_obser_id_fk").value;
 console.log("rutapost",baseURL+'Novelty/editNovelty');
 
-    if (var_nove_tiem_total === "00:00:00" || var_nove_tiem_total === "0NaN:0NaN"){
+    if (var_nove_tiem_total == "" || var_nove_tiem_total == null){
         var_est_id_fk = 1;
+        var_nove_hora_fin ="0001-01-01 12:00:00";
     }else{
         var_est_id_fk = 2;
     }
