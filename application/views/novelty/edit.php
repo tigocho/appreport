@@ -38,7 +38,7 @@
 
                     <div class="col-md-6 mb-3">
                         <label>Hora de fin</label>
-                        <input type="datetime-local" value="<?php echo $newDate = date("Y-m-d\TH:i", strtotime($novelty->nove_hora_fin)); ?>" id="nove_hora_fin" class="form-control"  >
+                        <input type="datetime-local"<?php if($novelty->nove_hora_fin != "0001-01-01 12:00:00") {?> value="<?php  echo $newDate = date("Y-m-d\TH:i", strtotime($novelty->nove_hora_fin)); };?>" id="nove_hora_fin" class="form-control"  >
                     </div>
 
                     <div class="col-md-6 mb-3">
