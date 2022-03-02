@@ -108,6 +108,8 @@ $(document).ready( function () {
 } ); 
 // fin de novedades cerradas
 
+
+
 // inicio de insertar datos de agente
 function create_novelty(){
     var var_nove_fecha = document.getElementById("nove_fecha").value;
@@ -121,13 +123,12 @@ function create_novelty(){
     var var_cate_id_fk = document.getElementById("categoria").value;
     var var_usu_id_fk = document.getElementById("usu_id").value;
     var var_tip_obser_id_fk = document.getElementById("tip_obser_id_fk").value;
-    console.log("rutapost",baseURL+'Novelty/createNovelty');
-    if (var_nove_tiem_total == "0NaN:0NaN" || var_nove_tiem_total == ""){
+    if (var_nove_tiem_total == "NaN:NaN" || var_nove_tiem_total == ""){
         var_est_id_fk = 1;
+        var_nove_hora_fin ="0001-01-01 12:00:00";
     }else{
         var_est_id_fk = 2;
     }
-
     if (var_col_id_fk==0) {
         swal("Opps!","por favor seleccionar el colaborador","warning");
         return false;
@@ -307,25 +308,26 @@ function restarHoras() {
     }else{
         document.getElementById('boton').disabled=false;
     }
-
-
     var inicioh = new Date(inicio = document.getElementById("nove_hora_ini").value);
-    var finh = new Date(fin = document.getElementById("nove_hora_fin").value);
-    var diffMs = (finh - inicioh); // milliseconds 
-    var diffHrs = Math.floor(diffMs  / 3600000); // hours
-    var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
-    if (diffHrs <= 0 && diffMins <= 0 ) {
-        document.getElementById('boton').disabled=true;
-        swal("Opps!","por favor ingrese una hora de inicio mayor a la hora fin","warning");
+    if (document.getElementById("nove_hora_fin").value!="" && document.getElementById("nove_hora_fin").value!=null) {
+        var finh = new Date(fin = document.getElementById("nove_hora_fin").value);
+        var diffMs = (finh - inicioh); // milliseconds 
+        var diffHrs = Math.floor(diffMs  / 3600000); // hours
+        var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+        if (diffHrs <= 0 && diffMins <= 0 ) {
+            document.getElementById('boton').disabled=true;
+            swal("Opps!","por favor ingrese una hora de inicio mayor a la hora fin","warning");
+        }else{
+            document.getElementById('boton').disabled=false;
+        }
+        if(diffMins <= 9 ){
+            document.getElementById("nove_tiem_total").value =  diffHrs + ":0" + diffMins;
+        }else{
+         document.getElementById("nove_tiem_total").value =  diffHrs + ":" + diffMins;
+        }
     }else{
-        document.getElementById('boton').disabled=false;
+        document.getElementById("nove_tiem_total").value = "";
     }
-    if(diffHrs < 9 || diffMins < 9 ){
-        document.getElementById("nove_tiem_total").value =  diffHrs + ":0" + diffMins;
-    }else{
-     document.getElementById("nove_tiem_total").value =  diffHrs + ":" + diffMins;
-    }
-    
 }
 // logica de restar tiempo
 
@@ -343,8 +345,9 @@ var var_tip_inci_id_fk = document.getElementById("tip_inci_id_fk").value;
 var var_tip_obser_id_fk = document.getElementById("tip_obser_id_fk").value;
 console.log("rutapost",baseURL+'Novelty/editNovelty');
 
-    if (var_nove_tiem_total === "00:00:00" || var_nove_tiem_total === "0NaN:0NaN"){
+    if (var_nove_tiem_total == "" || var_nove_tiem_total == null){
         var_est_id_fk = 1;
+        var_nove_hora_fin ="0001-01-01 12:00:00";
     }else{
         var_est_id_fk = 2;
     }

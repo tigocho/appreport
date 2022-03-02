@@ -78,8 +78,12 @@
             "retorno"=> []];
 
             $data = $this->input->post();
-            $hora_fin = explode(":",$data["nove_tiem_total"]);
-            $data["nove_tiem_total"]= $hora_fin[0].":".$hora_fin[1].":00";
+            if ($data["nove_tiem_total"] !=null || $data["nove_tiem_total"]!="") {
+                $hora_fin = explode(":",$data["nove_tiem_total"]);
+                $data["nove_tiem_total"]= $hora_fin[0].":".$hora_fin[1].":00";
+            }else{
+                $data["nove_tiem_total"]="";
+            }
             $response = $this->novelty_model->saveNovelty($data);
             if ($response){
                 $retorno['mensaje'] = "informacion de novedad registrada correctamente!";
