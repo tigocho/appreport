@@ -64,13 +64,13 @@
 
             $data = $this->input->post();
             $data=array(
+                'col_id'=>trim($data['col_id']),
                 'col_login_num'=>trim($data['col_login_num']),
                 'col_nom'=>trim($data['col_nom']),
                 'col_cargo'=>trim($data['col_cargo']),
                 'id_area_fk'=>trim($data['id_area_fk']),
-                'tip_est_id_fk'=>trim($data['tip_est_id_fk']),
             );
-            $response = $this->collaborator_model->editarCollaborator($data);
+            $response = $this->collaborator_model->editarcollaborator($data);
             
 
             if ($response){
