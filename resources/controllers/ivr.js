@@ -1,6 +1,7 @@
 $(document).ready(function () {
 	$(".select2").select2();
 
+
 	var cli_id = 0;
 	$("#tableIvr tfoot th").each(function () {
 		var title = $(this).text();
@@ -38,6 +39,12 @@ $(document).ready(function () {
 			dataSrc: "",
 		},
 		columns: [
+			{
+                render: function ( data, type, row ) {
+                    return '<input type="checkbox" class="editor-active check_eliminar">';
+                },
+                className: "dt-body-center"
+            },
 			{ data: "inf_cli_cedula_medico" },
 			{ data: "inf_cli_nomb_esp" },
 			{ data: "inf_cli_nomb_medico" },
@@ -119,6 +126,33 @@ $(document).ready(function () {
 				boton.text("Eliminar");
 			},
 		});
+	});
+
+	if( $('.check_eliminar').is(':checked') ) {
+		var data = table.row($(this).parents("tr")).data();
+		var info_id = data.inf_cli_id+'/'+data.inf_cli_cod_esp+'/'+data.inf_cli_cedula_medico;
+		console.log(info_id);
+	}
+
+
+	// $("body").on("click", ".check_eliminar", function () {
+	// 	var data = table.row($(this).parents("tr")).data();
+	// 	var info_id = data.inf_cli_id+'/'+data.inf_cli_cod_esp+'/'+data.inf_cli_cedula_medico;
+	// });	  
+
+	$(".boton_eliminar_check").on("click",function(){
+		swal({
+			title: "¿Desea borrar los registros selecionados?",
+			text: "se van a borrar la informacion y se volvera a recuperar.",
+			showCancelButton: true,
+			showConfirmButton: true,
+			confirmButtonText: 'SI',
+			cancelButtonText: 'NO',
+		  }, function(resp) {
+			
+	
+		});
+
 	});
 
 	//filtrado por clínica select2
