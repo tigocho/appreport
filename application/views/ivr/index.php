@@ -26,7 +26,7 @@
     </div>
     </div>
     <div style="float:right; margin: 10px 20px 10px" class="d-flex align-items-center m-4">
-      <button type="button" style="float: right;" class="btn btn-danger boton_eliminar_check">Eliminar las filas Seleccionadas</button>
+      <button type="button" style="float: right;" class="btn btn-danger boton_eliminar_check disabled">Eliminar las filas Seleccionadas</button>
     </div>
   </div>
 

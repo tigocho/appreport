@@ -83,4 +83,12 @@ class Ivr_model extends CI_Model
       return false;
     }
   }
+  //elimina los registros selecionandos 
+  public function eliminar_Registros_multibles($inf_cli_id, $inf_cli_cod_esp, $inf_cli_cedula_medico){
+    $this->db->where('inf_cli_id', $inf_cli_id);
+    $this->db->where('inf_cli_cod_esp', $inf_cli_cod_esp);
+    $this->db->where('inf_cli_cedula_medico', $inf_cli_cedula_medico);
+    return $this->db->delete('IVR_G8_INFO_CLINICAS');
+  }
+
 }

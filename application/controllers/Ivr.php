@@ -234,11 +234,30 @@ class Ivr extends CI_Controller
       echo json_encode(array("status_code" => 200,"mensaje" => "Los registros se han guardado satisfactoriamente"));  
     }   
   }
+  //elimina los registros selecionados del IVR de la base de datos
+  public function eliminarRegistrosMultibles(){
+    $data = $this->input->post();
+    $data = explode(",", $data['data']);// separa la informacion que llega del front y la ingresa en un array
+    $respuestaInfoEliminada = array();// array global que almacena la respuesta que nos da el modelo 
+    foreach($data as $da) { //foreach que envie un por uno el id de los datos que se van a borrar
+      list($inf_cli_id, $inf_cli_cod_esp, $inf_cli_cedula_medico) = explode("/", $da);
+      $respuesta = $this->ivr_model->eliminar_Registros_multibles($inf_cli_id, $inf_cli_cod_esp, $inf_cli_cedula_medico);
+      if($respuesta){//si hubo una respuesta del modelo se almacena en el array anteriormente mencionado
+        array_push($respuestaInfoEliminada,$respuesta);
+      } 
+    }
+    if (count($data) == count($respuestaInfoEliminada)) {// si el numero de respuesta dada por el modelo coincide con el numero de datos enviados por el front se envia una respuesta positiva
+      echo json_encode(true);
+    }else{// sino envia el la respuesta del modelo
+      echo json_encode($respuestaInfoEliminada);
+    }
+
+
+    
+  }
  
 }
 
 
 
 ?>
-
-

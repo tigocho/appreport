@@ -1,7 +1,6 @@
 $(document).ready(function () {
 	$(".select2").select2();
-
-
+	var listaid=new Array;
 	var cli_id = 0;
 	$("#tableIvr tfoot th").each(function () {
 		var title = $(this).text();
@@ -128,19 +127,25 @@ $(document).ready(function () {
 		});
 	});
 
-	if( $('.check_eliminar').is(':checked') ) {
+	//elimina los registros selecionados
+	 $("body").on("click", ".check_eliminar", function () {
 		var data = table.row($(this).parents("tr")).data();
 		var info_id = data.inf_cli_id+'/'+data.inf_cli_cod_esp+'/'+data.inf_cli_cedula_medico;
-		console.log(info_id);
-	}
-
-
-	// $("body").on("click", ".check_eliminar", function () {
-	// 	var data = table.row($(this).parents("tr")).data();
-	// 	var info_id = data.inf_cli_id+'/'+data.inf_cli_cod_esp+'/'+data.inf_cli_cedula_medico;
-	// });	  
-
+		if ($(this).is(':checked')) {
+			listaid.push(info_id);
+		}else{
+			posicion = $.inArray(info_id,listaid);
+			listaid.splice(posicion, 1);
+		}
+		if (listaid.length == 0 || listaid == null) {
+			$('.boton_eliminar_check').addClass("disabled");
+		}else{
+			$('.boton_eliminar_check').removeClass("disabled");
+		}
+	 });	  
+	 //envia la informacion al controlador 
 	$(".boton_eliminar_check").on("click",function(){
+		boton = $(this);
 		swal({
 			title: "¿Desea borrar los registros selecionados?",
 			text: "se van a borrar la informacion y se volvera a recuperar.",
@@ -149,10 +154,31 @@ $(document).ready(function () {
 			confirmButtonText: 'SI',
 			cancelButtonText: 'NO',
 		  }, function(resp) {
-			
-	
+			if(resp){
+				boton.addClass("disabled");
+				boton.text("Eliminando...");
+				var formData = new FormData();				
+				formData.append('data',listaid);
+				JSON.stringify(listaid);
+				$.ajax({
+					type: "POST",
+					url: baseURL + "Ivr/eliminarRegistrosmultibles",
+					dataType: "json",
+					data: formData,
+					processData: false,
+					contentType: false,
+				}).done(function(data) {
+						swal("¡Eliminado!","La informacion ha sido eliminada correctamente.", "success", 6000);
+						boton.removeClass("disabled");
+						boton.text("Eliminar las filas Seleccionadas");
+						table.ajax.reload();
+				}).fail(function(xhr, status, error) {
+					swal("¡Error!", error+"No se pudo eliminar los registros", "error", 6000);
+						boton.removeClass("disabled");
+						boton.text("Eliminar las filas Seleccionadas");
+				})
+			}
 		});
-
 	});
 
 	//filtrado por clínica select2
