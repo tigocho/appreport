@@ -235,21 +235,21 @@ class Ivr extends CI_Controller
     }   
   }
   //elimina los registros selecionados del IVR de la base de datos
-  public function eliminarRegistrosMultibles(){
+  public function eliminarRegistrosMultiples(){
     $data = $this->input->post();
     $data = explode(",", $data['data']);// separa la informacion que llega del front y la ingresa en un array
     $respuestaInfoEliminada = array();// array global que almacena la respuesta que nos da el modelo 
-    foreach($data as $da) { //foreach que envie un por uno el id de los datos que se van a borrar
-      list($inf_cli_id, $inf_cli_cod_esp, $inf_cli_cedula_medico) = explode("/", $da);
-      $respuesta = $this->ivr_model->eliminar_Registros_multibles($inf_cli_id, $inf_cli_cod_esp, $inf_cli_cedula_medico);
+    foreach($data as $value => $da) { //foreach que envie un por uno el id de los datos que se van a borrar
+        list($inf_cli_id, $inf_cli_cod_esp, $inf_cli_cedula_medico) = explode("/", $da);
+      $respuesta = $this->ivr_model->eliminarRegistrosMultiples($inf_cli_id, $inf_cli_cod_esp, $inf_cli_cedula_medico);
       if($respuesta){//si hubo una respuesta del modelo se almacena en el array anteriormente mencionado
         array_push($respuestaInfoEliminada,$respuesta);
-      } 
+      }
     }
-    if (count($data) == count($respuestaInfoEliminada)) {// si el numero de respuesta dada por el modelo coincide con el numero de datos enviados por el front se envia una respuesta positiva
-      echo json_encode(true);
-    }else{// sino envia el la respuesta del modelo
-      echo json_encode($respuestaInfoEliminada);
+    if (count($data) == count($respuestaInfoEliminada)) {// si el numero de respuesta dada por el modelo coincide con el numero de datos enviados por el front se envia un mensaje positivo
+      echo json_encode(array("status_code" => 200,"mensaje" => "La información ha sido eliminada correctamente.", "borradas" => count($respuestaInfoEliminada)));  
+    }else{// sino envia el siguiente mensaje indicando cuantos se borraron 
+      echo json_encode(array("status_code" => 401,"mensaje" => "De ".count($data)." filas, se han eliminado ".count($respuestaInfoEliminada)." filas"));  
     }
 
 
