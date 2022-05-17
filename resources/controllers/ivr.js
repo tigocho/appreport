@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	$(".select2").select2();
-
+	var listaid=new Array;
 	var cli_id = 0;
 	$("#tableIvr tfoot th").each(function () {
 		var title = $(this).text();
@@ -38,6 +38,12 @@ $(document).ready(function () {
 			dataSrc: "",
 		},
 		columns: [
+			{
+                render: function ( data, type, row ) {
+                    return '<input type="checkbox" class="editor-active check_eliminar">';
+                },
+                className: "dt-body-center"
+            },
 			{ data: "inf_cli_cedula_medico" },
 			{ data: "inf_cli_nomb_esp" },
 			{ data: "inf_cli_nomb_medico" },
@@ -118,6 +124,65 @@ $(document).ready(function () {
 				boton.removeClass("disabled");
 				boton.text("Eliminar");
 			},
+		});
+	});
+
+	//elimina los registros selecionados
+	 $("body").on("click", ".check_eliminar", function () {
+		var data = table.row($(this).parents("tr")).data();
+		var info_id = data.inf_cli_id+'/'+data.inf_cli_cod_esp+'/'+data.inf_cli_cedula_medico;
+		if ($(this).is(':checked')) {
+			listaid.push(info_id);
+		}else{
+			posicion = $.inArray(info_id,listaid);
+			listaid.splice(posicion, 1);
+		}
+		if (listaid.length == 0 || listaid == null) {
+			$('.boton_eliminar_check').addClass("disabled");
+		}else{
+			$('.boton_eliminar_check').removeClass("disabled");
+		}
+	 });	  
+	 //envia la informacion al controlador que borra varios registros
+	$(".boton_eliminar_check").on("click",function(){
+		boton = $(this);
+		swal({
+			title: "¿Desea eliminar los registros selecionados?",
+			text: "Esta acción no se puede deshacer.",
+			showCancelButton: true,
+			showConfirmButton: true,
+			confirmButtonColor: "#d84a45",
+			confirmButtonText: 'SI',
+			cancelButtonText: 'NO',
+		  }, function(resp) {
+			if(resp){
+				boton.addClass("disabled");
+				boton.text("Eliminando...");
+				var formData = new FormData();				
+				formData.append('data',listaid);
+				JSON.stringify(listaid);
+				$.ajax({
+					type: "POST",
+					url: baseURL + "Ivr/eliminarRegistrosMultiples",
+					dataType: "json",
+					data: formData,
+					processData: false,
+					contentType: false,
+				}).done(function(resp) {
+						if (resp.status_code == 200) {
+							swal("¡Eliminado!",resp.mensaje, "success", 6000);
+						}else{
+							swal("¡Advertencia!",resp.mensaje, "warning", 6000);
+						}
+						boton.text("Eliminar las filas seleccionadas");
+						boton.addClass("disabled");
+						table.ajax.reload();
+				}).fail(function(xhr, status, error) {
+					swal("¡Error!", error+" No se pudo eliminar los registros", "error", 6000);
+						boton.removeClass("disabled");
+						boton.text("Eliminar las filas seleccionadas");
+				})
+			}
 		});
 	});
 
