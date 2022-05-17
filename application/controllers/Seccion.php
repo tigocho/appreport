@@ -6,7 +6,7 @@
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('seccion_model');
+            $this->load->model('Seccion_model');
             $this->load->helper('url_helper');
             $this->load->library('session');
             if (!$this->session->userdata('login')) {
@@ -18,7 +18,7 @@
         public function index()
         {
             $data['title'] = 'Secciones';
-            $data['area'] = $this->seccion_model->getarea();
+            $data['area'] = $this->Seccion_model->getarea();
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');
@@ -30,7 +30,7 @@
         // funcion que obtiene la informacion para mostrarla en la tabla de secciones
         public function getseccion()
         {
-           echo json_encode($this->seccion_model->get_seccion());
+           echo json_encode($this->Seccion_model->get_seccion());
 
         }
 
@@ -43,7 +43,7 @@
             "retorno"=> []];
 
             $data = $this->input->post();
-            $response = $this->seccion_model->saveSeccion($data);
+            $response = $this->Seccion_model->saveSeccion($data);
             if ($response){
                 $retorno['mensaje'] = "Informacion de seccion guardada correctamente!";
                 echo json_encode($retorno);
@@ -59,7 +59,7 @@
             "retorno"=> []];
 
             $data = $this->input->post();
-            $response = $this->seccion_model->editarSeccion($data);
+            $response = $this->Seccion_model->editarSeccion($data);
             if ($response){
                 $retorno['mensaje'] = "Informacion de seccion actualizado correctamente";
                 echo json_encode($retorno);
@@ -75,7 +75,7 @@
             "retorno"=> []];
 
             $data = $this->input->post();
-            $response = $this->seccion_model->eliminar_seccion($data);
+            $response = $this->Seccion_model->eliminar_seccion($data);
             if ($response){
                 $retorno['mensaje'] = " Informacion de seccion eliminada correctamente!";
                 echo json_encode($retorno);

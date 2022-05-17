@@ -5,7 +5,7 @@
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('report_model');
+            $this->load->model('Report_model');
             $this->load->helper('url_helper');
             $this->load->library('session');
             if (!$this->session->userdata('login')) {
@@ -27,7 +27,7 @@
         // funcion que obtiene la informacion para mostrarla en la tabla donde se encuentra todos los reportes
         public function getnovelty($inicio,$fin)
         {
-            echo json_encode($this->report_model->get_novelty($inicio,$fin));
+            echo json_encode($this->Report_model->get_novelty($inicio,$fin));
         }
 
 
@@ -47,7 +47,7 @@
         // funcion que obtiene la informacion para mostrarla en la tabla de reportes call center
         public function getnoveltycc($inicio,$fin)
         {
-           echo json_encode($this->report_model->get_noveltycc($inicio,$fin));
+           echo json_encode($this->Report_model->get_noveltycc($inicio,$fin));
         }
 
 
@@ -67,7 +67,7 @@
         // funcion que obtiene la informacion para mostrarla en la tabla de reportes gestion de riesgo
         public function getnoveltyGR($inicio,$fin)
         {
-           echo json_encode($this->report_model->get_noveltygr($inicio,$fin));
+           echo json_encode($this->Report_model->get_noveltygr($inicio,$fin));
         }
 
 
@@ -86,7 +86,7 @@
         // funcion que obtiene la informacion para mostrarla en la tabla de reportes  referencias
         public function getnoveltyRe($inicio,$fin)
         {
-           echo json_encode($this->report_model->get_noveltyre($inicio,$fin));
+           echo json_encode($this->Report_model->get_noveltyre($inicio,$fin));
         }
 
 
@@ -106,7 +106,7 @@
         // funcion que obtiene la informacion para mostrarla en la tabla de reportes  techologia
         public function getnoveltyTi($inicio,$fin)
         {
-           echo json_encode($this->report_model->get_noveltyti($inicio,$fin));
+           echo json_encode($this->Report_model->get_noveltyti($inicio,$fin));
         }
 
         public function guardar_archivo(){
@@ -182,7 +182,7 @@
 
 
 
-                   $resp = $this->report_model->save_novelty($datos);
+                   $resp = $this->Report_model->save_novelty($datos);
 
                 }
 
