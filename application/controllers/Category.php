@@ -5,7 +5,7 @@
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('category_model');
+            $this->load->model('Category_model');
             $this->load->helper('url_helper');
             $this->load->library('session');
             if (!$this->session->userdata('login')) {
@@ -29,7 +29,7 @@
         // funcion que obtiene la informacion para mostrarla en la tabla de categoria
         public function getCategory()
         {
-           echo json_encode($this->category_model->get_category());
+           echo json_encode($this->Category_model->get_category());
 
         }
 
@@ -41,7 +41,7 @@
             "retorno"=> []];
  
             $data = $this->input->post();
-            $response = $this->category_model->saveCategory($data);
+            $response = $this->Category_model->saveCategory($data);
             if ($response){
                 $retorno['mensaje'] = "Informacion de categoria guardada correctamente !";
                 echo json_encode($retorno);
@@ -57,7 +57,7 @@
             "retorno"=> []];
 
             $data = $this->input->post();
-            $response = $this->category_model->editarCategory($data);
+            $response = $this->Category_model->editarCategory($data);
             
 
             if ($response){
@@ -75,7 +75,7 @@
             "retorno"=> []];
 
             $data = $this->input->post();
-            $response = $this->category_model->eliminar_category($data);
+            $response = $this->Category_model->eliminar_category($data);
             if ($response){
                 $retorno['mensaje'] = " informacion de categoria eliminada correctamente!";
                 echo json_encode($retorno);

@@ -5,7 +5,7 @@
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('area_model');
+            $this->load->model('Area_model');
             $this->load->helper('url_helper');
             $this->load->library('session');
             if (!$this->session->userdata('login')) {
@@ -28,7 +28,7 @@
         // funcion que obtiene la informacion para mostrarla en la tabla de areas
         public function getarea()
         {
-           echo json_encode($this->area_model->get_area());
+           echo json_encode($this->Area_model->get_area());
         }
 
 
@@ -40,7 +40,7 @@
             "mensaje"=> "paila.",
             "retorno"=> []];
             $data = $this->input->post();
-            $response = $this->area_model->saveArea($data);
+            $response = $this->Area_model->saveArea($data);
             if ($response){
                 $retorno['mensaje'] = "Informacion del colaborador guardada correctamente !";
                 echo json_encode($retorno);
@@ -55,7 +55,7 @@
             "mensaje"=> "paila.",
             "retorno"=> []];
             $data = $this->input->post();
-            $response = $this->area_model->editararea($data);
+            $response = $this->Area_model->editararea($data);
             if ($response){
                 $retorno['mensaje'] = "Informacion del area actualizada correctamente!";
                 echo json_encode($retorno);
@@ -70,7 +70,7 @@
             "mensaje"=> "paila.",
             "retorno"=> []];
             $data = $this->input->post();
-            $response = $this->area_model->eliminar_area($data);
+            $response = $this->Area_model->eliminar_area($data);
             if ($response){
                 $retorno['mensaje'] = " Informacion de la area ha sido eliminada correctamente!";
                 echo json_encode($retorno);

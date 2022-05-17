@@ -5,7 +5,7 @@
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('boss_model');
+            $this->load->model('Boss_model');
             $this->load->helper('url_helper');
             $this->load->library('session');
             if (!$this->session->userdata('login')) {
@@ -30,7 +30,7 @@
         // funcion que obtiene la informacion para mostrarla en la tabla de jefes
         public function getBoss()
         {
-           echo json_encode($this->boss_model->get_boss());
+           echo json_encode($this->Boss_model->get_boss());
         }
 
 
@@ -41,7 +41,7 @@
             "mensaje"=> "paila.",
             "retorno"=> []];
             $data = $this->input->post();
-            $response = $this->boss_model->saveBoss($data);
+            $response = $this->Boss_model->saveBoss($data);
             if ($response){
                 $retorno['mensaje'] = "Informacion del jefe guardada correctamente !";
                 echo json_encode($retorno);
@@ -55,7 +55,7 @@
             "mensaje"=> "paila.",
             "retorno"=> []];
             $data = $this->input->post();
-            $response = $this->boss_model->editarBoss($data);
+            $response = $this->Boss_model->editarBoss($data);
             if ($response){
                 $retorno['mensaje'] = "Informacion del jefe actualizada correctamente!";
                 echo json_encode($retorno);
@@ -70,7 +70,7 @@
             "mensaje"=> "paila.",
             "retorno"=> []];
             $data = $this->input->post();
-            $response = $this->boss_model->eliminar_boss($data);
+            $response = $this->Boss_model->eliminar_boss($data);
             if ($response){
                 $retorno['mensaje'] = " Informacion del jefe ha sido eliminada correctamente!";
                 echo json_encode($retorno);

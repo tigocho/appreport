@@ -9,7 +9,7 @@
             $this->load->database();
             $this->load->helper('url');
             $this->load->helper('form');
-            $this->load->model('login_model');
+            $this->load->model('Login_model');
             $this->load->library('form_validation');
             $this->load->library('session');  
         }
@@ -21,7 +21,7 @@
             $this->form_validation->set_rules('usu_contra' ,'usu_contra', 'required|callback_verifica');
             if($this->form_validation->run() == false)
             {  
-                $this->load->view('login');
+                $this->load->view('Login');
             
             }
             else
@@ -38,7 +38,7 @@
             $usu_contra = $this->input->post('usu_contra');
             
 
-            if($this->login_model->login($usu_num_doc,$usu_contra))
+            if($this->Login_model->login($usu_num_doc,$usu_contra))
             {
                 redirect('inicio/index');
             }

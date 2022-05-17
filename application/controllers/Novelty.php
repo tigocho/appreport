@@ -5,7 +5,7 @@
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('novelty_model');
+            $this->load->model('Novelty_model');
             $this->load->helper('url_helper');
             $this->load->library('session');
             $this->load->database();
@@ -28,7 +28,7 @@
         // funcion que obtiene la informacion para mostrarla en la tabla de novedades abiertas
         public function getnoveltyab()
         {
-           echo json_encode($this->novelty_model->get_noveltyA());
+           echo json_encode($this->Novelty_model->get_noveltyA());
         }
 
         // funcion que muestra en la vista la tabla y su contenido del modulo de novedades cerradas
@@ -45,17 +45,17 @@
         // funcion que obtiene la informacion para mostrarla en la tabla de novedades cerradas
         public function getnoveltyce()
         {
-            echo json_encode($this->novelty_model->get_noveltyC());
+            echo json_encode($this->Novelty_model->get_noveltyC());
         }
 
         // funcion que muestra en la vista el formulario donde se crea una nueva novedad
         public function create()
         {
             $data['title'] = 'Registro nueva novedad';
-            $data['seccion'] = $this->novelty_model->get_seccion();
-            $data['colaborador'] = $this->novelty_model->get_collaborator();
-            $data['categoria'] = $this->novelty_model->get_category();
-            $data['observacion'] = $this->novelty_model->getobservacion();
+            $data['seccion'] = $this->Novelty_model->get_seccion();
+            $data['colaborador'] = $this->Novelty_model->get_collaborator();
+            $data['categoria'] = $this->Novelty_model->get_category();
+            $data['observacion'] = $this->Novelty_model->getobservacion();
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');
@@ -67,7 +67,7 @@
         public function gettypeincident()
         {  
             $cate_id = $this->input->post('cate_id');
-            echo json_encode($this->novelty_model->get_typeincident($cate_id));
+            echo json_encode($this->Novelty_model->get_typeincident($cate_id));
         }
 
         // funcion que envia a el model de novelty la informacion capturada por el formulario que crea una nueva novedad
@@ -84,7 +84,7 @@
             }else{
                 $data["nove_tiem_total"]="";
             }
-            $response = $this->novelty_model->saveNovelty($data);
+            $response = $this->Novelty_model->saveNovelty($data);
             if ($response){
                 $retorno['mensaje'] = "informacion de novedad registrada correctamente!";
                 echo json_encode($retorno);
@@ -97,12 +97,12 @@
         public function edit($nove_id)
         {
             $data['title'] = 'Editar novedad';
-            $data['seccion'] = $this->novelty_model->get_seccion();
-            $data['colaborador'] = $this->novelty_model->get_collaborator();
-            $data['categoria'] = $this->novelty_model->get_category();
-            $data['novelty'] = $this->novelty_model->get_edit_novelty($nove_id);
-            $data['observacion'] = $this->novelty_model->getobservacion();
-            $data['incidencias'] = $this->novelty_model->get_typeincident($data['novelty']->cate_id_fk);
+            $data['seccion'] = $this->Novelty_model->get_seccion();
+            $data['colaborador'] = $this->Novelty_model->get_collaborator();
+            $data['categoria'] = $this->Novelty_model->get_category();
+            $data['novelty'] = $this->Novelty_model->get_edit_novelty($nove_id);
+            $data['observacion'] = $this->Novelty_model->getobservacion();
+            $data['incidencias'] = $this->Novelty_model->get_typeincident($data['novelty']->cate_id_fk);
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');
@@ -119,7 +119,7 @@
              "retorno"=> []];
   
              $data = $this->input->post();
-             $response = $this->novelty_model->editarNovelty($data);
+             $response = $this->Novelty_model->editarNovelty($data);
                 
 
              if ($response){
@@ -137,7 +137,7 @@
             "retorno"=> []];
 
             $data = $this->input->post();
-            $response = $this->novelty_model->eliminar_novelty($data);
+            $response = $this->Novelty_model->eliminar_novelty($data);
             if ($response){
                 $retorno['mensaje'] = " Informacion de novedad eliminada correctamente!";
                 echo json_encode($retorno);

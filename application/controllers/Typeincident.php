@@ -5,7 +5,7 @@
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('type_incident_model');
+            $this->load->model('Type_incident_model');
             $this->load->helper('url_helper');
             $this->load->library('session');
 
@@ -19,7 +19,7 @@
         {
             
             $data['title'] = 'Tipo incidencia';
-            $data['categoria'] = $this->type_incident_model->get_category();
+            $data['categoria'] = $this->Type_incident_model->get_category();
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');
@@ -31,7 +31,7 @@
         // funcion que obtiene la informacion para mostrarla en la tabla de tipo de incidencia
         public function gettypeincident()
         {
-           echo json_encode($this->type_incident_model->get_typeincident());
+           echo json_encode($this->Type_incident_model->get_typeincident());
 
         }
 
@@ -44,7 +44,7 @@
             "retorno"=> []];
 
             $data = $this->input->post();
-            $response = $this->type_incident_model->saveTypeincident($data);
+            $response = $this->Type_incident_model->saveTypeincident($data);
             if ($response){
                 $retorno['mensaje'] = "Informacion de tipo incidencia guardada  correctamente!";
                 echo json_encode($retorno);
@@ -60,7 +60,7 @@
             "retorno"=> []];
 
             $data = $this->input->post();
-            $response = $this->type_incident_model->editarTypeincident($data);
+            $response = $this->Type_incident_model->editarTypeincident($data);
             if ($response){
                 $retorno['mensaje'] = "Informacion de tipo incidencia actualizado correctamente";
                 echo json_encode($retorno);
@@ -76,7 +76,7 @@
             "retorno"=> []];
 
             $data = $this->input->post();
-            $response = $this->type_incident_model->eliminar_typeincident($data);
+            $response = $this->Type_incident_model->eliminar_typeincident($data);
             if ($response){
                 $retorno['mensaje'] = " Informacion de tipo incidencia eliminada correctamente!";
                 echo json_encode($retorno);
