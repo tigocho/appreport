@@ -21,7 +21,7 @@
             $this->form_validation->set_rules('usu_contra' ,'usu_contra', 'required|callback_verifica');
             if($this->form_validation->run() == false)
             {  
-                $this->load->view('Login');
+                $this->load->view('login');
             
             }
             else
