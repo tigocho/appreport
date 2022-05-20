@@ -41,10 +41,6 @@ RUN apt-get update && apt-get install -y locales unixodbc libgss3 odbcinst \
     && docker-php-ext-install pdo \
     && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 
-# Add Microsoft repo for Microsoft ODBC Driver 17 for Linux
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
- && curl https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.>
-
 # Enable the php extensions.
 #Install ODBC Driver
 # Se comenta el 3 de mayo
