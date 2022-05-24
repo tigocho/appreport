@@ -6,7 +6,7 @@ class Ivr extends CI_Controller
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('ivr_model');
+    $this->load->model('Ivr_model');
     $this->load->helper('url_helper');
     $this->load->library('session');
     if (!$this->session->userdata('login')) {
@@ -18,7 +18,7 @@ class Ivr extends CI_Controller
   public function index()
   {
     $data['title'] = "Configuración IVR";
-    $data['clinicas'] = $this->ivr_model->get_clinicas();
+    $data['clinicas'] = $this->Ivr_model->get_clinicas();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('templates/narbar');
@@ -29,7 +29,7 @@ class Ivr extends CI_Controller
   //retorna toda la info traida del modelo
   public function getInfoClinicas($cli_id)
   { 
-    echo json_encode($this->ivr_model->get_info_clinicas($cli_id));
+    echo json_encode($this->Ivr_model->get_info_clinicas($cli_id));
   }
 
   //verifica si un registro IVR es default o no
@@ -47,16 +47,16 @@ class Ivr extends CI_Controller
       $validez = "codigo especialidad mayor a tres";
     } else {
       if($this->esDefault($data)){ //verifica si el registro ingresado es default
-        if($this->ivr_model->buscar_registro($data)){//busca si el registro IVR ya existe
+        if($this->Ivr_model->buscar_registro($data)){//busca si el registro IVR ya existe
           $validez = "existente"; 
         } else{
           $validez = "ok";
         } 
       } else {
-        if($this->ivr_model->buscar_registro($data)){//busca si el registro IVR ya existe
+        if($this->Ivr_model->buscar_registro($data)){//busca si el registro IVR ya existe
           $validez = "existente";
         } else {
-          if($this->ivr_model->buscar_default($data)){//busca fila default para el registro IVR
+          if($this->Ivr_model->buscar_default($data)){//busca fila default para el registro IVR
             $validez = "ok";
           } else {
             $validez = "sin default";
@@ -84,7 +84,7 @@ class Ivr extends CI_Controller
     $validez = $this->validarRegistro($data);
 
     if($validez == "ok"){
-      $this->ivr_model->crear_registro($data);
+      $this->Ivr_model->crear_registro($data);
       echo json_encode(array("status_code" => 200,"mensaje" => "Registro guardado exitosamente."));
     } else {
       if($validez == "existente"){
@@ -110,7 +110,7 @@ class Ivr extends CI_Controller
       'inf_cli_observacion' => trim($data['inf_cli_observacion']),
       'inf_cli_validacion' => trim($data['inf_cli_validacion']),
     );
-    $response = $this->ivr_model->editar_info_clinicas($data);
+    $response = $this->Ivr_model->editar_info_clinicas($data);
 
     if ($response) {
       echo json_encode("¡Se actualizó correctamente la información!");
@@ -133,7 +133,7 @@ class Ivr extends CI_Controller
       'inf_cli_validacion' => trim($data['validacion']),
     );
   
-    $response = $this->ivr_model->eliminar_registro($data);
+    $response = $this->Ivr_model->eliminar_registro($data);
     if ($response) {
       $registroEliminado = implode(",", $data);
       log_message('error','registro eliminado: '.$registroEliminado);
@@ -202,7 +202,7 @@ class Ivr extends CI_Controller
       $validez = $this->validarRegistro($registroTemp);
 
       if($validez == "ok"){
-        $this->ivr_model->crear_registro($registroTemp);
+        $this->Ivr_model->crear_registro($registroTemp);
       } else if($validez == "existente"){
           array_push($existentes, $registro['fila']);
         } else if($validez == "sin default"){
@@ -234,11 +234,30 @@ class Ivr extends CI_Controller
       echo json_encode(array("status_code" => 200,"mensaje" => "Los registros se han guardado satisfactoriamente"));  
     }   
   }
+  //elimina los registros selecionados del IVR de la base de datos
+  public function eliminarRegistrosMultiples(){
+    $data = $this->input->post();
+    $data = explode(",", $data['data']);// separa la informacion que llega del front y la ingresa en un array
+    $respuestaInfoEliminada = array();// array global que almacena la respuesta que nos da el modelo 
+    foreach($data as $value => $da) { //foreach que envie un por uno el id de los datos que se van a borrar
+        list($inf_cli_id, $inf_cli_cod_esp, $inf_cli_cedula_medico) = explode("/", $da);
+      $respuesta = $this->ivr_model->eliminarRegistrosMultiples($inf_cli_id, $inf_cli_cod_esp, $inf_cli_cedula_medico);
+      if($respuesta){//si hubo una respuesta del modelo se almacena en el array anteriormente mencionado
+        array_push($respuestaInfoEliminada,$respuesta);
+      }
+    }
+    if (count($data) == count($respuestaInfoEliminada)) {// si el numero de respuesta dada por el modelo coincide con el numero de datos enviados por el front se envia un mensaje positivo
+      echo json_encode(array("status_code" => 200,"mensaje" => "La información ha sido eliminada correctamente.", "borradas" => count($respuestaInfoEliminada)));  
+    }else{// sino envia el siguiente mensaje indicando cuantos se borraron 
+      echo json_encode(array("status_code" => 401,"mensaje" => "De ".count($data)." filas, se han eliminado ".count($respuestaInfoEliminada)." filas"));  
+    }
+
+
+    
+  }
  
 }
 
 
 
 ?>
-
-

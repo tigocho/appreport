@@ -9,7 +9,7 @@
             $this->load->database();
             $this->load->helper('url');
             $this->load->helper('form');
-            $this->load->model('login_model');
+            $this->load->model('Login_model');
             $this->load->library('form_validation');
             $this->load->library('session');  
         }
@@ -38,7 +38,7 @@
             $usu_contra = $this->input->post('usu_contra');
             
 
-            if($this->login_model->login($usu_num_doc,$usu_contra))
+            if($this->Login_model->login($usu_num_doc,$usu_contra))
             {
                 redirect('inicio/index');
             }

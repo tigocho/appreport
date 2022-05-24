@@ -3,7 +3,7 @@
        
         // conexion base de datos 
         public function __construct()
-        {
+        { 
             $this->load->database();
         }
        

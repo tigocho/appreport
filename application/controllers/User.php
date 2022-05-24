@@ -5,7 +5,7 @@
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('user_model');
+            $this->load->model('User_model');
             $this->load->helper('url_helper');
             $this->load->library('session');
             if (!$this->session->userdata('login')) {
@@ -28,14 +28,14 @@
         // funcion que obtiene la informacion para mostrarla en la tabla de los usuarios
         public function getuser()
         {
-           echo json_encode($this->user_model->get_user());
+           echo json_encode($this->User_model->get_user());
         }
 
         // funcion que muestra en la vista el formulario donde se crea un nuevo usuario
         public function create()
         {
             $data['title'] = 'Creacion de nuevo usuario';
-            $data['rol'] = $this->user_model->get_rol();
+            $data['rol'] = $this->User_model->get_rol();
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');
@@ -52,7 +52,7 @@
             "retorno"=> []];
  
             $data = $this->input->post();
-            $response = $this->user_model->saveUser($data);
+            $response = $this->User_model->saveUser($data);
             if ($response){
                 $retorno['mensaje'] = "Informacion del usuario registrada correctamente!";
                 echo json_encode($retorno);
@@ -64,9 +64,9 @@
         public function edit($usu_id)
         {
             $data['title'] = 'Edicion cuenta de usuario';
-            $data['rol'] = $this->user_model->get_rol();
-            $data['jefe'] = $this->user_model->getboss();
-            $data['usuario'] = $this->user_model->get_edit_user($usu_id);
+            $data['rol'] = $this->User_model->get_rol();
+            $data['jefe'] = $this->User_model->getboss();
+            $data['usuario'] = $this->User_model->get_edit_user($usu_id);
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('templates/narbar');
@@ -83,7 +83,7 @@
              "retorno"=> []];
   
              $data = $this->input->post();
-             $response = $this->user_model->editarUser($data);
+             $response = $this->User_model->editarUser($data);
                 
 
              if ($response){
@@ -101,7 +101,7 @@
             "retorno"=> []];
 
             $data = $this->input->post();
-            $response = $this->user_model->eliminar_user($data);
+            $response = $this->User_model->eliminar_user($data);
             if ($response){
                 $retorno['mensaje'] = " Informacion de usuario eliminada correctamente!";
                 echo json_encode($retorno);
@@ -112,21 +112,21 @@
          // funcion que obtiene la informacion para mostrarla en el select de jefes
         public function getboss()
         {
-        echo json_encode($this->user_model->get_boss());
+        echo json_encode($this->User_model->get_boss());
         }
         
         // funcion que obtiene la informacion para mostrarla en el input text donde se visualiza el correo del jefe inmediato
         public function getbossC()
         {
             $id = $this->input->post('jefe_id');
-        echo json_encode($this->user_model->get_bossC($id));
+        echo json_encode($this->User_model->get_bossC($id));
         }
 
         //funcion que permite verificar si el numero de documento ya se encuentra registrado
         public function existsNumDoc($num_doc)
         {
             
-            $resultado = $this->user_model->existsnumDoc($num_doc);
+            $resultado = $this->User_model->existsnumDoc($num_doc);
 
             if(empty($resultado)){
 

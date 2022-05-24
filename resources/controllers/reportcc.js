@@ -79,8 +79,8 @@ $( "#botonf" ).click(function() {
         duracion_completo = duracion.split(":");
         console.log(duracion_completo);
         var horas = duracion.split(":")[0];
-        if(horas < 10)
-            horas = horas.substr(1)
+        // if(horas < 10)
+        //     horas = horas.substr(1)
         var minutos = duracion.split(":")[1];
         return horas+"."+minutos;
     }
