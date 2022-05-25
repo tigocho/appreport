@@ -149,53 +149,18 @@
         public function sendEmail($id)
         {
             $resp=$this->db->query("SELECT u.usu_nom, j.jefe_nom,j.jefe_ape,j.jefe_correo from ir_usuario u, ir_jefe j WHERE u.jefe_id_fk = j.jefe_id AND j.tip_est_id_fk =1 AND u.usu_id = $id")->row();
-           
             if(empty($resp->jefe_correo)){
-
                 return false;
-
             }else{
-
-
-                $jefe_correo = $resp->jefe_correo;
-                $this->load->library('phpmailer_lib');
-        
-                $mail = $this->phpmailer_lib->load();
-        
-                $mail->isSMTP();
-                $mail->SMTPDebug = 0;
-                $mail->Host = 'email-smtp.us-east-1.amazonaws.com';
-                $mail->Port = 587;
-                $mail->SMTPSecure = 'tls';
-                $mail->SMTPAuth   = true;
-                $mail->Username = 'AKIAVRBYRDHYGRZ6RFNY';
-                $mail->Password = 'BEfVfi8Lj/RlW+1cz7M5FDO4qaoG9zULfcDU1wd4HWSu';
-                $mail->SetFrom('notificaciones@ospedale.com.co', 'Appreport G-Ocho');
-                $mail->CharSet  = 'UTF-8';
-        
-    
-                $mail->addAddress($jefe_correo);     
-        
-                $mail->Subject = 'Hola '.ucwords($resp->jefe_nom).' se ha registrado un incidente - Appreport';
-                $mail->isHTML(true);
-                
-                $mailContent =  '<b>Cordial Saludo: '.ucwords($resp->jefe_nom)." ".ucwords($resp->jefe_ape).'</b>           
-                
+                $correo_usuario = $resp->jefe_correo;    
+                $asunto = 'Hola '.ucwords($resp->jefe_nom).' se ha registrado un incidente - Appreport';
+                $body =  '<b>Cordial Saludo: '.ucwords($resp->jefe_nom)." ".ucwords($resp->jefe_ape).'</b>           
                     <p>Para informarte que el integrante '.ucwords($resp->usu_nom).' de tu equipo de trabajo presento un incidente;
                     Puedes ingresar para revisar su reporte a traves del siguiente link <a href="'.base_url().'">  Appreport.</a></p>
-                    
                     <p>Gracias</p>
-
-                
                     **********************Mensaje Generado Automáticamente**********************
-                    <p>Este correo es únicamente informativo y es de uso exclusivo del destinatario(a), puede contener información privilegiada y/o confidencial. Si no es usted el destinatario(a) deberá borrarlo inmediatamente. Queda notificado que el mal uso, divulgación no autorizada, alteración y/o  modificación malintencionada sobre este mensaje y sus anexos quedan estrictamente prohibidos y pueden ser legalmente sancionados. - Appreport-G-OCHO no asume ninguna responsabilidad por estas circunstancias </p>';
-                $mail->Body = $mailContent;             
-            
-                if($mail->send()):
-                return true;
-                else:        
-                    return false;
-                endif;
+                    <p>Este correo es únicamente informativo y es de uso exclusivo del destinatario(a), puede contener información privilegiada y/o confidencial. Si no es usted el destinatario(a) deberá borrarlo inmediatamente. Queda notificado que el mal uso, divulgación no autorizada, alteración y/o  modificación malintencionada sobre este mensaje y sus anexos quedan estrictamente prohibidos y pueden ser legalmente sancionados. - Appreport-G-OCHO no asume ninguna responsabilidad por estas circunstancias </p>';            
+                $resp = enviar_correo($correo_usuario,$asunto,$body);
             }
         }
 

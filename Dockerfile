@@ -59,6 +59,9 @@ WORKDIR /var/www/html
 COPY . /var/www/html
 # Assign permissions of the working directory to the www-data user
 RUN chown -R www-data:www-data /var/www/html
+# Install dependencies
+RUN composer install
+RUN composer dump-autoload
 EXPOSE 80
 
 VOLUME ["/var/www/html", "/var/log/apache2", "/etc/apache2"]
