@@ -220,14 +220,12 @@ $(document).ready(function () {
 			inf_cli_id: $("#inf_cli_id").val(),
 			inf_cli_cod_esp: $("#inf_cli_cod_esp").val(),
 			inf_cli_cedula_medico: $("#inf_cli_cedula_medico").val(),
-			inf_cli_nomb_esp: $("#inf_cli_nomb_esp").val().toUpperCase(),
-			inf_cli_nomb_medico: $("#inf_cli_nomb_medico").val().toUpperCase(),
-			inf_cli_lugar_facturacion: $("#inf_cli_lugar_facturacion")
-				.val()
-				.toUpperCase(),
-			inf_cli_lugar_atencion: $("#inf_cli_lugar_atencion").val().toUpperCase(),
-			inf_cli_observacion: $("#inf_cli_observacion").val().toUpperCase(),
-			inf_cli_validacion: $("#inf_cli_validacion").val().toUpperCase(),
+			inf_cli_nomb_esp: $("#inf_cli_nomb_esp").val(),
+			inf_cli_nomb_medico: $("#inf_cli_nomb_medico").val(),
+			inf_cli_lugar_facturacion: $("#inf_cli_lugar_facturacion").val(),
+			inf_cli_lugar_atencion: $("#inf_cli_lugar_atencion").val(),
+			inf_cli_observacion: $("#inf_cli_observacion").val(),
+			inf_cli_validacion: $("#inf_cli_validacion").val(),
 		};
 
 		//verifica si hay inputs vacios
@@ -303,12 +301,12 @@ $(document).ready(function () {
 			id_cli: $("#id_cli").val(),
 			id_esp: $("#id_esp").val(),
 			id_medico: $("#id_medico").val(),
-			nomb_esp: $("#nomb_esp").val().toUpperCase(),
-			nomb_medico: $("#nomb_medico").val().toUpperCase(),
-			lugar_facturacion: $("#lugar_facturacion").val().toUpperCase(),
-			lugar_atencion: $("#lugar_atencion").val().toUpperCase(),
-			observacion: $("#observacion").val().toUpperCase(),
-			validacion: $("#validacion").val().toUpperCase(),
+			nomb_esp: $("#nomb_esp").val(),
+			nomb_medico: $("#nomb_medico").val(),
+			lugar_facturacion: $("#lugar_facturacion").val(),
+			lugar_atencion: $("#lugar_atencion").val(),
+			observacion: $("#observacion").val(),
+			validacion: $("#validacion").val(),
 		};
 
 		//verifica si hay inputs vacios
@@ -390,14 +388,14 @@ $(document).ready(function () {
 					cedulaMedico: formulario.serializeArray()[i + 3].value,
 					nombreEspecialidad: formulario
 						.serializeArray()
-						[i + 4].value.toUpperCase(),
-					nombreMedico: formulario.serializeArray()[i + 5].value.toUpperCase(),
+						[i + 4].value,
+					nombreMedico: formulario.serializeArray()[i + 5].value,
 					lugarFacturacion: formulario
 						.serializeArray()
-						[i + 6].value.toUpperCase(),
-					lugarAtencion: formulario.serializeArray()[i + 7].value.toUpperCase(),
-					observacion: formulario.serializeArray()[i + 8].value.toUpperCase(),
-					validacion: formulario.serializeArray()[i + 9].value.toUpperCase(),
+						[i + 6].value,
+					lugarAtencion: formulario.serializeArray()[i + 7].value,
+					observacion: formulario.serializeArray()[i + 8].value,
+					validacion: formulario.serializeArray()[i + 9].value,
 				};
 
 				listaRegistros.push(registroTemp);
