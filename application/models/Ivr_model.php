@@ -258,4 +258,12 @@ class Ivr_model extends CI_Model
 		return $query->row();
 	}
 
+	public function crearRegistroDias($data) {
+		if($this->db->insert("IVR_G8_INFO_CLINICAS_DIAS", $data)){
+      return true;
+    } else {
+      return false;
+    }
+	}
+
 }

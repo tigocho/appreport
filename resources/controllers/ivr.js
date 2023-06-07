@@ -593,6 +593,7 @@ $(document).ready(function () {
 	});
 
 	$("body").on("change", ".evt-cambio-dia-edicion", function(e){
+		verficarAgregarDia($(this).val());
 		cambiarChecbox('evt-cambio-dia-edicion', $(this));
 		let select = $('select#icd_dia');
 		select.empty();
@@ -670,5 +671,29 @@ $(document).ready(function () {
 			swal("Error", 'El horario inicio del primer bloque no puede ser mayor al horario fin', "error", 6000);
 			$(this).val('')
 		}
-	})
+	});
+
+	function verficarAgregarDia(dia) {
+		const cli_id = $("#inf_cli_id").val();
+		const cli_cod_esp = $("#inf_cli_cod_esp").val();
+		const cli_cedula_medico = $("#inf_cli_cedula_medico").val();
+		let url = baseURL + "Ivr/verficarAgregarDia/" + cli_id + "/" + cli_cod_esp + "/" + cli_cedula_medico + "/" + dia
+		$.ajax({
+			url: url,
+			type: "get",
+			dataType: "json",
+			processData: false,
+			contentType: false,
+		})
+			.done(function (resp) {
+				console.log(resp)
+			})
+			.fail(function (err) {
+				swal(
+					"Error de adición",
+					"No se pudo agregar el día",
+					"error"
+				);
+			});
+	}
 });
