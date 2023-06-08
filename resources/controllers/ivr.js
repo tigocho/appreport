@@ -337,6 +337,9 @@ $(document).ready(function () {
 
 	//Abre modal para crear un nuevo registro
 	$("body").on("click", ".evt-nuevo-registro", function (e) {
+		$("#ivr_create #inf_cli_lugar_facturacion").val('');
+		$("#ivr_create #inf_cli_lugar_atencion").val('');
+		$("#ivr_create #inf_cli_observacion").val('');
 		$("#ivr_create").modal("show");
 	});
 
