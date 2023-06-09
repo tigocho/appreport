@@ -80,11 +80,12 @@ class Ivr extends CI_Controller
 			"inf_cli_observacion" => $this->input->post("observacion"),
 			"inf_cli_validacion" => $this->input->post("validacion"),
 		);
-
+		$dias = $this->input->post("dias");
     $validez = $this->validarRegistro($data);
 
     if($validez == "ok"){
       $this->Ivr_model->crear_registro($data);
+			$this->Ivr_model->asignarDias($dias, $data);
       echo json_encode(array("status_code" => 200,"mensaje" => "Registro guardado exitosamente."));
     } else {
       if($validez == "existente"){
@@ -98,21 +99,37 @@ class Ivr extends CI_Controller
   //edita un registro IVR con el data ingresado en el modal
   public function editarInfoClinicas(){
     $data = $this->input->post();
-    
-    $data = array(
+    $dataInfoClinicasGeneral = array(
       'inf_cli_id' => trim($data['inf_cli_id']),
       'inf_cli_cod_esp' => trim($data['inf_cli_cod_esp']),
       'inf_cli_cedula_medico' => trim($data['inf_cli_cedula_medico']),
       'inf_cli_nomb_esp' => trim($data['inf_cli_nomb_esp']),
       'inf_cli_nomb_medico' => trim($data['inf_cli_nomb_medico']),
-      'inf_cli_lugar_facturacion' => trim($data['inf_cli_lugar_facturacion']),
-      'inf_cli_lugar_atencion' => trim($data['inf_cli_lugar_atencion']),
-      'inf_cli_observacion' => trim($data['inf_cli_observacion']),
       'inf_cli_validacion' => trim($data['inf_cli_validacion']),
     );
-    $response = $this->Ivr_model->editar_info_clinicas($data);
+		if($this->input->post("dia_seleccionado") == 8) {
+			$dataInfoClinicasGeneral['inf_cli_lugar_facturacion'] = trim($data['inf_cli_lugar_facturacion']);
+      $dataInfoClinicasGeneral['inf_cli_lugar_atencion'] = trim($data['inf_cli_lugar_atencion']);
+      $dataInfoClinicasGeneral['inf_cli_observacion'] = trim($data['inf_cli_observacion']);
+		} else {
+			$dataInfoClinicasDias = $dataInfoClinicasGeneral;
+			$dataInfoClinicasDias['inf_cli_lugar_facturacion'] = trim($data['inf_cli_lugar_facturacion']);
+      $dataInfoClinicasDias['inf_cli_lugar_atencion'] = trim($data['inf_cli_lugar_atencion']);
+      $dataInfoClinicasDias['inf_cli_observacion'] = trim($data['inf_cli_observacion']);
+		}
+    $response = $this->Ivr_model->editar_info_clinicas($dataInfoClinicasGeneral);
+		$infoDias = array(
+			"dias" => $this->input->post("dias"),
+			"icd_horario_inicio_manana" => $this->input->post("icd_horario_inicio_manana"),
+			"icd_horario_fin_manana" => $this->input->post("icd_horario_fin_manana"),
+			"icd_horario_inicio_tarde" => $this->input->post("icd_horario_inicio_tarde"),
+			"icd_horario_fin_tarde" => $this->input->post("icd_horario_fin_tarde"),
+			"dia_seleccionado" => $this->input->post("dia_seleccionado"),
+		);
 
     if ($response) {
+			$dataClinica = isset($dataInfoClinicasDias) ? $dataInfoClinicasDias : $dataInfoClinicasGeneral;
+			$this->Ivr_model->actualizarDias($infoDias, $dataClinica);
       echo json_encode("¡Se actualizó correctamente la información!");
     }
   }
@@ -251,13 +268,53 @@ class Ivr extends CI_Controller
     }else{// sino envia el siguiente mensaje indicando cuantos se borraron 
       echo json_encode(array("status_code" => 401,"mensaje" => "De ".count($data)." filas, se han eliminado ".count($respuestaInfoEliminada)." filas"));  
     }
-
-
-    
   }
- 
+
+	public function obtenerDatosDia($cli_id, $cli_cod_esp, $cli_cedula_medico, $dia) {
+		if($dia == 8) {
+			// En caso de que se escoja que se va a editar la información por defecto, entonces se hace la consulta
+			// a la tabla info clinicas
+			$data["info_medico_dia"] = $this->Ivr_model->getInfoDefaultMedico($cli_id, $cli_cod_esp, $cli_cedula_medico);
+			$data["info_medico_dia"]->dia = $dia;
+		} else {
+			$data["info_medico_dia"] = $this->Ivr_model->getInfoMedico($cli_id, $cli_cod_esp, $cli_cedula_medico, $dia);
+			$data["info_medico_dia"]->dia = $dia;
+		}
+		// $body = $this->load->view('ivr/datos-atencion', $info_medico_dia, true);
+    $output = array(
+			"html" => $this->load->view('ivr/datos-atencion', $data, true),
+			"status_code" => 200
+		);
+    echo json_encode($output);
+	}
+
+	public function getInfoClinicasDias($cli_id, $cli_cod_esp, $cli_cedula_medico) {
+		$dias = $this->Ivr_model->getInfoMedicoDias($cli_id, $cli_cod_esp, $cli_cedula_medico);
+		echo json_encode($dias);
+	}
+
+	public function verficarAgregarDia($cli_id, $cli_cod_esp, $cli_cedula_medico, $dia) {
+		$informacionDia = $this->Ivr_model->getInfoMedico($cli_id, $cli_cod_esp, $cli_cedula_medico, $dia);
+		if(!isset($informacionDia->icd_id)) {
+			$data_info_cli_dias = array(
+				"icd_cli_id" => $cli_id,
+				"icd_cli_cod_esp" => $cli_cod_esp,
+				"icd_cli_cedula_medico" => $cli_cedula_medico,
+				"icd_dia" => $dia,
+				"icd_activo" => 1,
+				"icd_created_at" => date("Ymd H:i:s"),
+				"icd_updated_at" => date("Ymd H:i:s"),
+			);
+			$result = $this->Ivr_model->crearRegistroDias($data_info_cli_dias);
+			if($result) {
+				echo json_encode(array("status_code" => 200, "mensaje" => "Se agregó satisfactoriamente el día"));  
+			} else {
+				echo json_encode(array("status_code" => 400, "mensaje" => "No se pudo agregar el día"));  
+			}
+		} else {
+			echo json_encode(array("status_code" => 200, "mensaje" => "No hay nada nuevo que crear"));  
+		}
+	}
 }
-
-
 
 ?>

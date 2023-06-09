@@ -98,25 +98,18 @@
               <div class="col-md-6 mb-3">
                 <label>Nombre Especialidad</label>
                 <input type="text" class="form-control" id="inf_cli_nomb_esp" name="inf_cli_nomb_esp" disabled>
+              </div>             
+              <div class="col-md-12 mb-3">
+                <label>Lugar Facturación</label>
+                <textarea style="min-width: 100%; min-height:150px;" id="inf_cli_lugar_facturacion" name="inf_cli_lugar_facturacion" required></textarea>
               </div>
-							<div class="col-md-12 mb-3">
-                <label>Días:*</label><br>
-                <input type="checkbox" class="evt-cambio-dia-edicion" id="dia1" name="dia[]" value="1"><label for="dia">Lunes</label>
-                <input type="checkbox" class="evt-cambio-dia-edicion" id="dia2" name="dia[]" value="2"><label for="dia">Martes</label>
-                <input type="checkbox" class="evt-cambio-dia-edicion" id="dia3" name="dia[]" value="3"><label for="dia">Miércoles</label>
-                <input type="checkbox" class="evt-cambio-dia-edicion" id="dia4" name="dia[]" value="4"><label for="dia">Jueves</label>
-                <input type="checkbox" class="evt-cambio-dia-edicion" id="dia5" name="dia[]" value="5"><label for="dia">Viernes</label>
-                <input type="checkbox" class="evt-cambio-dia-edicion" id="dia6" name="dia[]" value="6"><label for="dia">Sábado</label>
-                <input type="checkbox" class="evt-cambio-dia-edicion" id="dia7" name="dia[]" value="7"><label for="dia">Domingo</label>
-                <input type="checkbox" class="evt-cambio-dia-edicion" id="dia0" name="dia[]" value="0"><label for="dia">Todos los días</label>
+              <div class="col-md-12 mb-3">
+                <label>Lugar Atención</label>
+                <textarea style="min-width: 100%; min-height:150px;" id="inf_cli_lugar_atencion" name="inf_cli_lugar_atencion" required></textarea>
               </div>
-							<div class="col-md-12 mb-3">
-                <label>Día seleccionado:*</label><br>
-                <select id="icd_dia" class="evt-seleccionar-dia" name="icd_dia">
-                  <option value="-1" selected>Seleccione una opción</option>
-                </select>
-              </div>
-              <div class="col-md-12 mb-3 evt-bloque-datos-atencion">
+              <div class="col-md-12 mb-3">
+                <label>Observación</label><br>
+                <textarea style="min-width: 100%; min-height:150px;" id="inf_cli_observacion" name="inf_cli_observacion" required></textarea>
               </div>
               <div class="col-md-6 mb-3">
                 <label>Validación: </label>
@@ -176,31 +169,20 @@
                 <input type="text" class="form-control" id="nomb_medico" value="" required>
               </div>
               <div class="col-md-12 mb-3">
-                <label>Días:</label><br>
-                <input type="checkbox" class="evt-cambio-dia" id="dia1" name="dia[]" checked="true" value="1"><label for="dia">Lunes</label>
-                <input type="checkbox" class="evt-cambio-dia" id="dia2" name="dia[]" checked="true" value="2"><label for="dia">Martes</label>
-                <input type="checkbox" class="evt-cambio-dia" id="dia3" name="dia[]" checked="true" value="3"><label for="dia">Miércoles</label>
-                <input type="checkbox" class="evt-cambio-dia" id="dia4" name="dia[]" checked="true" value="4"><label for="dia">Jueves</label>
-                <input type="checkbox" class="evt-cambio-dia" id="dia5" name="dia[]" checked="true" value="5"><label for="dia">Viernes</label>
-                <input type="checkbox" class="evt-cambio-dia" id="dia6" name="dia[]" checked="true" value="6"><label for="dia">Sábado</label>
-                <input type="checkbox" class="evt-cambio-dia" id="dia7" name="dia[]" checked="true" value="7"><label for="dia">Domingo</label>
-                <input type="checkbox" class="evt-cambio-dia" id="dia0" name="dia[]" value="0"><label for="dia">Todos los días</label>
-              </div>
-							<div class="col-md-12 mb-3">
-                <label>Lugar Facturación (por defecto)</label>
-                <textarea style="min-width: 100%; min-height:150px;" id="inf_cli_lugar_facturacion" name="inf_cli_lugar_facturacion" required></textarea>
+                <label>Lugar Facturación</label>
+                <textarea class="form-control" id="lugar_facturacion" value="" required></textarea>
               </div>
               <div class="col-md-12 mb-3">
-                <label>Lugar Atención (por defecto)</label>
-                <textarea style="min-width: 100%; min-height:150px;" id="inf_cli_lugar_atencion" name="inf_cli_lugar_atencion" required></textarea>
+                <label>Lugar Atención</label>
+                <textarea class="form-control" id="lugar_atencion" value="" required></textarea>
               </div>
               <div class="col-md-12 mb-3">
-                <label>Observación (por defecto)</label><br>
-                <textarea style="min-width: 100%; min-height:150px;" id="inf_cli_observacion" name="inf_cli_observacion" required></textarea>
+                <label>Observación</label><br>
+                <textarea style="min-width: 100%; min-height:150px;" id="observacion" value="" required></textarea>
               </div>
-							<div class="col-md-6 mb-3">
+              <div class="col-md-6 mb-3">
                 <label>Validación: </label>
-                <select id="inf_cli_validacion" class="inf_cli_validacion m-2" name="inf_cli_validacion">
+                <select id="validacion" class="validacion m-2" name="validacion">
                   <option value="SEDE">SEDE</option>
                   <option value="CUPS">CUPS</option>
                   <option value="DEFAULT">DEFAULT</option>

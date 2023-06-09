@@ -195,16 +195,58 @@ $(document).ready(function () {
 	//abre modal para editar un registro
 	$("body").on("click", ".evt-editar-ivr", function (e) {
 		var data = table.row($(this).parents("tr")).data();
-		$("#inf_cli_id").val(data.inf_cli_id);
-		$("#inf_cli_cod_esp").val(data.inf_cli_cod_esp);
-		$("#inf_cli_cedula_medico").val(data.inf_cli_cedula_medico);
-		$("#inf_cli_nomb_esp").val(data.inf_cli_nomb_esp);
-		$("#inf_cli_nomb_medico").val(data.inf_cli_nomb_medico);
-		$("#inf_cli_lugar_facturacion").val(data.inf_cli_lugar_facturacion);
-		$("#inf_cli_lugar_atencion").val(data.inf_cli_lugar_atencion);
-		$("#inf_cli_observacion").val(data.inf_cli_observacion);
-		$("#inf_cli_validacion").val(data.inf_cli_validacion);
-		$("#ivr_edit").modal("show");
+		var url = baseURL + "Ivr/getInfoClinicasDias/" + data.inf_cli_id + "/" + data.inf_cli_cod_esp + "/" + data.inf_cli_cedula_medico
+		$.ajax({
+			type: "get",
+			url: url,
+			dataType: "json",
+			processData: false,
+			contentType: false,
+		}).done(function(resp) {
+			$(".evt-cambio-dia-edicion").map(function(){
+				if(resp.includes($(this).val())) {
+					$(this).prop('checked', true);
+				} else {
+					$(this).prop('checked', false);
+				}
+			}).get();
+			$("#inf_cli_id").val(data.inf_cli_id);
+			$("#inf_cli_cod_esp").val(data.inf_cli_cod_esp);
+			$("#inf_cli_cedula_medico").val(data.inf_cli_cedula_medico);
+			$("#inf_cli_nomb_esp").val(data.inf_cli_nomb_esp);
+			$("#inf_cli_nomb_medico").val(data.inf_cli_nomb_medico);
+			$("#inf_cli_lugar_facturacion").val(data.inf_cli_lugar_facturacion);
+			$("#inf_cli_lugar_atencion").val(data.inf_cli_lugar_atencion);
+			$("#inf_cli_observacion").val(data.inf_cli_observacion);
+			$("#inf_cli_validacion").val(data.inf_cli_validacion);
+			// Se deja listo el select en caso de que haya días marcados
+			let select = $('select#icd_dia');
+			select.empty();
+			var nuevaOpcion = $('<option>');
+			// Establece los atributos y valores de la opción
+			nuevaOpcion.text('Seleccione una opción');
+			nuevaOpcion.val(-1);
+			select.append(nuevaOpcion);
+			// se establece la opción de por defecto
+			var nuevaOpcion = $('<option>');
+			// Establece los atributos y valores de la opción
+			nuevaOpcion.text('Por defecto');
+			nuevaOpcion.val(8);
+			select.append(nuevaOpcion);
+			$(".evt-cambio-dia-edicion:checked").map(function(){
+				// Crea una nueva opción
+				var nuevaOpcion = $('<option>');
+				// Establece los atributos y valores de la opción
+				nuevaOpcion.text(traduccionDia($(this).val()));
+				nuevaOpcion.val($(this).val());
+				// Agrega la opción al select
+				select.append(nuevaOpcion);
+			});
+			$(".evt-bloque-datos-atencion").html("");
+			$("#ivr_edit").modal("show");
+		}).fail(function(xhr, status, error) {
+			console.log(error)
+		})
 	});
 
 	//actualiza un registro con la información ingresada
@@ -214,7 +256,9 @@ $(document).ready(function () {
 		boton = $(this);
 		boton.addClass("disabled");
 		boton.text("Actualizando...");
-
+		var searchIDs = $(".evt-cambio-dia-edicion:checked").map(function(){
+      return $(this).val();
+    }).get();
 		//datos actualizados
 		let dataPost = {
 			inf_cli_id: $("#inf_cli_id").val(),
@@ -226,10 +270,18 @@ $(document).ready(function () {
 			inf_cli_lugar_atencion: $("#inf_cli_lugar_atencion").val(),
 			inf_cli_observacion: $("#inf_cli_observacion").val(),
 			inf_cli_validacion: $("#inf_cli_validacion").val(),
+			dias: searchIDs,
+			icd_horario_inicio_manana: $("#icd_horario_inicio_manana").val(),
+			icd_horario_fin_manana: $("#icd_horario_fin_manana").val(),
+			// icd_horario_inicio_tarde: $("#icd_horario_inicio_tarde").val(),
+			// icd_horario_fin_tarde: $("#icd_horario_fin_tarde").val(),
+			dia_seleccionado: $("#icd_dia").val(),
 		};
-
-		//verifica si hay inputs vacios
 		datosVacios = [];
+		if(dataPost.dia_seleccionado < 0) {
+			datosVacios.push(dataPost.dia_seleccionado);
+		}
+		//verifica si hay inputs vacios
 		$.each(dataPost, function (ind, elem) {
 			if (elem != "") {
 				datosVacios = datosVacios;
@@ -254,10 +306,10 @@ $(document).ready(function () {
 				data: dataPost,
 				success: function (resp) {
 					swal("¡Actualizado!", resp, "success", 6000);
-					$("#ivr_edit").modal("hide");
+					// $("#ivr_edit").modal("hide");
 					boton.removeClass("disabled");
 					boton.text("Actualizar");
-					table.ajax.reload();
+					// table.ajax.reload();
 				},
 				error: function (error) {
 					swal("Opps!", "Error al actualizar la información", "warning", 6000);
@@ -285,6 +337,9 @@ $(document).ready(function () {
 
 	//Abre modal para crear un nuevo registro
 	$("body").on("click", ".evt-nuevo-registro", function (e) {
+		$("#ivr_create #inf_cli_lugar_facturacion").val('');
+		$("#ivr_create #inf_cli_lugar_atencion").val('');
+		$("#ivr_create #inf_cli_observacion").val('');
 		$("#ivr_create").modal("show");
 	});
 
@@ -295,7 +350,9 @@ $(document).ready(function () {
 		boton = $(this);
 		boton.addClass("disabled");
 		boton.text("Guardando...");
-
+		var searchIDs = $(".evt-cambio-dia:checked").map(function(){
+      return $(this).val();
+    }).get();
 		//datos ingresados
 		let dataPost = {
 			id_cli: $("#id_cli").val(),
@@ -303,12 +360,12 @@ $(document).ready(function () {
 			id_medico: $("#id_medico").val(),
 			nomb_esp: $("#nomb_esp").val(),
 			nomb_medico: $("#nomb_medico").val(),
-			lugar_facturacion: $("#lugar_facturacion").val(),
-			lugar_atencion: $("#lugar_atencion").val(),
-			observacion: $("#observacion").val(),
-			validacion: $("#validacion").val(),
+			lugar_facturacion: $("#inf_cli_lugar_facturacion").val(),
+			lugar_atencion: $("#inf_cli_lugar_atencion").val(),
+			observacion: $("#inf_cli_observacion").val(),
+			validacion: $("#inf_cli_validacion").val(),
+			dias: searchIDs,
 		};
-
 		//verifica si hay inputs vacios
 		datosVacios = [];
 		$.each(dataPost, function (ind, elem) {
@@ -504,4 +561,142 @@ $(document).ready(function () {
 				);
 			});
 	});
+
+	$("body").on("change", ".evt-cambio-dia", function(e){
+		cambiarChecbox('evt-cambio-dia', $(this));
+	});
+
+	$("body").on("change", ".evt-seleccionar-dia", function(e) {
+		let dia = $(this).val();
+		if(dia > 0) {
+			let cli_id = $("#inf_cli_id").val();
+			let cli_cod_esp = $("#inf_cli_cod_esp").val();
+			let cli_cedula_medico = $("#inf_cli_cedula_medico").val();
+			let url = baseURL + "Ivr/obtenerDatosDia/" + cli_id + "/" + cli_cod_esp + "/" + cli_cedula_medico + "/" + dia
+			$.ajax({
+				url: url,
+				type: "get",
+				dataType: "json",
+				processData: false,
+				contentType: false,
+			})
+				.done(function (resp) {
+					$(".evt-bloque-datos-atencion").html(resp.html);
+				})
+				.fail(function (err) {
+					swal(
+						"Error de archivo",
+						"El archivo cargado no es un archivo .csv",
+						"error"
+					);
+				});
+		} else {
+			$(".evt-bloque-datos-atencion").html("");
+		}
+	});
+
+	$("body").on("change", ".evt-cambio-dia-edicion", function(e){
+		verficarAgregarDia($(this).val());
+		cambiarChecbox('evt-cambio-dia-edicion', $(this));
+		let select = $('select#icd_dia');
+		select.empty();
+		var nuevaOpcion = $('<option>');
+		// Establece los atributos y valores de la opción
+		nuevaOpcion.text('Seleccione una opción');
+		nuevaOpcion.val(-1);
+		select.append(nuevaOpcion);
+		// se establece la opción de por defecto
+		var nuevaOpcion = $('<option>');
+		// Establece los atributos y valores de la opción
+		nuevaOpcion.text('Por defecto');
+		nuevaOpcion.val(8);
+		select.append(nuevaOpcion);
+		$(".evt-cambio-dia-edicion:checked").map(function(){
+			// Crea una nueva opción
+			var nuevaOpcion = $('<option>');
+			// Establece los atributos y valores de la opción
+			nuevaOpcion.text(traduccionDia($(this).val()));
+			nuevaOpcion.val($(this).val());
+			// Agrega la opción al select
+			select.append(nuevaOpcion);
+    });
+		$(".evt-bloque-datos-atencion").html("");
+	});
+
+	function cambiarChecbox(nombreClass, elemento) {
+		var searchIDs = $("."+ nombreClass +":checked").map(function(){
+      return $(this).val();
+    }).get();
+		if (elemento.is(':checked')) {
+			if(searchIDs.includes('0')) {
+				if(searchIDs.length != 8) {
+					$('.'+ nombreClass +'').prop('checked', true);
+				}
+			} else if (searchIDs.length == 7) {
+				$("#dia0").prop('checked', true);
+			}
+		} else {
+			if(searchIDs.includes('0')) {
+				$("#dia0").prop('checked', false);
+			} else if (elemento.val() == '0') {
+				$('.'+ nombreClass +'').prop('checked', false);
+			}
+		}
+	}
+
+	function traduccionDia(dia) {
+		if(dia == 1) {
+			return 'Lunes';
+		} else if (dia == 2) {
+			return 'Martes';
+		} else if (dia == 3) {
+			return 'Miércoles';
+		} else if (dia == 4) {
+			return 'Jueves';
+		} else if (dia == 5) {
+			return 'Viernes';
+		} else if (dia == 6) {
+			return 'Sábado';
+		} else if (dia == 7) {
+			return 'Domingo';
+		} else if (dia == 0) {
+			return 'Todas';
+		}
+		
+	}
+
+	$("body").on("change", ".evt-bloque-horarios", function(e) {
+		let icd_horario_inicio_manana = $("#icd_horario_inicio_manana").val();
+		let icd_horario_fin_manana = $("#icd_horario_fin_manana").val();
+		// let icd_horario_inicio_tarde = $("#icd_horario_inicio_tarde").val();
+		// let icd_horario_fin_tarde = $("#icd_horario_fin_tarde").val();
+		if((icd_horario_inicio_manana != null && icd_horario_fin_manana) && (icd_horario_inicio_manana > icd_horario_fin_manana)) {
+			swal("Error", 'El horario inicio del primer bloque no puede ser mayor al horario fin', "error", 6000);
+			$(this).val('')
+		}
+	});
+
+	function verficarAgregarDia(dia) {
+		const cli_id = $("#inf_cli_id").val();
+		const cli_cod_esp = $("#inf_cli_cod_esp").val();
+		const cli_cedula_medico = $("#inf_cli_cedula_medico").val();
+		let url = baseURL + "Ivr/verficarAgregarDia/" + cli_id + "/" + cli_cod_esp + "/" + cli_cedula_medico + "/" + dia
+		$.ajax({
+			url: url,
+			type: "get",
+			dataType: "json",
+			processData: false,
+			contentType: false,
+		})
+			.done(function (resp) {
+				console.log(resp)
+			})
+			.fail(function (err) {
+				swal(
+					"Error de adición",
+					"No se pudo agregar el día",
+					"error"
+				);
+			});
+	}
 });
