@@ -11,11 +11,11 @@
 	</div>
 	<div>
 		<label>Lugar Facturación*</label>
-		<textarea style="min-width: 100%; min-height:150px;" id="inf_cli_lugar_facturacion" name="inf_cli_lugar_facturacion" required><?= $info_medico_dia->icd_cli_lugar_atencion  ?></textarea>
+		<textarea style="min-width: 100%; min-height:150px;" id="inf_cli_lugar_facturacion" name="inf_cli_lugar_facturacion" required><?= $info_medico_dia->icd_cli_lugar_facturacion  ?></textarea>
 	</div>
 	<div>
 		<label>Lugar Atención*</label>
-		<textarea style="min-width: 100%; min-height:150px;" id="inf_cli_lugar_atencion" name="inf_cli_lugar_atencion" required><?= $info_medico_dia->icd_cli_lugar_facturacion ?></textarea>
+		<textarea style="min-width: 100%; min-height:150px;" id="inf_cli_lugar_atencion" name="inf_cli_lugar_atencion" required><?= $info_medico_dia->icd_cli_lugar_atencion ?></textarea>
 	</div>
 	<div>
 		<label>Observación*</label><br>
@@ -24,11 +24,11 @@
 <?php } else { ?>
 	<div>
 		<label>Lugar Facturación (por defecto)*</label>
-		<textarea style="min-width: 100%; min-height:150px;" id="inf_cli_lugar_facturacion" name="inf_cli_lugar_facturacion" required><?= $info_medico_dia->inf_cli_lugar_atencion  ?></textarea>
+		<textarea style="min-width: 100%; min-height:150px;" id="inf_cli_lugar_facturacion" name="inf_cli_lugar_facturacion" required><?= $info_medico_dia->inf_cli_lugar_facturacion  ?></textarea>
 	</div>
 	<div>
 		<label>Lugar Atención (por defecto)*</label>
-		<textarea style="min-width: 100%; min-height:150px;" id="inf_cli_lugar_atencion" name="inf_cli_lugar_atencion" required><?= $info_medico_dia->inf_cli_lugar_facturacion ?></textarea>
+		<textarea style="min-width: 100%; min-height:150px;" id="inf_cli_lugar_atencion" name="inf_cli_lugar_atencion" required><?= $info_medico_dia->inf_cli_lugar_atencion ?></textarea>
 	</div>
 	<div>
 		<label>Observación (por defecto)*</label><br>
