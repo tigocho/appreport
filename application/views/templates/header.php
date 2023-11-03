@@ -12,9 +12,9 @@
       <!-- Typography CSS -->
       <link rel="stylesheet" href="<?php echo base_url();?>resources/css/typography.css">
       <!-- Style CSS -->
-      <link rel="stylesheet" href="<?php echo base_url();?>resources/css/style.css?v=1.001">
+      <link rel="stylesheet" href="<?php echo base_url();?>resources/css/style.css?v=1.004">
       <!-- Responsive CSS -->
-      <link rel="stylesheet" href="<?php echo base_url();?>resources/css/responsive.css">
+      <link rel="stylesheet" href="<?php echo base_url();?>resources/css/responsive.css?v=1.002">
       <!-- Select2 CSS -->
       <link href="<?php echo base_url(); ?>resources/css/select2.min.css" rel="stylesheet">
        <!-- Full calendar -->
